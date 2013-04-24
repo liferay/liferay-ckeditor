@@ -13,7 +13,9 @@ ignore :
 	'.svn',
 	'.settings',
 	'.project',
-	'.idea'
+	'.idea',
+	'.git',
+	'.sh'
 ],
 
 copy :
