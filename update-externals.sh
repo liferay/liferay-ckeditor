@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Get current SVN Revision
-REV=$(git log -1 --pretty=%B svn/3.6.x | grep 'git-svn-id:' | sed 's/^.*@//' | sed s:\ [A-z0-9\-]*$::g);
+REV=$(git log -1 --pretty=%B svn/3.6.x | grep 'git-svn-id:' | sed 's/^.*@//' | sed s:\ [a-z0-9\-]*$::g);
 
 if [ -z "$REV" ]; then
 	REV="7691";
