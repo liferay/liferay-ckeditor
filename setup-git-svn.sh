@@ -7,4 +7,4 @@ git svn init http://svn.ckeditor.com/CKEditor --prefix=svn/ --stdlayout --branch
 echo 'This may take a while (30+ min), depending on the staleness of your repository.';
 git svn fetch --log-window-size=10000 --revision 7691:HEAD;
 
-sh update-externals.sh
+bash update-externals.sh
