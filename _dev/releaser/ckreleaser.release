@@ -10,6 +10,7 @@ fixLineEnds : true,
 ignore :
 [
 	'_dev',
+	'dev',
 	'.svn',
 	'.settings',
 	'.project',
