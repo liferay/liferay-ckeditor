@@ -6,6 +6,7 @@
 var CKBUILDER_CONFIG = {
 	skin: 'moono',
 	ignore: [
+		'_dev',
 		'dev',
 		'README.md',
 		'.gitignore',
