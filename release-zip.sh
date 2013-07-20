@@ -9,4 +9,6 @@ ARCHIVE_FILE_NAME="ckeditor_"$CKEDITOR_VERSION"_liferay_dev.zip"
 echo ""
 echo "Creating git archive: "$ARCHIVE_FILE_NAME
 
+rm *.zip
+
 git archive -o $ARCHIVE_FILE_NAME HEAD
