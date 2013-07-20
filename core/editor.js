@@ -4,7 +4,7 @@
  */
 
 /**
- * @fileOverview Defines the {@link CKEDITOR.editor} class, which represents an
+ * @fileOverview Defines the {@link CKEDITOR.editor} class that represents an
  *		editor instance.
  */
 
@@ -15,7 +15,7 @@
 
 	/**
 	 * Represents an editor instance. This constructor should be rarely
-	 * used, in favor of the {@link CKEDITOR} editor creation functions.
+	 * used in favor of the {@link CKEDITOR} editor creation functions.
 	 *
 	 * @class CKEDITOR.editor
 	 * @mixins CKEDITOR.event
@@ -24,7 +24,6 @@
 	 * @param {CKEDITOR.dom.element} [element] The DOM element upon which this editor
 	 * will be created.
 	 * @param {Number} [mode] The element creation mode to be used by this editor.
-	 * will be created.
 	 */
 	function Editor( instanceConfig, element, mode ) {
 		// Call the CKEDITOR.event constructor to initialize this instance.
@@ -39,7 +38,7 @@
 			if ( !( element instanceof CKEDITOR.dom.element ) )
 				throw new Error( 'Expect element of type CKEDITOR.dom.element.' );
 			else if ( !mode )
-				throw new Error( 'One of the element mode must be specified.' );
+				throw new Error( 'One of the element modes must be specified.' );
 
 			if ( CKEDITOR.env.ie && CKEDITOR.env.quirks && mode == CKEDITOR.ELEMENT_MODE_INLINE ) {
 				throw new Error( 'Inline element mode is not supported on IE quirks.' );
@@ -55,6 +54,7 @@
 			 * supposed to be provided by the concrete editor creator and is not subjected to
 			 * be modified.
 			 *
+			 * @readonly
 			 * @property {CKEDITOR.dom.element}
 			 */
 			this.element = element;
@@ -62,6 +62,7 @@
 			/**
 			 * This property indicate the way how this instance is associated with the {@link #element}.
 			 *
+			 * @readonly
 			 * @property {Number}
 			 * @see CKEDITOR#ELEMENT_MODE_INLINE
 			 * @see CKEDITOR#ELEMENT_MODE_REPLACE
@@ -81,6 +82,7 @@
 		/**
 		 * Contains all UI templates created for this editor instance.
 		 *
+		 * @readonly
 		 * @property {Object}
 		 */
 		this.templates = {};
@@ -92,6 +94,7 @@
 		 * attribute of the {@link #element}, otherwise a name pattern of
 		 * `'editor{n}'` will be used.
 		 *
+		 * @readonly
 		 * @property {String}
 		 */
 		this.name = this.name || genEditorName();
@@ -99,6 +102,7 @@
 		/**
 		 * A unique random string assigned to each editor instance in the page.
 		 *
+		 * @readonly
 		 * @property {String}
 		 */
 		this.id = CKEDITOR.tools.getNextId();
@@ -113,6 +117,7 @@
 		 *	* **destroyed**: the editor has been destroyed - see {@link CKEDITOR.editor#method-destroy} method.
 		 *
 		 * @since 4.1
+		 * @readonly
 		 * @property {String}
 		 */
 		this.status = 'unloaded';
@@ -126,6 +131,7 @@
 		 *		var editor = CKEDITOR.instances.editor1;
 		 *		alert( editor.config.skin ); // e.g. 'moono'
 		 *
+		 * @readonly
 		 * @property {CKEDITOR.config}
 		 */
 		this.config = CKEDITOR.tools.prototypedCopy( CKEDITOR.config );
@@ -133,6 +139,7 @@
 		/**
 		 * Namespace containing UI features related to this editor instance.
 		 *
+		 * @readonly
 		 * @property {CKEDITOR.ui}
 		 */
 		this.ui = new CKEDITOR.ui( this );
@@ -142,6 +149,7 @@
 		 * is rarely used for normal API operations. It is mainly
 		 * destinated to developer adding UI elements to the editor interface.
 		 *
+		 * @readonly
 		 * @property {CKEDITOR.focusManager}
 		 */
 		this.focusManager = new CKEDITOR.focusManager( this );
@@ -149,6 +157,7 @@
 		/**
 		 * Controls keystrokes typing in this editor instance.
 		 *
+		 * @readonly
 		 * @property {CKEDITOR.keystrokeHandler}
 		 */
 		this.keystrokeHandler = new CKEDITOR.keystrokeHandler( this );
@@ -156,14 +165,10 @@
 		// Make the editor update its command states on mode change.
 		this.on( 'readOnly', updateCommands );
 		this.on( 'selectionChange', updateCommandsContext );
+		this.on( 'mode', updateCommands );
 
 		// Handle startup focus.
-		this.on( 'instanceReady', function() {
-			updateCommands.call( this );
-			// First 'mode' event is fired before this 'instanceReady',
-			// so to avoid updating commands twice, add this listener here.
-			this.on( 'mode', updateCommands );
-
+		this.on( 'instanceReady', function( event ) {
 			this.config.startupFocus && this.focus();
 		} );
 
@@ -191,12 +196,9 @@
 
 	function updateCommands() {
 		var commands = this.commands,
-			mode = this.mode;
+			name;
 
-		if ( !mode )
-			return;
-
-		for ( var name in commands )
+		for ( name in commands )
 			updateCommand( this, commands[ name ] );
 	}
 
@@ -248,7 +250,9 @@
 				editor.fireOnce( 'customConfigLoaded' );
 		} else {
 			// Load the custom configuration file.
-			CKEDITOR.scriptLoader.load( customConfig, function() {
+			// To resolve customConfig race conflicts, use scriptLoader#queue
+			// instead of scriptLoader#load (#6504).
+			CKEDITOR.scriptLoader.queue( customConfig, function() {
 				// If the CKEDITOR.editorConfig function has been properly
 				// defined in the custom configuration file, cache it.
 				if ( CKEDITOR.editorConfig )
@@ -303,8 +307,9 @@
 		/**
 		 * Indicates the read-only state of this editor. This is a read-only property.
 		 *
-		 * @property {Boolean}
 		 * @since 3.6
+		 * @readonly
+		 * @property {Boolean}
 		 * @see CKEDITOR.editor#setReadOnly
 		 */
 		editor.readOnly = !!( editor.config.readOnly || ( editor.elementMode == CKEDITOR.ELEMENT_MODE_INLINE ? editor.element.isReadOnly() : editor.elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ? editor.element.getAttribute( 'disabled' ) : false ) );
@@ -313,6 +318,7 @@
 		 * Indicates that the editor is running into an environment where
 		 * no block elements are accepted inside the content.
 		 *
+		 * @readonly
 		 * @property {Boolean}
 		 */
 		editor.blockless = editor.elementMode == CKEDITOR.ELEMENT_MODE_INLINE && !CKEDITOR.dtd[ editor.element.getName() ][ 'p' ];
@@ -325,6 +331,7 @@
 		 *
 		 *		alert( editor.tabIndex ); // e.g. 0
 		 *
+		 * @readonly
 		 * @property {Number} [=0]
 		 */
 		editor.tabIndex = editor.config.tabIndex || editor.element && editor.element.getAttribute( 'tabindex' ) || 0;
@@ -363,6 +370,7 @@
 			 *
 			 *		alert( editor.langCode ); // e.g. 'en'
 			 *
+			 * @readonly
 			 * @property {String}
 			 */
 			editor.langCode = languageCode;
@@ -372,6 +380,7 @@
 			 *
 			 *		alert( editor.lang.basicstyles.bold ); // e.g. 'Negrito' (if the language is set to Portuguese)
 			 *
+			 * @readonly
 			 * @property {Object} lang
 			 */
 			// As we'll be adding plugin specific entries that could come
@@ -458,6 +467,7 @@
 			 *			...
 			 *		}
 			 *
+			 * @readonly
 			 * @property {Object}
 			 */
 			editor.plugins = plugins;
@@ -600,8 +610,12 @@
 			commandDefinition.name = commandName.toLowerCase();
 			var cmd = new CKEDITOR.command( this, commandDefinition );
 
-			// Update command when added after editor has been already initialized.
-			if ( this.status == 'ready' && this.mode )
+			// Update command when mode is set.
+			// This guarantees that commands added before first editor#mode
+			// aren't immediately updated, but waits for editor#mode and that
+			// commands added later are immediately refreshed, even when added
+			// before instanceReady. #10103, #10249
+			if ( this.mode )
 				updateCommand( this, cmd );
 
 			return this.commands[ commandName ] = cmd;
@@ -827,6 +841,10 @@
 
 			if ( this.readOnly != isReadOnly ) {
 				this.readOnly = isReadOnly;
+
+				// Block or release BACKSPACE key according to current read-only
+				// state to prevent browser's history navigation (#9761).
+				this.keystrokeHandler.blockedKeystrokes[ 8 ] = +isReadOnly;
 
 				this.editable().setReadOnly( isReadOnly );
 
@@ -1103,7 +1121,38 @@ CKEDITOR.ELEMENT_MODE_INLINE = 3;
  *		var editor = CKEDITOR.instances.editor1;
  *		alert( editor.container.getName() ); // 'span'
  *
+ * @readonly
  * @property {CKEDITOR.dom.element} container
+ */
+
+/**
+ * The document that stores the editor contents.
+ *
+ * * For the framed editor it is equal to the document inside the
+ * iframe containing the editable element.
+ * * For the inline editor it is equal to {@link CKEDITOR#document}.
+ *
+ * The document object is available after the {@link #contentDom} event is fired
+ * and may be invalidated when the {@link #contentDomUnload} event is fired
+ * (framed editor only).
+ *
+ *		editor.on( 'contentDom', function() {
+ *			console.log( editor.document );
+ *		} );
+ *
+ * @readonly
+ * @property {CKEDITOR.dom.document} document
+ */
+
+/**
+ * The window instance related to the {@link #document} property.
+ *
+ * It is always equal to the `editor.document.getWindow()`.
+ *
+ * See {@link #document} property documentation.
+ *
+ * @readonly
+ * @property {CKEDITOR.dom.window} window
  */
 
 /**

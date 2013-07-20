@@ -35,7 +35,7 @@ CKEDITOR.lang[ 'uk' ] = {
 		// of reading non-English words. So be careful while translating it.
 		editorHelp: 'натисніть ALT 0 для довідки',
 
-		browseServer: 'Огляд',
+		browseServer: 'Огляд Сервера',
 		url: 'URL',
 		protocol: 'Протокол',
 		upload: 'Надіслати',
@@ -91,13 +91,13 @@ CKEDITOR.lang[ 'uk' ] = {
 		alignTop: 'По верхньому краю',
 		alignMiddle: 'По середині',
 		alignBottom: 'По нижньому краю',
-		invalidValue	: 'Invalid value.', // MISSING
+		invalidValue	: 'Невірне значення.',
 		invalidHeight: 'Висота повинна бути цілим числом.',
 		invalidWidth: 'Ширина повинна бути цілим числом.',
-		invalidCssLength: 'Значення, вказане для "%1" в полі повинно бути позитивним числом або без дійсного виміру CSS блоку (px, %, in, cm, mm, em, ex, pt, or pc).',
-		invalidHtmlLength: 'Значення, вказане для "%1" в полі повинно бути позитивним числом або без дійсного виміру HTML блоку (px or %).',
+		invalidCssLength: 'Значення, вказане для "%1" в полі повинно бути позитивним числом або без дійсного виміру CSS блоку (px, %, in, cm, mm, em, ex, pt або pc).',
+		invalidHtmlLength: 'Значення, вказане для "%1" в полі повинно бути позитивним числом або без дійсного виміру HTML блоку (px або %).',
 		invalidInlineStyle: 'Значення, вказане для вбудованого стилю повинне складатися з одного чи кількох кортежів у форматі "ім\'я : значення", розділених крапкою з комою.',
-		cssLengthTooltip: 'Введіть номер значення в пікселях або число з дійсною одиниці CSS (px, %, in, cm, mm, em, ex, pt, or pc).',
+		cssLengthTooltip: 'Введіть номер значення в пікселях або число з дійсною одиниці CSS (px, %, in, cm, mm, em, ex, pt або pc).',
 
 		// Put the voice-only part of the label in the span.
 		unavailable: '%1<span class="cke_accessibility">, не доступне</span>'

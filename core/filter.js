@@ -135,7 +135,15 @@
 			// Force ENTER_BR for blockless editable.
 			this.enterMode = enterMode = ( editor.blockless ? CKEDITOR.ENTER_BR : editor.config.enterMode );
 
-			this.allow( 'br ' + ( enterMode == CKEDITOR.ENTER_P ? 'p' : enterMode == CKEDITOR.ENTER_DIV ? 'div' : '' ), 'default', 1 );
+			var defaultRules = [ 'br' ],
+				shiftEnterMode = editor.blockless ? CKEDITOR.ENTER_BR : editor.config.shiftEnterMode;
+
+			if ( enterMode == CKEDITOR.ENTER_P || shiftEnterMode == CKEDITOR.ENTER_P )
+				defaultRules.push( 'p' );
+			if ( enterMode == CKEDITOR.ENTER_DIV || shiftEnterMode == CKEDITOR.ENTER_DIV )
+				defaultRules.push( 'div' );
+
+			this.allow( defaultRules.join( ' ' ), 'default', 1 );
 			this.allow( allowedContent, 'config', 1 );
 			this.allow( editor.config.extraAllowedContent, 'extra', 1 );
 
@@ -278,15 +286,26 @@
 
 			// Filter all children, skip root (fragment or editable-like wrapper used by data processor).
 			fragment.forEach( function( el ) {
-					if ( el.type == CKEDITOR.NODE_ELEMENT ) {
-						if ( filterFn( el, rules, transformations, toBeRemoved, toHtml ) )
-							isModified = true;
-					}
-					else if ( el.type == CKEDITOR.NODE_COMMENT && el.value.match( /^\{cke_protected\}(?!\{C\})/ ) ) {
-						if ( !filterProtectedElement( el, protectedRegexs, filterFn, rules, transformations, toHtml ) )
-							toBeRemoved.push( el );
-					}
-				}, null, true );
+				if ( el.type == CKEDITOR.NODE_ELEMENT ) {
+					// (#10260) Don't touch elements like spans with data-cke-* attribute since they're
+					// responsible e.g. for placing markers, bookmarks, odds and stuff.
+					// We love 'em and we don't wanna lose anything during the filtering.
+					// '|' is to avoid tricky joints like data-="foo" + cke-="bar". Yes, they're possible.
+					//
+					// NOTE: data-cke-* assigned elements are preserved only when filter is used with
+					//       htmlDataProcessor.toHtml because we don't want to protect them when outputting data
+					//       (toDataFormat).
+					if ( toHtml && el.name == 'span' && ~CKEDITOR.tools.objectKeys( el.attributes ).join( '|' ).indexOf( 'data-cke-' ) )
+						return;
+
+					if ( filterFn( el, rules, transformations, toBeRemoved, toHtml ) )
+						isModified = true;
+				}
+				else if ( el.type == CKEDITOR.NODE_COMMENT && el.value.match( /^\{cke_protected\}(?!\{C\})/ ) ) {
+					if ( !filterProtectedElement( el, protectedRegexs, filterFn, rules, transformations, toHtml ) )
+						toBeRemoved.push( el );
+				}
+			}, null, true );
 
 			if ( toBeRemoved.length )
 				isModified = true;
@@ -484,7 +503,7 @@
 		 * A single transformation rule is an object with four properties:
 		 *
 		 *	* `check` (optional) &ndash; if set and {@link CKEDITOR.filter} does
-		 *		not accept this allowed content rule, this transformation rule
+		 *		not accept this {@link CKEDITOR.filter.contentRule}, this transformation rule
 		 *		will not be executed (it does not *match*). This value is passed
 		 *		to {@link #check}.
 		 *	* `element` (optional) &ndash; this string property tells the filter on which
@@ -636,7 +655,7 @@
 			// Make a deep copy.
 			var clone = CKEDITOR.tools.clone( element ),
 				toBeRemoved = [],
-				transformations, i;
+				transformations;
 
 			// Apply transformations to original element.
 			// Transformations will be applied to clone by the filter function.
@@ -799,7 +818,7 @@
 
 			for ( var i in validator ) {
 				obj[ i ] = validator[ i ];
-				len++
+				len++;
 			}
 
 			return len ? obj : false;
@@ -1764,12 +1783,12 @@
 		 */
 		matchesStyle: elementMatchesStyle,
 
-		/*
+		/**
 		 * Transforms element to given form.
 		 *
 		 * Form may be a:
 		 *
-		 * 	* {@link CKEDITOR.style},
+		 *	* {@link CKEDITOR.style},
 		 *	* string &ndash; the new name of an element.
 		 *
 		 * @param {CKEDITOR.htmlParser.element} el
@@ -1866,7 +1885,7 @@
  *					editor.filter.check( 'b' ); // -> true (thanks to extraAllowedContent)
  *					editor.setData( '<h1><i>Foo</i></h1><p class="left"><b>Bar</b> <a href="http://foo.bar">foo</a></p>' );
  *					// Editor contents will be:
- *					'<h1>Foo</h1><p><b>Bar</b> foo</p>'
+ *					'<h1><i>Foo</i></h1><p><b>Bar</b> foo</p>'
  *				}
  *			}
  *		} );
@@ -1886,6 +1905,7 @@
  * editor configuration.
  *
  * @since 4.1
+ * @readonly
  * @property {CKEDITOR.filter} filter
  * @member CKEDITOR.editor
  */

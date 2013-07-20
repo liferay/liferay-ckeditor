@@ -10,7 +10,7 @@
 
 (function() {
 	CKEDITOR.plugins.add( 'undo', {
-		lang: 'af,ar,bg,bn,bs,ca,cs,cy,da,de,el,en-au,en-ca,en-gb,en,eo,es,et,eu,fa,fi,fo,fr-ca,fr,gl,gu,he,hi,hr,hu,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,pl,pt-br,pt,ro,ru,sk,sl,sr-latn,sr,sv,th,tr,ug,uk,vi,zh-cn,zh', // %REMOVE_LINE_CORE%
+		lang: 'af,ar,bg,bn,bs,ca,cs,cy,da,de,el,en,en-au,en-ca,en-gb,eo,es,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
 		icons: 'redo,redo-rtl,undo,undo-rtl', // %REMOVE_LINE_CORE%
 		init: function( editor ) {
 			var undoManager = new UndoManager( editor );
@@ -78,11 +78,16 @@
 				editor.mode == 'wysiwyg' && undoManager.save( true );
 			});
 
-			// Make the undo manager available only in wysiwyg mode.
-			editor.on( 'mode', function() {
+			function toggleUndoManager() {
 				undoManager.enabled = editor.readOnly ? false : editor.mode == 'wysiwyg';
 				undoManager.onChange();
-			});
+			}
+
+			// Make the undo manager available only in wysiwyg mode.
+			editor.on( 'mode', toggleUndoManager );
+
+			// Disable undo manager when in read-only mode.
+			editor.on( 'readOnly', toggleUndoManager );
 
 			if ( editor.ui.addButton ) {
 				editor.ui.addButton( 'Undo', {
@@ -138,6 +143,9 @@
 			 * that shouldn't be recored (e.g. auto paragraphing).
 			 *
 			 * See {@link CKEDITOR.plugins.undo.UndoManager#lock} for more details.
+			 *
+			 * **Note:** In order to unlock the Undo Manager {@link #unlockSnapshot} has to be fired
+			 * number of times `lockSnapshot` has been fired.
 			 *
 			 * @since 4.0
 			 * @event lockSnapshot
@@ -565,19 +573,24 @@
 		 *
 		 * It's mainly used for ensure any DOM operations that shouldn't be recorded (e.g. auto paragraphing).
 		 *
+		 * **Note:** For every `lock` call you must call {@link #unlock} once to unlock the Undo Manager.
+		 *
 		 * @since 4.0
 		 */
 		lock: function() {
 			if ( !this.locked ) {
-				var snapBefore = this.editor.getSnapshot();
+				var imageBefore = new Image( this.editor );
 
 				// If current editor content matches the tip of snapshot stack,
 				// the stack tip must be updated by unlock, to include any changes made
 				// during this period.
-				var matchedTip = this.currentImage && snapBefore == this.currentImage.contents;
+				var matchedTip = this.currentImage && this.currentImage.equals( imageBefore, true );
 
-				this.locked = { update: matchedTip ? snapBefore : null };
+				this.locked = { update: matchedTip ? imageBefore : null, level: 1 };
 			}
+			// Increase the level of lock.
+			else
+				this.locked.level++;
 		},
 
 		/**
@@ -589,13 +602,15 @@
 		 */
 		unlock: function() {
 			if ( this.locked ) {
-				var update = this.locked.update,
-					snap = this.editor.getSnapshot();
+				// Decrease level of lock and check if equals 0, what means that undoM is completely unlocked.
+				if ( !--this.locked.level ) {
+					var updateImage = this.locked.update;
 
-				this.locked = null;
+					this.locked = null;
 
-				if ( typeof update == 'string' && snap != update )
-					this.update();
+					if ( updateImage && !updateImage.equals( new Image( this.editor ), true ) )
+						this.update();
+				}
 			}
 		}
 	};

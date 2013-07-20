@@ -432,7 +432,11 @@
 
 				// Setup editor keystroke handlers on this element.
 				var keystrokeHandler = editor.keystrokeHandler;
-				keystrokeHandler.blockedKeystrokes[ 8 ] = editor.readOnly;
+
+				// If editor is read-only, then make sure that BACKSPACE key
+				// is blocked to prevent browser history navigation.
+				keystrokeHandler.blockedKeystrokes[ 8 ] = +editor.readOnly;
+
 				editor.keystrokeHandler.attach( this );
 
 				// Update focus states.
@@ -600,12 +604,7 @@
 							// BACKSPACE/DEL pressed at the start/end of table cell.
 							else if ( ( parent = path.contains( [ 'td', 'th', 'caption' ] ) ) &&
 								      range.checkBoundaryOfElement( parent, rtl ? CKEDITOR.START : CKEDITOR.END ) ) {
-								next = parent[ rtl ? 'getPreviousSourceNode' : 'getNextSourceNode' ]( 1, CKEDITOR.NODE_ELEMENT );
-								if ( next && !next.isReadOnly() && range.root.contains( next ) ) {
-									range[ rtl ? 'moveToElementEditEnd' : 'moveToElementEditStart' ]( next );
-									range.select();
-									isHandled = 1;
-								}
+								isHandled = 1;
 							}
 						}
 
@@ -1010,9 +1009,9 @@
 			// DATA PROCESSING
 
 			// Select range and stop execution.
-			if ( data ) {
-				processDataForInsertion( that, data );
-
+			// If data has been totally emptied after the filtering,
+			// any insertion is pointless (#10339).
+			if ( data && processDataForInsertion( that, data ) ) {
 				// DATA INSERTION
 				insertDataIntoRange( that );
 			}
@@ -1154,6 +1153,8 @@
 			}
 
 			that.dataWrapper = wrapper;
+
+			return data;
 		}
 
 		function insertDataIntoRange( that ) {
@@ -1618,7 +1619,9 @@
 				element = element.getParent();
 			}
 
-			return wrapper.getOuterHtml().replace( '{cke-peak}', data );
+			// Don't use String.replace because it fails in IE7 if special replacement
+			// characters ($$, $&, etc.) are in data (#10367).
+			return wrapper.getOuterHtml().split( '{cke-peak}' ).join( data );
 		}
 
 		return insert;
