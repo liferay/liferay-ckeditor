@@ -54,7 +54,24 @@ cd ../..
 echo ""
 echo "Starting CKBuilder..."
 
-java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version="4.0 DEV" --build-config build-config.js --overwrite "$@"
+# Determine release mode
+if [ "$1" == "dev" ]; then
+	echo ""
+	echo "Building CKEditor in development mode..."
+	echo ""
+
+	DEV_OPS="--leave-css-unminified --leave-js-unminified"
+
+	MODE="DEV"
+else
+	echo ""
+	echo "Building CKEditor in production mode..."
+	echo ""
+
+	MODE="MIN"
+fi
+
+java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version="4.0.3-R2 LIFERAY-$MODE" --build-config build-config.js --overwrite --no-tar $DEV_OPS
 
 echo ""
 echo "Release created in the \"release\" directory."
