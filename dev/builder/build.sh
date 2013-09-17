@@ -62,16 +62,21 @@ if [ "$1" == "dev" ]; then
 
 	DEV_OPS="--leave-css-unminified --leave-js-unminified"
 
-	MODE="DEV"
+	MODE="_dev"
 else
 	echo ""
 	echo "Building CKEditor in production mode..."
 	echo ""
-
-	MODE="MIN"
 fi
 
-java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version="4.1.2 LIFERAY-$MODE" --build-config build-config.js --overwrite --no-tar $DEV_OPS
+
+java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
+
+echo ""
+echo "Zipping and stamping with SHA..."
+echo ""
+
+ant zip -Drelease.file.name=ckeditor_4.1.2_liferay$MODE.zip
 
 echo ""
 echo "Release created in the \"release\" directory."
