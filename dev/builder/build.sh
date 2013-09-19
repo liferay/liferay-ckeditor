@@ -76,7 +76,7 @@ echo ""
 echo "Zipping and stamping with SHA..."
 echo ""
 
-ant zip -Drelease.file.name=ckeditor_4.1.2_liferay$MODE.zip
+ant zip -Drelease.file.name=ckeditor_4.1.3_liferay$MODE.zip
 
 echo ""
 echo "Release created in the \"release\" directory."
