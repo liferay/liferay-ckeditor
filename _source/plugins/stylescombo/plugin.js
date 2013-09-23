@@ -37,11 +37,14 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 							style._name = styleName;
 							style._.enterMode = config.enterMode;
 
+							// Weight is used to sort styles (#9029).
+							style._.weight = i + ( style.type == CKEDITOR.STYLE_OBJECT ? 1 : style.type == CKEDITOR.STYLE_BLOCK ? 2 : 3 ) * 1000;
+
 							stylesList.push( style );
 						}
 
-						// Sorts the Array, so the styles get grouped by type.
-						stylesList.sort( sortStyles );
+						// Sorts the Array, so the styles get grouped by type in proper order (#9029).
+						stylesList.sort( function( styleA, styleB ) { return styleA._.weight - styleB._.weight; } );
 					}
 
 					callback && callback();
@@ -203,16 +206,4 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			editor.on( 'instanceReady', function() { loadStylesSet(); } );
 		}
 	});
-
-	function sortStyles( styleA, styleB )
-	{
-		var typeA = styleA.type,
-			typeB = styleB.type;
-
-		return typeA == typeB ? 0 :
-			typeA == CKEDITOR.STYLE_OBJECT ? -1 :
-			typeB == CKEDITOR.STYLE_OBJECT ? 1 :
-			typeB == CKEDITOR.STYLE_BLOCK ? 1 :
-			-1;
-	}
 })();
