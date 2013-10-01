@@ -16,6 +16,7 @@ ignore :
 	'.project',
 	'.idea',
 	'.git',
+	'.gitignore',
 	'.sh'
 ],
 
