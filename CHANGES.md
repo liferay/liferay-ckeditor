@@ -1,7 +1,7 @@
 CKEditor 4 Changelog
 ====================
 
-## CKEditor 4.2.2
+## CKEditor 4.0.3-r3
 
 * [#10945](http://dev.ckeditor.com/ticket/10945): Click with mouse inside editor does not show the caret, but user is able to enter text.
 
