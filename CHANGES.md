@@ -1,6 +1,11 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.2.2
+
+* [#10945](http://dev.ckeditor.com/ticket/10945): Click with mouse inside editor does not show the caret, but user is able to enter text.
+
+
 ## CKEditor 4.0.3
 
 * [#10196](http://dev.ckeditor.com/ticket/10196): Fixed context menus not opening with keyboard shortcuts when Autogrow is enabled.
