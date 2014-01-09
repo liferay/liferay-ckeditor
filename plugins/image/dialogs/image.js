@@ -1047,7 +1047,7 @@
 							{
 							id: 'cmbLangDir',
 							type: 'select',
-							style: 'width : 100px;',
+							style: 'width : auto',
 							label: editor.lang.common.langDir,
 							'default': '',
 							items: [
