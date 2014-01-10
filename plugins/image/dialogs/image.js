@@ -465,6 +465,8 @@
 										if ( loader )
 											loader.setStyle( 'display', '' );
 
+										dialog.dontResetSize = true;
+
 										original.on( 'load', onImgLoadEvent, dialog );
 										original.on( 'error', onImgLoadErrorEvent, dialog );
 										original.on( 'abort', onImgLoadErrorEvent, dialog );
