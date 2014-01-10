@@ -155,8 +155,8 @@
 					if ( oImageOriginal.getCustomData( 'isReady' ) == 'true' ) {
 						var widthField = dialog.getContentElement( 'info', 'txtWidth' ),
 							heightField = dialog.getContentElement( 'info', 'txtHeight' );
-						widthField && widthField.setValue( '' );
-						heightField && heightField.setValue( '' );
+						widthField && widthField.setValue( oImageOriginal.$.width );
+						heightField && heightField.setValue( oImageOriginal.$.height );
 					}
 					updatePreview( dialog );
 				};
