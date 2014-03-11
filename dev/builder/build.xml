@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="CKEditorBuild">
+	<property name="project.dir" value="../.."/>
+
+	<target name="zip">
+		<exec executable="git" dir="${project.dir}" outputproperty="release.comment" failifexecutionfails="false">
+			<arg value="log" />
+			<arg value="-1" />
+			<arg value="--format=SHA: %h on %cD" />
+			<arg value="HEAD" />
+		</exec>
+
+		<zip basedir="./release" excludes="ckeditor_*.zip" comment="${release.comment}" destfile="./release/${release.file.name}" />
+	</target>
+</project>
