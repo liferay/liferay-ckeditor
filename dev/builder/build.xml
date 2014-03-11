@@ -4,6 +4,11 @@
 	<property name="project.dir" value="../.."/>
 
 	<target name="zip">
+
+		<condition property="release.comment" value="DEV MODE - DO NOT COMMIT">
+			<equals arg1="${release.mode}" arg2="_dev"/>
+		</condition>
+
 		<exec executable="git" dir="${project.dir}" outputproperty="release.comment" failifexecutionfails="false">
 			<arg value="log" />
 			<arg value="-1" />
