@@ -3,6 +3,7 @@ CKEditor 4 Changelog
 
 ## CKEditor 4.0.3-r3
 
+* [#10330](http://dev.ckeditor.com/ticket/10330): [Webkit] Filling char is not removed on key down in specific cases.
 * [#10945](http://dev.ckeditor.com/ticket/10945): Click with mouse inside editor does not show the caret, but user is able to enter text.
 
 
