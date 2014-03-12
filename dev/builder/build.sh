@@ -69,14 +69,13 @@ else
 	echo ""
 fi
 
-
 java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
 
 echo ""
 echo "Zipping and stamping with SHA..."
 echo ""
 
-ant zip -Drelease.file.name=ckeditor_4.0.3_liferay$MODE.zip
+ant zip -Drelease.file.name=ckeditor_4.0.3_liferay$MODE.zip -Drelease.mode=$MODE
 
 echo ""
 echo "Release created in the \"release\" directory."
