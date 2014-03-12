@@ -70,8 +70,9 @@ else
 fi
 
 CKEDITOR_VERSION="4.0.3"
+CKEDITOR_REVISION="5"
 
-java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version $CKEDITOR_VERSION --revision 0 --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
+java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version $CKEDITOR_VERSION --revision $CKEDITOR_REVISION --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
 
 echo ""
 echo "Zipping and stamping with SHA..."
