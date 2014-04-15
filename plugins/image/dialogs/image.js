@@ -1061,7 +1061,7 @@
 							id: 'cmbLangDir',
 							type: 'select',
 							requiredContent: 'img[dir]',
-							style: 'width : 100px;',
+							style: 'width : auto',
 							label: editor.lang.common.langDir,
 							'default': '',
 							items: [
