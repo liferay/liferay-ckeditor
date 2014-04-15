@@ -78,7 +78,7 @@
 			} );
 
 			function onResize() {
-				var isTextareaActive = (document.activeElement == this.$);
+				var isTextareaActive = ( document.activeElement == this.$ );
 
 				// Holder rectange size is stretched by textarea,
 				// so hide it just for a moment.
@@ -88,7 +88,8 @@
 				// When we have proper holder size, show textarea again.
 				this.show();
 
-				isTextareaActive && this.$.focus();
+				if ( isTextareaActive )
+					this.$.focus();
 			}
 		}
 	} );
