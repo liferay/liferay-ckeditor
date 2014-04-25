@@ -69,8 +69,8 @@ else
 	echo ""
 fi
 
-CKEDITOR_VERSION="4.3.4"
-CKEDITOR_REVISION="1"
+CKEDITOR_VERSION="4.3.5"
+CKEDITOR_REVISION="0"
 
 java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version $CKEDITOR_VERSION --revision $CKEDITOR_REVISION --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
 
