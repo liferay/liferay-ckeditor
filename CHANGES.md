@@ -1,6 +1,10 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r6
+
+* [#10612](http://dev.ckeditor.com/ticket/11839): [IE9] Text cursor jumps out of source area on resize.
+
 ## CKEditor 4.0.3-r5
 
 * [#10330](http://dev.ckeditor.com/ticket/10330): [Webkit] Filling char is not removed on key down in specific cases.
