@@ -28,7 +28,7 @@ if ( !CKEDITOR.env )
 			 * if ( CKEDITOR.env.ie )
 			 *     alert( "I'm on IE!" );
 			 */
-			ie		: /*@cc_on!@*/false,
+			ie		: agent.indexOf( 'trident/' ) > -1,
 
 			/**
 			 * Indicates that CKEditor is running on Opera.
@@ -133,7 +133,7 @@ if ( !CKEDITOR.env )
 		 * if ( CKEDITOR.env.gecko )
 		 *     alert( "I'm riding a gecko!" );
 		 */
-		env.gecko = ( navigator.product == 'Gecko' && !env.webkit && !env.opera );
+		env.gecko = ( navigator.product == 'Gecko' && !env.webkit && !env.opera && !env.ie );
 
 		var version = 0;
 
