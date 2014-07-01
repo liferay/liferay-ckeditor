@@ -1,6 +1,10 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r8
+
+* [#LPS-47564](https://issues.liferay.com/browse/LPS-47564): Adding back support for Internet Explorer 7 detection.
+
 ## CKEditor 4.0.3-r7
 
 * [#10612](http://dev.ckeditor.com/ticket/10612): Internet Explorer 11 compatibility issues.

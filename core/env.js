@@ -28,7 +28,7 @@ if ( !CKEDITOR.env ) {
 			 *
 			 * @property {Boolean}
 			 */
-			ie: ( agent.indexOf( 'trident/' ) > -1 ),
+			ie: ( agent.indexOf( 'trident/' ) > -1 ) || ( eval( '/*@cc_on!@*/false' ) ),
 			// Use eval to preserve conditional comment when compiling with Google Closure Compiler (#93).
 
 			/**
