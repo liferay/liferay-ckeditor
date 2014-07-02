@@ -28,7 +28,7 @@ if ( !CKEDITOR.env )
 			 * if ( CKEDITOR.env.ie )
 			 *     alert( "I'm on IE!" );
 			 */
-			ie		: agent.indexOf( 'trident/' ) > -1,
+			ie		: ( agent.indexOf( 'trident/' ) > -1 ) || eval( '/*@cc_on!@*/false' ),
 
 			/**
 			 * Indicates that CKEditor is running on Opera.
