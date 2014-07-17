@@ -100,6 +100,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		return false;
 	}
 
+	var isMSSelection = typeof window.getSelection != 'function';
+
 	var selectAllCmd =
 	{
 		modes : { wysiwyg : 1, source : 1 },
@@ -117,7 +119,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 				case 'source' :
 					// Select the contents of the textarea
 					var textarea = editor.textarea.$;
-					if ( CKEDITOR.env.ie )
+					if ( isMSSelection )
 						textarea.createTextRange().execCommand( 'SelectAll' );
 					else
 					{
@@ -276,7 +278,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 						body = doc.getBody(),
 						html = doc.getDocumentElement();
 
-					if ( CKEDITOR.env.ie )
+					if ( isMSSelection )
 					{
 						// Other browsers don't loose the selection if the
 						// editor document loose the focus. In IE, we don't
@@ -347,7 +349,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 						//
 						// Now the range restore is disabled, so we simply force IE to clean
 						// up the selection before blur.
-						CKEDITOR.env.ie && editor.on( 'blur', function()
+						isMSSelection && editor.on( 'blur', function()
 						{
 							// Error proof when the editor is not visible. (#6375)
 							try{ doc.$.selection.empty(); } catch ( er){}
@@ -489,7 +491,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 							// It's much simpler for IE > 8, we just need to reselect the reported range.
 							// This hack does not work on IE>=11 because there's no old selection&range APIs.
-							if ( CKEDITOR.env.version > 7 && CKEDITOR.env.version < 11 )
+							if ( isMSSelection )
 							{
 								html.on( 'mousedown', function( evt )
 								{
@@ -731,7 +733,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		 * IE BUG: The selection's document may be a different document than the
 		 * editor document. Return null if that is the case.
 		 */
-		if ( CKEDITOR.env.ie )
+		if ( isMSSelection )
 		{
 			// Avoid breaking because of it. (#8836)
 			try
@@ -769,7 +771,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		 * var selection = editor.getSelection().<strong>getNative()</strong>;
 		 */
 		getNative :
-			CKEDITOR.env.ie ?
+			isMSSelection ?
 				function()
 				{
 					return this._.cache.nativeSel || ( this._.cache.nativeSel = this.document.$.selection );
@@ -799,7 +801,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		 *     alert( 'A text is selected' );
 		 */
 		getType :
-			CKEDITOR.env.ie ?
+			isMSSelection ?
 				function()
 				{
 					var cache = this._.cache;
@@ -876,7 +878,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 		 */
 		getRanges : (function()
 		{
-			var func = CKEDITOR.env.ie ?
+			var func = isMSSelection ?
 				( function()
 				{
 					function getNodeIndex( node ) { return new CKEDITOR.dom.node( node ).getIndex(); }
@@ -1433,7 +1435,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			var text = '',
 				nativeSel = this.getNative();
 			if ( this.getType() == CKEDITOR.SELECTION_TEXT )
-				text = CKEDITOR.env.ie ? nativeSel.createRange().text : nativeSel.toString();
+				text = isMSSelection ? nativeSel.createRange().text : nativeSel.toString();
 
 			return ( cache.selectedText = text );
 		},
@@ -1564,7 +1566,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 				return;
 			}
 
-			if ( CKEDITOR.env.ie )
+			if ( isMSSelection )
 			{
 				if ( ranges.length > 1 )
 				{
@@ -1778,7 +1780,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			nonCells = { table:1,tbody:1,tr:1 };
 
 	CKEDITOR.dom.range.prototype.select =
-		CKEDITOR.env.ie ?
+		isMSSelection ?
 			// V2
 			function( forceExpand )
 			{
