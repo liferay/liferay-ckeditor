@@ -140,7 +140,11 @@ if ( !CKEDITOR.env )
 		// Internet Explorer 6.0+
 		if ( env.ie )
 		{
-			version = parseFloat( agent.match( /msie (\d+)/ )[1] );
+			// We use env.version for feature detection, so set it properly.
+			if ( env.quirks || !document.documentMode )
+				version = parseFloat( agent.match( /msie (\d+)/ )[ 1 ] );
+			else
+				version = document.documentMode;
 
 			/**
 			 * Indicates that CKEditor is running on Internet Explorer 8.
