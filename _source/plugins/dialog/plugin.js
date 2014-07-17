@@ -552,7 +552,7 @@ CKEDITOR.DIALOG_RESIZE_BOTH = 3;
 					 * IE BUG: If the initial focus went into a non-text element (e.g. button),
 					 * then IE would still leave the caret inside the editing area.
 					 */
-					if ( this._.editor.mode == 'wysiwyg' && CKEDITOR.env.ie )
+					if ( this._.editor.mode == 'wysiwyg' && CKEDITOR.env.ie && CKEDITOR.env.version < 11 )
 					{
 						var $selection = editor.document.$.selection,
 							$range = $selection.createRange();
