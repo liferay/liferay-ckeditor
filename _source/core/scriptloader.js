@@ -130,7 +130,7 @@ CKEDITOR.scriptLoader = (function()
 
 				if ( callback )
 				{
-					if ( CKEDITOR.env.ie && CKEDITOR.env.version < 11 )
+					if ( CKEDITOR.env.ie )
 					{
 						// FIXME: For IE, we are not able to return false on error (like 404).
 
