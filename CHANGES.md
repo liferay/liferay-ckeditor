@@ -1,6 +1,15 @@
 CKEditor 4 Changelog
 ====================
 
+
+## CKEditor 4.3.5-r1
+
+**Security Updates:**
+
+* Fixed XSS vulnerability in the Preview plugin reported by Mario Heiderich of [Cure53](https://cure53.de/).
+
+**An upgrade is highly recommended!**
+
 ## CKEditor 4.3.5
 
 New Features:
