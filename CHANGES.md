@@ -1,6 +1,14 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r9
+
+**Security Updates:**
+
+* Fixed XSS vulnerability in the Preview plugin reported by Mario Heiderich of [Cure53](https://cure53.de/).
+
+**An upgrade is highly recommended!**
+
 ## CKEditor 4.0.3-r8
 
 * [#LPS-47564](https://issues.liferay.com/browse/LPS-47564): Adding back support for Internet Explorer 7 detection.
