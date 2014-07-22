@@ -3,7 +3,7 @@
 # Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
 # For licensing, see LICENSE.html or http://ckeditor.com/license
 
-VERSION="3.6.6.1"
+VERSION="3.6.6.2"
 
 if [ -L $0 ] ; then
     DIR=$(dirname $(readlink -f $0)) ;

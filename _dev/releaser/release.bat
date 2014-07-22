@@ -3,7 +3,7 @@
 :: For licensing, see LICENSE.html or http://ckeditor.com/license
 ::
 
-SET VERSION="3.6.6.1"
+SET VERSION="3.6.6.2"
 
 @ECHO OFF
 
