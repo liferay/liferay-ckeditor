@@ -488,8 +488,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 							}
 
 							// It's much simpler for IE > 8, we just need to reselect the reported range.
-							// This hack does not work on IE>=11 because there's no old selection&range APIs.
-							if ( CKEDITOR.env.version > 7 && CKEDITOR.env.version < 11 )
+							if ( CKEDITOR.env.ie8 )
 							{
 								html.on( 'mousedown', function( evt )
 								{
