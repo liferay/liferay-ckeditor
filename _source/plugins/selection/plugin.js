@@ -378,8 +378,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 							// position and revert it before context menu opens. (#5778)
 							if ( evt.data.$.button == 2 )
 							{
-								var sel = editor.document.getSelection();
-								if ( !sel || sel.getType() == CKEDITOR.SELECTION_NONE )
+								var sel = editor.document.$.selection;
+								if ( sel.type == 'None' )
 									scroll = editor.window.getScrollPosition();
 							}
 							disableSave();
