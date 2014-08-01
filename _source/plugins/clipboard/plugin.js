@@ -430,6 +430,27 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 									return;
 
 								var dataTransfer = {};
+
+								if ( CKEDITOR.env.webkit && data.indexOf( '<div>' ) > -1 ) {
+									// One line break at the beginning - insert <br>
+									data = data.replace( /^(<div>(<br>|)<\/div>)(?!$|(<div>(<br>|)<\/div>))/g, '<br>' )
+									// Two or more - reduce number of new lines by one.
+									.replace( /^(<div>(<br>|)<\/div>){2}(?!$)/g, '<div></div>' );
+
+									// Two line breaks create one paragraph in Webkit.
+									if ( data.match( /<div>(<br>|)<\/div>/ ) ) {
+										data = '<p>' + data.replace( /(<div>(<br>|)<\/div>)+/g, function( match ) {
+											return repeatParagraphs( match.split( '</div><div>' ).length + 1 );
+										}) + '</p>';
+									}
+
+									// One line break create br.
+									data = data.replace( /<\/div><div>/g, '<br>' );
+
+									// Remove remaining divs.
+									data = data.replace( /<\/?div>/g, '' );
+								}
+
 								dataTransfer[ eventData.mode ] = data;
 								editor.fire( 'paste', dataTransfer );
 							} );
