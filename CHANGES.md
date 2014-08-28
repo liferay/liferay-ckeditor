@@ -1,6 +1,10 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r10
+
+* [#10906](http://dev.ckeditor.com/ticket/10906): [IE11+] Editable is not being focused when clicking outside body
+
 ## CKEditor 4.0.3-r9
 
 **Security Updates:**
