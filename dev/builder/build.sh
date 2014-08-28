@@ -18,13 +18,13 @@ MSG_DOWNLOAD_FAILED="It was not possible to download ckbuilder.jar"
 
 function error_exit
 {
-    echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
-    exit 1
+	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+	exit 1
 }
 
 function command_exists
 {
-    command -v "$1" > /dev/null 2>&1;
+	command -v "$1" > /dev/null 2>&1;
 }
 
 # Move to the script directory.
@@ -34,19 +34,19 @@ cd $(dirname $0)
 mkdir -p ckbuilder/$CKBUILDER_VERSION
 cd ckbuilder/$CKBUILDER_VERSION
 if [ -f ckbuilder.jar ]; then
-    echo "Checking/Updating CKBuilder..."
-    if command_exists curl ; then
-    curl -O -R -z ckbuilder.jar $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
-    else
-    wget -N $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
-    fi
+	echo "Checking/Updating CKBuilder..."
+	if command_exists curl ; then
+	curl -O -R -z ckbuilder.jar $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
+	else
+	wget -N $CKBUILDER_URL || echo "$MSG_UPDATE_FAILED"
+	fi
 else
-    echo "Downloading CKBuilder..."
-    if command_exists curl ; then
-    curl -O -R $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
-    else
-    wget -N $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
-    fi
+	echo "Downloading CKBuilder..."
+	if command_exists curl ; then
+	curl -O -R $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
+	else
+	wget -N $CKBUILDER_URL || error_exit "$MSG_DOWNLOAD_FAILED"
+	fi
 fi
 cd ../..
 
@@ -56,17 +56,17 @@ echo "Starting CKBuilder..."
 
 # Determine release mode
 if [ "$1" == "dev" ]; then
-    echo ""
-    echo "Building CKEditor in development mode..."
-    echo ""
+	echo ""
+	echo "Building CKEditor in development mode..."
+	echo ""
 
-    DEV_OPS="--leave-css-unminified --leave-js-unminified"
+	DEV_OPS="--leave-css-unminified --leave-js-unminified"
 
-    MODE="_dev"
+	MODE="_dev"
 else
-    echo ""
-    echo "Building CKEditor in production mode..."
-    echo ""
+	echo ""
+	echo "Building CKEditor in production mode..."
+	echo ""
 fi
 
 CKEDITOR_VERSION="4.0.3"
