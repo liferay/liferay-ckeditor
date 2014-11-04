@@ -277,6 +277,24 @@ if ( !CKEDITOR.env ) {
 			);
 
 		/**
+		 * Indicates that CKEditor is running in a browser which uses a bogus
+		 * `<br>` filler in order to correctly display caret in empty blocks.
+		 *
+		 * @since 4.3
+		 * @property {Boolean}
+		 */
+		env.needsBrFiller = env.gecko || env.webkit || ( env.ie && version > 10 );
+
+		/**
+		 * Indicates that CKEditor is running in a browser which needs a
+		 * non-breaking space filler in order to correctly display caret in empty blocks.
+		 *
+		 * @since 4.3
+		 * @property {Boolean}
+		 */
+		env.needsNbspFiller = env.ie && version < 11;
+
+		/**
 		 * The CSS class to be appended on the main UI containers, making it
 		 * easy to apply browser specific styles to it.
 		 *
