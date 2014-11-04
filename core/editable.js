@@ -1193,7 +1193,7 @@
 				// Auto paragraphing.
 				if ( !nodeData.isBlock && ( fixBlock = autoParagraphTag( that.editor.config ) ) && !path.block && path.blockLimit && path.blockLimit.equals( range.root ) ) {
 					fixBlock = doc.createElement( fixBlock );
-					!CKEDITOR.env.ie && fixBlock.appendBogus();
+					fixBlock.appendBogus();
 					range.insertNode( fixBlock );
 					if ( !CKEDITOR.env.ie && ( bogus = fixBlock.getBogus() ) )
 						bogus.remove();
