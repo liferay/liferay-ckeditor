@@ -3,7 +3,7 @@ CKEditor 4 Changelog
 
 ## CKEditor 4.0.3-r11
 
-* [#LPS-51183](https://issues.liferay.com/browse/LPS-51183): [IE11+] CKEditor in IE 11 not showing empty paragraphs when editing content. Hitting Enter will work only the first time.
+* [#10907](http://dev.ckeditor.com/ticket/10907): [IE11] Selection needs <br> filler in empty blocks
 
 ## CKEditor 4.0.3-r10
 
