@@ -1157,8 +1157,10 @@
 			// Process the inserted html, in context of the insertion root.
 			// Don't use the "fix for body" feature as auto paragraphing must
 			// be handled during insertion.
-			data = that.editor.dataProcessor.toHtml( data, null, false );
-
+			data = that.editor.dataProcessor.toHtml( data, {
+				context: null,
+				fixForBody: false
+			} );
 
 			// Build the node list for insertion.
 			var doc = range.document,

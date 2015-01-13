@@ -44,7 +44,7 @@
 		 * @param {Boolean} [fixForBody] Whether trigger the auto paragraph for non-block contents.
 		 * @returns {String}
 		 */
-		toHtml: function( data, context, fixForBody ) {
+		toHtml: function( data, options, fixForBody ) {
 
 			// The source data is already HTML, but we need to clean
 			// it up and apply the filter.
@@ -73,7 +73,17 @@
 			data = protectPreFormatted( data );
 
 			var editable = this.editor.editable(),
-				isPre;
+				isPre,
+				context;
+
+			// Typeof null == 'object', so check truthiness of options too.
+			if ( options && typeof options == 'object' ) {
+				context = options.context;
+				fixForBody = options.fixForBody;
+			}
+			// Backward compatibility. Since CKEDITOR 4.0 every option was a separate argument.
+			else
+				context = options;
 
 			// Fall back to the editable as context if not specified.
 			if ( !context && context !== null )
