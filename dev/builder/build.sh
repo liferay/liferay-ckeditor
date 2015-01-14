@@ -70,7 +70,7 @@ else
 fi
 
 CKEDITOR_VERSION="4.0.3"
-CKEDITOR_REVISION="11"
+CKEDITOR_REVISION="12"
 
 java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release --version $CKEDITOR_VERSION --revision $CKEDITOR_REVISION --build-config build-config.js --overwrite --no-tar --no-zip $DEV_OPS
 
