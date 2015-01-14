@@ -39,9 +39,10 @@
 		 * is suitable to be used in the wysiwyg editable.
 		 *
 		 * @param {String} data The raw data.
-		 * @param {String} [context] The tag name of a context element within which
+		 * @param {String} [options] The options object.
+		 * @param {String} [options.context] The tag name of a context element within which
 		 * the input is to be processed, default to be the editable element.
-		 * @param {Boolean} [fixForBody] Whether trigger the auto paragraph for non-block contents.
+		 * @param {Boolean} [options.fixForBody=true] Whether to trigger the auto paragraph for non-block contents.
 		 * @returns {String}
 		 */
 		toHtml: function( data, options, fixForBody ) {
