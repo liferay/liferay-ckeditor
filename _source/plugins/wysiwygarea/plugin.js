@@ -98,7 +98,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 		if ( CKEDITOR.env.ie )
 		{
-			var $sel = selection.getNative();
+			var $sel = this.document.$.selection;
 
 			// Delete control selections to avoid IE bugs on pasteHTML.
 			if ( $sel.type == 'Control' )
