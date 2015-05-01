@@ -1,5 +1,9 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r13
+
+* [#LPS-55018](https://issues.liferay.com/browse/LPS-55018): Reverting part of [#3893](http://dev.ckeditor.com/ticket/3893) to prevent list indents beyond a single nested level per level.
+
 ## CKEditor 4.0.3-r12
 
 * [#LPS-52359](https://issues.liferay.com/browse/LPS-52359): Backport of, [89ea0640ece7839a96d1df1469acabf7270faee2](https://github.com/liferay/ckeditor-ee/commit/89ea0640ece7839a96d1df1469acabf7270faee2), part of [#9764](http://dev.ckeditor.com/ticket/9764).
