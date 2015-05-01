@@ -290,7 +290,7 @@
 
 					// Indent the entire list if cursor is inside the first list item. (#3893)
 					// Only do that for indenting or when using indent classes or when there is something to outdent. (#6141)
-					if ( !( indentWholeList && ( self.name == 'indent' || self.useIndentClasses || parseInt( nearestListBlock.getStyle( getIndentCssProperty( nearestListBlock ) ), 10 ) ) && indentElement( nearestListBlock, !hasMultipleItems && firstListItem.getDirection() ) ) )
+					if ( !( indentWholeList && ( self.name == 'indent' || self.useIndentClasses || parseInt( nearestListBlock.getStyle( getIndentCssProperty( nearestListBlock ) ), 10 ) ) && true ) )
 						indentList( nearestListBlock );
 				} else
 					indentBlock();
