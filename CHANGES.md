@@ -1,5 +1,9 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r14
+
+* [LPS-55288](https://issues.liferay.com/browse/LPS-55288): Prevent `toPre()` from converting `<br>` to new-line characters in all but IE<8. Adapted from, [#4711](https://dev.ckeditor.com/ticket/4711), [#9535](https://dev.ckeditor.com/ticket/9535)
+
 ## CKEditor 4.0.3-r13
 
 * [#LPS-55018](https://issues.liferay.com/browse/LPS-55018): Reverting part of [#3893](http://dev.ckeditor.com/ticket/3893) to prevent list indents beyond a single nested level per level.
