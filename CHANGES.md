@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.4.5-r1
+
+Fixed Issues:
+
+* [LPS-55288](https://issues.liferay.com/browse/LPS-55288): Prevent `toPre()` from converting `<br>` to new-line characters in all but IE<8. Adapted from, [#4711](https://dev.ckeditor.com/ticket/4711), [#9535](https://dev.ckeditor.com/ticket/9535)
+
 ## CKEditor 4.4.5
 
 New Features:
