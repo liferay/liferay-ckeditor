@@ -1467,9 +1467,10 @@ CKEDITOR.STYLE_OBJECT = 3;
 		//    single space previously.
 		// 4. Convert &nbsp; to spaces since &nbsp; is no longer needed in <PRE>.
 		preHtml = preHtml.replace( /([ \t\n\r]+|&nbsp;)/g, ' ' );
-		// 5. Convert any <BR /> to \n. This must not be done earlier because
-		//    the \n would then get compressed.
-		preHtml = preHtml.replace( /<br\b[^>]*>/gi, '\n' );
+		// 5. For IE<8 only, convert any <BR /> to \r (see #4711). This must not be
+		//    done earlier because the \r would then get compressed.
+		if ( CKEDITOR.env.ie && CKEDITOR.env.version < 8 )
+			preHtml = preHtml.replace( /<br\b[^>]*>/gi, '\r' );
 
 		// Krugle: IE normalizes innerHTML to <pre>, breaking whitespaces.
 		if ( CKEDITOR.env.ie ) {
