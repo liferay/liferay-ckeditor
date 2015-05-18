@@ -41,10 +41,12 @@
 			var list = path && path.contains( listNodeNames ),
 				firstBlock = path.block || path.blockLimit;
 
-			if ( list )
-				this.setState( CKEDITOR.TRISTATE_OFF );
-
-			else if ( !this.useIndentClasses && this.name == 'indent' )
+			if ( list ) {
+				if ( this.name == 'indent' && !firstBlock.$.previousElementSibling )
+					this.setState( CKEDITOR.TRISTATE_DISABLED );
+				else
+					this.setState( CKEDITOR.TRISTATE_OFF );
+			} else if ( !this.useIndentClasses && this.name == 'indent' )
 				this.setState( CKEDITOR.TRISTATE_OFF );
 
 			else if ( !firstBlock )
