@@ -1,5 +1,10 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r15
+
+* [LPS-39430](https://issues.liferay.com/browse/LPS-39430): Provide config option to prevent indents on non-list content.
+* [LPS-55723](https://issues.liferay.com/browse/LPS-55723): Improve solution for LPS-55018.
+
 ## CKEditor 4.0.3-r14
 
 * [LPS-55288](https://issues.liferay.com/browse/LPS-55288): Prevent `toPre()` from converting `<br>` to new-line characters in all but IE<8. Adapted from, [#4711](https://dev.ckeditor.com/ticket/4711), [#9535](https://dev.ckeditor.com/ticket/9535)
