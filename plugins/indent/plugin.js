@@ -41,7 +41,10 @@
 			var list = path && path.contains( listNodeNames ),
 				firstBlock = path.block || path.blockLimit;
 
-			if ( list ) {
+			if ( editor.config.listIndentOnly && !list )
+				this.setState( CKEDITOR.TRISTATE_DISABLED );
+
+			else if ( list ) {
 				if ( this.name == 'indent' && !firstBlock.$.previousElementSibling )
 					this.setState( CKEDITOR.TRISTATE_DISABLED );
 				else
