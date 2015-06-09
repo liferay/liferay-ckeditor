@@ -1,5 +1,8 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r16
+* [LPS-56209](https://issues.liferay.com/browse/LPS-56209): First character of new line is included in hyperlink in ckeditor's bbcode.
+
 ## CKEditor 4.0.3-r15
 
 * [LPS-39430](https://issues.liferay.com/browse/LPS-39430): Provide config option to prevent indents on non-list content.
