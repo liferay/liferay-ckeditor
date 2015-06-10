@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.4.5-r2
+
+Fixed Issues:
+
+* [LPS-56243](https://issues.liferay.com/browse/LPS-56243): Message Board CKEditor decrease indent will cause different lines form back into 1 single line.
+
 ## CKEditor 4.4.5-r1
 
 Fixed Issues:
