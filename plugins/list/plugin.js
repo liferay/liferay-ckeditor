@@ -234,11 +234,11 @@
 						cachedBookmark = null;
 					}
 
-					if ( currentListItem.type == CKEDITOR.NODE_DOCUMENT_FRAGMENT && currentIndex != listArray.length - 1 ) {
+					if ( currentListItem.type == CKEDITOR.NODE_DOCUMENT_FRAGMENT ) {
 						var last;
 
 						// Remove bogus <br> if this browser uses them.
-						if ( CKEDITOR.env.needsBrFiller ) {
+						if ( CKEDITOR.env.needsBrFiller && currentIndex != listArray.length - 1) {
 							last = currentListItem.getLast();
 							if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) )
 								last.remove();
