@@ -1,5 +1,8 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r16
+* [#11947](http://dev.ckeditor.com/ticket/11947): [FF IE11] Shift+Enter in lists produces two line breaks.
+
 ## CKEditor 4.0.3-r15
 
 * [LPS-39430](https://issues.liferay.com/browse/LPS-39430): Provide config option to prevent indents on non-list content.
