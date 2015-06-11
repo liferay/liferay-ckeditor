@@ -1,7 +1,7 @@
 CKEditor 4 Changelog
 ====================
 ## CKEditor 4.0.3-r16
-* [LPS-56209](https://issues.liferay.com/browse/LPS-56209): First character of new line is included in hyperlink in ckeditor's bbcode.
+* [LPS-56209](https://issues.liferay.com/browse/LPS-56209): Backport of: [#11947](http://dev.ckeditor.com/ticket/11947): [FF+IE11] Fixed: Shift+Enter in lists produces two line breaks.
 
 ## CKEditor 4.0.3-r15
 
