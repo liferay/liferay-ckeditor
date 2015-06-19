@@ -3,6 +3,6 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.plugins.setLang( 'magicline', 'pl', {
-	title: 'Wstaw nowy akapit'
+CKEDITOR.plugins.setLang( 'magicline', 'ko', {
+	title: '여기에 그래프 삽입'
 } );
