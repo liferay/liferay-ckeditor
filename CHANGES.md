@@ -5,6 +5,8 @@ CKEditor 4 Changelog
 
 Fixed Issues:
 
+* [LPS-55669](https://issues.liferay.com/browse/LPS-56699): Improve Japanese translation for bullet list properties in Ckeditor.
+
 * [LPS-55288](https://issues.liferay.com/browse/LPS-55288): Prevent `toPre()` from converting `<br>` to new-line characters in all but IE<8. Adapted from, [#4711](https://dev.ckeditor.com/ticket/4711), [#9535](https://dev.ckeditor.com/ticket/9535)
 
 ## CKEditor 4.4.5
