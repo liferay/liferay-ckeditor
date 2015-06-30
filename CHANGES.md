@@ -1,5 +1,9 @@
 CKEditor 4 Changelog
 ====================
+## CKEditor 4.0.3-r18
+
+* [LPS-56699](https://issues.liferay.com/browse/LPS-56699): Improve Japanese translation for bullet list properties in Ckeditor.
+
 ## CKEditor 4.0.3-r17
 
 * [LPS-56511](https://issues.liferay.com/browse/LPS-56511): Partial backport of: [e16981cb72e8d5da4b18bab7913c36a0bdeb721d](https://github.com/liferay/liferay-ckeditor/commit/e16981cb72e8d5da4b18bab7913c36a0bdeb721d) and [3ecd0b83a06978520da7a130266a77f55e65afee](https://github.com/liferay/liferay-ckeditor/commit/3ecd0b83a06978520da7a130266a77f55e65afee) from [ee-4.4.x](https://github.com/liferay/liferay-ckeditor/tree/ee-4.4.x): "Insert Paragraph Here" support internationalization
