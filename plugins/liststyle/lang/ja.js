@@ -14,7 +14,7 @@ CKEDITOR.plugins.setLang( 'liststyle', 'ja', {
 	lowerGreek: '小文字ギリシャ文字 (alpha, beta, gamma, etc.)',
 	lowerRoman: '小文字ローマ数字 (i, ii, iii, iv, v, etc.)',
 	none: 'なし',
-	notset: '<なし>',
+	notset: '<指定なし>',
 	numberedTitle: '段落番号 プロパティ',
 	square: '四角',
 	start: '開始',
