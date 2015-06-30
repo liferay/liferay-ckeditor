@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.4.5-r3
+
+Fixed Issues:
+
+* [LPS-56357](https://issues.liferay.com/browse/LPS-56357): Text Area not working properly during resizing of dialog window.
+
 ## CKEditor 4.4.5-r2
 
 Fixed Issues:
