@@ -93,12 +93,12 @@ CKEDITOR.dialog.add( 'paste', function( editor ) {
 				{
 				type: 'html',
 				id: 'securityMsg',
-				html: '<div style="white-space:normal;width:100%">' + lang.securityMsg + '</div>'
+				html: '<div style="white-space:normal">' + lang.securityMsg + '</div>'
 			},
 				{
 				type: 'html',
 				id: 'pasteMsg',
-				html: '<div style="white-space:normal;width:100%">' + lang.pasteMsg + '</div>'
+				html: '<div style="white-space:normal">' + lang.pasteMsg + '</div>'
 			},
 				{
 				type: 'html',
