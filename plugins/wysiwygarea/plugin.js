@@ -38,11 +38,15 @@
 				if ( useOnloadEvent )
 					iframe.on( 'load', onLoad );
 
-				var frameLabel = [ editor.lang.editor, editor.name ].join( ',' ),
+				var frameLabel = editor.title,
 					frameDesc = editor.lang.common.editorHelp;
 
-				if ( CKEDITOR.env.ie )
-					frameLabel += ', ' + frameDesc;
+				if ( frameLabel ) {
+					if ( CKEDITOR.env.ie )
+						frameLabel += ', ' + frameDesc;
+
+					iframe.setAttribute( 'title', frameLabel );
+				}
 
 				var labelId = CKEDITOR.tools.getNextId(),
 					desc = CKEDITOR.dom.element.createFromHtml( '<span id="' + labelId + '" class="cke_voice_label">' + frameDesc + '</span>' );
@@ -58,7 +62,6 @@
 				iframe.setAttributes({
 					frameBorder: 0,
 					'aria-describedby' : labelId,
-					title: frameLabel,
 					src: src,
 					tabIndex: editor.tabIndex,
 					allowTransparency: 'true'
