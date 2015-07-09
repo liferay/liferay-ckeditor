@@ -1,5 +1,10 @@
 CKEditor 4 Changelog
 ====================
+
+CKEditor 4.0.3-r19
+
+* [#10042](https://dev.ckeditor.com/ticket/10042): Allow setting meaningful title for inline editable element
+
 ## CKEditor 4.0.3-r18
 
 * [LPS-56699](https://issues.liferay.com/browse/LPS-56699): Improve Japanese translation for bullet list properties in Ckeditor.
