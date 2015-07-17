@@ -1,6 +1,13 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r20
+
+* [#LPS-57040](https://issues.liferay.com/browse/LPS-57040): Backport tickets:
+    * [#10131](https://dev.ckeditor.com/ticket/10131): Fixed: `undoManager#update` does not refresh the command state.
+    * [#10315](https://dev.ckeditor.com/ticket/10315): [Webkit] Undo manager should not record snapshots after a filling character was added/removed.
+    * [#9794](https://dev.ckeditor.com/ticket/9794): OnChange event.
+
 ## CKEditor 4.0.3-r19
 
 * [#LPS-56987](https://issues.liferay.com/browse/LPS-56987): Backport [#10042](https://dev.ckeditor.com/ticket/10042): Allow setting meaningful title for inline editable element
