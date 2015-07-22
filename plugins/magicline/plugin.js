@@ -12,7 +12,7 @@
 
 ( function() {
 	CKEDITOR.plugins.add( 'magicline', {
-		lang: 'ar,bg,ca,cs,cy,de,el,en,en-gb,eo,es,et,eu,fa,fi,fr,fr-ca,gl,he,hr,hu,id,it,ja,km,ko,ku,lv,nb,nl,no,pl,pt,pt-br,ru,si,sk,sl,sq,sv,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
+		lang: 'af,ar,bg,ca,cs,cy,da,de,el,en,en-gb,eo,es,et,eu,fa,fi,fr,fr-ca,gl,he,hr,hu,id,it,ja,km,ko,ku,lv,nb,nl,no,pl,pt,pt-br,ru,si,sk,sl,sq,sv,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
 		init: initPlugin
 	} );
 
@@ -1840,8 +1840,8 @@ CKEDITOR.config.magicline_keystrokeNext = CKEDITOR.CTRL + CKEDITOR.SHIFT + 52; /
  * {@link CKEDITOR.dtd#$block} elements as accessible by the magic line.
  *
  *		// Enables the greedy "put everywhere" mode.
- *		CKEDITOR.config.magicline_putEverywhere = true;
+ *		CKEDITOR.config.magicline_everywhere = true;
  *
- * @cfg {Boolean} [magicline_putEverywhere=false]
+ * @cfg {Boolean} [magicline_everywhere=false]
  * @member CKEDITOR.config
  */
