@@ -27,18 +27,22 @@ function testInline( editor, collapser ) {
 	assert.isFalse( toolboxInner.hasClass( 'cke_toolbox_main' ), 'There should be no .cke_toolbox_main inside toolbox space' );
 }
 
-bender.editor = { config : { toolbar : 'Basic' } };
+bender.editor = {
+	config: {
+		toolbar: 'Basic'
+	}
+};
 
-bender.test(
-{
-	'test toolbar' : function() {
+bender.test( {
+	'test toolbar': function() {
 		assert.isNotNull( this.editor.ui.space( 'toolbox' ) );
 
 		assert.isNull( this.editor.ui.space( 'toolbar_collapser' ), 'No collapser by default' );
 	},
 
-	'test toolbarStartupExpanded=false' : function() {
-		bender.editorBot.create( {
+	'test toolbarStartupExpanded=false': function() {
+		bender.editorBot.create(
+			{
 				name: 'editor1',
 				config: {
 					toolbarCanCollapse: true,
@@ -65,8 +69,9 @@ bender.test(
 		);
 	},
 
-	'test toolbarStartupExpanded=true' : function() {
-		bender.editorBot.create( {
+	'test toolbarStartupExpanded=true': function() {
+		bender.editorBot.create(
+			{
 				name: 'editor2',
 				config: {
 					toolbarCanCollapse: true,
@@ -77,8 +82,9 @@ bender.test(
 		);
 	},
 
-	'test toolbarCanCollapse=true' : function() {
-		bender.editorBot.create( {
+	'test toolbarCanCollapse=true': function() {
+		bender.editorBot.create(
+			{
 				name: 'editor3',
 				config: {
 					toolbarCanCollapse: true

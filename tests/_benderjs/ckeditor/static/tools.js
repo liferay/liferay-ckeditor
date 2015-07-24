@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2015, CKSource - Frederico Knabben. All rights reserved.
  * Licensed under the terms of the MIT License (see LICENSE.md).
  */
 
@@ -271,7 +271,7 @@
 
 			if ( fixStyles ) {
 				html = html.replace( / style="([^"]+)"/g, function( match, style ) {
-					style = CKEDITOR.tools.writeCssText( CKEDITOR.tools.parseCssText( style, true ) );
+					style = CKEDITOR.tools.writeCssText( CKEDITOR.tools.parseCssText( style, true ), true );
 					// Encode e.g. "" in urls().
 					style = CKEDITOR.tools.htmlEncodeAttr( style );
 
@@ -295,7 +295,7 @@
 				// 3. Strip whitepsaces around semicolon.
 				// 4. Always end with semicolon
 				return retval.replace( /(?:^|;)\s*([A-Z-_]+)(:\s*)/ig,
-						function( match, property, colon ) {
+						function( match, property ) {
 							return property.toLowerCase() + ': ';
 						} )
 					.replace( /\s+(?:;\s*|$)/g, ';' )
@@ -329,10 +329,12 @@
 		 * // Then test will look like:
 		 * bender.testInputOut( 'sample1', function( input, output ){ ...test and assertion... });
 		 */
-		testInputOut: function( playground, fn ) {
+		testInputOut: function( playground, fn, trimSelection ) {
+			trimSelection = ( trimSelection === false ? false : true );
+
 			var source = bender.tools.getValueAsHtml( playground ).split( '=>' ),
 				input = source[ 0 ],
-				output = /\(no change\)/.test( source[ 1 ] ) ? input.replace( /\^|\[|\]/g, '' ) : source[ 1 ];
+				output = /\(no change\)/.test( source[ 1 ] ) ? ( trimSelection ? input.replace( /\^|\[|\]/g, '' ) : input ) : source[ 1 ];
 
 			fn( input, output );
 		},
@@ -595,8 +597,7 @@
 				element.setHtml( html );
 			}
 
-			var doc = element.getDocument(),
-				ranges = [],
+			var ranges = [],
 				// Walk prepared to traverse the inner dom tree of this element.
 				walkerRange = new CKEDITOR.dom.range( root );
 
@@ -1001,10 +1002,10 @@
 						}
 					}
 				}
-			};
+			}
 
 			return function( element, html ) {
-				root = element.getDocument().getBody();
+				root = element;
 
 				// First, let's assume that there will be no range.
 				range = null;
@@ -1042,7 +1043,7 @@
 				}
 
 				return range;
-			}
+			};
 		} )(),
 
 		/**
@@ -1106,7 +1107,7 @@
 				return clone;
 			}
 
-			var html, clone,
+			var clone,
 				startMarker, endMarker,
 				addressLength, startAddress, endAddress,
 				startContainer, endContainer;
@@ -1198,7 +1199,7 @@
 			}
 
 			return bender.tools.range.getWithHtml( editor.editable(), ranges[ 0 ] );
-		},
+		}
 	};
 
 	bender.tools.html = {
@@ -1259,6 +1260,11 @@
 			var sortAttributes = ( 'sortAttributes' in options ) ? options.sortAttributes : true,
 				fixZWS = ( 'fixZWS' in options ) ? options.fixZWS : true,
 				fixNbsp = ( 'fixNbsp' in options ) ? options.fixNbsp : true;
+
+			// On IE8- we need to get rid of expando attributes.
+			if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) {
+				innerHtml = innerHtml.replace( / data-cke-expando="[^"]*"/g, '' );
+			}
 
 			if ( options.compareSelection ) {
 				innerHtml = innerHtml.replace( selectionMarkers, '<!--cke-range-marker-$1-->' );

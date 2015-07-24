@@ -1,7 +1,9 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
+
+/* exported CKEDITOR_LANGS */
 
 var CKEDITOR_LANGS = ( function() {
 	var langs = {
@@ -42,7 +44,7 @@ var CKEDITOR_LANGS = ( function() {
 		ka: 'Georgian',
 		km: 'Khmer',
 		ko: 'Korean',
-		ku : 'Kurdish',
+		ku: 'Kurdish',
 		lt: 'Lithuanian',
 		lv: 'Latvian',
 		mk: 'Macedonian',
@@ -58,7 +60,7 @@ var CKEDITOR_LANGS = ( function() {
 		ru: 'Russian',
 		si: 'Sinhala',
 		sk: 'Slovak',
-		sq : 'Albanian',
+		sq: 'Albanian',
 		sl: 'Slovenian',
 		sr: 'Serbian (Cyrillic)',
 		'sr-latn': 'Serbian (Latin)',

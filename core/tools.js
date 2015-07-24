@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -106,7 +106,7 @@
 			}
 
 			// "Static" types.
-			if ( obj === null || ( typeof( obj ) != 'object' ) || ( obj instanceof String ) || ( obj instanceof Number ) || ( obj instanceof Boolean ) || ( obj instanceof Date ) || ( obj instanceof RegExp ) )
+			if ( obj === null || ( typeof obj != 'object' ) || ( obj instanceof String ) || ( obj instanceof Number ) || ( obj instanceof Boolean ) || ( obj instanceof Date ) || ( obj instanceof RegExp ) )
 				return obj;
 
 			// DOM objects and window.
@@ -168,9 +168,9 @@
 			var argsLength = arguments.length,
 				overwrite, propertiesList;
 
-			if ( typeof( overwrite = arguments[ argsLength - 1 ] ) == 'boolean' )
+			if ( typeof ( overwrite = arguments[ argsLength - 1 ] ) == 'boolean' )
 				argsLength--;
-			else if ( typeof( overwrite = arguments[ argsLength - 2 ] ) == 'boolean' ) {
+			else if ( typeof ( overwrite = arguments[ argsLength - 2 ] ) == 'boolean' ) {
 				propertiesList = arguments[ argsLength - 1 ];
 				argsLength -= 2;
 			}

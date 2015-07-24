@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -34,8 +34,9 @@
 									value = Math.round( oImageOriginal.$.width * ( value / oImageOriginal.$.height ) );
 								if ( !isNaN( value ) )
 									dialog.setValueOf( 'info', 'txtWidth', value );
-							} else //this.id = txtWidth.
-							{
+							}
+							// this.id = txtWidth.
+							else {
 								if ( value && value != '0' )
 									value = Math.round( oImageOriginal.$.height * ( value / oImageOriginal.$.width ) );
 								if ( !isNaN( value ) )
@@ -126,7 +127,7 @@
 									dialog.lockRatio = true;
 							}
 						}
-					} else if ( value != undefined )
+					} else if ( value !== undefined )
 						dialog.lockRatio = value;
 					else {
 						dialog.userlockRatio = 1;
@@ -168,8 +169,8 @@
 					function checkDimension( size, defaultValue ) {
 						var aMatch = size.match( regexGetSize );
 						if ( aMatch ) {
-							if ( aMatch[ 2 ] == '%' ) // % is allowed.
-							{
+							// % is allowed.
+							if ( aMatch[ 2 ] == '%' ) {
 								aMatch[ 1 ] += '%';
 								switchLockRatio( dialog, false ); // Unlock ratio
 							}
@@ -210,13 +211,17 @@
 					if ( !this.dontResetSize )
 						resetSize( this );
 
-					if ( this.firstLoad )
+					if ( this.firstLoad ) {
 						CKEDITOR.tools.setTimeout( function() {
-						switchLockRatio( this, 'check' );
-					}, 0, this );
+							switchLockRatio( this, 'check' );
+						}, 0, this );
+					}
 
 					this.firstLoad = false;
 					this.dontResetSize = false;
+
+					// Possible fix for #12818.
+					updatePreview( this );
 				};
 
 			var onImgLoadErrorEvent = function() {
@@ -291,17 +296,23 @@
 						this.linkElement = link;
 						this.linkEditMode = true;
 
+						// If there is an existing link, by default keep it (true).
+						// It will be removed if certain conditions are met and Link tab is enabled. (#13351)
+						this.addLink = true;
+
 						// Look for Image element.
 						var linkChildren = link.getChildren();
-						if ( linkChildren.count() == 1 ) // 1 child.
-						{
-							var childTagName = linkChildren.getItem( 0 ).getName();
-							if ( childTagName == 'img' || childTagName == 'input' ) {
-								this.imageElement = linkChildren.getItem( 0 );
-								if ( this.imageElement.getName() == 'img' )
-									this.imageEditMode = 'img';
-								else if ( this.imageElement.getName() == 'input' )
-									this.imageEditMode = 'input';
+						if ( linkChildren.count() == 1 ) {
+							var childTag = linkChildren.getItem( 0 );
+
+							if ( childTag.type == CKEDITOR.NODE_ELEMENT ) {
+								if ( childTag.is( 'img' ) || childTag.is( 'input' ) ) {
+									this.imageElement = linkChildren.getItem( 0 );
+									if ( this.imageElement.is( 'img' ) )
+										this.imageEditMode = 'img';
+									else if ( this.imageElement.is( 'input' ) )
+										this.imageEditMode = 'input';
+								}
 							}
 						}
 						// Fill out all fields.
@@ -329,8 +340,7 @@
 
 						// Fill out all fields.
 						this.setupContent( IMAGE, this.imageElement );
-					} else
-						this.imageElement = editor.document.createElement( 'img' );
+					}
 
 					// Refresh LockRatio button
 					switchLockRatio( this, true );
@@ -347,7 +357,7 @@
 						var imgTagName = this.imageEditMode;
 
 						// Image dialog and Input element.
-						if ( dialogType == 'image' && imgTagName == 'input' && confirm( editor.lang.image.button2Img ) ) {
+						if ( dialogType == 'image' && imgTagName == 'input' && confirm( editor.lang.image.button2Img ) ) { // jshint ignore:line
 							// Replace INPUT-> IMG
 							imgTagName = 'img';
 							this.imageElement = editor.document.createElement( 'img' );
@@ -355,7 +365,7 @@
 							editor.insertElement( this.imageElement );
 						}
 						// ImageButton dialog and Image element.
-						else if ( dialogType != 'image' && imgTagName == 'img' && confirm( editor.lang.image.img2Button ) ) {
+						else if ( dialogType != 'image' && imgTagName == 'img' && confirm( editor.lang.image.img2Button ) ) { // jshint ignore:line
 							// Replace IMG -> INPUT
 							imgTagName = 'input';
 							this.imageElement = editor.document.createElement( 'input' );
@@ -369,8 +379,9 @@
 							this.imageElement = this.cleanImageElement;
 							delete this.cleanImageElement;
 						}
-					} else // Create a new image.
-					{
+					}
+					// Create a new image.
+					else {
 						// Image dialog -> create IMG element.
 						if ( dialogType == 'image' )
 							this.imageElement = editor.document.createElement( 'img' );
@@ -396,22 +407,33 @@
 					// Insert a new Image.
 					if ( !this.imageEditMode ) {
 						if ( this.addLink ) {
-							//Insert a new Link.
 							if ( !this.linkEditMode ) {
+								// Insert a new link.
 								editor.insertElement( this.linkElement );
 								this.linkElement.append( this.imageElement, false );
-							} else //Link already exists, image not.
+							} else {
+								// We already have a link in editor.
+								if ( this.linkElement.equals( editor.getSelection().getSelectedElement() ) ) {
+									// If the link is selected outside, replace it's content rather than the link itself. ([<a>foo</a>])
+									this.linkElement.setHtml( '' );
+									this.linkElement.append( this.imageElement, false );
+								} else {
+									// Only inside of the link is selected, so replace it with image. (<a>[foo]</a>, <a>[f]oo</a>)
+									editor.insertElement( this.imageElement );
+								}
+							}
+						} else {
 							editor.insertElement( this.imageElement );
-						} else
-							editor.insertElement( this.imageElement );
-					} else // Image already exists.
-					{
-						//Add a new link element.
+						}
+					}
+					// Image already exists.
+					else {
+						// Add a new link element.
 						if ( !this.linkEditMode && this.addLink ) {
 							editor.insertElement( this.linkElement );
 							this.imageElement.appendTo( this.linkElement );
 						}
-						//Remove Link, Image exists.
+						// Remove Link, Image exists.
 						else if ( this.linkEditMode && !this.addLink ) {
 							editor.getSelection().selectElement( this.linkElement );
 							editor.insertElement( this.imageElement );
@@ -444,22 +466,18 @@
 
 					delete this.imageElement;
 				},
-				contents: [
-					{
+				contents: [ {
 					id: 'info',
 					label: editor.lang.image.infoTab,
 					accessKey: 'I',
-					elements: [
-						{
+					elements: [ {
 						type: 'vbox',
 						padding: 0,
-						children: [
-							{
+						children: [ {
 							type: 'hbox',
 							widths: [ '280px', '110px' ],
 							align: 'right',
-							children: [
-								{
+							children: [ {
 								id: 'txtUrl',
 								type: 'text',
 								label: editor.lang.common.url,
@@ -468,9 +486,9 @@
 									var dialog = this.getDialog(),
 										newUrl = this.getValue();
 
-									//Update original image
-									if ( newUrl.length > 0 ) //Prevent from load before onShow
-									{
+									// Update original image.
+									// Prevent from load before onShow.
+									if ( newUrl.length > 0 ) {
 										dialog = this.getDialog();
 										var original = dialog.originalElement;
 
@@ -525,7 +543,7 @@
 								},
 								validate: CKEDITOR.dialog.validate.notEmpty( editor.lang.image.urlMissing )
 							},
-								{
+							{
 								type: 'button',
 								id: 'browse',
 								// v-align with the 'txtUrl' field.
@@ -535,12 +553,10 @@
 								label: editor.lang.common.browseServer,
 								hidden: true,
 								filebrowser: 'info:txtUrl'
-							}
-							]
-						}
-						]
+							} ]
+						} ]
 					},
-						{
+					{
 						id: 'txtAlt',
 						type: 'text',
 						label: editor.lang.image.alt,
@@ -559,28 +575,25 @@
 									element.setAttribute( 'alt', this.getValue() );
 							} else if ( type == PREVIEW )
 								element.setAttribute( 'alt', this.getValue() );
-							else if ( type == CLEANUP )
+							else if ( type == CLEANUP ) {
 								element.removeAttribute( 'alt' );
+							}
 
 						}
 					},
-						{
+					{
 						type: 'hbox',
-						children: [
-							{
+						children: [ {
 							id: 'basic',
 							type: 'vbox',
-							children: [
-								{
+							children: [ {
 								type: 'hbox',
 								requiredContent: 'img{width,height}',
 								widths: [ '50%', '50%' ],
-								children: [
-									{
+								children: [ {
 									type: 'vbox',
 									padding: 1,
-									children: [
-										{
+									children: [ {
 										type: 'text',
 										width: '45px',
 										id: 'txtWidth',
@@ -593,7 +606,7 @@
 											var aMatch = this.getValue().match( regexGetSizeOrEmpty ),
 												isValid = !!( aMatch && parseInt( aMatch[ 1 ], 10 ) !== 0 );
 											if ( !isValid )
-												alert( editor.lang.common.invalidWidth );
+												alert( editor.lang.common.invalidWidth ); // jshint ignore:line
 											return isValid;
 										},
 										setup: setupDimension,
@@ -612,15 +625,16 @@
 													var oImageOriginal = this.getDialog().originalElement;
 													if ( oImageOriginal.getCustomData( 'isReady' ) == 'true' )
 														element.setStyle( 'width', oImageOriginal.$.width + 'px' );
-												} else
+												} else {
 													element.setStyle( 'width', CKEDITOR.tools.cssLength( value ) );
+												}
 											} else if ( type == CLEANUP ) {
 												element.removeAttribute( 'width' );
 												element.removeStyle( 'width' );
 											}
 										}
 									},
-										{
+									{
 										type: 'text',
 										id: 'txtHeight',
 										width: '45px',
@@ -633,7 +647,7 @@
 											var aMatch = this.getValue().match( regexGetSizeOrEmpty ),
 												isValid = !!( aMatch && parseInt( aMatch[ 1 ], 10 ) !== 0 );
 											if ( !isValid )
-												alert( editor.lang.common.invalidHeight );
+												alert( editor.lang.common.invalidHeight ); // jshint ignore:line
 											return isValid;
 										},
 										setup: setupDimension,
@@ -652,17 +666,17 @@
 													var oImageOriginal = this.getDialog().originalElement;
 													if ( oImageOriginal.getCustomData( 'isReady' ) == 'true' )
 														element.setStyle( 'height', oImageOriginal.$.height + 'px' );
-												} else
+												} else {
 													element.setStyle( 'height', CKEDITOR.tools.cssLength( value ) );
+												}
 											} else if ( type == CLEANUP ) {
 												element.removeAttribute( 'height' );
 												element.removeStyle( 'height' );
 											}
 										}
-									}
-									]
+									} ]
 								},
-									{
+								{
 									id: 'ratioLock',
 									type: 'html',
 									style: 'margin-top:30px;width:40px;height:40px;',
@@ -685,8 +699,9 @@
 										// Activate (Un)LockRatio button
 										if ( ratioButton ) {
 											ratioButton.on( 'click', function( evt ) {
-												var locked = switchLockRatio( this ),
-													oImageOriginal = this.originalElement,
+												switchLockRatio( this );
+
+												var oImageOriginal = this.originalElement,
 													width = this.getValueOf( 'info', 'txtWidth' );
 
 												if ( oImageOriginal.getCustomData( 'isReady' ) == 'true' && width ) {
@@ -712,14 +727,12 @@
 										'<a href="javascript:void(0)" tabindex="-1" title="' + editor.lang.image.resetSize +
 										'" class="cke_btn_reset" id="' + btnResetSizeId + '" role="button"><span class="cke_label">' + editor.lang.image.resetSize + '</span></a>' +
 										'</div>'
-								}
-								]
+								} ]
 							},
-								{
+							{
 								type: 'vbox',
 								padding: 1,
-								children: [
-									{
+								children: [ {
 									type: 'text',
 									id: 'txtBorder',
 									requiredContent: 'img{border-width}',
@@ -749,8 +762,9 @@
 											if ( !isNaN( value ) ) {
 												element.setStyle( 'border-width', CKEDITOR.tools.cssLength( value ) );
 												element.setStyle( 'border-style', 'solid' );
-											} else if ( !value && this.isChanged() )
+											} else if ( !value && this.isChanged() ) {
 												element.removeStyle( 'border' );
+											}
 
 											if ( !internalCommit && type == IMAGE )
 												element.removeAttribute( 'border' );
@@ -762,7 +776,7 @@
 										}
 									}
 								},
-									{
+								{
 									type: 'text',
 									id: 'txtHSpace',
 									requiredContent: 'img{margin-left,margin-right}',
@@ -813,7 +827,7 @@
 										}
 									}
 								},
-									{
+								{
 									type: 'text',
 									id: 'txtVSpace',
 									requiredContent: 'img{margin-top,margin-bottom}',
@@ -863,7 +877,7 @@
 										}
 									}
 								},
-									{
+								{
 									id: 'cmbAlign',
 									requiredContent: 'img{float}',
 									type: 'select',
@@ -921,20 +935,17 @@
 														element.removeAttribute( 'align' );
 												}
 											}
-										} else if ( type == CLEANUP )
+										} else if ( type == CLEANUP ) {
 											element.removeStyle( 'float' );
-
+										}
 									}
-								}
-								]
-							}
-							]
+								} ]
+							} ]
 						},
-							{
+						{
 							type: 'vbox',
 							height: '250px',
-							children: [
-								{
+							children: [ {
 								type: 'html',
 								id: 'htmlPreview',
 								style: 'width:95%;',
@@ -943,24 +954,22 @@
 									'<div class="ImagePreviewBox"><table><tr><td>' +
 										'<a href="javascript:void(0)" target="_blank" onclick="return false;" id="' + previewLinkId + '">' +
 										'<img id="' + previewImageId + '" alt="" /></a>' +
+									// jscs:disable maximumLineLength
 										( editor.config.image_previewText || 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. ' +
 											'Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non, facilisis vitae, ' +
 											'nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam, orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus. Fusce mi pede, tempor id, cursus ac, ullamcorper nec, enim. Sed tortor. Curabitur molestie. Duis velit augue, condimentum at, ultrices a, luctus ut, orci. Donec pellentesque egestas eros. Integer cursus, augue in cursus faucibus, eros pede bibendum sem, in tempus tellus justo quis ligula. Etiam eget tortor. Vestibulum rutrum, est ut placerat elementum, lectus nisl aliquam velit, tempor aliquam eros nunc nonummy metus. In eros metus, gravida a, gravida sed, lobortis id, turpis. Ut ultrices, ipsum at venenatis fringilla, sem nulla lacinia tellus, eget aliquet turpis mauris non enim. Nam turpis. Suspendisse lacinia. Curabitur ac tortor ut ipsum egestas elementum. Nunc imperdiet gravida mauris.' ) +
+									// jscs:enable maximumLineLength
 									'</td></tr></table></div></div>'
-								}
-							]
-						}
-						]
-					}
-					]
+							} ]
+						} ]
+					} ]
 				},
-					{
+				{
 					id: 'Link',
 					requiredContent: 'a[href]',
 					label: editor.lang.image.linkTab,
 					padding: 0,
-					elements: [
-						{
+					elements: [ {
 						id: 'txtUrl',
 						type: 'text',
 						label: editor.lang.common.url,
@@ -983,11 +992,13 @@
 
 									if ( this.getValue() || !editor.config.image_removeLinkByEmptyURL )
 										this.getDialog().addLink = true;
+									else
+										this.getDialog().addLink = false;
 								}
 							}
 						}
 					},
-						{
+					{
 						type: 'button',
 						id: 'browse',
 						filebrowser: {
@@ -999,7 +1010,7 @@
 						hidden: true,
 						label: editor.lang.common.browseServer
 					},
-						{
+					{
 						id: 'cmbTarget',
 						type: 'select',
 						requiredContent: 'a[target]',
@@ -1011,7 +1022,7 @@
 							[ editor.lang.common.targetTop, '_top' ],
 							[ editor.lang.common.targetSelf, '_self' ],
 							[ editor.lang.common.targetParent, '_parent' ]
-							],
+						],
 						setup: function( type, element ) {
 							if ( type == LINK )
 								this.setValue( element.getAttribute( 'target' ) || '' );
@@ -1022,40 +1033,35 @@
 									element.setAttribute( 'target', this.getValue() );
 							}
 						}
-					}
-					]
+					} ]
 				},
-					{
+				{
 					id: 'Upload',
 					hidden: true,
 					filebrowser: 'uploadButton',
 					label: editor.lang.image.upload,
-					elements: [
-						{
+					elements: [ {
 						type: 'file',
 						id: 'upload',
 						label: editor.lang.image.btnUpload,
 						style: 'height:40px',
 						size: 38
 					},
-						{
+					{
 						type: 'fileButton',
 						id: 'uploadButton',
 						filebrowser: 'info:txtUrl',
 						label: editor.lang.image.btnUpload,
 						'for': [ 'Upload', 'upload' ]
-					}
-					]
+					} ]
 				},
-					{
+				{
 					id: 'advanced',
 					label: editor.lang.common.advancedTab,
-					elements: [
-						{
+					elements: [ {
 						type: 'hbox',
 						widths: [ '50%', '25%', '25%' ],
-						children: [
-							{
+						children: [ {
 							type: 'text',
 							id: 'linkId',
 							requiredContent: 'img[id]',
@@ -1071,7 +1077,7 @@
 								}
 							}
 						},
-							{
+						{
 							id: 'cmbLangDir',
 							type: 'select',
 							requiredContent: 'img[dir]',
@@ -1082,7 +1088,7 @@
 								[ editor.lang.common.notSet, '' ],
 								[ editor.lang.common.langDirLtr, 'ltr' ],
 								[ editor.lang.common.langDirRtl, 'rtl' ]
-								],
+							],
 							setup: function( type, element ) {
 								if ( type == IMAGE )
 									this.setValue( element.getAttribute( 'dir' ) );
@@ -1094,7 +1100,7 @@
 								}
 							}
 						},
-							{
+						{
 							type: 'text',
 							id: 'txtLangCode',
 							requiredContent: 'img[lang]',
@@ -1110,10 +1116,9 @@
 										element.setAttribute( 'lang', this.getValue() );
 								}
 							}
-						}
-						]
+						} ]
 					},
-						{
+					{
 						type: 'text',
 						id: 'txtGenLongDescr',
 						requiredContent: 'img[longdesc]',
@@ -1129,11 +1134,10 @@
 							}
 						}
 					},
-						{
+					{
 						type: 'hbox',
 						widths: [ '50%', '50%' ],
-						children: [
-							{
+						children: [ {
 							type: 'text',
 							id: 'txtGenClass',
 							requiredContent: 'img(cke-xyz)', // Random text like 'xyz' will check if all are allowed.
@@ -1150,7 +1154,7 @@
 								}
 							}
 						},
-							{
+						{
 							type: 'text',
 							id: 'txtGenTitle',
 							requiredContent: 'img[title]',
@@ -1169,14 +1173,13 @@
 										element.setAttribute( 'title', this.getValue() );
 								} else if ( type == PREVIEW )
 									element.setAttribute( 'title', this.getValue() );
-								else if ( type == CLEANUP )
+								else if ( type == CLEANUP ) {
 									element.removeAttribute( 'title' );
-
+								}
 							}
-						}
-						]
+						} ]
 					},
-						{
+					{
 						type: 'text',
 						id: 'txtdlgGenStyle',
 						requiredContent: 'img{cke-xyz}', // Random text like 'xyz' will check if all are allowed.
@@ -1202,10 +1205,17 @@
 							}
 						},
 						onChange: function() {
-							commitInternally.call( this, [ 'info:cmbFloat', 'info:cmbAlign',
-								'info:txtVSpace', 'info:txtHSpace',
-								'info:txtBorder',
-								'info:txtWidth', 'info:txtHeight' ] );
+							commitInternally.call(
+								this, [
+									'info:cmbFloat',
+									'info:cmbAlign',
+									'info:txtVSpace',
+									'info:txtHSpace',
+									'info:txtBorder',
+									'info:txtWidth',
+									'info:txtHeight'
+								]
+							);
 							updatePreview( this );
 						},
 						commit: function( type, element ) {
@@ -1213,10 +1223,8 @@
 								element.setAttribute( 'style', this.getValue() );
 
 						}
-					}
-					]
-				}
-				]
+					} ]
+				} ]
 			};
 		};
 

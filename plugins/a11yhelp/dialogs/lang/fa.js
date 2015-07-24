@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -99,8 +99,8 @@ CKEDITOR.plugins.setLang( 'a11yhelp', 'fa', {
 	upArrow: 'پیکان بالا',
 	rightArrow: 'پیکان راست',
 	downArrow: 'پیکان پایین',
-	insert: 'ورود',
-	'delete': 'حذف',
+	insert: 'Insert',
+	'delete': 'Delete',
 	leftWindowKey: 'کلید چپ ویندوز',
 	rightWindowKey: 'کلید راست ویندوز',
 	selectKey: 'انتخاب کلید',
@@ -115,7 +115,7 @@ CKEDITOR.plugins.setLang( 'a11yhelp', 'fa', {
 	numpad8: 'کلید شماره 8',
 	numpad9: 'کلید شماره 9',
 	multiply: 'ضرب',
-	add: 'افزودن',
+	add: 'Add',
 	subtract: 'تفریق',
 	decimalPoint: 'نقطه‌ی اعشار',
 	divide: 'جدا کردن',

@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang( 'forms', 'pt', {
@@ -7,7 +7,7 @@ CKEDITOR.plugins.setLang( 'forms', 'pt', {
 		title: 'Propriedades do Botão',
 		text: 'Texto (Valor)',
 		type: 'Tipo',
-		typeBtn: 'Button',
+		typeBtn: 'Botão',
 		typeSbm: 'Submit',
 		typeRst: 'Reset'
 	},
@@ -59,10 +59,10 @@ CKEDITOR.plugins.setLang( 'forms', 'pt', {
 		maxChars: 'Nr. Máximo de Caracteres',
 		type: 'Tipo',
 		typeText: 'Texto',
-		typePass: 'Palavra-chave',
+		typePass: 'Senha',
 		typeEmail: 'Email',
 		typeSearch: 'Pesquisar',
-		typeTel: 'Numero de telefone',
+		typeTel: 'Telefone',
 		typeUrl: 'URL'
 	}
 } );

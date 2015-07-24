@@ -1,20 +1,20 @@
 ﻿/*
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang( 'forms', 'tt', {
 	button: {
 		title: 'Төймә үзлекләре',
-		text: 'Text (Value)', // MISSING
+		text: 'Текст (күләм)',
 		type: 'Төр',
 		typeBtn: 'Төймә',
 		typeSbm: 'Submit', // MISSING
-		typeRst: 'Reset' // MISSING
+		typeRst: 'Кире кайтару'
 	},
 	checkboxAndRadio: {
 		checkboxTitle: 'Checkbox Properties', // MISSING
 		radioTitle: 'Radio Button Properties', // MISSING
-		value: 'Value', // MISSING
+		value: 'Күләм',
 		selected: 'Сайланган'
 	},
 	form: {
@@ -32,7 +32,7 @@ CKEDITOR.plugins.setLang( 'forms', 'tt', {
 	select: {
 		title: 'Selection Field Properties', // MISSING
 		selectInfo: 'Select Info', // MISSING
-		opAvail: 'Available Options', // MISSING
+		opAvail: 'Мөмкин булган көйләүләр',
 		value: 'Күләм',
 		size: 'Зурлык',
 		lines: 'юллар',
@@ -43,7 +43,7 @@ CKEDITOR.plugins.setLang( 'forms', 'tt', {
 		btnModify: 'Үзгәртү',
 		btnUp: 'Өскә',
 		btnDown: 'Аска',
-		btnSetValue: 'Set as selected value', // MISSING
+		btnSetValue: 'Сайланган күләм булып билгеләргә',
 		btnDelete: 'Бетерү'
 	},
 	textarea: {

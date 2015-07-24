@@ -1,7 +1,9 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
+
+/* exported CKCONSOLE */
 
 'use strict';
 
@@ -80,7 +82,7 @@ var CKCONSOLE = ( function() {
 			name: editor.name + '/' + definition.name
 		} );
 
-		el.findOne( '.ckconsole_header' ).on( 'click', function( evt ) {
+		el.findOne( '.ckconsole_header' ).on( 'click', function() {
 			if ( el.hasClass( 'ckconsole_folded' ) )
 				el.removeClass( 'ckconsole_folded' );
 			else
@@ -98,7 +100,7 @@ var CKCONSOLE = ( function() {
 	function createPanel( editorPanel, data ) {
 		var el = fromHtml( panelTpl, data );
 
-		el.findOne( '.ckconsole_header' ).on( 'click', function( evt ) {
+		el.findOne( '.ckconsole_header' ).on( 'click', function() {
 			if ( el.hasClass( 'ckconsole_folded' ) )
 				el.removeClass( 'ckconsole_folded' );
 			else
@@ -204,7 +206,7 @@ var CKCONSOLE = ( function() {
 		function logFn( msg ) {
 			return function() {
 				log( msg );
-			}
+			};
 		}
 
 		return {

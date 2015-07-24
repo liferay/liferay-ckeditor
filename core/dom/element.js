@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -243,10 +243,11 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 *		// Result: '<p>This is some text</p>'
 		 *
 		 * @param {String} text The text to be appended.
-		 * @returns {CKEDITOR.dom.node} The appended node.
 		 */
 		appendText: function( text ) {
-			if ( this.$.text != null )
+			// On IE8 it is impossible to append node to script tag, so we use its text.
+			// On the contrary, on Safari the text property is unpredictable in links. (#13232)
+			if ( this.$.text != null && CKEDITOR.env.ie && CKEDITOR.env.version < 9 )
 				this.$.text += text;
 			else
 				this.append( new CKEDITOR.dom.text( text ) );
@@ -419,45 +420,43 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 * @returns {String} The inserted HTML.
 		 */
 		setHtml: ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) ?
-				// old IEs throws error on HTML manipulation (through the "innerHTML" property)
-				// on the element which resides in an DTD invalid position,  e.g. <span><div></div></span>
-				// fortunately it can be worked around with DOM manipulation.
-				function( html ) {
-					try {
-						var $ = this.$;
+			// old IEs throws error on HTML manipulation (through the "innerHTML" property)
+			// on the element which resides in an DTD invalid position,  e.g. <span><div></div></span>
+			// fortunately it can be worked around with DOM manipulation.
+			function( html ) {
+				try {
+					var $ = this.$;
 
-						// Fix the case when setHtml is called on detached element.
-						// HTML5 shiv used for document in which this element was created
-						// won't affect that detached element. So get document fragment with
-						// all HTML5 elements enabled and set innerHTML while this element is appended to it.
-						if ( this.getParent() )
-							return ( $.innerHTML = html );
-						else {
-							var $frag = this.getDocument()._getHtml5ShivFrag();
-							$frag.appendChild( $ );
-							$.innerHTML = html;
-							$frag.removeChild( $ );
-
-							return html;
-						}
-					}
-					catch ( e ) {
-						this.$.innerHTML = '';
-
-						var temp = new CKEDITOR.dom.element( 'body', this.getDocument() );
-						temp.$.innerHTML = html;
-
-						var children = temp.getChildren();
-						while ( children.count() )
-							this.append( children.getItem( 0 ) );
+					// Fix the case when setHtml is called on detached element.
+					// HTML5 shiv used for document in which this element was created
+					// won't affect that detached element. So get document fragment with
+					// all HTML5 elements enabled and set innerHTML while this element is appended to it.
+					if ( this.getParent() )
+						return ( $.innerHTML = html );
+					else {
+						var $frag = this.getDocument()._getHtml5ShivFrag();
+						$frag.appendChild( $ );
+						$.innerHTML = html;
+						$frag.removeChild( $ );
 
 						return html;
 					}
 				}
-			:
-				function( html ) {
-					return ( this.$.innerHTML = html );
-				},
+				catch ( e ) {
+					this.$.innerHTML = '';
+
+					var temp = new CKEDITOR.dom.element( 'body', this.getDocument() );
+					temp.$.innerHTML = html;
+
+					var children = temp.getChildren();
+					while ( children.count() )
+						this.append( children.getItem( 0 ) );
+
+					return html;
+				}
+			} : function( html ) {
+				return ( this.$.innerHTML = html );
+			},
 
 		/**
 		 * Sets the element contents as plain text.
@@ -1107,8 +1106,8 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 			}
 
 			return function( inlineOnly ) {
-				if ( !( inlineOnly === false || CKEDITOR.dtd.$removeEmpty[ this.getName() ] || this.is( 'a' ) ) ) // Merge empty links and anchors also. (#5567)
-				{
+				// Merge empty links and anchors also. (#5567)
+				if ( !( inlineOnly === false || CKEDITOR.dtd.$removeEmpty[ this.getName() ] || this.is( 'a' ) ) ) {
 					return;
 				}
 
@@ -1424,11 +1423,24 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 					needAdjustScrollAndBorders = ( quirks && inBody ) || ( !quirks && inDocElem );
 				}
 
+				// #12747.
 				if ( needAdjustScrollAndBorders ) {
-					x = box.left + ( !quirks && $docElem.scrollLeft || body.$.scrollLeft );
-					x -= clientLeft;
-					y = box.top + ( !quirks && $docElem.scrollTop || body.$.scrollTop );
-					y -= clientTop;
+					var scrollRelativeLeft,
+						scrollRelativeTop;
+
+					// See #12758 to know more about document.(documentElement|body).scroll(Left|Top) in Webkit.
+					if ( CKEDITOR.env.webkit ) {
+						scrollRelativeLeft = body.$.scrollLeft || $docElem.scrollLeft;
+						scrollRelativeTop = body.$.scrollTop || $docElem.scrollTop;
+					} else {
+						var scrollRelativeElement = quirks ? body.$ : $docElem;
+
+						scrollRelativeLeft = scrollRelativeElement.scrollLeft;
+						scrollRelativeTop = scrollRelativeElement.scrollTop;
+					}
+
+					x = box.left + scrollRelativeLeft - clientLeft;
+					y = box.top + scrollRelativeTop - clientTop;
 				}
 			} else {
 				var current = this,

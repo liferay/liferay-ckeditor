@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 CKEDITOR.dialog.add( 'checkbox', function( editor ) {
@@ -30,14 +30,12 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 			}
 			this.commitContent( { element: element } );
 		},
-		contents: [
-			{
+		contents: [ {
 			id: 'info',
 			label: editor.lang.forms.checkboxAndRadio.checkboxTitle,
 			title: editor.lang.forms.checkboxAndRadio.checkboxTitle,
 			startupFocus: 'txtName',
-			elements: [
-				{
+			elements: [ {
 				id: 'txtName',
 				type: 'text',
 				label: editor.lang.common.name,
@@ -58,7 +56,7 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 					}
 				}
 			},
-				{
+			{
 				id: 'txtValue',
 				type: 'text',
 				label: editor.lang.forms.checkboxAndRadio.value,
@@ -83,18 +81,19 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 							checkbox.replace( element );
 							editor.getSelection().selectElement( checkbox );
 							data.element = checkbox;
-						} else
+						} else {
 							element.removeAttribute( 'value' );
+						}
 					}
 				}
 			},
-				{
+			{
 				id: 'cmbSelected',
 				type: 'checkbox',
 				label: editor.lang.forms.checkboxAndRadio.selected,
 				'default': '',
 				accessKey: 'S',
-				value: "checked",
+				value: 'checked',
 				setup: function( element ) {
 					this.setValue( element.getAttribute( 'checked' ) );
 				},
@@ -106,8 +105,8 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 							isChecked = !!this.getValue();
 
 						if ( isElementChecked != isChecked ) {
-							var replace = CKEDITOR.dom.element.createFromHtml( '<input type="checkbox"' + ( isChecked ? ' checked="checked"' : '' )
-								+ '/>', editor.document );
+							var replace = CKEDITOR.dom.element.createFromHtml( '<input type="checkbox"' + ( isChecked ? ' checked="checked"' : '' ) +
+								'/>', editor.document );
 
 							element.copyAttributes( replace, { type: 1, checked: 1 } );
 							replace.replace( element );
@@ -122,9 +121,7 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 							element.removeAttribute( 'checked' );
 					}
 				}
-			}
-			]
-		}
-		]
+			} ]
+		} ]
 	};
 } );

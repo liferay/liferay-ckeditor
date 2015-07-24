@@ -1,5 +1,6 @@
 /* bender-tags: editor,unit,widget */
 /* bender-ckeditor-plugins: image2,toolbar */
+/* global widgetTestsTools, image2TestsTools */
 
 ( function() {
 	'use strict';
@@ -77,13 +78,13 @@
 				};
 
 			assertWidgetDialog( editorBot, 'image', '', null, {
-					src: '',
-					alt: '',
-					width: '',
-					height: '',
-					align: 'none',
-					hasCaption: false
-				}, '<p>x^x</p>', onResume );
+				src: '',
+				alt: '',
+				width: '',
+				height: '',
+				align: 'none',
+				hasCaption: false
+			}, '<p>x^x</p>', onResume );
 		},
 
 		'test create block widget in wrong context': function() {
@@ -104,7 +105,7 @@
 						'Paragraph got split.' );
 				};
 
-			assertWidgetDialog( editorBot, 'image', '', null, null, '<p><span>foo^bar</span></p>', onResume )
+			assertWidgetDialog( editorBot, 'image', '', null, null, '<p><span>foo^bar</span></p>', onResume );
 		}
 	} );
 } )();

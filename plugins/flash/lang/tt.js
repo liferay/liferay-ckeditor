@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang( 'flash', 'tt', {
@@ -10,7 +10,7 @@ CKEDITOR.plugins.setLang( 'flash', 'tt', {
 	alignAbsBottom: 'Иң аска',
 	alignAbsMiddle: 'Төгәл уртада',
 	alignBaseline: 'Таяныч сызыгы',
-	alignTextTop: 'Text Top', // MISSING
+	alignTextTop: 'Текст өсте',
 	bgcolor: 'Фон төсе',
 	chkFull: 'Allow Fullscreen', // MISSING
 	chkLoop: 'Әйләнеш',

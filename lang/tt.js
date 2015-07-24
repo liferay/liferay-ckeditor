@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -85,7 +85,7 @@ CKEDITOR.lang[ 'tt' ] = {
 		alignTop: 'Өскә',
 		alignMiddle: 'Уртага',
 		alignBottom: 'Аска',
-		alignNone: 'None', // MISSING
+		alignNone: 'Һичбер',
 		invalidValue	: 'Дөрес булмаган кыйммәт',
 		invalidHeight: 'Биеклек сан булырга тиеш',
 		invalidWidth: 'Киңлек сан булырга тиеш',

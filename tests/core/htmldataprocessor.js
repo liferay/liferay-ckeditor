@@ -514,6 +514,12 @@
 			}
 		},
 
+		// #13233
+		'test don\'t protect foo:href attributes': function() {
+			assert.areSame( '<a foo:href="http://ckeditor.com">foo</a>',
+				bender.tools.fixHtml( this.editor.dataProcessor.toHtml( '<a foo:href="http://ckeditor.com">foo</a>' ) ) );
+		},
+
 		// #4243
 		'test custom protected source': function() {
 			var source = '<p>some<protected>protected</protected>text</p>';
@@ -554,6 +560,40 @@
 					'tc ' + i
 				);
 			}
+		},
+
+		// #13292
+		'test protected source in attribute in self-closing tag': function() {
+			var processor = this.editor3.dataProcessor,
+				source = '<p><img src="[[image]]"/></a></p>',
+				expectedHtml = '<p><img data-cke-saved-src="{cke_protected_1}" src="{cke_protected_1}" /></p>',
+				expectedOutput = '<p><img src="[[image]]" /></p>';
+
+			var html = processor.toHtml( source );
+
+			assert.isInnerHtmlMatching( expectedHtml, html, 'toHtml' );
+
+			assert.areSame( expectedOutput, processor.toDataFormat( html ), 'toDataFormat' );
+		},
+
+		// #11754
+		'test malformed HTML does not hang the processor': function() {
+			var processor = this.editor.dataProcessor,
+				source = '<table border=0 cellspacing=0 cellpadding=0 style=\'border-collapse:collapse;></table>',
+				expectedHtml = '@';
+
+			assert.isInnerHtmlMatching( expectedHtml, processor.toHtml( source ) );
+		},
+
+		// #11846
+		'test malformed HTML does not hang the processor 2': function() {
+			var processor = this.editor.dataProcessor,
+				source =
+					'<span id="sample" overflow="hidden" ;"="" style="font-size:8pt; font-weight:normal; ' +
+						'font-style:normal; color:#808080; background:transparent">Text</span>';
+
+			processor.toHtml( source );
+			assert.isTrue( true, 'happy to be here' );
 		},
 
 		// Some elements should not have protected source markup inside. (#11223)
@@ -712,6 +752,22 @@
 
 			assert.areSame( '<p><a data-cke-saved-href="#" data-href="x" href="#" src-foo="y">a</a></p>',
 				bender.tools.fixHtml( dataP.toHtml( '<p><a data-href="x" href="#" src-foo="y">a</a></p>' ) ) );
+		},
+
+		// #13393
+		'test process malformed script': function() {
+			var dataP = this.editor.dataProcessor;
+
+			// What we check is that unclosed <script> tag will be protected.
+			assert.areSame( '<p>x</p><!--{cke_protected}%3Cscript%3E%3Ciframe%20src%3D%22foo%22%3E%3C%2Fiframe%3E-->',
+				dataP.toHtml( '<p>x</p><script><iframe src="foo"></iframe>' ) );
+			assert.areSame( '<p>x</p><!--{cke_protected}%3Cscript%3Ealert(1)%3B%3Cp%3Efoo%3C%2Fp%3E%3Cp%3Ebar%3C%2Fp%3E-->',
+				dataP.toHtml( '<p>x</p><script>alert(1);<p>foo</p><p>bar</p>' ) );
+			// Just to be sure that we don't swallow too much.
+			assert.areSame(
+				'<p>x</p><!--{cke_protected}%3Cscript%3Ealert(1)%3B%3C%2Fscript%3E-->' +
+				'<p>foo</p><!--{cke_protected}%3Cscript%3Ealert(2)%3B%3C%2Fscript%3E--><p>bar</p>',
+				dataP.toHtml( '<p>x</p><script>alert(1);</scr' + 'ipt><p>foo</p><script>alert(2);</scr' + 'ipt><p>bar</p>' ) );
 		},
 
 		'test toHtml event': function() {
@@ -1061,15 +1117,18 @@
 
 			bogus = '&nbsp;';
 
-			assert.areSame( '<p>' + bogus  + '</p>', htmlDP.toDataFormat( '<p></p>' ), 'toDF 1' );
+			assert.areSame( '<p>' + bogus + '</p>', htmlDP.toDataFormat( '<p></p>' ), 'toDF 1' );
 			assert.areSame( '<div><h1>' + bogus + '</h1></div>', htmlDP.toDataFormat( '<div><h1></h1></div>' ), 'toDF 2' );
 		},
 
 		'test config.fillEmptyBlocks - false': function() {
-			var htmlDP = this.editor4.dataProcessor;
+			var htmlDP = this.editor4.dataProcessor,
+				bogus = CKEDITOR.env.needsBrFiller ? '<br />' : '';
 
-			assert.areSame( '<p></p>', htmlDP.toHtml( '<p></p>' ), 'toHtml 1' );
-			assert.areSame( '<div><h1></h1></div>', htmlDP.toHtml( '<div><h1></h1></div>' ), 'toHtml 1' );
+			// Even though filler fillEmptyBlocks is set to false, we should still put bogus to HTML,
+			// which will be displayed in editable. (#12735)
+			assert.areSame( '<p>' + bogus + '</p>', htmlDP.toHtml( '<p></p>' ), 'toHtml 1' );
+			assert.areSame( '<div><h1>' + bogus + '</h1></div>', htmlDP.toHtml( '<div><h1></h1></div>' ), 'toHtml 1' );
 
 			assert.areSame( '<p></p>', htmlDP.toDataFormat( '<p></p>' ), 'toDF 1' );
 			assert.areSame( '<div><h1></h1></div>', htmlDP.toDataFormat( '<div><h1></h1></div>' ), 'toDF 2' );
@@ -1080,7 +1139,7 @@
 				bogus = CKEDITOR.env.needsBrFiller ? '<br />' : '';
 
 			assert.areSame( '<p>' + bogus + '</p>', htmlDP.toHtml( '<p></p>' ), 'toHtml 1' );
-			assert.areSame( '<h1></h1>', htmlDP.toHtml( '<h1></h1>' ), 'toHtml 1' );
+			assert.areSame( '<h1>' + bogus + '</h1>', htmlDP.toHtml( '<h1></h1>' ), 'toHtml 2' );
 
 			bogus = '&nbsp;';
 
@@ -1148,8 +1207,6 @@
 		'<p><img onerror="%xss%" src="produce404" /></p>' );
 
 	// #11635
-
-	bender.test( tcs );
 	addXssTC( tcs, 'video onerror', '<p><video onerror="%xss%">foo</video></p>' );
 	addXssTC( tcs, 'video onerror + src', '<p><video onerror="%xss%" src="produce404">foo</video></p>' );
 	addXssTC( tcs, 'video src + onerror',
@@ -1207,4 +1264,5 @@
 			'<p><onxxx>foo</onxxx>bar</p>' );
 	}
 
+	bender.test( tcs );
 } )();

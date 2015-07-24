@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -12,8 +12,7 @@
  *
  * @class
  * @constructor Creates a document fragment class instance.
- * @param {Object} nodeOrDoc
- * @todo example and param doc
+ * @param {CKEDITOR.dom.document/DocumentFragment} [nodeOrDoc=CKEDITOR.document]
  */
 CKEDITOR.dom.documentFragment = function( nodeOrDoc ) {
 	nodeOrDoc = nodeOrDoc || CKEDITOR.document;

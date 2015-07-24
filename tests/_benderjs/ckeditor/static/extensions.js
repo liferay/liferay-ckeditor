@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2015, CKSource - Frederico Knabben. All rights reserved.
  * Licensed under the terms of the MIT License (see LICENSE.md).
  */
 
@@ -102,6 +102,7 @@
 		if ( expected < min || expected > max ) {
 			throw new YUITest.ComparisonFailure(
 				YUITest.Assert._formatMessage( message ),
+				'Greater than ' + min + ' and lower than ' + max + '.',
 				expected
 			);
 		}
@@ -137,7 +138,9 @@
 			} );
 		}
 
-		if ( typeof( test = node.testObject ) == 'string' ) {
+		test = node.testObject;
+
+		if ( typeof test == 'string' ) {
 			updateResult( node.parent, test );
 			// Ignore all tests in this whole test case
 		} else {
@@ -321,8 +324,6 @@
 				event.methodName = methodName;
 				if ( testObject instanceof YUITest.TestCase ) {
 					event.testCase = testObject;
-				} else {
-					event.testSuite = testSuite;
 				}
 
 				this.fire( event );
@@ -352,8 +353,9 @@
 	}
 
 	bender.configureEditor = function( config ) {
-		var regexp,
-			toLoad = 0,
+		var toLoad = 0,
+			removePlugins,
+			regexp,
 			i;
 
 		if ( config.plugins ) {
@@ -362,10 +364,13 @@
 				config.plugins.join( ',' );
 		}
 
-		if ( config[ 'remove-plugins' ] ) {
-			CKEDITOR.config.removePlugins = config[ 'remove-plugins' ].join( ',' );
+		// support both Bender <= 0.2.2 and >= 0.2.3 directives
+		removePlugins = config[ 'remove-plugins' ] || ( config.remove && config.remove.plugins );
 
-			regexp = new RegExp( '(?:^|,)(' + config[ 'remove-plugins' ].join( '|' ) + ')(?=,|$)', 'g' );
+		if ( removePlugins ) {
+			CKEDITOR.config.removePlugins = removePlugins.join( ',' );
+
+			regexp = new RegExp( '(?:^|,)(' + removePlugins.join( '|' ) + ')(?=,|$)', 'g' );
 
 			CKEDITOR.config.plugins = CKEDITOR.config.plugins
 				.replace( regexp, '' )
@@ -480,7 +485,7 @@
 			if ( bender.editor ) {
 				if ( tests[ 'async:init' ] || tests.init ) {
 					throw 'The "init/async:init" is not supported in conjunction' +
-						' with bender.editor, use "setUp" instead.';
+					' with bender.editor, use "setUp" instead.';
 				}
 
 				tests[ 'async:init' ] = function() {
@@ -534,7 +539,7 @@
 } )( this, bender );
 
 // workaround for IE8 - window.resume / window.wait won't work in this environment...
-var resume = bender.Y.Test.Case.prototype.resume = ( function() {
+var resume = bender.Y.Test.Case.prototype.resume = ( function() { // jshint ignore:line
 		var org = bender.Y.Test.Case.prototype.resume;
 
 		return function( segment ) {
@@ -546,7 +551,7 @@ var resume = bender.Y.Test.Case.prototype.resume = ( function() {
 		};
 	} )(),
 
-	wait = function( callback ) {
+	wait = function( callback ) { // jshint ignore:line
 		var args = [].slice.apply( arguments );
 
 		if ( args.length == 1 && typeof callback == 'function' ) {
