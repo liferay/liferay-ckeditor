@@ -15,7 +15,8 @@ CKEDITOR.plugins.setLang( 'forms', 'cs', {
 		checkboxTitle: 'Vlastnosti zaškrtávacího políčka',
 		radioTitle: 'Vlastnosti přepínače',
 		value: 'Hodnota',
-		selected: 'Zaškrtnuto'
+		selected: 'Zaškrtnuto',
+		required: 'Vyžadováno'
 	},
 	form: {
 		title: 'Vlastnosti formuláře',
@@ -37,6 +38,7 @@ CKEDITOR.plugins.setLang( 'forms', 'cs', {
 		size: 'Velikost',
 		lines: 'Řádků',
 		chkMulti: 'Povolit mnohonásobné výběry',
+		required: 'Vyžadováno',
 		opText: 'Text',
 		opValue: 'Hodnota',
 		btnAdd: 'Přidat',
@@ -57,6 +59,7 @@ CKEDITOR.plugins.setLang( 'forms', 'cs', {
 		value: 'Hodnota',
 		charWidth: 'Šířka ve znacích',
 		maxChars: 'Maximální počet znaků',
+		required: 'Vyžadováno',
 		type: 'Typ',
 		typeText: 'Text',
 		typePass: 'Heslo',

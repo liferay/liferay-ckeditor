@@ -14,6 +14,9 @@
 
 	bender.test( {
 		setUp: function() {
+			// Preventing removing empty <small> tag.
+			delete CKEDITOR.dtd.$removeEmpty.small;
+
 			if ( !CKEDITOR.env.webkit )
 				assert.ignore();
 		},
@@ -91,6 +94,9 @@
 		'test backspace and delete, bogus #3':			bd( '<p>[@</p><p>]@</p>', '<p>^@</p>' ),
 		'test backspace and delete, bogus #4':			bd( '<p>@[</p><p>]@</p>', '<p>^@</p>' ),
 
+		// #12503.
+		'test backspace and delete, bogus #5':			bd( '<h1>{Foo</h1><p>bar</p><p><small>baz}</small></p>', '<h1>^@!</h1>' ),
+
 		// Merge inline elements after keystroke.
 		'test backspace and delete, no action #1':		bdf( '<table><tbody><tr><td>x[x</td></tr></tbody></table><p>y]y</p>' ),
 		'test backspace and delete, no action #2':		bdf( '<table><tbody><tr><td>x[x</td><td>zz</td></tr></tbody></table><p>y]y</p>' ),
@@ -99,6 +105,4 @@
 		'test backspace and delete, no action #5':		bdf( '<p>x[xy]y</p>' ),
 		'test backspace and delete, no action #6':		bdf( '<table><tbody><tr><td>x[x</td></tr></tbody></table><table><tbody><tr><td>y]y</td></tr></tbody></table>' )
 	} );
-
-
 } )( quirksTools.bd, quirksTools.bdf, quirksTools.b, quirksTools.df );

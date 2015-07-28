@@ -31,7 +31,12 @@
 
 					editor.getClipboardData( { title: editor.lang.pastefromword.title }, function( data ) {
 						// Do not use editor#paste, because it would start from beforePaste event.
-						data && editor.fire( 'paste', { type: 'html', dataValue: data.dataValue } );
+						data && editor.fire( 'paste', {
+							type: 'html',
+							dataValue: data.dataValue,
+							method: 'paste',
+							dataTransfer: CKEDITOR.plugins.clipboard.initPasteDataTransfer()
+						} );
 
 						editor.fire( 'afterCommandExec', {
 							name: commandName,
@@ -65,6 +70,9 @@
 
 				// MS-WORD format sniffing.
 				if ( mswordHtml && ( forceFromWord || ( /(class=\"?Mso|style=\"[^\"]*\bmso\-|w:WordDocument)/ ).test( mswordHtml ) ) ) {
+					// Do not apply paste filter to data filtered by the Word filter (#13093).
+					data.dontFilter = true;
+
 					// If filter rules aren't loaded then cancel 'paste' event,
 					// load them and when they'll get loaded fire new paste event
 					// for which data will be filtered in second execution of

@@ -8,14 +8,15 @@ CKEDITOR.plugins.setLang( 'forms', 'tt', {
 		text: 'Текст (күләм)',
 		type: 'Төр',
 		typeBtn: 'Төймә',
-		typeSbm: 'Submit', // MISSING
+		typeSbm: 'Җибәрү',
 		typeRst: 'Кире кайтару'
 	},
 	checkboxAndRadio: {
 		checkboxTitle: 'Checkbox Properties', // MISSING
-		radioTitle: 'Radio Button Properties', // MISSING
+		radioTitle: 'Радио төймə үзлекләре',
 		value: 'Күләм',
-		selected: 'Сайланган'
+		selected: 'Сайланган',
+		required: 'Required' // MISSING
 	},
 	form: {
 		title: 'Форма үзлекләре',
@@ -37,6 +38,7 @@ CKEDITOR.plugins.setLang( 'forms', 'tt', {
 		size: 'Зурлык',
 		lines: 'юллар',
 		chkMulti: 'Allow multiple selections', // MISSING
+		required: 'Required', // MISSING
 		opText: 'Текст',
 		opValue: 'Күләм',
 		btnAdd: 'Кушу',
@@ -57,6 +59,7 @@ CKEDITOR.plugins.setLang( 'forms', 'tt', {
 		value: 'Күләм',
 		charWidth: 'Символлар киңлеге',
 		maxChars: 'Maximum Characters', // MISSING
+		required: 'Required', // MISSING
 		type: 'Төр',
 		typeText: 'Текст',
 		typePass: 'Сер сүз',

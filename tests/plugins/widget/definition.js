@@ -1,4 +1,4 @@
-/* bender-tags: editor,unit,widgetcore */
+/* bender-tags: widgetcore */
 /* bender-ckeditor-plugins: widget,undo */
 /* bender-include: _helpers/tools.js */
 /* global widgetTestsTools */
@@ -423,6 +423,26 @@
 			this.editorBot.setData( '<p>foo</p>', function() {
 				editor.execCommand( 'testcommand1' );
 				assert.areSame( 1, executed, 'Template was used once' );
+			} );
+		},
+
+		'test command with startup data': function() {
+			var editor = this.editor,
+				executed = 0;
+
+			var widgetDef = {
+				data: function( evt ) {
+					executed += 1;
+					assert.areSame( 2, evt.data.bar, 'startup data was passed' );
+				},
+				template: '<span>data</span>'
+			};
+
+			editor.widgets.add( 'testcommanddata', widgetDef );
+
+			this.editorBot.setData( '<p>foo</p>', function() {
+				editor.execCommand( 'testcommanddata', { startupData: { bar: 2 } } );
+				assert.areSame( 1, executed, 'data listener was executed once' );
 			} );
 		},
 

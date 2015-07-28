@@ -1,4 +1,3 @@
-/* bender-tags: editor,unit */
 /* bender-ckeditor-plugins: entities,enterkey */
 
 ( function() {
@@ -36,37 +35,29 @@
 		};
 	}
 
+	bender.editors = {
+		editor: {
+			name: 'editor1',
+			config: {
+				enterMode: CKEDITOR.ENTER_P,
+				allowedContent: true
+			}
+		},
+
+		editorNoAutoParagraph: {
+			name: 'editor2',
+			config: {
+				autoParagraph: false
+			}
+		}
+	};
+
 	bender.test( {
 		_should: {
 			ignore: {
 				'test shift+enter key - end of block, inside inline element followed by bogus br': !CKEDITOR.env.needsBrFiller,
 				'test shift+enter key - end of list item, inside inline element followed by bogus br': !CKEDITOR.env.needsBrFiller
 			}
-		},
-
-		'async:init': function() {
-			var that = this;
-
-			bender.tools.setUpEditors( {
-				editor: {
-					name: 'editor1',
-					config: {
-						enterMode: CKEDITOR.ENTER_P,
-						allowedContent: true
-					}
-				},
-
-				editorNoAutoParagraph: {
-					name: 'editor2',
-					config: {
-						autoParagraph: false
-					}
-				}
-			}, function( editors, bots ) {
-				that.editorBots = bots;
-				that.editors = editors;
-				that.callback();
-			} );
 		},
 
 		// #7912
@@ -207,7 +198,7 @@
 				'<div contenteditable="false">' +
 					'<div contenteditable="true">' +
 						'<p>hell@</p>' +
-						'<p>@</p>' +
+						'<p>@@</p>' +
 					'</div>' +
 				'</div>';
 
@@ -246,9 +237,12 @@
 		},
 		*/
 
-		'test enter key - start of block':				e( 'editor', '<p>{}foo</p>', '<p>@</p><p>^foo@</p>' ),
-		'test enter key - middle of block':				e( 'editor', '<p>foo{}bar</p>', '<p>foo@</p><p>^bar@</p>' ),
-		'test enter key - end of block':				e( 'editor', '<p>foo{}</p>', '<p>foo@</p><p>^@</p>' ),
+		'test enter key - start of block':				e( 'editor', '<p id="x">{}foo</p>', '<p>@@</p><p id="x">^foo@</p>' ),
+		'test enter key - middle of block':				e( 'editor', '<p id="x">foo{}bar</p>', '<p id="x">foo@</p><p>^bar@</p>' ),
+		'test enter key - end of block':				e( 'editor', '<p id="x">foo{}</p>', '<p id="x">foo@</p><p>^@</p>' ),
+
+		'test enter key - inline with id':				e( 'editor', '<p>fo<b id="x">o{}b</b>ar</p>', '<p>fo<b id="x">o</b>@</p><p><b>^b</b>ar@</p>' ),
+		'test enter key - block with id':				e( 'editor', '<div><p id="x">fo<b id="y">o{}b</b>ar</p></div>', '<div><p id="x">fo<b id="y">o</b>@</p><p><b>^b</b>ar@</p></div>' ),
 
 		'test shift+enter key - middle of block':		se( 'editor', '<p>foo{}bar</p>', '<p>foo<br />^bar@</p>' ),
 		'test shift+enter key - list item':				se( 'editor', '<ul><li>foo{}bar</li></ul>', '<ul><li>foo<br />^bar@</li></ul>' ),

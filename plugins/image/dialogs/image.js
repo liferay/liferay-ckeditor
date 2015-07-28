@@ -151,13 +151,25 @@
 					return dialog.lockRatio;
 				};
 
-			var resetSize = function( dialog ) {
-					var oImageOriginal = dialog.originalElement;
-					if ( oImageOriginal.getCustomData( 'isReady' ) == 'true' ) {
+			var resetSize = function( dialog, emptyValues ) {
+					var oImageOriginal = dialog.originalElement,
+						ready = oImageOriginal.getCustomData( 'isReady' ) == 'true';
+
+					if ( ready ) {
 						var widthField = dialog.getContentElement( 'info', 'txtWidth' ),
-							heightField = dialog.getContentElement( 'info', 'txtHeight' );
-						widthField && widthField.setValue( oImageOriginal.$.width );
-						heightField && heightField.setValue( oImageOriginal.$.height );
+							heightField = dialog.getContentElement( 'info', 'txtHeight' ),
+							widthValue, heightValue;
+
+						if ( emptyValues ) {
+							widthValue = 0;
+							heightValue = 0;
+						} else {
+							widthValue = oImageOriginal.$.width;
+							heightValue = oImageOriginal.$.height;
+						}
+
+						widthField && widthField.setValue( widthValue );
+						heightField && heightField.setValue( heightValue );
 					}
 					updatePreview( dialog );
 				};
@@ -207,9 +219,10 @@
 					if ( loader )
 						loader.setStyle( 'display', 'none' );
 
-					// New image -> new domensions
-					if ( !this.dontResetSize )
-						resetSize( this );
+					// New image -> new dimensions
+					if ( !this.dontResetSize ) {
+						resetSize( this, editor.config.image_prefillDimensions === false );
+					}
 
 					if ( this.firstLoad ) {
 						CKEDITOR.tools.setTimeout( function() {
@@ -610,7 +623,7 @@
 											return isValid;
 										},
 										setup: setupDimension,
-										commit: function( type, element, internalCommit ) {
+										commit: function( type, element ) {
 											var value = this.getValue();
 											if ( type == IMAGE ) {
 												if ( value && editor.activeFilter.check( 'img{width,height}' ) )
@@ -618,7 +631,7 @@
 												else
 													element.removeStyle( 'width' );
 
-												!internalCommit && element.removeAttribute( 'width' );
+												element.removeAttribute( 'width' );
 											} else if ( type == PREVIEW ) {
 												var aMatch = value.match( regexGetSize );
 												if ( !aMatch ) {
@@ -651,7 +664,7 @@
 											return isValid;
 										},
 										setup: setupDimension,
-										commit: function( type, element, internalCommit ) {
+										commit: function( type, element ) {
 											var value = this.getValue();
 											if ( type == IMAGE ) {
 												if ( value && editor.activeFilter.check( 'img{width,height}' ) )
@@ -659,7 +672,7 @@
 												else
 													element.removeStyle( 'height' );
 
-												!internalCommit && element.removeAttribute( 'height' );
+												element.removeAttribute( 'height' );
 											} else if ( type == PREVIEW ) {
 												var aMatch = value.match( regexGetSize );
 												if ( !aMatch ) {
@@ -756,7 +769,7 @@
 											this.setValue( value );
 										}
 									},
-									commit: function( type, element, internalCommit ) {
+									commit: function( type, element ) {
 										var value = parseInt( this.getValue(), 10 );
 										if ( type == IMAGE || type == PREVIEW ) {
 											if ( !isNaN( value ) ) {
@@ -766,7 +779,7 @@
 												element.removeStyle( 'border' );
 											}
 
-											if ( !internalCommit && type == IMAGE )
+											if ( type == IMAGE )
 												element.removeAttribute( 'border' );
 										} else if ( type == CLEANUP ) {
 											element.removeAttribute( 'border' );
@@ -807,7 +820,7 @@
 											this.setValue( value );
 										}
 									},
-									commit: function( type, element, internalCommit ) {
+									commit: function( type, element ) {
 										var value = parseInt( this.getValue(), 10 );
 										if ( type == IMAGE || type == PREVIEW ) {
 											if ( !isNaN( value ) ) {
@@ -818,7 +831,7 @@
 												element.removeStyle( 'margin-right' );
 											}
 
-											if ( !internalCommit && type == IMAGE )
+											if ( type == IMAGE )
 												element.removeAttribute( 'hspace' );
 										} else if ( type == CLEANUP ) {
 											element.removeAttribute( 'hspace' );
@@ -857,7 +870,7 @@
 											this.setValue( value );
 										}
 									},
-									commit: function( type, element, internalCommit ) {
+									commit: function( type, element ) {
 										var value = parseInt( this.getValue(), 10 );
 										if ( type == IMAGE || type == PREVIEW ) {
 											if ( !isNaN( value ) ) {
@@ -868,7 +881,7 @@
 												element.removeStyle( 'margin-bottom' );
 											}
 
-											if ( !internalCommit && type == IMAGE )
+											if ( type == IMAGE )
 												element.removeAttribute( 'vspace' );
 										} else if ( type == CLEANUP ) {
 											element.removeAttribute( 'vspace' );
@@ -917,7 +930,7 @@
 											this.setValue( value );
 										}
 									},
-									commit: function( type, element, internalCommit ) {
+									commit: function( type, element ) {
 										var value = this.getValue();
 										if ( type == IMAGE || type == PREVIEW ) {
 											if ( value )
@@ -925,7 +938,7 @@
 											else
 												element.removeStyle( 'float' );
 
-											if ( !internalCommit && type == IMAGE ) {
+											if ( type == IMAGE ) {
 												value = ( element.getAttribute( 'align' ) || '' ).toLowerCase();
 												switch ( value ) {
 													// we should remove it only if it matches "left" or "right",

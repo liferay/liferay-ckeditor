@@ -33,7 +33,7 @@
 
 				var iframe = CKEDITOR.dom.element.createFromHtml( '<iframe src="' + src + '" frameBorder="0"></iframe>' );
 				iframe.setStyles( { width: '100%', height: '100%' } );
-				iframe.addClass( 'cke_wysiwyg_frame cke_reset' );
+				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
 
 				var contentSpace = editor.ui.space( 'contents' );
 				contentSpace.append( iframe );
@@ -287,22 +287,6 @@
 			setTimeout( function() {
 				editor.fire( 'dataReady' );
 			}, 0 );
-
-			// IE BUG: IE might have rendered the iframe with invisible contents.
-			// (#3623). Push some inconsequential CSS style changes to force IE to
-			// refresh it.
-			//
-			// Also, for some unknown reasons, short timeouts (e.g. 100ms) do not
-			// fix the problem. :(
-			if ( CKEDITOR.env.ie ) {
-				setTimeout( function() {
-					if ( editor.document ) {
-						var $body = editor.document.$.body;
-						$body.runtimeStyle.marginBottom = '0px';
-						$body.runtimeStyle.marginBottom = '';
-					}
-				}, 1000 );
-			}
 		}, 0, this );
 	}
 

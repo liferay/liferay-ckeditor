@@ -84,6 +84,30 @@ bender.test( appendDomObjectTests(
 			assert.areSame( 'figure', element.getName( 'figure' ) );
 		},
 
+		'test getChild - single index': function() {
+			var element = CKEDITOR.dom.element.createFromHtml( '<ul><li>zero</li><li>one</li></ul>' );
+
+			assert.areSame( 'zero', element.getChild( 0 ).getHtml() );
+			assert.areSame( 'one', element.getChild( 1 ).getHtml() );
+		},
+
+		'test getChild - array selector': function() {
+			var element = CKEDITOR.dom.element.createFromHtml( '<div><ul><li>zero</li><li>one</li></ul></div>' );
+
+			assert.areSame( 'ul', element.getChild( [ 0 ] ).getName() );
+			assert.areSame( 'one', element.getChild( [ 0, 1 ] ).getHtml() );
+			assert.isNull( element.getChild( [ 0, 2 ] ) );
+			assert.isNull( element.getChild( [ 1, 0 ] ) );
+		},
+
+		'test getChild does not modify array': function() {
+			var selector = [ 1, 0 ],
+				element = CKEDITOR.dom.element.createFromHtml( '<div><ul><li>zero</li><li>one</li></ul></div>' );
+
+			element.getChild( selector );
+			assert.areSame( 2, selector.length );
+		},
+
 		test_append1: function() {
 			var element = newElement( document.getElementById( 'append' ) );
 			element.append( newElement( 'b' ) );
@@ -248,20 +272,20 @@ bender.test( appendDomObjectTests(
 			assert.areSame( 'C &amp; D', document.getElementById( 'setText' ).innerHTML );
 		},
 
-		test_addClass1: function() {
+		'test addClass - basic case': function() {
 			var element = newElement( 'div' );
 			element.addClass( 'classA' );
 			assert.areSame( 'classA', element.$.className );
 		},
 
-		test_addClass2: function() {
+		'test addClass2 - one class added twice': function() {
 			var element = newElement( 'div' );
 			element.addClass( 'classA' );
 			element.addClass( 'classA' );
 			assert.areSame( 'classA', element.$.className );
 		},
 
-		test_addClass3: function() {
+		'test addClass - multiple classes': function() {
 			var element = newElement( 'div' );
 			element.addClass( 'classA' );
 			element.addClass( 'classB' );
@@ -269,7 +293,7 @@ bender.test( appendDomObjectTests(
 			assert.areSame( 'classA classB classC', element.$.className );
 		},
 
-		test_addClass4: function() {
+		'test addClass - multiple classes, multiple duplicates': function() {
 			var element = newElement( 'div' );
 			element.addClass( 'classA' );
 			element.addClass( 'classB' );
@@ -280,7 +304,7 @@ bender.test( appendDomObjectTests(
 			assert.areSame( 'classA classB classC', element.$.className );
 		},
 
-		test_removeClass1: function() {
+		'test removeClass - basic case': function() {
 			document.getElementById( 'removeClass' ).innerHTML = '';
 
 			var element = CKEDITOR.dom.element.createFromHtml( '<div class="classA"></div>' );
@@ -291,7 +315,7 @@ bender.test( appendDomObjectTests(
 			assert.areSame( '<div></div>', getInnerHtml( 'removeClass' ) );
 		},
 
-		test_removeClass2: function() {
+		'test removeClass - multiple classes': function() {
 			document.getElementById( 'removeClass' ).innerHTML = '';
 
 			var element = CKEDITOR.dom.element.createFromHtml( '<div class="classA classB classC classD"></div>' );
@@ -308,7 +332,7 @@ bender.test( appendDomObjectTests(
 			assert.areSame( '<div></div>', getInnerHtml( 'removeClass' ) );
 		},
 
-		test_removeClass3: function() {
+		'test removeClass - case insensitive, non existing classes': function() {
 			document.getElementById( 'removeClass' ).innerHTML = '';
 
 			var element = CKEDITOR.dom.element.createFromHtml( '<div class="classA classB"></div>' );
@@ -321,6 +345,34 @@ bender.test( appendDomObjectTests(
 			assert.areSame( '<div class="classa"></div>', getInnerHtml( 'removeClass' ) );
 			element.removeClass( 'classYYY' );
 			assert.areSame( '<div class="classa"></div>', getInnerHtml( 'removeClass' ) );
+		},
+
+		'test hasClass - parsed element': function() {
+			var element = CKEDITOR.dom.element.createFromHtml( '<div class=" classA\t classB \nclassC\t"></div>' );
+
+			assert.isTrue( element.hasClass( 'classA' ), 'classA' );
+			assert.isTrue( element.hasClass( 'classB' ), 'classB' );
+			assert.isTrue( element.hasClass( 'classC' ), 'classC' );
+			assert.isFalse( element.hasClass( 'class' ), 'class' );
+		},
+
+		'test hasClass - after addClass/removeClass': function() {
+			var element = newElement( 'div' );
+
+			assert.isFalse( element.hasClass( 'classA' ), 'before' );
+
+			element.addClass( 'classA' );
+			assert.isTrue( element.hasClass( 'classA' ), 'after added' );
+
+			element.removeClass( 'classA' );
+			assert.isFalse( element.hasClass( 'classA' ), 'after removed' );
+		},
+
+		'test hasClass - case sensitive': function() {
+			var element = CKEDITOR.dom.element.createFromHtml( '<div class="classA"></div>' );
+
+			assert.isFalse( element.hasClass( 'classa' ), 'classa' );
+			assert.isFalse( element.hasClass( 'Classa' ), 'classa' );
 		},
 
 		test_removeAttribute1: function() {
@@ -385,9 +437,7 @@ bender.test( appendDomObjectTests(
 			assert.areEqual( null, bender.tools.getAttribute( element, 'tabindex' ) );
 		},
 
-		/**
-		 * Test set and retrieve 'checked' attribute value. (#4527)
-		 */
+		// Test set and retrieve 'checked' attribute value. (#4527)
 		test_getAttribute_checked: function() {
 			var unchecked1 = new CKEDITOR.dom.element.createFromHtml( '<input type="checkbox" />' ),
 				checked1 = new CKEDITOR.dom.element.createFromHtml( '<input type="checkbox" checked="checked" />' ),
@@ -410,9 +460,7 @@ bender.test( appendDomObjectTests(
 			assert.areEqual( null, element.getAttribute( 'contenteditable' ) );
 		},
 
-		/**
-		 *  Test getAttribute and getAttribute will ingore  '_cke_expando' attribute.
-		 */
+		//  Test getAttribute and getAttribute will ingore  '_cke_expando' attribute.
 		/*test_getAttribute_ignoreExpandoAttributes: function()
 		{
 			var element = newElement( document.getElementById( 'testExpandoAttributes' ) );
@@ -609,7 +657,7 @@ bender.test( appendDomObjectTests(
 
 			element.breakParent( parent );
 
-			assert.areEqual( '<i>text1</i><b>text2</b><i>text3</i>', getInnerHtml( 'breakParent' ) );
+			assert.areEqual( '<i id="a">text1</i><b id="b">text2</b><i>text3</i>', getInnerHtml( 'breakParent' ) );
 		},
 
 		test_contains: function() {
@@ -835,6 +883,17 @@ bender.test( appendDomObjectTests(
 			assert.areEqual( 'div', element.getName(), 'Before rename' );
 			element.renameNode( 'p' );
 			assert.areEqual( 'p', element.getName(), 'After rename' );
+		},
+
+		test_renameNode_in_documentFragment: function() {
+			var frag = new CKEDITOR.dom.documentFragment(),
+				inner = new CKEDITOR.dom.element( 'div' );
+
+			frag.append( inner );
+
+			assert.areEqual( 'div', frag.getChild( 0 ).getName(), 'Before rename' );
+			inner.renameNode( 'p' );
+			assert.areEqual( 'p', frag.getChild( 0 ).getName(), 'After rename' );
 		},
 
 		test_getDirection: function() {

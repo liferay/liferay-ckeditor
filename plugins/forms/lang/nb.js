@@ -15,7 +15,8 @@ CKEDITOR.plugins.setLang( 'forms', 'nb', {
 		checkboxTitle: 'Egenskaper for avmerkingsboks',
 		radioTitle: 'Egenskaper for alternativknapp',
 		value: 'Verdi',
-		selected: 'Valgt'
+		selected: 'Valgt',
+		required: 'Påkrevd'
 	},
 	form: {
 		title: 'Egenskaper for skjema',
@@ -37,6 +38,7 @@ CKEDITOR.plugins.setLang( 'forms', 'nb', {
 		size: 'Størrelse',
 		lines: 'Linjer',
 		chkMulti: 'Tillat flervalg',
+		required: 'Påkrevd',
 		opText: 'Tekst',
 		opValue: 'Verdi',
 		btnAdd: 'Legg til',
@@ -57,6 +59,7 @@ CKEDITOR.plugins.setLang( 'forms', 'nb', {
 		value: 'Verdi',
 		charWidth: 'Tegnbredde',
 		maxChars: 'Maks antall tegn',
+		required: 'Påkrevd',
 		type: 'Type',
 		typeText: 'Tekst',
 		typePass: 'Passord',

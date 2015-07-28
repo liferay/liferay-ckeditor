@@ -46,7 +46,7 @@
 			var tmpDiv = doc.createElement( 'div' );
 			docFrag.appendTo( tmpDiv );
 
-			assert.areSame( '<b>ome</b> t', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
+			assert.areSame( '<b id="_b">ome</b> t', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
 			assert.areSame( 'this is <b id="_b">s</b>ext.', getInnerHtml( '_Para' ), 'HTML after extraction' );
 
 			assert.areSame( document.getElementById( '_Para' ), range.startContainer.$, 'range.startContainer' );
@@ -68,7 +68,7 @@
 			var tmpDiv = doc.createElement( 'div' );
 			docFrag.appendTo( tmpDiv );
 
-			assert.areSame( 'his is <b>s</b>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
+			assert.areSame( 'his is <b id="_b">s</b>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
 			assert.areSame( 't<b id="_b">ome</b> text.', getInnerHtml( '_Para' ), 'HTML after extraction' );
 
 			assert.areSame( document.getElementById( '_Para' ), range.startContainer.$, 'range.startContainer' );
@@ -90,7 +90,7 @@
 			var tmpDiv = doc.createElement( 'div' );
 			docFrag.appendTo( tmpDiv );
 
-			assert.areSame( '<h1>ckw3crange test</h1><p id="_para">this is <b id="_b">some</b> text.</p><p>a</p>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
+			assert.areSame( '<h1 id="_h1">ckw3crange test</h1><p id="_para">this is <b id="_b">some</b> text.</p><p>a</p>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
 			assert.areSame( '<h1 id="_h1">f</h1><p>nother paragraph.</p>', getInnerHtml( 'playground' ) );
 
 			assert.areSame( document.getElementById( 'playground' ), range.startContainer.$, 'range.startContainer' );
@@ -110,7 +110,7 @@
 			var tmpDiv = doc.createElement( 'div' );
 			docFrag.appendTo( tmpDiv );
 
-			assert.areSame( '<h1>fckw3crange test</h1><p id="_para">this is <b id="_b">some</b> text.</p><p>another paragraph.</p>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
+			assert.areSame( '<h1 id="_h1">fckw3crange test</h1><p id="_para">this is <b id="_b">some</b> text.</p><p>another paragraph.</p>', getInnerHtml( tmpDiv.$ ), 'Extracted HTML' );
 			assert.areSame( '<h1 id="_h1"></h1><p></p>', getInnerHtml( 'playground' ) );
 
 			assert.areSame( document.getElementById( 'playground' ), range.startContainer.$, 'range.startContainer' );
@@ -222,6 +222,150 @@
 			assert.areSame( 0, range.startOffset, 'range.startOffset' );
 			assert.areSame( document.getElementById( 'playground' ).firstChild, range.endContainer.$, 'range.endContainer' );
 			assert.areSame( 0, range.endOffset, 'range.endOffset' );
+			assert.isTrue( range.collapsed, 'range.collapsed' );
+		},
+
+		'test extractContents - mergeThen': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( '<p><b>foo</b>xxx<b>bar</b></p>' );
+			doc.getBody().append( root );
+
+			range.setStart( root.getFirst().getFirst().getFirst(), 1 ); // f[oo
+			range.setEnd( root.getFirst().getLast().getFirst(), 2 ); // ba}r
+
+			var clone = range.extractContents( true );
+
+			assert.isInnerHtmlMatching( '<p><b>f[]r</b></p>', bender.tools.range.getWithHtml( root, range ) );
+			assert.isInnerHtmlMatching( '<b>oo</b>xxx<b>ba</b>', clone.getHtml() );
+		},
+
+		'test extractContents - mergeThen (nothing to merge)': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( '<p><b>foo</b>xxx<u>bar</u></p>' );
+			doc.getBody().append( root );
+
+			range.setStart( root.getFirst().getFirst().getFirst(), 1 ); // f[oo
+			range.setEnd( root.getFirst().getLast().getFirst(), 2 ); // ba}r
+
+			var clone = range.extractContents( true );
+
+			assert.isInnerHtmlMatching( '<p><b>f</b>[]<u>r</u></p>', bender.tools.range.getWithHtml( root, range ) );
+			assert.isInnerHtmlMatching( '<b>oo</b>xxx<u>ba</u>', clone.getHtml() );
+		},
+
+		'test extractContents - collapsed range': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( '<p>foo</p>' );
+			doc.getBody().append( root );
+
+			range.setStart( root.findOne( 'p' ).getFirst(), 1 ); // f^oo
+			range.collapse( true );
+
+			var clone = range.extractContents();
+
+			// Nothing should happens when range is collapsed.
+			assert.areSame( '', clone.getHtml() );
+			assert.isInnerHtmlMatching( '<p>foo</p>', root.getHtml() );
+			assert.areSame( root.findOne( 'p' ).getFirst(), range.startContainer, 'range.startContainer' );
+			assert.areSame( 1, range.startOffset, 'range.startOffset' );
+			assert.isTrue( range.collapsed, 'range.collapsed' );
+		},
+
+		'test extractContents - empty containers': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( 'x<h1></h1><p>foo</p><h2></h2>y' );
+			doc.getBody().append( root );
+
+			range.setStart( root.findOne( 'h1' ), 0 ); // <h1>[</h1>
+			range.setEnd( root.findOne( 'h2' ), 0 ); // <h2>]</h2>
+
+			var clone = range.extractContents();
+
+			assert.isInnerHtmlMatching( '<h1></h1><p>foo</p><h2></h2>', clone.getHtml() );
+			assert.isInnerHtmlMatching( 'x<h1></h1>[]<h2></h2>y', bender.tools.range.getWithHtml( root, range ) );
+		},
+
+		'test extractContents - empty containers at different level': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( 'x<div><h1></h1></div><p>foo</p><div>x</div>y' );
+			doc.getBody().append( root );
+
+			range.setStart( root.findOne( 'h1' ), 0 ); // <h1>[</h1>
+			range.setEnd( root.getChild( 3 ), 0 ); // <div>]x</div>
+
+			var clone = range.extractContents();
+
+			assert.isInnerHtmlMatching( '<div><h1></h1></div><p>foo</p><div></div>', clone.getHtml() );
+			assert.isInnerHtmlMatching( 'x<div><h1></h1></div>[]<div>x</div>y', bender.tools.range.getWithHtml( root, range ) );
+		},
+
+		'test extractContents - empty containers with mergeThen': function() {
+			// IE8 has problems with empty inline nodes as usual.
+			if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) {
+				assert.ignore();
+			}
+
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( 'x<b></b><p>foo</p><b>a</b>y' );
+			doc.getBody().append( root );
+
+			range.setStart( root.getChild( 1 ), 0 ); // <b>[</b>
+			range.setEnd( root.getChild( 3 ), 0 ); // <b>]x</b>
+
+			var clone = range.extractContents( true );
+
+			// We would lost empty inline elements so we add "*".
+			assert.isInnerHtmlMatching( '<b>*</b><p>foo</p><b>*</b>', clone.getHtml().replace( /<b><\/b>/g, '<b>*</b>' ) );
+			assert.isInnerHtmlMatching( 'x<b>[]a</b>y', bender.tools.range.getWithHtml( root, range ).replace( /<b><\/b>/g, '<b>*</b>' ) );
+		},
+
+		'test extractContents - empty container, non-empty container': function() {
+			var root = doc.createElement( 'div' ),
+				range = new CKEDITOR.dom.range( doc );
+
+			root.setHtml( '<h1></h1><h2><br /></h2>' );
+			doc.getBody().append( root );
+
+			range.setStart( root.findOne( 'h1' ), 0 ); // <h1>[</h1>
+			range.setEnd( root.findOne( 'h2' ), 0 ); // <h2>]<br /></h2>
+
+			var clone = range.extractContents();
+
+			assert.isInnerHtmlMatching( '<h1></h1><h2></h2>', clone.getHtml() );
+			assert.isInnerHtmlMatching( '<h1></h1>[]<h2><br /></h2>', bender.tools.range.getWithHtml( root, range ) );
+		},
+
+		'test extractContents - ID attribute cloning of partially and fully selected elements': function() {
+			var range = new CKEDITOR.dom.range( doc );
+			range.setStart( doc.getById( '_H1' ).getFirst(), 11 );
+			range.setEnd( doc.getById( '_Para' ).getLast(), 2 );
+
+			var docFrag = range.extractContents( false, false );
+
+			var tmpDiv = doc.createElement( 'div' );
+			docFrag.appendTo( tmpDiv );
+
+			var playground = doc.getById( 'playground' );
+
+			// See: execContentsAction in range.js.
+			assert.isInnerHtmlMatching( '<h1>Test</h1><p>t<b id="_B">some</b>This is</p>', tmpDiv.getHtml(), 'Extracted HTML' );
+			assert.isInnerHtmlMatching( '<h1 id="_H1">FCKW3CRange</h1><p id="_Para">ext.</p><p>Another paragraph.</p>',
+				playground.getHtml(), 'HTML after extraction' );
+
+			assert.areSame( playground, range.startContainer, 'range.startContainer' );
+			assert.areSame( 1, range.startOffset, 'range.startOffset' );
 			assert.isTrue( range.collapsed, 'range.collapsed' );
 		}
 	};
