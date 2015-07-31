@@ -1,6 +1,10 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r22
+
+* [#LPS-57364](https://issues.liferay.com/browse/LPS-57364): Fixed script protection pattern which would not cover unclosed script tag.
+
 ## CKEditor 4.0.3-r21
 
 * [#LPS-57320](https://issues.liferay.com/browse/LPS-57320): Added support for quote attributes in the parser.
