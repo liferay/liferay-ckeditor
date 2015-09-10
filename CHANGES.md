@@ -1,6 +1,10 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r23
+
+* [#LPS-57320](https://issues.liferay.com/browse/LPS-57320): Backport [#11635](http://dev.ckeditor.com/ticket/11635): Fixed: Some attributes are not protected before content is passed through fix bin.
+
 ## CKEditor 4.0.3-r22
 
 * [#LPS-57364](https://issues.liferay.com/browse/LPS-57364): Fixed script protection pattern which would not cover unclosed script tag.
