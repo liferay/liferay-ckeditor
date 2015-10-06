@@ -278,7 +278,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 						body = doc.getBody(),
 						html = doc.getDocumentElement();
 
-					if ( isMSSelection )
+					if ( CKEDITOR.env.ie )
 					{
 						// Other browsers don't loose the selection if the
 						// editor document loose the focus. In IE, we don't
