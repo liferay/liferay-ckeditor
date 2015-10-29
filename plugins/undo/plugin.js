@@ -233,6 +233,9 @@
 			}
 
 			return true;
+		},
+		equals: function( otherImage ) {
+			return this.equalsContent( otherImage ) && this.equalsSelection( otherImage );
 		}
 	};
 
