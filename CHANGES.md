@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.5.3-r1
+
+Fixed Issues:
+
+* [LPS-59936](https://issues.liferay.com/browse/LPS-59936) [#13887](https://dev.ckeditor.com/ticket/13887): Fixed: Link target now supports wider ASCII character range. Thanks to [SamZiemer](https://github.com/SamZiemer)!
+
 ## CKEditor 4.5.3
 
 New Features:
