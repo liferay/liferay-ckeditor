@@ -1,9 +1,13 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.0.3-r25
+
+* [#LPS-59959](https://issues.liferay.com/browse/LPS-59959): SCAYT button and functionality is inactive and throws js errors
+
 ## CKEditor 4.0.3-r24
 
-* [LPS-59936](https://issues.liferay.com/browse/LPS-59936) [#13887](https://dev.ckeditor.com/ticket/13887): Fixed: Link target now supports wider ASCII character range. Thanks to [SamZiemer](https://github.com/SamZiemer)!
+* [#LPS-59936](https://issues.liferay.com/browse/LPS-59936) [#13887](https://dev.ckeditor.com/ticket/13887): Fixed: Link target now supports wider ASCII character range. Thanks to [SamZiemer](https://github.com/SamZiemer)!
 
 ## CKEditor 4.0.3-r23
 
