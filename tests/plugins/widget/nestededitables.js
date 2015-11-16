@@ -1148,8 +1148,8 @@
 
 					range.moveToPosition( e2.findOne( '.p2' ), CKEDITOR.POSITION_AFTER_START );
 					testDelKey( editor,	'del',	range,	false,	'e2 - ^bar' );
-					// This case is handled on Webkits because of #9998.
-					if ( !CKEDITOR.env.webkit )
+					// This case is handled on Webkits and Gecko because of #11861, #13798.
+					if ( CKEDITOR.env.ie )
 						testDelKey( editor,	'bspc',	range,	false,	'e2 - ^bar' );
 
 					range.moveToPosition( e2.findOne( '.p2' ), CKEDITOR.POSITION_BEFORE_END );
@@ -1230,6 +1230,11 @@
 		},
 
 		'test pasting widget which was copied (d&d) when its nested editable was focused': function() {
+			// #11055
+			if ( CKEDITOR.env.ie && CKEDITOR.env.version == 8 ) {
+				assert.ignore();
+			}
+
 			var editor = this.editor,
 				bot = this.editorBot;
 
@@ -1401,6 +1406,11 @@
 		},
 
 		'test selection in nested editable is preserved after opening and closing dialog - inline editor': function() {
+			// #11399
+			if ( CKEDITOR.env.gecko ) {
+				assert.ignore();
+			}
+
 			bender.editorBot.create( {
 				name: 'testselection2',
 				creator: 'inline',

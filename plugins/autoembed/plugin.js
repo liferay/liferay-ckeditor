@@ -10,7 +10,7 @@
 
 	CKEDITOR.plugins.add( 'autoembed', {
 		requires: 'autolink,undo',
-		lang: 'cs,de,en,it,ku,nb,pl,pt-br,tr,zh', // %REMOVE_LINE_CORE%
+		lang: 'cs,de,en,eo,eu,fr,it,ko,ku,nb,pl,pt-br,ru,tr,ug,uk,zh,zh-cn', // %REMOVE_LINE_CORE%
 		init: function( editor ) {
 			var currentId = 1,
 				embedCandidatePasted;
@@ -57,10 +57,7 @@
 			widgetDef = CKEDITOR.plugins.autoEmbed.getWidgetDefinition( editor, href );
 
 		if ( !widgetDef ) {
-			window.console && window.console.log(
-				'[CKEDITOR.plugins.autoEmbed] Incorrect config.autoEmbed_widget value. ' +
-				'No widget definition found.'
-			);
+			CKEDITOR.warn( 'autoembed-no-widget-def' );
 			return;
 		}
 
@@ -184,16 +181,16 @@
 
 	/**
 	 * Specifies the widget to use to automatically embed a link. The default value
-	 * of this option defines that either the [Embed](ckeditor.com/addon/embed) or
-	 * [Semantic Embed](ckeditor.com/addon/embedsemantic) widgets will be used, depending on which is enabled.
+	 * of this option defines that either the [Media Embed](ckeditor.com/addon/embed) or
+	 * [Semantic Media Embed](ckeditor.com/addon/embedsemantic) widgets will be used, depending on which is enabled.
 	 *
 	 * The general behavior:
 	 *
 	 * * If a string (widget names separated by commas) is provided, then the first of the listed widgets which is registered
-	 * will be used. For example, if `'foo,bar,bom'` is set and widgets `'bar'` and `'bom'` are registered, then `'bar'`
-	 * will be used.
+	 *   will be used. For example, if `'foo,bar,bom'` is set and widgets `'bar'` and `'bom'` are registered, then `'bar'`
+	 *   will be used.
 	 * * If a callback is specified, then it will be executed with the URL to be embedded and it should return the
-	 * name of the widget to be used. It allows to use different embed widgets for different URLs.
+	 *   name of the widget to be used. It allows to use different embed widgets for different URLs.
 	 *
 	 * Example:
 	 *
@@ -206,6 +203,9 @@
 	 *
 	 * **Note:** Plugin names are always lower case, while widget names are not, so widget names do not have to equal plugin names.
 	 * For example, there is the `embedsemantic` plugin and the `embedSemantic` widget.
+	 *
+	 * Read more in the [documentation](#!/guide/dev_media_embed-section-automatic-embedding-on-paste)
+	 * and see the [SDK sample](http://sdk.ckeditor.com/samples/mediaembed.html).
 	 *
 	 * @since 4.5
 	 * @cfg {String/Function} [autoEmbed_widget='embed,embedSemantic']
