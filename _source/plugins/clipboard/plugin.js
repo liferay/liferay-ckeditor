@@ -409,6 +409,12 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 					// Intercept the paste before it actually takes place.
 					body.on( !CKEDITOR.env.ie ? 'paste' : 'beforepaste', function( evt )
 						{
+							function repeatParagraphs( repeats ) {
+								// Repeat blocks floor((n+1)/2) times.
+								// Even number of repeats - add <br> at the beginning of last <p>.
+								return CKEDITOR.tools.repeat( '</p><p>', ~~ ( repeats / 2 ) ) + ( repeats % 2 == 1 ? '<br>' : '' );
+							}
+
 							if ( depressBeforeEvent )
 								return;
 
