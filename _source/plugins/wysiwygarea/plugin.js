@@ -663,17 +663,38 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 							data.dialog && editor.openDialog( data.dialog );
 						});
 
-						// Prevent automatic submission in IE #6336
-						CKEDITOR.env.ie && domDocument.on( 'click', function( evt )
+						if ( CKEDITOR.env.ie )
 						{
-							var element = evt.data.getTarget();
-							if ( element.is( 'input' ) )
+							// Prevent automatic submission in IE #6336
+							domDocument.on( 'click', function( evt )
 							{
-								var type = element.getAttribute( 'type' );
-								if ( type == 'submit' || type == 'reset' )
-									evt.data.preventDefault();
-							}
-						});
+								var element = evt.data.getTarget();
+								if ( element.is( 'input' ) )
+								{
+									var type = element.getAttribute( 'type' );
+									if ( type == 'submit' || type == 'reset' )
+										evt.data.preventDefault();
+								}
+							});
+
+							// Fix problem with cursor not appearing in IE when clicking below the body
+							domDocument.getDocumentElement().on( 'mousedown', function( evt )
+							{
+								if ( evt.data.getTarget().is( 'html' ) )
+								{
+									// IE needs this timeout.
+									setTimeout( function()
+									{
+										editor.focus();
+
+										var body = domDocument.getBody();										
+										var range = editor.getSelection().getRanges()[ 0 ];
+										range.moveToElementEditEnd( body );
+										range.select();
+									} );
+								}
+							} );
+						}
 
 						// Gecko/Webkit need some help when selecting control type elements. (#3448)
 						if ( !( CKEDITOR.env.ie || CKEDITOR.env.opera ) )
