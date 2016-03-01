@@ -57,7 +57,7 @@ echo "Starting CKBuilder..."
 
 JAVA_ARGS=${ARGS// -t / } # Remove -t from args.
 
-VERSION="4.5.5"
+VERSION="4.5.5 DEV"
 REVISION=$(git rev-parse --verify --short HEAD)
 # SEMVER_REGEX="^([0-9]+)\.([0-9]+)\.([0-9]+)(\-[0-9A-Za-z-]+)?(\+[0-9A-Za-z-]+)?$"
 
@@ -85,6 +85,9 @@ else
 	echo "Building CKEditor in production mode..."
 	echo ""
 fi
+
+# Strip DEV
+VERSION="${VERSION/ DEV/}"
 
 java -jar ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build ../../ release $JAVA_ARGS --version="$VERSION" --revision="$REVISION" --overwrite --no-tar --no-zip $DEV_OPS
 
