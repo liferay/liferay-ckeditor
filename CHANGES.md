@@ -1,6 +1,12 @@
 ﻿CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.1
+
+Fixed Issues:
+
+* [#16624](http://dev.ckeditor.com/ticket/16624): Fixed: Background color stripped while [pasting text from Word](http://ckeditor.com/addon/pastefromword). Introduced integration with [Color Button](http://ckeditor.com/addon/colorbutton) plugin which will normalize CSS `background` property if it contains color values when [pasted from Word](http://ckeditor.com/addon/pastefromword).
+
 ## CKEditor 4.6
 
 New Features:
