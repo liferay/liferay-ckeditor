@@ -1,6 +1,12 @@
 ﻿CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.7.3
+
+Fixed Issues:
+
+* [#566](https://github.com/ckeditor/ckeditor-dev/issues/566): Fixed: The CSS border shorthand property with zero width (`border: 0px solid #000;`) no longer causes table to have border attribute set to 1.
+
 ## CKEditor 4.6.1
 
 Fixed Issues:
