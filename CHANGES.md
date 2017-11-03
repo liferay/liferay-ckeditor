@@ -1,17 +1,11 @@
-﻿CKEditor 4 Changelog
+CKEditor 4 Changelog
 ====================
 
-## CKEditor 4.7.3
+## CKEditor 4.6.0-r1
 
 Fixed Issues:
 
-* [#566](https://github.com/ckeditor/ckeditor-dev/issues/566): Fixed: The CSS border shorthand property with zero width (`border: 0px solid #000;`) no longer causes table to have border attribute set to 1.
-
-## CKEditor 4.6.1
-
-Fixed Issues:
-
-* [#16624](http://dev.ckeditor.com/ticket/16624): Fixed: Background color stripped while [pasting text from Word](http://ckeditor.com/addon/pastefromword). Introduced integration with [Color Button](http://ckeditor.com/addon/colorbutton) plugin which will normalize CSS `background` property if it contains color values when [pasted from Word](http://ckeditor.com/addon/pastefromword).
+* [LPS-74837](https://issues.liferay.com/browse/LPS-74837): Table plugin ignores table cell padding and cell spacing. Adapted from, [#566](https://github.com/ckeditor/ckeditor-dev/issues/566), [#16624](http://dev.ckeditor.com/ticket/16624). [#16624](http://dev.ckeditor.com/ticket/16624) was committed because there were dependency changes needed in order for [#566](https://github.com/ckeditor/ckeditor-dev/issues/566) to be committed.
 
 ## CKEditor 4.6
 
