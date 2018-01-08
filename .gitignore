@@ -26,3 +26,5 @@ tests/plugins/mathjax/_assets/mathjax/**
 bender-*.log
 
 _dev
+
+maven-dist
