@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.0 (LRV 4.6.0.3)
+
+Fixed Issues:
+
+* [LPS-86456](https://issues.liferay.com/browse/LPS-86456): Alloy Editor/CKEditor: Dragging an Image Wrapped in an Anchor Tag Causes Image to Disappear
+
 ## CKEditor 4.6.0 (LRV 4.6.0.2)
 
 Fixed Issues:
