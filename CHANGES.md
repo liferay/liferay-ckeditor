@@ -1,7 +1,25 @@
 CKEditor 4 Changelog
 ====================
 
-## CKEditor 4.6.0-r1
+## CKEditor 4.6.0 (LRV 4.6.0.2)
+
+Fixed Issues:
+
+* [LPS-85326](https://issues.liferay.com/browse/LPS-85326): Document Selection popup window from link in AlloyEditor shows JS error
+
+## CKEditor 4.6.0 (LRV 4.6.0.1)
+
+Fixed Issues:
+
+* [LPS-73165](https://issues.liferay.com/browse/LPS-73165): Creole Wiki: Copy/pasting with Google Chrome will make the whole content bold
+
+## CKEditor 4.6.0 (LRV 4.6.0.0)
+
+Project Management:
+
+* [LPS-75876](https://issues.liferay.com/browse/LPS-75876): Convert CKEditor binary to webjar
+
+## CKEditor 4.6.0 (4.6.0-r1)
 
 Fixed Issues:
 
