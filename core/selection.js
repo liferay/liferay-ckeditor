@@ -179,8 +179,8 @@
 			if ( keepSelection !== false ) {
 				var sel = editable.getDocument().getSelection().getNative(),
 					// Be error proof.
-					range = sel && sel.type != 'None' && sel.getRangeAt( 0 ),
-					fillingCharSeqLength = fillingCharSequence.length;
+					range = sel && sel.type != 'None' && !sel.isCollapsed && sel.getRangeAt( 0 ),
+						fillingCharSeqLength = fillingCharSequence.length;
 
 				// If there's some text other than the sequence in the FC text node and the range
 				// intersects with that node...
