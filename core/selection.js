@@ -1930,7 +1930,17 @@
 						}
 					}
 
-					nativeRange.setStart( range.startContainer.$, range.startOffset );
+					try {
+						nativeRange.setStart( range.startContainer.$, range.startOffset );
+					} catch ( e ) {
+						// Let's create a new range and collapse it to the desired point.
+						if ( e.toString().indexOf( 'NS_ERROR_DOM_INDEX_SIZE_ERR' ) >= 0 ) {
+							range.collapse( 1 );
+							nativeRange.setStart( range.startContainer.$, range.startOffset );
+						} else {
+							throw e;
+						}
+					}
 
 					try {
 						nativeRange.setEnd( range.endContainer.$, range.endOffset );
