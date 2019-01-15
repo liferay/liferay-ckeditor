@@ -1911,7 +1911,7 @@
 
 					var nativeRange = this.document.$.createRange();
 
-					if ( range.collapsed && rangeRequiresFix( range ) ) {
+					if ( range.collapsed && CKEDITOR.env.webkit && rangeRequiresFix( range ) ) {
 						// Append a zero-width space so WebKit will not try to
 						// move the selection by itself (#1272).
 						var fillingChar = createFillingCharSequenceNode( this.root );
