@@ -1933,10 +1933,9 @@
 					try {
 						nativeRange.setStart( range.startContainer.$, range.startOffset );
 					} catch ( e ) {
-						// Let's create a new range and collapse it to the desired point.
-						if ( e.toString().indexOf( 'NS_ERROR_DOM_INDEX_SIZE_ERR' ) >= 0 ) {
-							range.collapse( 1 );
-							nativeRange.setStart( range.startContainer.$, range.startOffset );
+						if ( e.toString().indexOf( 'IndexSizeError' ) >= 0 ) {
+							// Use firstChild instead on IndexSizeError errors.
+							nativeRange.setStart( range.startContainer.$.firstChild, range.startOffset );
 						} else {
 							throw e;
 						}
@@ -1945,10 +1944,13 @@
 					try {
 						nativeRange.setEnd( range.endContainer.$, range.endOffset );
 					} catch ( e ) {
-						// There is a bug in Firefox implementation (it would be too easy
-						// otherwise). The new start can't be after the end (W3C says it can).
-						// So, let's create a new range and collapse it to the desired point.
-						if ( e.toString().indexOf( 'NS_ERROR_ILLEGAL_VALUE' ) >= 0 ) {
+						if ( e.toString().indexOf( 'IndexSizeError' ) >= 0 ) {
+							// Use firstChild instead on IndexSizeError errors.
+							nativeRange.setEnd( range.endContainer.$.firstChild, range.endOffset );
+						} else if ( e.toString().indexOf( 'NS_ERROR_ILLEGAL_VALUE' ) >= 0 ) {
+							// There is a bug in Firefox implementation (it would be too easy
+							// otherwise). The new start can't be after the end (W3C says it can).
+							// So, let's create a new range and collapse it to the desired point.
 							range.collapse( 1 );
 							nativeRange.setEnd( range.endContainer.$, range.endOffset );
 						} else {
