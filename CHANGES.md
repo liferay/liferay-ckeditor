@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.0 (LRV 4.6.0.4)
+
+Fixed Issues:
+
+* [LPS-88974](https://issues.liferay.com/browse/LPS-88974): Pasting text into a CKEditor is not working correctly in IE11. Also, new solution for [LPS-85326](https://issues.liferay.com/browse/LPS-85326)
+
 ## CKEditor 4.6.0 (LRV 4.6.0.3)
 
 Fixed Issues:
