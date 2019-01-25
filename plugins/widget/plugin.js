@@ -1470,6 +1470,10 @@
 					y: domElement.offsetTop - DRAG_HANDLER_SIZE
 				};
 
+			if ( CKEDITOR.env.ie && CKEDITOR.env.version == 11 ) {
+				newPos.y = 0;
+			}
+
 			if ( oldPos && newPos.x == oldPos.x && newPos.y == oldPos.y )
 				return;
 
