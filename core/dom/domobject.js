@@ -146,9 +146,16 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 
 ( function( domObjectProto ) {
 	var customData = {};
+	var customDataElements = [];
 
 	CKEDITOR.on( 'reset', function() {
 		customData = {};
+
+		for (var i = 0; i < customDataElements.length; i++) {
+			delete customDataElements[i].$[ 'data-cke-expando' ];
+		}
+
+		customDataElements = [];
 	} );
 
 	/**
@@ -257,7 +264,19 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 	 * @returns {Number} A unique ID.
 	 */
 	domObjectProto.getUniqueId = function() {
-		return this.$[ 'data-cke-expando' ] || ( this.$[ 'data-cke-expando' ] = CKEDITOR.tools.getNextNumber() );
+		var expandoNumber = this.$[ 'data-cke-expando' ];
+
+		if (expandoNumber) {
+			return expandoNumber;
+		}
+
+		expandoNumber = CKEDITOR.tools.getNextNumber();
+
+		this.$[ 'data-cke-expando' ] = expandoNumber;
+
+		customDataElements.push(this);
+
+		return expandoNumber;
 	};
 
 	// Implement CKEDITOR.event.
