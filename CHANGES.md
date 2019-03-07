@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.0 (LRV 4.6.0.6)
+
+Fixed Issues:
+
+* [LPS-88974](https://issues.liferay.com/browse/LPS-88974): Wiki Portlet - Unable to Save as Draft Wiki
+
 ## CKEditor 4.6.0 (LRV 4.6.0.5)
 
 Fixed Issues:
