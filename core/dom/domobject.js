@@ -266,15 +266,13 @@ CKEDITOR.dom.domObject.prototype = ( function() {
 	domObjectProto.getUniqueId = function() {
 		var expandoNumber = this.$[ 'data-cke-expando' ];
 
-		if (expandoNumber) {
-			return expandoNumber;
+		if (!expandoNumber) {
+			expandoNumber = CKEDITOR.tools.getNextNumber();
+
+			this.$[ 'data-cke-expando' ] = expandoNumber;
+
+			customDataElements.push(this);
 		}
-
-		expandoNumber = CKEDITOR.tools.getNextNumber();
-
-		this.$[ 'data-cke-expando' ] = expandoNumber;
-
-		customDataElements.push(this);
 
 		return expandoNumber;
 	};
