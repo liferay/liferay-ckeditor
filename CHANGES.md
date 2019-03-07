@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.0 (LRV 4.6.0.5)
+
+Fixed Issues:
+
+* [LPS-89596](https://issues.liferay.com/browse/LPS-89596): Cannot Drag Image from top content line in IE11 using Alloy Editor
+
 ## CKEditor 4.6.0 (LRV 4.6.0.4)
 
 Fixed Issues:
