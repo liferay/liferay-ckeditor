@@ -1,0 +1,10 @@
+{
+  "name": "liferay-ckeditor",
+  "version": "4.11.3-liferay.0",
+  "description": "Liferay's fork of CKEditor",
+  "main": "index.js",
+  "repository": "https://github.com/liferay/liferay-ckeditor",
+  "author": "liferay",
+  "license": "GPL-2.0-or-later",
+  "private": false
+}
