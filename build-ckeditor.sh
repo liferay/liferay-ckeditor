@@ -25,7 +25,7 @@ git checkout "$VERSION"
 
 # Make the debug or release build.
 if [ -n "$DEBUG" ]; then
-	dev/builder/build.sh --build-config ../../../build-config.js --leave-js-unminified
+	dev/builder/build.sh --build-config ../../../build-config.js --leave-css-unminified --leave-js-unminified
 else
 	dev/builder/build.sh --build-config ../../../build-config.js
 fi
