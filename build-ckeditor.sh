@@ -23,11 +23,12 @@ git clean -fdx
 # Checkout desired target version.
 git checkout "$VERSION"
 
-# Grab the build config.
-cp ../build-config.js dev/builder/build-config.js
-
-# Make the release build.
-dev/builder/build.sh
+# Make the debug or release build.
+if [ -n "$DEBUG" ]; then
+	dev/builder/build.sh --build-config ../../../build-config.js --leave-css-unminified --leave-js-unminified
+else
+	dev/builder/build.sh --build-config ../../../build-config.js
+fi
 
 # Remove old build files.
 rm -rf ../ckeditor/*
