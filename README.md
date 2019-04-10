@@ -5,7 +5,7 @@ This is a fork of the [ckeditor-dev](https://github.com/ckeditor/ckeditor-dev) r
 
 ## Building
 
-To build a production ready build, use:
+To build a production-ready build, use:
 
 ```sh
 ./build-ckeditor.sh $CKEDITOR_VERSION
@@ -33,7 +33,7 @@ To test your local CKEditor build in liferay-portal:
 
 ## Publishing
 
-After successfully building and testingyou can publish to NPM.
+After successfully building and testing you can publish to NPM.
 
 ```sh
 # Confirm that worktree is clean and up-to-date.
