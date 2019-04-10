@@ -5,21 +5,63 @@ This is a fork of the [ckeditor-dev](https://github.com/ckeditor/ckeditor-dev) r
 
 ## Building
 
-To build a production ready build, use:
+To build a production-ready build, use:
 
 ```sh
-./build-ckeditor.sh $VERSION
+./build-ckeditor.sh $CKEDITOR_VERSION
 ```
 
-Where `$VERSION` is a valid [tag](https://github.com/ckeditor/ckeditor-dev/tags) in the CKEDITOR repository.
+Where `$CKEDTIOR_VERSION` is a valid [tag](https://github.com/ckeditor/ckeditor-dev/tags) in the CKEDITOR repository, such as "4.11.3".
 
 If you'd rather like a development build, for example for local debugging, use:
 
 ```sh
-env DEBUG=1 ./build-ckeditor.sh $VERSION
+env DEBUG=1 ./build-ckeditor.sh $CKEDITOR_VERSION
 ```
 
 The build files will be generated in the `ckeditor` directory.
+
+**WARNING**: You should never publish development builds to the npm registry.
+
+## Testing in [liferay-portal](https://github.com/liferay/liferay-portal)
+
+To test your local CKEditor build in liferay-portal:
+
+1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
+2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO`
+3. Re-deploy the module with `gradlew clean deploy`.
+
+## Publishing
+
+After successfully building and testing you can publish to NPM.
+
+```sh
+# Confirm that worktree is clean and up-to-date.
+git checkout master
+git pull upstream master --ff-only
+git status
+
+# Bump the version number, creating a commit and tag.
+# See below for notes on the format of the version number.
+npm version $VERSION
+
+# Sanity check what will be published.
+npm publish --dry-run
+
+# Publish to GitHub.
+git push upstream master --follow-tags
+
+# Publish to NPM.
+npm publish
+```
+### Choosing a version number
+
+For tagging and publishing `$VERSION` should be of the form `$CKEDITOR_VERSION-liferay.$RELEASE`. For example, "4.11.3-liferay.1"; that is:
+
+- Based on CKEditor 4.11.3.
+- Release number 1.
+
+Subsequent releases would be "4.11.3-liferay.2", "4.11.3-liferay.3" and so on. When we update to CKEditor 4.11.4, we reset the suffix, so the release would be "4.11.4-liferay.1", "4.11.4-liferay.2" and so on.
 
 **WARNING**: You should never publish development builds to the npm registry.
 
@@ -27,8 +69,8 @@ The build files will be generated in the `ckeditor` directory.
 
 To update CKEditor in liferay-portal:
 
-1. navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
-2. update the `liferay-ckeditor` dependency in the `package.json` file
-3. re-deploy the module with `gradlew clean deploy`.
+1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
+2. Update the `liferay-ckeditor` dependency in the `package.json` file
+3. Re-deploy the module with `gradlew clean deploy`.
 
 An example of this can be seen in [this](https://github.com/liferay/liferay-portal/commit/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248) commit (look at the [`package.json`](https://github.com/liferay/liferay-portal/blob/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248/modules/apps/frontend-editor/frontend-editor-ckeditor-web/package.json) file)
