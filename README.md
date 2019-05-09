@@ -74,3 +74,42 @@ To update CKEditor in liferay-portal:
 3. Re-deploy the module with `gradlew clean deploy`.
 
 An example of this can be seen in [this](https://github.com/liferay/liferay-portal/commit/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248) commit (look at the [`package.json`](https://github.com/liferay/liferay-portal/blob/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248/modules/apps/frontend-editor/frontend-editor-ckeditor-web/package.json) file)
+
+## Patching
+
+1. Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
+
+	```sh
+	git pull origin master
+	```
+
+2. Make sure the `ckeditor-dev` submodule is clean and up to date.
+
+	```sh
+  sh ./scripts/update.sh
+  ```
+
+3. Work on your changes:
+
+	This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
+
+4. Create your commit, add your changes and write a good commit message.
+
+5. Navigate back to the superproject's root directory and create the patch:
+
+	```sh
+	cd ..
+	sh ./scripts/patch.sh
+	```
+
+7. Create a build of CKEditor containing the patches:
+
+	From the root of the superproject's directory, run
+
+	```sh
+	sh ./scripts/build.sh
+	```
+
+8. Don't forget to add the changes and commit
+
+
