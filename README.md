@@ -83,11 +83,11 @@ An example of this can be seen in [this](https://github.com/liferay/liferay-port
 	git pull origin master
 	```
 
-2. Make sure the `ckeditor-dev` submodule is clean and up to date.
+2. Set up everything to start working on a patch:
 
 	```sh
-  sh ./scripts/update.sh
-  ```
+	sh ck.sh setup
+	```
 
 3. Work on your changes:
 
@@ -99,7 +99,7 @@ An example of this can be seen in [this](https://github.com/liferay/liferay-port
 
 	```sh
 	cd ..
-	sh ./scripts/patch.sh
+	sh ck.sh patch
 	```
 
 7. Create a build of CKEditor containing the patches:
@@ -107,7 +107,7 @@ An example of this can be seen in [this](https://github.com/liferay/liferay-port
 	From the root of the superproject's directory, run
 
 	```sh
-	sh ./scripts/build.sh
+	sh ck.sh build
 	```
 
 8. Don't forget to add the changes and commit
