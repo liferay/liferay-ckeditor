@@ -8,27 +8,10 @@ function init() {
 
 	# Fetch remote changes.
 	cd ckeditor-dev
-	# not needed git fetch
 
 	# Make sure our working copy is clean.
 	git reset --hard HEAD --quiet
 	git clean -fdx
-}
-
-function message() {
-	if [[ ! -z "$1" ]] ; then
-		echo
-		printf -- '-%.0s' {1..80}; echo ""
-		printf "%*s\n" $(( ( $(echo $1 | wc -c ) + 80 ) / 2 )) "$1"
-		printf -- '-%.0s' {1..80}; echo ""
-		echo
-
-		if [[ ! -z  "$2" ]] ; then
-			echo
-			echo "$2" | fold -w 80
-			echo
-		fi
-	fi
 }
 
 function usage() {
@@ -46,28 +29,26 @@ function usage() {
 # Check arguments
 if [ $# -ne 1 ]; then
 	usage
-  exit 1
+	exit 1
 fi
 
 COMMAND=$1
 
 case "$COMMAND" in
 	build)
-		VERSION=$2
+		echo
+		echo "*---------------------------------------------------------*"
+		echo "|                     ⚠️  WARNING                          |"
+		echo "*---------------------------------------------------------*"
+		echo
 
-		init
-		git checkout --detach HEAD --quiet
-
-		# Warn the user and prompt to continue
-		message "⚠️  WARNING"
-
-		str=$(printf "%s\n" "This will generate a patched version of CKEditor" \
-			"Are you sure you want to continue?")
-
-		read -p "$str [y/n]? " yn
+		echo "This will generate a patched version of CKEditor"
+		read -p "Are you sure you want to continue? [y/n]" yn
 
 		case $yn in
 			[Yy]*)
+				init
+				git checkout --detach HEAD --quiet
 				git branch -f liferay HEAD
 				git checkout liferay
 
@@ -77,8 +58,6 @@ case "$COMMAND" in
 
 				if ! ls ../patches/*; then
 					echo "There doesn't seem to be any patch"
-					# TODO: Probably exit?
-					echo
 				fi
 
 				echo
@@ -95,7 +74,7 @@ case "$COMMAND" in
 					echo "  git am --abort"
 					echo "  git am ../patches/*"
 					echo
-					echo "Once you are happy with the result, run \`sh ./ck.sh patch\` to update the contents of \"patches/\"."
+					echo "Once you are happy with the result, run `sh ck.sh patch` to update the contents of \"patches/\"."
 					echo
 					exit 1
 				fi
@@ -113,11 +92,16 @@ case "$COMMAND" in
 				# Replace with new build files.
 				cp -r dev/builder/release/ckeditor/* ../ckeditor/
 
-				str=$(printf "%s\n" "Don't forget to commit the result!\n\n" \
-					"    git add -A -- ckeditor\n" \
-					"    git commit -m 'Update CKEDITOR'")
-
-				message "✅  DONE" "$str"
+				echo
+				echo "*---------------------------------------------------------*"
+				echo "|                        ✅ DONE                          |"
+				echo "*---------------------------------------------------------*"
+				echo
+				echo "Don't forget to commit the result!"
+				echo
+				echo "git add -A -- ckeditor"
+				echo "git commit -m 'Update CKEDITOR'"
+				echo
 				;;
 			*)
 				echo
@@ -133,30 +117,38 @@ case "$COMMAND" in
 		# Save SHA1 for later
 		sha1=`git submodule | grep ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//`
 
-		# CD into the right place
 		cd ckeditor-dev
 
 		# Check for the existence of the liferay branch in the submodule
 		if ! git rev-parse --verify liferay &>/dev/null; then
-			str=$(printf "%s"
-				"It seems that there's no *liferay* branch in the *ckeditor-dev* submodule.\n\n" \
-				"Please run *sh ./ck.sh setup* to set up.")
+			echo
+			echo "*---------------------------------------------------------*"
+			echo "|                        ❌ ERROR                         |"
+			echo "*---------------------------------------------------------*"
+			echo
+			echo  "It seems that there's no `liferay` branch in the `ckeditor-dev` submodule."
+			echo
+			echo  "Please run `sh ck.sh setup` to set up everything correctly."
+			echo
 
-			message "❌  ERROR" "$str"
 			exit 1
 		fi
 
 		git checkout liferay --quiet
 
 		# Check for existing patches
-		if ls ../patches/* &>/dev/null; then
+		patches=$(find ../patches -name *.patch -type f)
 
-			str=$(printf "%s\n" "This will replace any existing patches...")
-
-			message "⚠️  WARNING" "$str"
-
+		if [[ $(echo "$patches" | wc -l) -ne 0 ]]; then
 			echo
-			echo "$(ls ../patches/*)"
+			echo "*---------------------------------------------------------*"
+			echo "|                       ⚠️  WARNING                        |"
+			echo "*---------------------------------------------------------*"
+			echo
+			echo
+			echo  "This will replace any existing patches..."
+			echo
+			echo "$patches"
 			echo
 
 			# Prompt the user to confirm he wants to delete existing patches
@@ -188,11 +180,19 @@ case "$COMMAND" in
 
 		git format-patch $sha1 -o ../patches
 
-		str=$(printf "%s" "You can now build CKEditor with your patches.\n\n" \
-			"Here are the steps to follow:\n\n" \
-			"    1. Run \`sh ./ck.sh build\` to generate a patched version.")
-
-		message "✅  DONE" "$str"
+		echo
+		echo "*---------------------------------------------------------*"
+		echo "|                       ✅  DONE                          |"
+		echo "*---------------------------------------------------------*"
+		echo
+		echo
+		echo "You can now build CKEditor with your patches."
+		echo
+		echo
+		echo "Here are the steps to follow:"
+		echo
+		echo "1. Run `sh ./ck.sh build` to generate a patched version."
+		echo
 		;;
 	setup)
 		init
@@ -200,17 +200,24 @@ case "$COMMAND" in
 		git branch -f liferay HEAD
 		git checkout liferay
 
-		str=$(printf "%s" "You can now start working on your patch(es).\n\n" \
-			"Here are the steps to follow:\n\n" \
-		  "    1. Navigate to the ckeditor-dev submodule directory (\`cd ckeditor-dev\`)\n" \
-		  "    2. Make your changes\n" \
-		  "    3. Commit your changes\n" \
-		  "    4. Run \`sh ./ck.sh patch\` to generate the patches\n")
-
-		message "✅  DONE" "$str"
+		echo
+		echo "*---------------------------------------------------------*"
+		echo "|                       ✅  DONE                          |"
+		echo "*---------------------------------------------------------*"
+		echo
+		echo
+		echo "You can now start working on your patch(es)."
+		echo
+		echo
+		echo "Here are the steps to follow:"
+		echo
+		echo "1. Navigate to the ckeditor-dev submodule directory (`cd ckeditor-dev`)"
+		echo "2. Work on your changes"
+		echo "3. Commit your changes"
+		echo "4. Run `sh ck.sh patch` to generate the patches"
+		echo
 		;;
 	*)
 		usage
 		;;
 esac
-
