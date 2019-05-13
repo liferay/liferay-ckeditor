@@ -77,32 +77,34 @@ An example of this can be seen in [this](https://github.com/liferay/liferay-port
 
 ## Patching
 
-1. Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
+- Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
 
 	```sh
 	git pull origin master
 	```
 
-2. Set up everything to start working on a patch:
+- Set up everything to start working on a patch:
 
 	```sh
 	sh ck.sh setup
 	```
 
-3. Work on your changes:
+- Work on your changes:
+
+	`cd` into the `ckeditor-dev/` submodule and prepare your desired changes on the `liferay` branch.
 
 	This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
 
-4. Create your commit, add your changes and write a good commit message.
+- Create your commit, add your changes and write a good commit message.
 
-5. Navigate back to the superproject's root directory and create the patch:
+- Navigate back to the superproject's root directory and create the patch:
 
 	```sh
 	cd ..
 	sh ck.sh patch
 	```
 
-7. Create a build of CKEditor containing the patches:
+- Create a build of CKEditor containing the patches:
 
 	From the root of the superproject's directory, run
 
@@ -110,6 +112,4 @@ An example of this can be seen in [this](https://github.com/liferay/liferay-port
 	sh ck.sh build
 	```
 
-8. Don't forget to add the changes and commit
-
-
+- Don't forget to add the changes and commit
