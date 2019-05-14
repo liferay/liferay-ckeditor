@@ -99,9 +99,6 @@ case "$COMMAND" in
 				echo
 				echo "Don't forget to commit the result!"
 				echo
-				echo "git add -A -- ckeditor"
-				echo "git commit -m 'Update CKEDITOR'"
-				echo
 				;;
 			*)
 				echo
