@@ -34,6 +34,8 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
+trap "echo \"\n\nAborting.\n\"; exit" SIGHUP SIGINT SIGTERM
+
 COMMAND=$1
 
 case "$COMMAND" in
