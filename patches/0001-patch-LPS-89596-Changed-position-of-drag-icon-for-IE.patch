@@ -1,0 +1,27 @@
+From e150c14e438d6cc80da8d92eeabed67f9e5c98a0 Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Tue, 14 May 2019 10:47:25 +0200
+Subject: [PATCH] patch: LPS-89596 Changed position of drag icon for IE.
+
+---
+ plugins/widget/plugin.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/plugins/widget/plugin.js b/plugins/widget/plugin.js
+index d8660d4a3..9f0843fa1 100644
+--- a/plugins/widget/plugin.js
++++ b/plugins/widget/plugin.js
+@@ -1525,6 +1525,10 @@ ﻿/**
+ 					y: domElement.offsetTop - DRAG_HANDLER_SIZE
+ 				};
+ 
++			if ( CKEDITOR.env.ie ) {
++				newPos.y = 0;
++			}
++
+ 			if ( oldPos && newPos.x == oldPos.x && newPos.y == oldPos.y )
+ 				return;
+ 
+-- 
+2.21.0
+
