@@ -15,13 +15,15 @@ function init() {
 }
 
 function usage() {
-	echo "Usage: ck.sh COMMAND"
+	echo
+	echo "Usage: ck.sh COMMAND [OPTIONS]"
 	echo
 	echo "  Where COMMAND is either:"
 	echo
 	echo "  🔧  setup: Setup everything to start working on a patch"
 	echo "  💉  patch: Generate patches "
 	echo "  🔥  build: Generate a patched version of CKEditor"
+	echo "  🌶  update \$VERSION: Update the ckeditor-dev submodule to \$VERSION"
 	echo
 	echo
 }
@@ -32,18 +34,18 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
+trap "echo \"\n\nAborting.\n\"; exit" SIGHUP SIGINT SIGTERM
+
 COMMAND=$1
 
 case "$COMMAND" in
 	build)
 		echo
-		echo "*---------------------------------------------------------*"
-		echo "|                     ⚠️  WARNING                          |"
-		echo "*---------------------------------------------------------*"
+		echo "⚠️  WARNING"
 		echo
 
 		echo "This will generate a patched version of CKEditor"
-		read -p "Are you sure you want to continue? [y/n]" yn
+		read -p "Are you sure you want to continue?[y/n] " yn
 
 		case $yn in
 			[Yy]*)
@@ -56,7 +58,7 @@ case "$COMMAND" in
 				echo "Checking for existing patches"
 				echo
 
-				if ! ls ../patches/*; then
+				if ! ls ../patches/*.patch; then
 					echo "There doesn't seem to be any patch"
 				fi
 
@@ -66,7 +68,7 @@ case "$COMMAND" in
 
 				if ! git am ../patches/*; then
 					echo
-					echo "⚠️ There was a problem applying patches:"
+					echo "❌  There was a problem applying patches:"
 					echo
 					echo "To retry manually and fix:"
 					echo
@@ -74,7 +76,7 @@ case "$COMMAND" in
 					echo "  git am --abort"
 					echo "  git am ../patches/*"
 					echo
-					echo "Once you are happy with the result, run `sh ck.sh patch` to update the contents of \"patches/\"."
+					echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
 					echo
 					exit 1
 				fi
@@ -93,9 +95,7 @@ case "$COMMAND" in
 				cp -r dev/builder/release/ckeditor/* ../ckeditor/
 
 				echo
-				echo "*---------------------------------------------------------*"
-				echo "|                        ✅ DONE                          |"
-				echo "*---------------------------------------------------------*"
+				echo "✅ DONE"
 				echo
 				echo "Don't forget to commit the result!"
 				echo
@@ -119,37 +119,33 @@ case "$COMMAND" in
 		# Check for the existence of the liferay branch in the submodule
 		if ! git rev-parse --verify liferay &>/dev/null; then
 			echo
-			echo "*---------------------------------------------------------*"
-			echo "|                        ❌ ERROR                         |"
-			echo "*---------------------------------------------------------*"
+			echo "❌ ERROR"
 			echo
-			echo  "It seems that there's no `liferay` branch in the `ckeditor-dev` submodule."
+			echo  "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
 			echo
-			echo  "Please run `sh ck.sh setup` to set up everything correctly."
+			echo  "Please run 'sh ck.sh setup' to set up everything correctly."
 			echo
-
 			exit 1
 		fi
 
 		git checkout liferay --quiet
 
 		# Check for existing patches
-		patches=$(find ../patches -name *.patch -type f)
-
-		if [[ $(echo "$patches" | wc -l) -ne 0 ]]; then
+		if ! ls ../patches/*.patch &>/dev/null ; then
 			echo
-			echo "*---------------------------------------------------------*"
-			echo "|                       ⚠️  WARNING                        |"
-			echo "*---------------------------------------------------------*"
+			echo "No patches found."
 			echo
+		else
+			echo
+			echo "⚠️  WARNING"
 			echo
 			echo  "This will replace any existing patches..."
 			echo
-			echo "$patches"
+			ls -l ../patches/*.patch
 			echo
 
 			# Prompt the user to confirm he wants to delete existing patches
-			read -p "Are you sure you want to continue [y/n]? " yn
+			read -p "Are you sure you want to continue?[y/n] " yn
 			case $yn in
 				[Yy]*)
 					echo
@@ -163,13 +159,8 @@ case "$COMMAND" in
 					echo
 					echo "Aborting."
 					echo
-					exit 1
 					;;
 			esac
-		else
-			echo
-			echo "No patches found."
-			echo
 		fi
 
 		echo "Generating patches."
@@ -178,41 +169,107 @@ case "$COMMAND" in
 		git format-patch $sha1 -o ../patches
 
 		echo
-		echo "*---------------------------------------------------------*"
-		echo "|                       ✅  DONE                          |"
-		echo "*---------------------------------------------------------*"
-		echo
+		echo "✅  DONE"
 		echo
 		echo "You can now build CKEditor with your patches."
 		echo
-		echo
 		echo "Here are the steps to follow:"
 		echo
-		echo "1. Run `sh ./ck.sh build` to generate a patched version."
+		echo "1. Run 'sh ck.sh build' to generate a patched version."
 		echo
 		;;
 	setup)
-		init
-		git checkout --detach HEAD
-		git branch -f liferay HEAD
-		git checkout liferay
+		echo
+		echo "⚠️  WARNING"
+		echo
+		echo "❗  This will reset any changes you currently have in the 'ckeditor-dev' submodule"
+		echo
+		echo
+		read -p "Are you sure you want to continue?[y/n] " yn
+		case $yn in
+			[Yy]*)
+				init
+				git checkout --detach HEAD --quiet
+				git branch -f liferay HEAD
+				git checkout liferay --quiet
+
+				echo
+				echo "✅  DONE"
+				echo
+				echo
+				echo "You can now start working on your patch(es)."
+				echo
+				echo
+				echo "Here are the steps to follow:"
+				echo
+				echo "1. Navigate to the ckeditor-dev submodule directory ('cd ckeditor-dev')"
+				echo "2. Work on your changes"
+				echo "3. Commit your changes"
+				echo "4. Run 'sh ck.sh patch' to generate the patches"
+				echo
+				;;
+			*)
+				echo
+				echo "Aborting."
+				echo
+				;;
+		esac
+		;;
+	update)
+		git submodule update --init
+		cd ckeditor-dev
+		git fetch
 
 		echo
-		echo "*---------------------------------------------------------*"
-		echo "|                       ✅  DONE                          |"
-		echo "*---------------------------------------------------------*"
+		echo "Listing current tags: "
+
+		tags=$(git tag -l --sort=creatordate | grep -v ee- | grep -v liferay | \
+			sort -t. -k 1,1nr -k 2,2nr -k 3,3nr -k 4,4nr | head -6)
+
+		echo "$tags"
 		echo
+
+		read -p "Please enter the tag you want to update to: " tag
+
+		if ! git describe --exact-match --tags $tag &>/dev/null ; then
+			echo
+			echo "❌  ERROR"
+			echo
+			echo "Sorry, the \`$tag\` tag does not exist."
+			echo
+			exit 1
+		fi
+
+
 		echo
-		echo "You can now start working on your patch(es)."
+		echo "⚠️  WARNING"
 		echo
+		echo  "This will update the \`ckeditor-dev\` submodule to point	to the $tag tag"
 		echo
-		echo "Here are the steps to follow:"
-		echo
-		echo "1. Navigate to the ckeditor-dev submodule directory (`cd ckeditor-dev`)"
-		echo "2. Work on your changes"
-		echo "3. Commit your changes"
-		echo "4. Run `sh ck.sh patch` to generate the patches"
-		echo
+
+		read -p "Are you sure you want to continue?[y/n] " yn
+		case $yn in
+			[Yy]*)
+				git reset --hard HEAD
+				git clean -fdx
+				git checkout "$tag"
+
+				commitmsg=$(git log --oneline | head -1)
+
+				cd ..
+				git add ckeditor-dev
+				git commit -m "Update ckeditor-dev to $commitmsg"
+
+				echo
+				echo "✅  DONE"
+				echo
+				;;
+			*)
+				echo
+				echo "Aborting."
+				echo
+				;;
+		esac
 		;;
 	*)
 		usage
