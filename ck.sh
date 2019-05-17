@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -45,7 +45,7 @@ case "$COMMAND" in
 		echo
 
 		echo "This will generate a patched version of CKEditor"
-		read -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue?[y/n] " yn
 
 		case $yn in
 			[Yy]*)
@@ -112,7 +112,7 @@ case "$COMMAND" in
 		cd ..
 
 		# Save SHA1 for later
-		sha1=`git submodule | grep ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//`
+		sha1=$(git submodule | grep ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//)
 
 		cd ckeditor-dev
 
@@ -145,7 +145,7 @@ case "$COMMAND" in
 			echo
 
 			# Prompt the user to confirm he wants to delete existing patches
-			read -p "Are you sure you want to continue?[y/n] " yn
+			read -r -p "Are you sure you want to continue?[y/n] " yn
 			case $yn in
 				[Yy]*)
 					echo
@@ -166,7 +166,7 @@ case "$COMMAND" in
 		echo "Generating patches."
 		echo
 
-		git format-patch $sha1 -o ../patches
+		git format-patch "$sha1" -o ../patches
 
 		echo
 		echo "✅  DONE"
@@ -185,7 +185,7 @@ case "$COMMAND" in
 		echo "❗  This will reset any changes you currently have in the 'ckeditor-dev' submodule"
 		echo
 		echo
-		read -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue?[y/n] " yn
 		case $yn in
 			[Yy]*)
 				init
@@ -229,9 +229,9 @@ case "$COMMAND" in
 		echo "$tags"
 		echo
 
-		read -p "Please enter the tag you want to update to: " tag
+		read -r -p "Please enter the tag you want to update to: " tag
 
-		if ! git describe --exact-match --tags $tag &>/dev/null ; then
+		if ! git describe --exact-match --tags "$tag" &>/dev/null ; then
 			echo
 			echo "❌  ERROR"
 			echo
@@ -247,7 +247,7 @@ case "$COMMAND" in
 		echo  "This will update the \`ckeditor-dev\` submodule to point	to the $tag tag"
 		echo
 
-		read -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue?[y/n] " yn
 		case $yn in
 			[Yy]*)
 				git reset --hard HEAD
