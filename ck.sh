@@ -31,7 +31,7 @@ function usage() {
 	echo "  🔧 setup: Setup everything to start working on a patch"
 	echo "  💉 patch: Generate patches"
 	echo "  🔥 build: Generate a patched version of CKEditor"
-	echo "  🌶  update \$VERSION: Update the ckeditor-dev submodule to \$VERSION"
+	echo "  🌶  update: Update the ckeditor-dev submodule to point at a new version"
 	echo
 	echo
 }
