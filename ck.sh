@@ -2,16 +2,24 @@
 
 set -e
 
-function init() {
+function check() {
 	# Make sure submodule is registered and up-to-date.
 	git submodule update --init
 
-	# Fetch remote changes.
 	cd ckeditor-dev
 
-	# Make sure our working copy is clean.
-	git reset --hard HEAD --quiet
-	git clean -fdx
+	if ! git rev-parse --verify liferay &>/dev/null; then
+		echo
+		echo "❌ ERROR"
+		echo
+		echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
+		echo
+		echo "Please run 'sh ck.sh setup' to set up everything correctly."
+		echo
+		exit 1
+	fi
+
+	cd ..
 }
 
 function usage() {
@@ -20,9 +28,9 @@ function usage() {
 	echo
 	echo "  Where COMMAND is either:"
 	echo
-	echo "  🔧  setup: Setup everything to start working on a patch"
-	echo "  💉  patch: Generate patches "
-	echo "  🔥  build: Generate a patched version of CKEditor"
+	echo "  🔧 setup: Setup everything to start working on a patch"
+	echo "  💉 patch: Generate patches"
+	echo "  🔥 build: Generate a patched version of CKEditor"
 	echo "  🌶  update \$VERSION: Update the ckeditor-dev submodule to \$VERSION"
 	echo
 	echo
@@ -40,47 +48,17 @@ COMMAND=$1
 
 case "$COMMAND" in
 	build)
+		check
+
 		echo
 		echo "⚠️  WARNING"
 		echo
 
 		echo "This will generate a patched version of CKEditor"
-		read -r -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue? [y/n] " yn
 
 		case $yn in
 			[Yy]*)
-				init
-				git checkout --detach HEAD --quiet
-				git branch -f liferay HEAD
-				git checkout liferay
-
-				echo
-				echo "Checking for existing patches"
-				echo
-
-				if ! ls ../patches/*.patch; then
-					echo "There doesn't seem to be any patch"
-				else
-					echo
-					echo "Applying patches from \"patches/\" directory."
-					echo
-
-					if ! git am ../patches/*; then
-						echo
-						echo "❌	There was a problem applying patches:"
-						echo
-						echo "To retry manually and fix:"
-						echo
-						echo "	cd ckeditor-dev"
-						echo "	git am --abort"
-						echo "	git am ../patches/*"
-						echo
-						echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
-						echo
-						exit 1
-					fi
-				fi
-
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../build-config.js \
 						--leave-css-unminified --leave-js-unminified
@@ -106,10 +84,9 @@ case "$COMMAND" in
 				echo
 		esac
 		;;
+
 	patch)
-		init
-		# Navigate back to superproject
-		cd ..
+		check
 
 		# Save SHA1 for later
 		sha1=$(git submodule | grep ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//)
@@ -121,9 +98,9 @@ case "$COMMAND" in
 			echo
 			echo "❌ ERROR"
 			echo
-			echo  "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
+			echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
 			echo
-			echo  "Please run 'sh ck.sh setup' to set up everything correctly."
+			echo "Please run 'sh ck.sh setup' to set up everything correctly."
 			echo
 			exit 1
 		fi
@@ -139,13 +116,17 @@ case "$COMMAND" in
 			echo
 			echo "⚠️  WARNING"
 			echo
-			echo  "This will replace any existing patches..."
+			echo "This will reset the \"patches\" directory and replace these patches:"
 			echo
-			ls -l ../patches/*.patch
+			ls ../patches/*.patch | cat
+			echo
+			echo "with patches corresponding to these commits:"
+			echo
+			git log --oneline "$sha1"..HEAD
 			echo
 
 			# Prompt the user to confirm he wants to delete existing patches
-			read -r -p "Are you sure you want to continue?[y/n] " yn
+			read -r -p "Are you sure you want to continue? [y/n] " yn
 			case $yn in
 				[Yy]*)
 					echo
@@ -159,6 +140,7 @@ case "$COMMAND" in
 					echo
 					echo "Aborting."
 					echo
+					exit
 					;;
 			esac
 		fi
@@ -169,7 +151,7 @@ case "$COMMAND" in
 		git format-patch "$sha1" -o ../patches
 
 		echo
-		echo "✅  DONE"
+		echo "✅ DONE"
 		echo
 		echo "You can now build CKEditor with your patches."
 		echo
@@ -178,23 +160,59 @@ case "$COMMAND" in
 		echo "1. Run 'sh ck.sh build' to generate a patched version."
 		echo
 		;;
+
 	setup)
 		echo
 		echo "⚠️  WARNING"
 		echo
-		echo "❗  This will reset any changes you currently have in the 'ckeditor-dev' submodule"
+		echo "❗ This will reset any changes you currently have in the 'ckeditor-dev' submodule"
 		echo
 		echo
-		read -r -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue? [y/n] " yn
 		case $yn in
 			[Yy]*)
-				init
+				# Make sure submodule is registered and up-to-date.
+				git submodule update --init
+
+				# Fetch remote changes.
+				cd ckeditor-dev
+
+				# Make sure our working copy is clean.
+				git reset --hard HEAD --quiet
+				git clean -fdx
 				git checkout --detach HEAD --quiet
 				git branch -f liferay HEAD
 				git checkout liferay --quiet
 
 				echo
-				echo "✅  DONE"
+				echo "Checking for existing patches"
+				echo
+
+				if ! ls ../patches/*.patch; then
+					echo "There doesn't seem to be any patch"
+				else
+					echo
+					echo "Applying patches from \"patches/\" directory."
+					echo
+
+					if ! git am ../patches/*; then
+						echo
+						echo "❌ There was a problem applying patches:"
+						echo
+						echo "To retry manually and fix:"
+						echo
+						echo "  cd ckeditor-dev"
+						echo "  git am --abort"
+						echo "  git am ../patches/*"
+						echo
+						echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
+						echo
+						exit 1
+					fi
+				fi
+
+				echo
+				echo "✅ DONE"
 				echo
 				echo
 				echo "You can now start working on your patch(es)."
@@ -203,7 +221,7 @@ case "$COMMAND" in
 				echo "Here are the steps to follow:"
 				echo
 				echo "1. Navigate to the ckeditor-dev submodule directory ('cd ckeditor-dev')"
-				echo "2. Work on your changes"
+				echo "2. Work on your changes"
 				echo "3. Commit your changes"
 				echo "4. Run 'sh ck.sh patch' to generate the patches"
 				echo
@@ -215,6 +233,7 @@ case "$COMMAND" in
 				;;
 		esac
 		;;
+
 	update)
 		git submodule update --init
 		cd ckeditor-dev
@@ -233,7 +252,7 @@ case "$COMMAND" in
 
 		if ! git describe --exact-match --tags "$tag" &>/dev/null ; then
 			echo
-			echo "❌  ERROR"
+			echo "❌ ERROR"
 			echo
 			echo "Sorry, the \`$tag\` tag does not exist."
 			echo
@@ -244,10 +263,10 @@ case "$COMMAND" in
 		echo
 		echo "⚠️  WARNING"
 		echo
-		echo  "This will update the \`ckeditor-dev\` submodule to point	to the $tag tag"
+		echo "This will update the \`ckeditor-dev\` submodule to point to the $tag tag"
 		echo
 
-		read -r -p "Are you sure you want to continue?[y/n] " yn
+		read -r -p "Are you sure you want to continue? [y/n] " yn
 		case $yn in
 			[Yy]*)
 				git reset --hard HEAD
@@ -261,8 +280,9 @@ case "$COMMAND" in
 				git commit -m "Update ckeditor-dev to $commitmsg"
 
 				echo
-				echo "✅  DONE"
+				echo "✅ DONE"
 				echo
+				echo "To re-apply patches on top of the new version, run: \`ck.sh setup\`"
 				;;
 			*)
 				echo
@@ -271,7 +291,9 @@ case "$COMMAND" in
 				;;
 		esac
 		;;
+
 	*)
 		usage
 		;;
+
 esac
