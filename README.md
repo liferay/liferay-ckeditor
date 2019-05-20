@@ -54,12 +54,10 @@ This is a fork of the [ckeditor-dev](https://github.com/ckeditor/ckeditor-dev) r
 To update the upstream CKEditor code to a new version, run:
 
 ```sh
-./ck.sh update $CKEDITOR_VERSION
+./ck.sh update
 ```
 
-Where `$CKEDTIOR_VERSION` is a valid [tag](https://github.com/ckeditor/ckeditor-dev/tags) in the CKEDITOR repository, such as "4.11.3".
-
-This will update the ckeditor-dev submodule to point at the corresponding commit.
+A prompt will appear asking you which version you'd like to select. This will update the ckeditor-dev submodule to point at the corresponding commit.
 
 **NOTE:** In order to prevent unintended commits to the submodule, using `ck.sh update` is the only supported way to change the commit the submodule is referencing. Git is configured to ignore changes to the submodule, so you will only see them in the output of commands like `git status`, `git show`, `git log -p` (etc) if you pass the `--ignore-submodules=none` switch.
 
@@ -68,7 +66,7 @@ This will update the ckeditor-dev submodule to point at the corresponding commit
 To test your local CKEditor build in liferay-portal:
 
 1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
-2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO`
+2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.2 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE versions prior to 7.2).
 3. Re-deploy the module with `gradlew clean deploy`.
 
 ## Publishing
