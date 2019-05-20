@@ -60,25 +60,25 @@ case "$COMMAND" in
 
 				if ! ls ../patches/*.patch; then
 					echo "There doesn't seem to be any patch"
-				fi
+				else
+					echo
+					echo "Applying patches from \"patches/\" directory."
+					echo
 
-				echo
-				echo "Applying patches from \"patches/\" directory."
-				echo
-
-				if ! git am ../patches/*; then
-					echo
-					echo "❌  There was a problem applying patches:"
-					echo
-					echo "To retry manually and fix:"
-					echo
-					echo "  cd ckeditor-dev"
-					echo "  git am --abort"
-					echo "  git am ../patches/*"
-					echo
-					echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
-					echo
-					exit 1
+					if ! git am ../patches/*; then
+						echo
+						echo "❌	There was a problem applying patches:"
+						echo
+						echo "To retry manually and fix:"
+						echo
+						echo "	cd ckeditor-dev"
+						echo "	git am --abort"
+						echo "	git am ../patches/*"
+						echo
+						echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
+						echo
+						exit 1
+					fi
 				fi
 
 				if [ -n "$DEBUG" ]; then
