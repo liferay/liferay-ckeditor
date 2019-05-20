@@ -257,7 +257,7 @@ case "$COMMAND" in
 				commitmsg=$(git log --oneline | head -1)
 
 				cd ..
-				git add ckeditor-dev
+				git add -f ckeditor-dev
 				git commit -m "Update ckeditor-dev to $commitmsg"
 
 				echo
