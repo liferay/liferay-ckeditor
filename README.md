@@ -2,26 +2,66 @@
 
 This is a fork of the [ckeditor-dev](https://github.com/ckeditor/ckeditor-dev) repository.
 
+## Patching
 
-## Building
+- Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
 
-To build a production-ready build, use:
+	```sh
+	git pull origin master
+	```
+
+- Set up everything to start working on a patch:
+
+	```sh
+	sh ck.sh setup
+	```
+
+- Work on your changes:
+
+	`cd` into the `ckeditor-dev/` submodule and prepare your desired changes on the `liferay` branch.
+
+	This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
+
+- Create your commit, add your changes and write a good commit message.
+
+- Navigate back to the superproject's root directory and create the patch:
+
+	```sh
+	cd ..
+	sh ck.sh patch
+	```
+
+- Create a build of CKEditor containing the patches:
+
+	From the root of the superproject's directory, run
+
+	```sh
+	sh ck.sh build
+	```
+
+  If you'd rather like a development build, for example for local debugging, use:
+
+  ```sh
+  DEBUG=1 ./ck.sh build
+  ```
+
+  **WARNING**: You should never publish development builds to the npm registry.
+
+- Don't forget to add the changes and commit
+
+## Updating the base version of CKEditor
+
+To update the upstream CKEditor code to a new version, run:
 
 ```sh
-./build-ckeditor.sh $CKEDITOR_VERSION
+./ck.sh update $CKEDITOR_VERSION
 ```
 
 Where `$CKEDTIOR_VERSION` is a valid [tag](https://github.com/ckeditor/ckeditor-dev/tags) in the CKEDITOR repository, such as "4.11.3".
 
-If you'd rather like a development build, for example for local debugging, use:
+This will update the ckeditor-dev submodule to point at the corresponding commit.
 
-```sh
-env DEBUG=1 ./build-ckeditor.sh $CKEDITOR_VERSION
-```
-
-The build files will be generated in the `ckeditor` directory.
-
-**WARNING**: You should never publish development builds to the npm registry.
+**NOTE:** In order to prevent unintended commits to the submodule, using `ck.sh update` is the only supported way to change the commit the submodule is referencing. Git is configured to ignore changes to the submodule, so you will only see them in the output of commands like `git status`, `git show`, `git log -p` (etc) if you pass the `--ignore-submodules=none` switch.
 
 ## Testing in [liferay-portal](https://github.com/liferay/liferay-portal)
 
@@ -75,41 +115,3 @@ To update CKEditor in liferay-portal:
 
 An example of this can be seen in [this](https://github.com/liferay/liferay-portal/commit/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248) commit (look at the [`package.json`](https://github.com/liferay/liferay-portal/blob/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248/modules/apps/frontend-editor/frontend-editor-ckeditor-web/package.json) file)
 
-## Patching
-
-- Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
-
-	```sh
-	git pull origin master
-	```
-
-- Set up everything to start working on a patch:
-
-	```sh
-	sh ck.sh setup
-	```
-
-- Work on your changes:
-
-	`cd` into the `ckeditor-dev/` submodule and prepare your desired changes on the `liferay` branch.
-
-	This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
-
-- Create your commit, add your changes and write a good commit message.
-
-- Navigate back to the superproject's root directory and create the patch:
-
-	```sh
-	cd ..
-	sh ck.sh patch
-	```
-
-- Create a build of CKEditor containing the patches:
-
-	From the root of the superproject's directory, run
-
-	```sh
-	sh ck.sh build
-	```
-
-- Don't forget to add the changes and commit
