@@ -92,7 +92,7 @@ case "$COMMAND" in
 		check
 
 		# Save SHA1 for later
-		sha1=$(git submodule | grep ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//)
+		sha1=$(git submodule status --cached -- ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//)
 
 		cd ckeditor-dev
 
