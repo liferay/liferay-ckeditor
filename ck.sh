@@ -84,6 +84,7 @@ case "$COMMAND" in
 				echo
 				echo "Aborting."
 				echo
+				exit
 		esac
 		;;
 
@@ -232,6 +233,7 @@ case "$COMMAND" in
 				echo
 				echo "Aborting."
 				echo
+				exit
 				;;
 		esac
 		;;
@@ -290,6 +292,7 @@ case "$COMMAND" in
 				echo
 				echo "Aborting."
 				echo
+				exit
 				;;
 		esac
 		;;
