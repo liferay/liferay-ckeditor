@@ -59,6 +59,8 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
+				cd ckeditor-dev
+
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../build-config.js \
 						--leave-css-unminified --leave-js-unminified
