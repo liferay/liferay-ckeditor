@@ -1,6 +1,6 @@
 {
   "name": "liferay-ckeditor",
-  "version": "4.11.4-liferay.1",
+  "version": "4.11.4-liferay.2",
   "description": "Liferay's fork of CKEditor",
   "main": "ckeditor/ckeditor.js",
   "repository": "https://github.com/liferay/liferay-ckeditor",
