@@ -3,8 +3,7 @@
 set -e
 
 function check() {
-	# Make sure submodule is registered and up-to-date.
-	git submodule update --init
+	git submodule init
 
 	cd ckeditor-dev
 
