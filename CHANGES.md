@@ -1,6 +1,12 @@
 CKEditor 4 Changelog
 ====================
 
+## CKEditor 4.6.0 (LRV 4.6.0.7)
+
+Fixed Issues:
+
+* [LPS-95472](https://issues.liferay.com/browse/LPS-95472): Tabs in popups not appears correctly in maximized CKEditor
+
 ## CKEditor 4.6.0 (LRV 4.6.0.6)
 
 Fixed Issues:
