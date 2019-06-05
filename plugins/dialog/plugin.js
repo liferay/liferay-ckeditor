@@ -1132,7 +1132,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					children: contents.elements,
 					expand: !!contents.expand,
 					padding: contents.padding,
-					style: contents.style || 'width: 100%;'
+					style: contents.style || 'width: inherit'
 				}, pageHtml );
 
 			var contentMap = this._.contents[ contents.id ] = {},
