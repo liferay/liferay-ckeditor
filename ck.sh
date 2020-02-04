@@ -2,26 +2,6 @@
 
 set -e
 
-function check() {
-	# Make sure submodule is registered and up-to-date.
-	git submodule update --init
-
-	cd ckeditor-dev
-
-	if ! git rev-parse --verify liferay &>/dev/null; then
-		echo
-		echo "❌ ERROR"
-		echo
-		echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
-		echo
-		echo "Please run 'sh ck.sh setup' to set up everything correctly."
-		echo
-		exit 1
-	fi
-
-	cd ..
-}
-
 function usage() {
 	echo
 	echo "Usage: ck.sh COMMAND [OPTIONS]"
@@ -48,8 +28,6 @@ COMMAND=$1
 
 case "$COMMAND" in
 	build)
-		check
-
 		echo
 		echo "⚠️  WARNING"
 		echo
@@ -89,7 +67,23 @@ case "$COMMAND" in
 		;;
 
 	patch)
-		check
+		# Make sure submodule is registered and up-to-date.
+		git submodule update --init
+
+		cd ckeditor-dev
+
+		if ! git rev-parse --verify liferay &>/dev/null; then
+			echo
+			echo "❌ ERROR"
+			echo
+			echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
+			echo
+			echo "Please run 'sh ck.sh setup' to set up everything correctly."
+			echo
+			exit 1
+		fi
+
+		cd ..
 
 		# Save SHA1 for later
 		sha1=$(git submodule status --cached -- ckeditor-dev | awk '{print $1}' | sed -e s/[^0-9a-f]//)
@@ -283,10 +277,31 @@ case "$COMMAND" in
 				git add -f ckeditor-dev
 				git commit -m "Update ckeditor-dev to $commitmsg"
 
+				echo "Do you want to rebase the updated ckeditor submodule with the liferay branch?"
 				echo
-				echo "✅ DONE"
+				echo "⚠️  WARNING"
 				echo
-				echo "To re-apply patches on top of the new version, run: \`ck.sh setup\`"
+				echo "This might cause conflicts, which will have to be solved manually"
+				echo
+
+				read -r -p "Are you sure you want to continue? [y/n] " yn
+				case $yn in
+					[Yy]*)
+						cd ckeditor-dev
+
+						git rebase HEAD liferay
+
+						echo
+						echo "✅ DONE"
+						echo
+						;;
+					*)
+						echo
+						echo "Aborting."
+						echo
+						exit
+						;;
+				esac
 				;;
 			*)
 				echo
