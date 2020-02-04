@@ -1,4 +1,4 @@
-From 4fd3f0b454a6db69c0ba4de2a8316483df1c6271 Mon Sep 17 00:00:00 2001
+From 991d4c88fd5da251b784cf87975538e1e82413bb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 21 May 2019 09:38:15 +0200
 Subject: [PATCH 2/2] LPS-95472 Use width: inherit instead of width: 100% to
@@ -9,18 +9,18 @@ Subject: [PATCH 2/2] LPS-95472 Use width: inherit instead of width: 100% to
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/plugins/dialog/plugin.js b/plugins/dialog/plugin.js
-index be0eecd6d..d9e82ff8b 100644
+index 20f1ce6aa..c678b7a84 100644
 --- a/plugins/dialog/plugin.js
 +++ b/plugins/dialog/plugin.js
-@@ -1134,7 +1134,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
+@@ -1183,7 +1183,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
  					children: contents.elements,
  					expand: !!contents.expand,
  					padding: contents.padding,
 -					style: contents.style || 'width: 100%;'
 +					style: contents.style || 'width: inherit;'
- 				}, pageHtml );
- 
- 			var contentMap = this._.contents[ contents.id ] = {},
+ 				}, pageHtml ),
+ 				contentMap = this._.contents[ contents.id ] = {},
+ 				cursor,
 -- 
-2.19.1.windows.1
+2.20.1
 
