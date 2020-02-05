@@ -12,7 +12,7 @@ This repo contains tooling for maintaining Liferay's customized version of CKEdi
 For details on why we settled on this approach, please see issues [#7](https://github.com/liferay/liferay-ckeditor/issues/7) and [#16](https://github.com/liferay/liferay-ckeditor/issues/16), but in short, the desired attributes are:
 
 - Make Liferay-specific patches easy to inspect by [aggregating them into a directory](https://github.com/liferay/liferay-ckeditor/tree/master/patches).
-- Make changes in patches overtime obvious (by inspecting [their history](https://github.com/liferay/liferay-ckeditor/commits/master/patches)).
+- Make changes in patches over time obvious (by inspecting [their history](https://github.com/liferay/liferay-ckeditor/commits/master/patches)).
 - Make changes in build artifacts obvious (again, bu inspecting [their history](https://github.com/liferay/liferay-ckeditor/commits/master/ckeditor)).
 
 ## How it works
