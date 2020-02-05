@@ -8,10 +8,10 @@ function usage() {
 	echo
 	echo "  Where COMMAND is either:"
 	echo
-	echo "  🔧 setup: Setup everything to start working on a patch"
-	echo "  💉 patch: Generate patches"
-	echo "  🔥 build: Generate a patched version of CKEditor"
-	echo "  🌶  update: Update the ckeditor-dev submodule to point at a new version"
+	echo "  🔧 setup: prepare your local clone for patching, building or updating"
+	echo "  💉 patch: recreate \"patches/\" contents based on current \"liferay\" branch"
+	echo "  🔥 build: build CKEditor, writing output to the \"ckeditor/\" directory"
+	echo "  🌶  update: update the CKEditor base version"
 	echo
 	echo
 }
