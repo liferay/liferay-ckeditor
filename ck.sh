@@ -90,18 +90,6 @@ case "$COMMAND" in
 
 		cd ckeditor-dev
 
-		# Check for the existence of the liferay branch in the submodule
-		if ! git rev-parse --verify liferay &>/dev/null; then
-			echo
-			echo "❌ ERROR"
-			echo
-			echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
-			echo
-			echo "Please run 'sh ck.sh setup' to set up everything correctly."
-			echo
-			exit 1
-		fi
-
 		git checkout liferay --quiet
 
 		# Check for existing patches
