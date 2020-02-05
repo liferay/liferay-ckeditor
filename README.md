@@ -7,7 +7,7 @@ This repo contains tooling for maintaining Liferay's customized version of CKEdi
 - A submodule at `ckeditor-dev` pointing at [the upstream CKEditor project](https://github.com/ckeditor/ckeditor4).
 - [A `patches/` directory](https://github.com/liferay/liferay-ckeditor/tree/master/patches) containing Liferay-specific changes to be applied to the upstream.
 - [A `ck.sh` script](https://github.com/liferay/liferay-ckeditor/blob/master/ck.sh) for setting up the project, creating/updating patches, and producing releases.
-- [A `ckeditor` director](https://github.com/liferay/liferay-ckeditor/tree/master/ckeditor) containing the committed build artifacts.
+- [A `ckeditor` directory](https://github.com/liferay/liferay-ckeditor/tree/master/ckeditor) containing the committed build artifacts.
 
 For details on why we settled on this approach, please see issues [#7](https://github.com/liferay/liferay-ckeditor/issues/7) and [#16](https://github.com/liferay/liferay-ckeditor/issues/16), but in short, the desired attributes are:
 
