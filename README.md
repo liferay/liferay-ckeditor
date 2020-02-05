@@ -72,13 +72,13 @@ These are the steps you would follow to, for example, apply a workaround for a b
       sh ck.sh build
       ```
 
-  If you'd rather like a development build, for example for local debugging, use:
+      If you'd rather like a development build, for example for local debugging, use:
 
-  ```sh
-  DEBUG=1 ./ck.sh build
-  ```
+      ```sh
+      DEBUG=1 ./ck.sh build
+      ```
 
-  **WARNING**: You should never publish development builds to the npm registry.
+      **WARNING**: You should never publish development builds to the npm registry.
 
 - Don't forget to add the changes and commit
 
