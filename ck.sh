@@ -271,11 +271,11 @@ case "$COMMAND" in
 				git clean -fdx
 				git checkout "$tag"
 
-				commitmsg=$(git log --oneline | head -1)
+				commitmsg=$(git log -1 --pretty=format:"Update ckeditor-dev to $tag%n%n%h (tag: $tag) %s")
 
 				cd ..
 				git add -f ckeditor-dev
-				git commit -m "Update ckeditor-dev to $commitmsg"
+				git commit -m "$commitmsg"
 
 				echo "Do you want to rebase the updated ckeditor submodule with the liferay branch?"
 				echo
