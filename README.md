@@ -39,46 +39,36 @@ These are the steps you would follow to, for example, apply a workaround for a b
 
 - Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
 
-      ```sh
       git pull origin master
-      ```
 
 - Set up everything to start working on a patch:
 
-      ```sh
       sh ck.sh setup
-      ```
 
 - Work on your changes:
 
-      `cd` into the `ckeditor-dev/` submodule and prepare your desired changes on the `liferay` branch.
+  `cd` into the `ckeditor-dev/` submodule and prepare your desired changes on the `liferay` branch.
 
-      This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
+  This could be `cherry-pick`ing a previously created commit or manually editing a file, so this can't be automated.
 
 - Create your commit, add your changes and write a good commit message.
 
 - Navigate back to the superproject's root directory and update the contents of the "patches/" directory:
 
-      ```sh
       cd ..
       sh ck.sh patch
-      ```
 
 - Create a build of CKEditor containing the patches:
 
-      From the root of the superproject's directory, run
+  From the root of the superproject's directory, run
 
-      ```sh
       sh ck.sh build
-      ```
 
-      If you'd rather like a development build, for example for local debugging, use:
+  If you'd rather like a development build, for example for local debugging, use:
 
-      ```sh
       DEBUG=1 ./ck.sh build
-      ```
 
-      **WARNING**: You should never publish development builds to the npm registry.
+  **WARNING**: You should never publish development builds to the npm registry.
 
 - Don't forget to add the changes and commit
 
