@@ -1,8 +1,10 @@
-From 4547e662fcab2d1e310cf2b4a8793929d2fbd255 Mon Sep 17 00:00:00 2001
+From a73a61e100ee67f37ef84eb9d7a07187cea3d01d Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 14 May 2019 10:47:25 +0200
-Subject: [PATCH 1/2] patch: LPS-89596 Changed position of drag icon for IE.
+Subject: [PATCH 1/2] LPS-89596 Cannot Drag Image from top content line in IE11
+ using Alloy Editor
 
+Changed position of drag icon for IE.
 ---
  plugins/widget/plugin.js | 4 ++++
  1 file changed, 4 insertions(+)
@@ -23,5 +25,5 @@ index aa32f0de5..289684816 100644
  				return;
  
 -- 
-2.20.1
+2.25.0
 

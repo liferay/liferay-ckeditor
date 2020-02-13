@@ -1,9 +1,11 @@
-From 991d4c88fd5da251b784cf87975538e1e82413bb Mon Sep 17 00:00:00 2001
+From fc4c56ae73205fac944048c78373b91f456c80cc Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 21 May 2019 09:38:15 +0200
-Subject: [PATCH 2/2] LPS-95472 Use width: inherit instead of width: 100% to
- work with the maximize plugin
+Subject: [PATCH 2/2] LPS-95472 Tabs in popups not appears correctly in
+ maximized CKEditor
 
+Use `width: inherit` instead of `width: 100%` to work with the maximize
+plugin.
 ---
  plugins/dialog/plugin.js | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -22,5 +24,5 @@ index 20f1ce6aa..c678b7a84 100644
  				contentMap = this._.contents[ contents.id ] = {},
  				cursor,
 -- 
-2.20.1
+2.25.0
 
