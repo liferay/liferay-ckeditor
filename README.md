@@ -88,9 +88,21 @@ A prompt will appear asking you which version you'd like to select. This will up
 
 To test your local CKEditor build in liferay-portal:
 
+0. Make sure you have your liferay-portal instance configured to use CKEditor in at least one place by setting one of [the appropriate properties](https://github.com/liferay/liferay-portal/blob/c9a9b9f196b1f1dd5cf83cddf6bf1f1f8c9ff814/portal-impl/src/portal.properties#L5490-L5499) in your `portal-ext.properties` file.
+
+   - For example, you could set `editor.wysiwyg.portal-web.docroot.html.portlet.blogs.edit_entry.jsp=ckeditor` to test CKEditor in the [Site] → "Content & Data" → "Blogs" interface.
+   - Ideally, you should also test that [AlloyEditor](AlloyEditor) still works too &mdash; for example, at [Site] → "Content & Data" → "Web Content" &mdash; because we have that [configured to use the shared CKEditor build rather than its own bundled copy](https://github.com/liferay/liferay-portal/blob/c9a9b9f196b1f1dd5cf83cddf6bf1f1f8c9ff814/modules/apps/frontend-editor/frontend-editor-alloyeditor-web/src/main/resources/META-INF/resources/resources.jsp#L37-L39).
+
 1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
-2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.2 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE versions prior to 7.2).
-3. Re-deploy the module with `gradlew clean deploy`.
+1. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.1 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE version 7.0).
+1. Re-deploy the module with `gradlew clean deploy`.
+
+**Note:** If you have problems with deploying after `yarn add` it may be that Gradle is confused by the reference to a local package. In this case, you may be able hackily workaround the problem, temporarily, by updating the `node_modules` directory manually instead:
+
+```sh
+rm -r modules/node_modules/liferay-ckeditor
+cp -R $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO modules/node_modules/
+```
 
 ### Publishing the liferay-ckeditor package to NPM
 
