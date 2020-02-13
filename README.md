@@ -102,19 +102,25 @@ git checkout master
 git pull upstream master --ff-only
 git status
 
-# Bump the version number, creating a commit and tag.
-# See below for notes on the format of the version number.
-npm version $VERSION
+# See all checks pass locally:
+yarn ci
 
-# Sanity check what will be published.
-npm publish --dry-run
-
-# Publish to GitHub.
-git push upstream master --follow-tags
-
-# Publish to NPM.
-npm publish
+# See "Choosing a version number" below for guidance about the version number:
+VERSION=4.13.1-liferay.2
+yarn version --new-version $VERSION
 ```
+
+Running `yarn version` has the following effects:
+
+- The "preversion" script will run, which effectively runs `yarn ci` again.
+- The "version" script will run, which checks that the proposed version number matches the expected format and corresponds to the version in the CKEditor submodule and build artifacts.
+- The "package.json" gets updated with the new version number.
+- A tagged commit is created.
+- The "postversion" script will run, which automatically does `git push` and performs a `yarn publish`, prompting for confirmation along the way.
+
+After the release, you can confirm that the packages are correctly listed in the NPM registry:
+
+- https://www.npmjs.com/package/liferay-changelog-generator
 
 #### Choosing a version number
 

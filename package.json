@@ -10,6 +10,10 @@
     "prettier": "1.19.1"
   },
   "scripts": {
+    "ci": "yarn format:check",
+    "preversion": "yarn ci",
+    "version": "node version.js",
+    "postversion": "npx liferay-js-publish",
     "format": "prettier --write '*.js' '*.json' '*.md'",
     "format:check": "prettier --list-different '*.js' '*.json' '*.md'"
   }
