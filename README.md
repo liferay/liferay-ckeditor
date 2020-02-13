@@ -89,7 +89,7 @@ A prompt will appear asking you which version you'd like to select. This will up
 To test your local CKEditor build in liferay-portal:
 
 1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
-2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.2 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE versions prior to 7.2).
+2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.1 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE version 7.0).
 3. Re-deploy the module with `gradlew clean deploy`.
 
 **Note:** If you have problems with deploying after `yarn add` it may be that Gradle is confused by the reference to a local package. In this case, you may be able hackily workaround the problem, temporarily, by updating the `node_modules` directory manually instead:
