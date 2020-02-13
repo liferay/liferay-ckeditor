@@ -2,6 +2,9 @@
   "name": "liferay-ckeditor",
   "version": "4.13.1-liferay.2",
   "description": "Liferay's fork of CKEditor",
+  "files": [
+    "ckeditor/**/*"
+  ],
   "main": "ckeditor/ckeditor.js",
   "repository": "https://github.com/liferay/liferay-ckeditor",
   "license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
