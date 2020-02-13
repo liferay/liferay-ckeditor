@@ -92,6 +92,13 @@ To test your local CKEditor build in liferay-portal:
 2. Run `yarn add $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE 7.2 and above), or `npm install $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO` (in Liferay DXP and Portal CE versions prior to 7.2).
 3. Re-deploy the module with `gradlew clean deploy`.
 
+**Note:** If you have problems with deploying after `yarn add` it may be that Gradle is confused by the reference to a local package. In this case, you may be able hackily workaround the problem, temporarily, by updating the `node_modules` directory manually instead:
+
+```sh
+rm -r modules/node_modules/liferay-ckeditor
+cp -R $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO modules/node_modules/
+```
+
 ### Publishing the liferay-ckeditor package to NPM
 
 After successfully building and testing you can publish to NPM.
