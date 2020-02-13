@@ -119,6 +119,13 @@ yarn ci
 
 # See "Choosing a version number" below for guidance about the version number:
 VERSION=4.13.1-liferay.2
+
+# Update the CHANGELOG:
+npx liferay-changelog-generator --version=$VERSION
+
+# Inspect and add changes:
+git add -p CHANGELOG.md
+
 yarn version --new-version $VERSION
 ```
 
@@ -127,7 +134,7 @@ Running `yarn version` has the following effects:
 - The "preversion" script will run, which effectively runs `yarn ci` again.
 - The "package.json" gets updated with the new version number.
 - The "version" script will run, which checks that the proposed version number matches the expected format and corresponds to the version in the CKEditor submodule and build artifacts.
-- A tagged commit is created.
+- A tagged commit is created, including the changes to the CHANGELOG that you staged in a prior step.
 - The "postversion" script will run, which automatically does `git push` and performs a `yarn publish`, prompting for confirmation along the way.
 
 After the release, you can confirm that the packages are correctly listed in the NPM registry:
