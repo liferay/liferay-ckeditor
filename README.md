@@ -120,7 +120,7 @@ Running `yarn version` has the following effects:
 
 After the release, you can confirm that the packages are correctly listed in the NPM registry:
 
-- https://www.npmjs.com/package/liferay-changelog-generator
+- https://www.npmjs.com/package/liferay-ckeditor
 
 #### Choosing a version number
 
