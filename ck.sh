@@ -16,6 +16,20 @@ function usage() {
 	echo
 }
 
+function downloadPlugin() {
+	local NAME=$1
+	local VERSION=$2
+	local OUTPUT=$(mktemp)
+
+	curl \
+		"https://ckeditor.com/cke4/sites/default/files/${NAME}/releases/${NAME}_${VERSION}.zip" \
+		-o "$OUTPUT"
+
+	rm -rf "plugins/$NAME"
+
+	unzip "$OUTPUT" -d plugins
+}
+
 # Check arguments
 if [ $# -ne 1 ]; then
 	usage
@@ -169,6 +183,15 @@ case "$COMMAND" in
 				git branch -f liferay HEAD
 				git checkout liferay --quiet
 
+				VERSION=$(git describe --tags --abbrev=0)
+
+				echo
+				echo "Downloading plugins for v$VERSION"
+				echo
+
+				downloadPlugin scayt "$VERSION"
+				downloadPlugin wsc "$VERSION"
+
 				echo
 				echo "Checking for existing patches"
 				echo
@@ -264,6 +287,13 @@ case "$COMMAND" in
 				cd ..
 				git add -f ckeditor-dev
 				git commit -m "$commitmsg"
+
+				echo
+				echo "Downloading plugins for v$tag"
+				echo
+
+				downloadPlugin scayt "$tag"
+				downloadPlugin wsc "$tag"
 
 				echo "Do you want to rebase the updated ckeditor submodule with the liferay branch?"
 				echo
