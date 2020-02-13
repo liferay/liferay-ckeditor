@@ -113,8 +113,8 @@ yarn version --new-version $VERSION
 Running `yarn version` has the following effects:
 
 - The "preversion" script will run, which effectively runs `yarn ci` again.
-- The "version" script will run, which checks that the proposed version number matches the expected format and corresponds to the version in the CKEditor submodule and build artifacts.
 - The "package.json" gets updated with the new version number.
+- The "version" script will run, which checks that the proposed version number matches the expected format and corresponds to the version in the CKEditor submodule and build artifacts.
 - A tagged commit is created.
 - The "postversion" script will run, which automatically does `git push` and performs a `yarn publish`, prompting for confirmation along the way.
 
