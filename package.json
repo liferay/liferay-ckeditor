@@ -17,7 +17,7 @@
     "preversion": "yarn ci",
     "version": "node version.js",
     "postversion": "npx liferay-js-publish",
-    "format": "prettier --write '*.js' '*.json' '*.md'",
-    "format:check": "prettier --list-different '*.js' '*.json' '*.md'"
+    "format": "prettier --write \"*.js\" \"*.json\" \"*.md\"",
+    "format:check": "prettier --list-different \"*.js\" \"*.json\" \"*.md\""
   }
 }
