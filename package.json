@@ -1,23 +1,23 @@
 {
-  "name": "liferay-ckeditor",
-  "version": "4.13.1-liferay.3",
-  "description": "Liferay's fork of CKEditor",
-  "files": [
-    "ckeditor/**/*"
-  ],
-  "main": "ckeditor/ckeditor.js",
-  "repository": "https://github.com/liferay/liferay-ckeditor",
-  "license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
-  "private": false,
-  "devDependencies": {
-    "prettier": "1.19.1"
-  },
-  "scripts": {
-    "ci": "yarn format:check",
-    "preversion": "yarn ci",
-    "version": "node version.js",
-    "postversion": "npx liferay-js-publish",
-    "format": "prettier --write \"*.js\" \"*.json\" \"*.md\"",
-    "format:check": "prettier --list-different \"*.js\" \"*.json\" \"*.md\""
-  }
+    "name": "liferay-ckeditor",
+    "version": "4.13.1-liferay.3",
+    "description": "Liferay's fork of CKEditor",
+    "files": [
+        "ckeditor/**/*"
+    ],
+    "main": "ckeditor/ckeditor.js",
+    "repository": "https://github.com/liferay/liferay-ckeditor",
+    "license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
+    "private": false,
+    "devDependencies": {
+        "prettier": "1.19.1"
+    },
+    "scripts": {
+        "ci": "yarn format:check",
+        "preversion": "yarn ci",
+        "version": "node version.js",
+        "postversion": "npx liferay-js-publish",
+        "format": "prettier --write \"*.js\" \"*.json\" \"*.md\"",
+        "format:check": "prettier --list-different \"*.js\" \"*.json\" \"*.md\""
+    }
 }
