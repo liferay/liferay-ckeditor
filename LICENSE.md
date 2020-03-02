@@ -6,17 +6,17 @@ Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
 Licensed under the terms of any of the following licenses at your
 choice:
 
-- GNU General Public License Version 2 or later (the "GPL")
-  http://www.gnu.org/licenses/gpl.html
-  (See Appendix A)
+-   GNU General Public License Version 2 or later (the "GPL")
+    http://www.gnu.org/licenses/gpl.html
+    (See Appendix A)
 
-- GNU Lesser General Public License Version 2.1 or later (the "LGPL")
-  http://www.gnu.org/licenses/lgpl.html
-  (See Appendix B)
+-   GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+    http://www.gnu.org/licenses/lgpl.html
+    (See Appendix B)
 
-- Mozilla Public License Version 1.1 or later (the "MPL")
-  http://www.mozilla.org/MPL/MPL-1.1.html
-  (See Appendix C)
+-   Mozilla Public License Version 1.1 or later (the "MPL")
+    http://www.mozilla.org/MPL/MPL-1.1.html
+    (See Appendix C)
 
 You are not required to, but if you want to explicitly declare the
 license you have chosen to be bound to when using, reproducing,
@@ -35,56 +35,56 @@ done by developers outside of CKSource with their express permission.
 
 The following libraries are included in CKEditor under the MIT license (see Appendix D):
 
-- CKSource Samples Framework (included in the samples) - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- PicoModal (included in `samples/js/sf.js`) - Copyright (c) 2012 James Frasca.
-- CodeMirror (included in the samples) - Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others.
+-   CKSource Samples Framework (included in the samples) - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   PicoModal (included in `samples/js/sf.js`) - Copyright (c) 2012 James Frasca.
+-   CodeMirror (included in the samples) - Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others.
 
 Parts of code taken from the following libraries are included in CKEditor under the MIT license (see Appendix D):
 
-- jQuery (inspired the domReady function, ckeditor_base.js) - Copyright (c) 2011 John Resig, http://jquery.com/
+-   jQuery (inspired the domReady function, ckeditor_base.js) - Copyright (c) 2011 John Resig, http://jquery.com/
 
 The following libraries are included in CKEditor under the SIL Open Font License, Version 1.1 (see Appendix E):
 
-- Font Awesome (included in the toolbar configurator) - Copyright (C) 2012 by Dave Gandy.
+-   Font Awesome (included in the toolbar configurator) - Copyright (C) 2012 by Dave Gandy.
 
 The following libraries are included in CKEditor under the BSD-3 License (see Appendix F):
 
-- highlight.js (included in the `codesnippet` plugin) - Copyright (c) 2006, Ivan Sagalaev.
-- YUI Library (included in the `uicolor` plugin) - Copyright (c) 2009, Yahoo! Inc.
+-   highlight.js (included in the `codesnippet` plugin) - Copyright (c) 2006, Ivan Sagalaev.
+-   YUI Library (included in the `uicolor` plugin) - Copyright (c) 2009, Yahoo! Inc.
 
 (Ignore this line: %REMOVE_START%)
 
 The following libraries are included only in the development version of CKEditor under the MIT license (see Appendix D):
 
-- CKBuilder - Copyright (c) 2012-2019, CKSource - Frederico Knabben.
-- CKLangTool - Copyright (c) 2012-2019, CKSource - Frederico Knabben.
-- Optimist - Copyright 2010 James Halliday (mail@substack.net).
-- Q - Copyright 2009–2014 Kristopher Michael Kowal.
-- Tmp - Copyright (c) 2014 KARASZI István.
-- Mkdirp - Copyright 2010 James Halliday (mail@substack.net).
-- Bender.js - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- benderjs-coverage - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- benderjs-jquery - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- benderjs-sinon - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- benderjs-yui - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
-- Grunt - Copyright (c) 2015 "Cowboy" Ben Alman.
-- grunt-contrib-imagemin - Copyright (c) 2014 Sindre Sorhus, contributors.
-- grunt-jscs - Copyright (c) 2014 Gustavo Henke, contributors.
-- grunt-contrib-jshint - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
-- grunt-contrib-less - Copyright (c) 2014 Tyler Kellen, contributors.
-- grunt-contrib-watch - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
-- grunt-contrib-concat - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
-- grunt-jsduck - Copyright (c) 2012 Dmitry Pashkevich, contributors.
-- grunt-githooks - Copyright (c) 2013 Romaric Pascal.
-- jQuery Form Plugin (used in jquery adapter test) - Copyright (c) 2012 M. Alsup
+-   CKBuilder - Copyright (c) 2012-2019, CKSource - Frederico Knabben.
+-   CKLangTool - Copyright (c) 2012-2019, CKSource - Frederico Knabben.
+-   Optimist - Copyright 2010 James Halliday (mail@substack.net).
+-   Q - Copyright 2009–2014 Kristopher Michael Kowal.
+-   Tmp - Copyright (c) 2014 KARASZI István.
+-   Mkdirp - Copyright 2010 James Halliday (mail@substack.net).
+-   Bender.js - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   benderjs-coverage - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   benderjs-jquery - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   benderjs-sinon - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   benderjs-yui - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+-   Grunt - Copyright (c) 2015 "Cowboy" Ben Alman.
+-   grunt-contrib-imagemin - Copyright (c) 2014 Sindre Sorhus, contributors.
+-   grunt-jscs - Copyright (c) 2014 Gustavo Henke, contributors.
+-   grunt-contrib-jshint - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
+-   grunt-contrib-less - Copyright (c) 2014 Tyler Kellen, contributors.
+-   grunt-contrib-watch - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
+-   grunt-contrib-concat - Copyright (c) 2014 "Cowboy" Ben Alman, contributors.
+-   grunt-jsduck - Copyright (c) 2012 Dmitry Pashkevich, contributors.
+-   grunt-githooks - Copyright (c) 2013 Romaric Pascal.
+-   jQuery Form Plugin (used in jquery adapter test) - Copyright (c) 2012 M. Alsup
 
 The following libraries are included only in the development version of CKEditor under the BSD-3 License (see Appendix F):
 
-- ShellJS - Copyright (c) 2012, Artur Adib <aadib@mozilla.com>.
+-   ShellJS - Copyright (c) 2012, Artur Adib <aadib@mozilla.com>.
 
 The following libraries are included only in the development version of CKEditor under the Apache License (see Appendix G):
 
-- Less.js - Copyright (c) 2009-2014 Alexis Sellier & The Core Less Team.
+-   Less.js - Copyright (c) 2009-2014 Alexis Sellier & The Core Less Team.
 
 (Ignore this line: %REMOVE_END%)
 
