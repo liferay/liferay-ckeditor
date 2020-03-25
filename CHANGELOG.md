@@ -1,3 +1,22 @@
+## [4.13.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.4) (2020-03-25)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.3...4.13.1-liferay.4)
+
+### :wrench: Bug fixes
+
+-   fix: make globs work on Windows ([\#45](https://github.com/liferay/liferay-ckeditor/pull/45))
+
+### :book: Documentation
+
+-   docs: fix grammar and typo issues in README ([\#47](https://github.com/liferay/liferay-ckeditor/pull/47))
+-   docs: update CHANGELOG with new version of liferay-changelog-generator ([\#46](https://github.com/liferay/liferay-ckeditor/pull/46))
+-   docs: add CHANGELOG ([\#44](https://github.com/liferay/liferay-ckeditor/pull/44))
+
+### :house: Chores
+
+-   chore: format build-config.js ([\#50](https://github.com/liferay/liferay-ckeditor/pull/50))
+-   chore: Prepare for release 4.13.1-liferay.4 ([\#48](https://github.com/liferay/liferay-ckeditor/pull/48))
+
 ## [v4.13.1-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.13.1-liferay.3) (2020-02-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.2...v4.13.1-liferay.3)
