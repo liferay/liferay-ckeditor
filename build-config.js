@@ -29,7 +29,7 @@ var CKBUILDER_CONFIG = {
         "node_modules",
         "package.json",
         "README.md",
-        "tests"
+        "tests",
     ],
     plugins: {
         a11yhelp: 1,
@@ -87,6 +87,6 @@ var CKBUILDER_CONFIG = {
         templates: 1,
         toolbar: 1,
         undo: 1,
-        wysiwygarea: 1
-    }
+        wysiwygarea: 1,
+    },
 };
