@@ -35,9 +35,9 @@ With those basic operations in place, the most common workflows are described in
 
 ### Creating a new patch to CKEditor
 
-These are the steps you would follow to, for example, apply a workaround for a bug in the upstream project:
+These are the steps you would follow, for example, to apply a workaround for a bug in the upstream project:
 
--   Make sure you're update to date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
+-   Make sure you're up-to-date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
 
         git pull origin master
 
