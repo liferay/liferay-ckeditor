@@ -1,0 +1,33 @@
+From 4f7e79ffc85fa1de3c27e8955313c264b867e4d6 Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Wed, 25 Mar 2020 12:58:15 +0100
+Subject: [PATCH 3/3] LPS-85326 - Remove check for Webkit browsers
+
+As described in this issue
+https://issues.liferay.com/browse/LPS-85326
+
+Converting links in an unordered list (in reverse order)
+throws an error in non webkit browsers.
+This patch must have been skipped when we updated CKEditor
+here
+https://github.com/liferay/liferay-ckeditor/commit/328017c65063ac18119e244fec92d35a4c2fedef
+---
+ core/selection.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/selection.js b/core/selection.js
+index e49b6facd..cea1dd93d 100644
+--- a/core/selection.js
++++ b/core/selection.js
+@@ -2210,7 +2210,7 @@
+ 
+ 					var nativeRange = this.document.$.createRange();
+ 
+-					if ( range.collapsed && CKEDITOR.env.webkit && rangeRequiresFix( range ) ) {
++					if ( range.collapsed && rangeRequiresFix( range ) ) {
+ 						// Append a zero-width space so WebKit will not try to
+ 						// move the selection by itself (https://dev.ckeditor.com/ticket/1272).
+ 						var fillingChar = createFillingCharSequenceNode( this.root );
+-- 
+2.17.1
+
