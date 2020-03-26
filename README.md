@@ -1,5 +1,7 @@
 # liferay-ckeditor
 
+![](https://github.com/liferay/liferay-ckeditor/workflows/ci/badge.svg)
+
 This repo contains tooling for maintaining Liferay's customized version of CKEditor.
 
 ## Structure
