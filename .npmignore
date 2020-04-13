@@ -1,5 +1,5 @@
 /.gitmodules
-/build-config.js
-/build-ckeditor.sh
+/ck.sh
 /ckeditor-dev
 /ckeditor/samples
+/support

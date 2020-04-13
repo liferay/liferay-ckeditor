@@ -54,10 +54,10 @@ case "$COMMAND" in
 				cd ckeditor-dev
 
 				if [ -n "$DEBUG" ]; then
-					dev/builder/build.sh --build-config ../../../build-config.js \
+					dev/builder/build.sh --build-config ../../../support/build-config.js \
 						--leave-css-unminified --leave-js-unminified
 				else
-					dev/builder/build.sh --build-config ../../../build-config.js
+					dev/builder/build.sh --build-config ../../../support/build-config.js
 				fi
 
 				# Remove old build files.
