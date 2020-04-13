@@ -13,11 +13,11 @@ function main() {
 			args
 		);
 
-		if (stdout != null) {
+		if (status !== 0 && stdout != null) {
 			console.log('\n\nstdout:\n\n' + stdout + '\n\n');
 		}
 
-		if (stderr != null) {
+		if (status !== 0 && stderr != null) {
 			console.log('\n\nstderr:\n\n' + stderr + '\n\n');
 		}
 
