@@ -10,7 +10,7 @@
 	"license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
 	"private": false,
 	"devDependencies": {
-		"prettier": "1.19.1"
+		"prettier": "2.0.4"
 	},
 	"scripts": {
 		"check:submodule": "node support/checkSubmodule.js",
