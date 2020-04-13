@@ -5,7 +5,7 @@ function main() {
 	if (process.env.GITHUB_ACTIONS) {
 		// Make sure submodule is pointing at a SHA-1 that we can checkout.
 		const executable = 'git';
-		const args = ['submodule', 'update'];
+		const args = ['submodule', 'update', '--init'];
 		const command = [executable, ...args].join(' ');
 
 		const {error, signal, status, stderr, stdout} = child_process.spawnSync(
