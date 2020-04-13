@@ -13,12 +13,12 @@
 		"prettier": "1.19.1"
 	},
 	"scripts": {
-		"check:submodule": "node checkSubmodule.js",
+		"check:submodule": "node support/checkSubmodule.js",
 		"ci": "yarn format:check && yarn check:submodule",
 		"preversion": "yarn ci",
-		"version": "node version.js",
+		"version": "node support/version.js",
 		"postversion": "npx liferay-js-publish",
-		"format": "prettier --write \"*.js\" \"*.json\" \"*.md\"",
-		"format:check": "prettier --list-different \"*.js\" \"*.json\" \"*.md\""
+		"format": "prettier --write \"support/*.js\" \"*.json\" \"*.md\"",
+		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
 	}
 }
