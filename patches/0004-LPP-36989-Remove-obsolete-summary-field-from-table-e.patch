@@ -1,18 +1,60 @@
-From c6767718aa9a9eefca75e8007a2c8aabf791209c Mon Sep 17 00:00:00 2001
+From 4c385531600e99fb93b59efcd6b4be6578f8881b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
-Date: Tue, 14 Apr 2020 10:17:19 +0200
-Subject: [PATCH 5/5] fix: Remove summary attribute from the table element in
- the tests because it is obsolete
+Date: Tue, 14 Apr 2020 10:15:56 +0200
+Subject: [PATCH 4/4] LPP-36989 Remove obsolete summary field from table
+ elements
 
 ---
+ plugins/table/dialogs/table.js                | 16 ----------
+ plugins/table/plugin.js                       |  2 +-
  tests/plugins/table/table.html                |  2 +-
  tests/plugins/table/table.js                  |  6 ++--
  .../integrations/tabletools/tabletools.html   | 32 +++++++++----------
  .../tabletools/columndeletionerror.html       |  2 +-
  .../manual/columndeletionerror.html           |  2 +-
  tests/plugins/tabletools/tabletools.html      | 32 +++++++++----------
- 6 files changed, 37 insertions(+), 39 deletions(-)
+ 8 files changed, 38 insertions(+), 56 deletions(-)
 
+diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
+index b819c4a49..c2e793221 100755
+--- a/plugins/table/dialogs/table.js
++++ b/plugins/table/dialogs/table.js
+@@ -523,22 +523,6 @@
+ 									captionElement.getItem( i ).remove();
+ 							}
+ 						}
+-					},
+-					{
+-						type: 'text',
+-						id: 'txtSummary',
+-						bidi: true,
+-						requiredContent: 'table[summary]',
+-						label: editor.lang.table.summary,
+-						setup: function( selectedTable ) {
+-							this.setValue( selectedTable.getAttribute( 'summary' ) || '' );
+-						},
+-						commit: function( data, selectedTable ) {
+-							if ( this.getValue() )
+-								selectedTable.setAttribute( 'summary', this.getValue() );
+-							else
+-								selectedTable.removeAttribute( 'summary' );
+-						}
+ 					} ]
+ 				} ]
+ 			},
+diff --git a/plugins/table/plugin.js b/plugins/table/plugin.js
+index 2017da70d..79701234d 100755
+--- a/plugins/table/plugin.js
++++ b/plugins/table/plugin.js
+@@ -18,7 +18,7 @@ CKEDITOR.plugins.add( 'table', {
+ 
+ 		editor.addCommand( 'table', new CKEDITOR.dialogCommand( 'table', {
+ 			context: 'table',
+-			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing,summary];' +
++			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing];' +
+ 				'caption tbody thead tfoot;' +
+ 				'th td tr[scope];' +
+ 				'td{border*,background-color,vertical-align,width,height}[colspan,rowspan];' +
 diff --git a/tests/plugins/table/table.html b/tests/plugins/table/table.html
 index e6766708d..6b97e0c69 100644
 --- a/tests/plugins/table/table.html
@@ -364,5 +406,5 @@ index 15d0ef124..42ef17a6e 100644
  	<tr>
  		<td>cell1</td>
 -- 
-2.23.0.windows.1
+2.25.1
 
