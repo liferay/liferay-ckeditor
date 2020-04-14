@@ -1,0 +1,54 @@
+From 1e39bbeea34c826683e0870ceef54dd7750583b7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
+Date: Tue, 14 Apr 2020 10:15:56 +0200
+Subject: [PATCH 4/5] fix: Remove Summary field, because of the summary
+ attribute on the table element is obsolete
+
+---
+ plugins/table/dialogs/table.js | 16 ----------------
+ plugins/table/plugin.js        |  2 +-
+ 2 files changed, 1 insertion(+), 17 deletions(-)
+
+diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
+index b819c4a49..c2e793221 100755
+--- a/plugins/table/dialogs/table.js
++++ b/plugins/table/dialogs/table.js
+@@ -523,22 +523,6 @@
+ 									captionElement.getItem( i ).remove();
+ 							}
+ 						}
+-					},
+-					{
+-						type: 'text',
+-						id: 'txtSummary',
+-						bidi: true,
+-						requiredContent: 'table[summary]',
+-						label: editor.lang.table.summary,
+-						setup: function( selectedTable ) {
+-							this.setValue( selectedTable.getAttribute( 'summary' ) || '' );
+-						},
+-						commit: function( data, selectedTable ) {
+-							if ( this.getValue() )
+-								selectedTable.setAttribute( 'summary', this.getValue() );
+-							else
+-								selectedTable.removeAttribute( 'summary' );
+-						}
+ 					} ]
+ 				} ]
+ 			},
+diff --git a/plugins/table/plugin.js b/plugins/table/plugin.js
+index 2017da70d..79701234d 100755
+--- a/plugins/table/plugin.js
++++ b/plugins/table/plugin.js
+@@ -18,7 +18,7 @@ CKEDITOR.plugins.add( 'table', {
+ 
+ 		editor.addCommand( 'table', new CKEDITOR.dialogCommand( 'table', {
+ 			context: 'table',
+-			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing,summary];' +
++			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing];' +
+ 				'caption tbody thead tfoot;' +
+ 				'th td tr[scope];' +
+ 				'td{border*,background-color,vertical-align,width,height}[colspan,rowspan];' +
+-- 
+2.23.0.windows.1
+

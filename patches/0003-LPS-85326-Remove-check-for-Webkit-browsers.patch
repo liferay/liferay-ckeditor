@@ -1,7 +1,7 @@
-From 4f7e79ffc85fa1de3c27e8955313c264b867e4d6 Mon Sep 17 00:00:00 2001
+From 311e3c3d24ae371e9bcefd3d38c2da7b229673d3 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Wed, 25 Mar 2020 12:58:15 +0100
-Subject: [PATCH 3/3] LPS-85326 - Remove check for Webkit browsers
+Subject: [PATCH 3/5] LPS-85326 - Remove check for Webkit browsers
 
 As described in this issue
 https://issues.liferay.com/browse/LPS-85326
@@ -29,5 +29,5 @@ index e49b6facd..cea1dd93d 100644
  						// move the selection by itself (https://dev.ckeditor.com/ticket/1272).
  						var fillingChar = createFillingCharSequenceNode( this.root );
 -- 
-2.17.1
+2.23.0.windows.1
 
