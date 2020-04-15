@@ -23,7 +23,7 @@ function checkVersion() {
 	let ckeditorVersion;
 
 	try {
-		({version: ckeditorVersion} = require('./ckeditor-dev/package.json'));
+		({version: ckeditorVersion} = require('../ckeditor-dev/package.json'));
 	} catch (_error) {
 		die('Unable to read version from ckeditor-dev/package.json');
 	}
