@@ -1,0 +1,410 @@
+From 4c385531600e99fb93b59efcd6b4be6578f8881b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
+Date: Tue, 14 Apr 2020 10:15:56 +0200
+Subject: [PATCH 4/4] LPP-36989 Remove obsolete summary field from table
+ elements
+
+---
+ plugins/table/dialogs/table.js                | 16 ----------
+ plugins/table/plugin.js                       |  2 +-
+ tests/plugins/table/table.html                |  2 +-
+ tests/plugins/table/table.js                  |  6 ++--
+ .../integrations/tabletools/tabletools.html   | 32 +++++++++----------
+ .../tabletools/columndeletionerror.html       |  2 +-
+ .../manual/columndeletionerror.html           |  2 +-
+ tests/plugins/tabletools/tabletools.html      | 32 +++++++++----------
+ 8 files changed, 38 insertions(+), 56 deletions(-)
+
+diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
+index b819c4a49..c2e793221 100755
+--- a/plugins/table/dialogs/table.js
++++ b/plugins/table/dialogs/table.js
+@@ -523,22 +523,6 @@
+ 									captionElement.getItem( i ).remove();
+ 							}
+ 						}
+-					},
+-					{
+-						type: 'text',
+-						id: 'txtSummary',
+-						bidi: true,
+-						requiredContent: 'table[summary]',
+-						label: editor.lang.table.summary,
+-						setup: function( selectedTable ) {
+-							this.setValue( selectedTable.getAttribute( 'summary' ) || '' );
+-						},
+-						commit: function( data, selectedTable ) {
+-							if ( this.getValue() )
+-								selectedTable.setAttribute( 'summary', this.getValue() );
+-							else
+-								selectedTable.removeAttribute( 'summary' );
+-						}
+ 					} ]
+ 				} ]
+ 			},
+diff --git a/plugins/table/plugin.js b/plugins/table/plugin.js
+index 2017da70d..79701234d 100755
+--- a/plugins/table/plugin.js
++++ b/plugins/table/plugin.js
+@@ -18,7 +18,7 @@ CKEDITOR.plugins.add( 'table', {
+ 
+ 		editor.addCommand( 'table', new CKEDITOR.dialogCommand( 'table', {
+ 			context: 'table',
+-			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing,summary];' +
++			allowedContent: 'table{width,height,border-collapse}[align,border,cellpadding,cellspacing];' +
+ 				'caption tbody thead tfoot;' +
+ 				'th td tr[scope];' +
+ 				'td{border*,background-color,vertical-align,width,height}[colspan,rowspan];' +
+diff --git a/tests/plugins/table/table.html b/tests/plugins/table/table.html
+index e6766708d..6b97e0c69 100644
+--- a/tests/plugins/table/table.html
++++ b/tests/plugins/table/table.html
+@@ -37,7 +37,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table style="width:200px" border="1" cellpadding="1" cellspacing="1" summary="Summary">
++<table style="width:200px" border="1" cellpadding="1" cellspacing="1">
+ 	<caption>Caption</caption>
+ 	<thead>
+ 	<tr>
+diff --git a/tests/plugins/table/table.js b/tests/plugins/table/table.js
+index 6e1cc3061..104de739c 100644
+--- a/tests/plugins/table/table.js
++++ b/tests/plugins/table/table.js
+@@ -80,16 +80,14 @@
+ 			} );
+ 		},
+ 
+-		'test add caption/summary': function() {
++		'test add caption': function() {
+ 			var bot = this.editorBots.editor;
+ 			bender.tools.testInputOut( 'add-caption', function( source, expected ) {
+ 				bot.setHtmlWithSelection( source );
+ 				bot.dialog( 'tableProperties', function( dialog ) {
+-					var captionField = dialog.getContentElement( 'info', 'txtCaption' ),
+-					summaryField = dialog.getContentElement( 'info', 'txtSummary' );
++					var captionField = dialog.getContentElement( 'info', 'txtCaption' );
+ 
+ 					captionField.setValue( 'Caption' );
+-					summaryField.setValue( 'Summary' );
+ 
+ 					dialog.fire( 'ok' );
+ 					dialog.hide();
+diff --git a/tests/plugins/tableselection/integrations/tabletools/tabletools.html b/tests/plugins/tableselection/integrations/tabletools/tabletools.html
+index a9df442ab..eccbbafa7 100644
+--- a/tests/plugins/tableselection/integrations/tabletools/tabletools.html
++++ b/tests/plugins/tableselection/integrations/tabletools/tabletools.html
+@@ -1,5 +1,5 @@
+ <textarea id='add-row-before'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -11,7 +11,7 @@
+ </table>
+ 
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -96,7 +96,7 @@
+ </textarea>
+ 
+ <textarea id='add-row-before-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -107,7 +107,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -122,7 +122,7 @@
+ </textarea>
+ 
+ <textarea id='add-row-after'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -133,7 +133,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -214,7 +214,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-row-after-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -225,7 +225,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -240,7 +240,7 @@
+ </textarea>
+ 
+ <textarea id='add-col-before'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -251,7 +251,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -351,7 +351,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-col-before-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -362,7 +362,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -466,7 +466,7 @@
+ </textarea>
+ 
+ <textarea id='add-col-after'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -477,7 +477,7 @@
+ 	</tbody>
+ </table>
+ 	=>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -577,7 +577,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-col-after-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -588,7 +588,7 @@
+ 	</tbody>
+ </table>
+ 	=>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+diff --git a/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html b/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
+index da23513f9..7abd4bcdf 100644
+--- a/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
++++ b/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
+@@ -1,5 +1,5 @@
+ <textarea id="editor">
+-<table border="2" summary="Balance Sheet &amp; Cash Flow Statement Information">
++<table border="2">
+ 	<thead>
+ 		<tr>
+ 			<th colspan="1" scope="row" style="width:167px">&nbsp;</th>
+diff --git a/tests/plugins/tabletools/manual/columndeletionerror.html b/tests/plugins/tabletools/manual/columndeletionerror.html
+index b3cc3d03b..f84850c69 100644
+--- a/tests/plugins/tabletools/manual/columndeletionerror.html
++++ b/tests/plugins/tabletools/manual/columndeletionerror.html
+@@ -1,5 +1,5 @@
+ <textarea id="editor">
+-<table border="2" summary="Balance Sheet &amp; Cash Flow Statement Information">
++<table border="2">
+ 	<thead>
+ 		<tr>
+ 			<th colspan="1" scope="row" style="width:167px">&nbsp;</th>
+diff --git a/tests/plugins/tabletools/tabletools.html b/tests/plugins/tabletools/tabletools.html
+index 15d0ef124..42ef17a6e 100644
+--- a/tests/plugins/tabletools/tabletools.html
++++ b/tests/plugins/tabletools/tabletools.html
+@@ -1,5 +1,5 @@
+ <textarea id='add-row-before'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -11,7 +11,7 @@
+ </table>
+ 
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -96,7 +96,7 @@
+ </textarea>
+ 
+ <textarea id='add-row-before-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -107,7 +107,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -122,7 +122,7 @@
+ </textarea>
+ 
+ <textarea id='add-row-after'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -133,7 +133,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -214,7 +214,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-row-after-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -225,7 +225,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -240,7 +240,7 @@
+ </textarea>
+ 
+ <textarea id='add-col-before'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -251,7 +251,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -351,7 +351,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-col-before-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -362,7 +362,7 @@
+ 	</tbody>
+ </table>
+ =>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>&amp;nbsp;</td>
+@@ -467,7 +467,7 @@
+ </textarea>
+ 
+ <textarea id='add-col-after'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -478,7 +478,7 @@
+ 	</tbody>
+ </table>
+ 	=>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+@@ -578,7 +578,7 @@
+ </table>
+ </textarea>
+ <textarea id='add-col-after-multi'>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 		<tr>
+ 			<td>
+@@ -589,7 +589,7 @@
+ 	</tbody>
+ </table>
+ 	=>
+-<table summary="X">
++<table>
+ 	<tbody>
+ 	<tr>
+ 		<td>cell1</td>
+-- 
+2.25.1
+
