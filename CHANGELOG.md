@@ -1,3 +1,31 @@
+## [4.13.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.5) (2020-04-15)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/4.13.1-liferay.4...4.13.1-liferay.5)
+
+### :new: Features
+
+-   feat: add checkSubmodule.js script ([\#57](https://github.com/liferay/liferay-ckeditor/pull/57))
+-   feat: run "yarn ci" on PRs ([\#52](https://github.com/liferay/liferay-ckeditor/pull/52))
+
+### :wrench: Bug fixes
+
+-   fix: other bad path in support/version.js ([\#62](https://github.com/liferay/liferay-ckeditor/pull/62))
+-   fix: bad path in support/version.js ([\#61](https://github.com/liferay/liferay-ckeditor/pull/61))
+-   fix: remove obsolete summary field from table elements ([\#59](https://github.com/liferay/liferay-ckeditor/pull/59))
+
+### :book: Documentation
+
+-   docs: add build status badge to README ([\#54](https://github.com/liferay/liferay-ckeditor/pull/54))
+
+### :house: Chores
+
+-   chore: set up semantic PR bot in this repo ([\#60](https://github.com/liferay/liferay-ckeditor/pull/60))
+-   chore: update CHANGELOG ([\#51](https://github.com/liferay/liferay-ckeditor/pull/51))
+
+### :woman_juggling: Refactoring
+
+-   refactor: improve actions set-up ([\#53](https://github.com/liferay/liferay-ckeditor/pull/53))
+
 ## [4.13.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.4) (2020-03-25)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.3...4.13.1-liferay.4)
