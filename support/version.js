@@ -46,7 +46,7 @@ function checkVersion() {
 
 	try {
 		const source = fs.readFileSync(
-			path.join(__dirname, 'ckeditor', 'ckeditor.js'),
+			path.join(__dirname, '..', 'ckeditor', 'ckeditor.js'),
 			'utf8'
 		);
 
