@@ -41,11 +41,15 @@ These are the steps you would follow, for example, to apply a workaround for a b
 
 -   Make sure you're up-to-date with the [superproject](https://github.com/liferay/liferay-ckeditor) repository:
 
-        git pull origin master
+    ```sh
+    git pull origin master
+    ```
 
 -   Set up everything to start working on a patch:
 
-        sh ck.sh setup
+    ```sh
+    sh ck.sh setup
+    ```
 
 -   Work on your changes:
 
@@ -57,22 +61,34 @@ These are the steps you would follow, for example, to apply a workaround for a b
 
 -   Navigate back to the superproject's root directory and update the contents of the "patches/" directory:
 
-        cd ..
-        sh ck.sh patch
+    ```sh
+    cd ..
+    sh ck.sh patch
+    ```
 
 -   Create a build of CKEditor containing the patches:
 
     From the root of the superproject's directory, run
 
-        sh ck.sh build
+    ```sh
+    sh ck.sh build
+    ```
 
     If you'd rather like a development build, for example for local debugging, use:
 
-        DEBUG=1 ./ck.sh build
+    ```sh
+    DEBUG=1 ./ck.sh build
+    ```
 
     **WARNING**: You should never publish development builds to the npm registry.
 
--   Don't forget to add the changes and commit
+-   The updated build artifacts will be staged automatically, ready for committing. This is done using:
+
+    ```sh
+    git add ckeditor
+    ```
+
+    because variants such as `git add .`, `git add -A`, `git add -f`, `git add -u` etc can cause you to unintentionally modify the target of the `ckeditor-dev` submodule.
 
 ### Updating the base version of CKEditor
 
@@ -143,6 +159,15 @@ After the release, you can confirm that the packages are correctly listed in the
 
 -   https://www.npmjs.com/package/liferay-ckeditor
 
+**NOTE:** One effect of using version numbers that include a `-liferay` suffix is that `liferay-js-publish` will interpret them as prerelease versions, in compliance with [how NPM defines prerelease ranges](https://docs.npmjs.com/misc/semver#prerelease-tags) (in agreement with [the SemVer spec](https://semver.org/#spec-item-9)). This means that they will get a `prelease` tag in the NPM registry instead of the default `latest` tag. If you wish to, you can remove this unwanted `prelease` tag and point the `latest` tag at the version you just released with:
+
+```sh
+npm dist-tag rm liferay-ckeditor prerelease
+npm dist-tag add liferay-ckeditor@$VERSION latest
+```
+
+But in practice, this is optional because we always use an exact version specifier when referencing liferay-ckeditor from [liferay-portal](https://github.com/liferay/liferay-portal) ([example](https://github.com/brianchandotcom/liferay-portal/pull/87677/files)).
+
 #### Choosing a version number
 
 For tagging and publishing `$VERSION` should be of the form `$CKEDITOR_VERSION-liferay.$RELEASE`. For example, "4.11.3-liferay.1"; that is:
@@ -159,7 +184,7 @@ Subsequent releases would be "4.11.3-liferay.2", "4.11.3-liferay.3" and so on. W
 To update CKEditor in liferay-portal:
 
 1. Navigate to the [frontend-editor-ckeditor-web](https://github.com/liferay/liferay-portal/tree/master/modules/apps/frontend-editor/frontend-editor-ckeditor-web) module
-2. Update the `liferay-ckeditor` dependency in the `package.json` file
+2. Update the `liferay-ckeditor` dependency in using `yarn add liferay-ckeditor@$VERSION`.
 3. Re-deploy the module with `gradlew clean deploy`.
 
-An example of this can be seen in [this](https://github.com/liferay/liferay-portal/commit/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248) commit (look at the [`package.json`](https://github.com/liferay/liferay-portal/blob/5b2ae3732d96f7f0dec6d35cb4de99f9d389c248/modules/apps/frontend-editor/frontend-editor-ckeditor-web/package.json) file)
+An example of this can be seen in [this PR](https://github.com/brianchandotcom/liferay-portal/pull/87677).

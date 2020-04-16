@@ -66,10 +66,15 @@ case "$COMMAND" in
 				# Replace with new build files.
 				cp -r dev/builder/release/ckeditor/* ../ckeditor/
 
+				cd ..
+				git add ckeditor
+
 				echo
 				echo "✅ DONE"
 				echo
-				echo "Don't forget to commit the result!"
+				echo "Updated build artifacts have been staged, ready to commit."
+				echo
+				echo "You can review them with \`git status\` and \`git diff --cached\`"
 				echo
 				;;
 			*)
@@ -228,10 +233,11 @@ case "$COMMAND" in
 				echo
 				echo "Here are the steps to follow:"
 				echo
-				echo "1. Navigate to the ckeditor-dev submodule directory ('cd ckeditor-dev')"
+				echo "1. Navigate to the ckeditor-dev submodule directory (\`cd ckeditor-dev\`)"
 				echo "2. Work on your changes"
 				echo "3. Commit your changes"
-				echo "4. Run 'sh ck.sh patch' to generate the patches"
+				echo "4. Return to the repository root (\`cd ..\`)"
+				echo "5. Run 'sh ck.sh patch' to generate updated patches"
 				echo
 				;;
 			*)
