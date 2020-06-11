@@ -85,6 +85,23 @@ case "$COMMAND" in
 		esac
 		;;
 
+	buildskin)
+		cd skins
+
+		echo "Which skin do you want to build?"
+
+		select skin in *
+		do
+			echo "you selected $skin"
+			
+			cd ../ckeditor-dev
+
+			java -jar dev/builder/ckbuilder/2.3.2/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
+
+			break
+		done
+		;;
+
 	createskin)
 		read -r -p "What is the name of the new skin? " skinName
 
