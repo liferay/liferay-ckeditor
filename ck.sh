@@ -92,9 +92,17 @@ case "$COMMAND" in
 
 		select skin in *
 		do
+			if [[ $skin = "" ]]; then
+				echo "selected skin doesn't exist"
+				break;
+			fi
+
 			echo "you selected $skin"
+
+			cd ..
+			rm -rf ckeditor/skins/$skin
 			
-			cd ../ckeditor-dev
+			cd ckeditor-dev
 
 			java -jar dev/builder/ckbuilder/2.3.2/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
 
