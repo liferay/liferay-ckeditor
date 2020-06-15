@@ -105,31 +105,19 @@ case "$COMMAND" in
 	createskin)
 		read -r -p "What is the name of the new skin? " skinName
 
-		echo "Which skin do you want to use as base?"
+		baseSkin="moono-lisa"
 
-		cd ckeditor-dev/skins
+		# Create folder for the new skin
+		mkdir skins/"$skinName"
 
-		select opt in *
-		do
-			cd ../..
+		# Create a copy of the selected skin.
+		cp -r ckeditor-dev/skins/"$baseSkin"/* skins/"$skinName"/
 
-			# Create skins folder if doesn't exist
-			mkdir -p skins
-
-			# Create folder for the new skin
-			mkdir skins/"$skinName"
-
-			# Create a copy of the selected skin.
-			cp -r ckeditor-dev/skins/"$opt"/* skins/"$skinName"/
-
-			# Replace name of the base skin with new one
-			sed -i -e "s/$opt/$skinName/g" skins/"$skinName"/skin.js
-			sed -i -e "s/$opt/$skinName/g" skins/"$skinName"/dialog.css
-			sed -i -e "s/$opt/$skinName/g" skins/"$skinName"/readme.md
-			sed -i -e "s/$opt/$skinName/g" skins/"$skinName"/dev/locations.json
-
-			break
-		done
+		# Replace name of the base skin with new one
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/skin.js
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dialog.css
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/readme.md
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dev/locations.json
 		;;
 
 	patch)
