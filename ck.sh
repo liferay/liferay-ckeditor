@@ -98,6 +98,9 @@ case "$COMMAND" in
 
 			java -jar dev/builder/ckbuilder/2.3.2/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
 
+			cd ..
+			git add ckeditor/skins/$skin
+
 			break
 		done
 		;;
@@ -118,6 +121,8 @@ case "$COMMAND" in
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dialog.css
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/readme.md
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dev/locations.json
+
+		git add skins/$skinName
 		;;
 
 	patch)
