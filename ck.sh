@@ -2,6 +2,8 @@
 
 set -e
 
+CKBUILDER_VERSION="2.3.2"
+
 function usage() {
 	echo
 	echo "Usage: ck.sh COMMAND [OPTIONS]"
@@ -94,7 +96,7 @@ case "$COMMAND" in
 		do
 			if [[ $skin = "" ]]; then
 				echo "selected skin doesn't exist"
-				break;
+				break
 			fi
 
 			echo "you selected $skin"
@@ -104,7 +106,7 @@ case "$COMMAND" in
 			
 			cd ckeditor-dev
 
-			java -jar dev/builder/ckbuilder/2.3.2/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
+			java -jar dev/builder/ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
 
 			cd ..
 			git add ckeditor/skins/$skin
