@@ -14,6 +14,8 @@ function usage() {
 	echo "  💉 patch: recreate \"patches/\" contents based on current \"liferay\" branch"
 	echo "  🔥 build: build CKEditor, writing output to the \"ckeditor/\" directory"
 	echo "  🌶  update: update the CKEditor base version"
+	echo "  🎭  createskin: create a new custom skin based on moono-lisa"
+	echo "  🧰  buildskin: build and minify selected skin, writing outup to the \"ckeditor/skins/\" directory"
 	echo
 	echo
 }
