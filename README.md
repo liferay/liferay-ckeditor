@@ -126,6 +126,8 @@ rm -r modules/node_modules/liferay-ckeditor
 cp -R $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO modules/node_modules/
 ```
 
+And resetting the changes in the `package.json` and `yarn.lock` files on the `frontend-editor-ckeditor-web` module caused by running `yarn add`.
+
 ### Publishing the liferay-ckeditor package to NPM
 
 After successfully building and testing you can publish to NPM.
