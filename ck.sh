@@ -2,8 +2,6 @@
 
 set -e
 
-CKBUILDER_VERSION="2.3.2"
-
 function usage() {
 	echo
 	echo "Usage: ck.sh COMMAND [OPTIONS]"
@@ -15,7 +13,6 @@ function usage() {
 	echo "  🔥 build: build CKEditor, writing output to the \"ckeditor/\" directory"
 	echo "  🌶  update: update the CKEditor base version"
 	echo "  🎭  createskin: create a new custom skin based on moono-lisa"
-	echo "  🧰  buildskin: build and minify selected skin, writing outup to the \"ckeditor/skins/\" directory"
 	echo
 	echo
 }
@@ -57,12 +54,18 @@ case "$COMMAND" in
 			[Yy]*)
 				cd ckeditor-dev
 
+				# Copy custom skin to ckeditor-dev
+				cp -r ../skins/moono-lexicon skins/moono-lexicon
+
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
 						--leave-css-unminified --leave-js-unminified
 				else
 					dev/builder/build.sh --build-config ../../../support/build-config.js
 				fi
+
+				# Remove custom skin from ckeditor-dev
+				rm -rf skins/moono-lexicon
 
 				# Remove old build files.
 				rm -rf ../ckeditor/*
@@ -87,34 +90,6 @@ case "$COMMAND" in
 				echo
 				exit
 		esac
-		;;
-
-	buildskin)
-		cd skins
-
-		echo "Which skin do you want to build?"
-
-		select skin in *
-		do
-			if [[ $skin = "" ]]; then
-				echo "selected skin doesn't exist"
-				break
-			fi
-
-			echo "you selected $skin"
-
-			cd ..
-			rm -rf ckeditor/skins/$skin
-			
-			cd ckeditor-dev
-
-			java -jar dev/builder/ckbuilder/$CKBUILDER_VERSION/ckbuilder.jar --build-skin ../skins/$skin ../ckeditor/skins/$skin
-
-			cd ..
-			git add ckeditor/skins/$skin
-
-			break
-		done
 		;;
 
 	createskin)

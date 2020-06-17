@@ -27,7 +27,6 @@ For details on why we settled on this approach, please see issues [#7](https://g
 -   `ck.sh update` updates to a requested version of CKEditor and rebases the contents of the "patches/" directory onto the new version.
 -   `ck.sh build` produces a build based on the current contents of the submodule, writing the files out to the "ckeditor/" directory.
 -   `ck.sh createskin` creates a copy of CKEditor's `moono-lisa` base skin on `/skins` folder with the provided name.
--   `ck.sh buildskin` builds selected skin and writes the output to the `ckeditor/skins/` folder.
 
 ## Common scenarios
 
