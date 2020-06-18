@@ -8,14 +8,16 @@ This repo contains tooling for maintaining Liferay's customized version of CKEdi
 
 -   A submodule at `ckeditor-dev` pointing at [the upstream CKEditor project](https://github.com/ckeditor/ckeditor4).
 -   [A `patches/` directory](https://github.com/liferay/liferay-ckeditor/tree/master/patches) containing Liferay-specific changes to be applied to the upstream.
+-   [A `skins/` directory](https://github.com/liferay/liferay-ckeditor/tree/master/skins) containing custom skins.
 -   [A `ck.sh` script](https://github.com/liferay/liferay-ckeditor/blob/master/ck.sh) for setting up the project, creating/updating patches, and producing releases.
 -   [A `ckeditor` directory](https://github.com/liferay/liferay-ckeditor/tree/master/ckeditor) containing the committed build artifacts.
 
-For details on why we settled on this approach, please see issues [#7](https://github.com/liferay/liferay-ckeditor/issues/7) and [#16](https://github.com/liferay/liferay-ckeditor/issues/16), but in short, the desired attributes are:
+For details on why we settled on this approach, please see issues [#7](https://github.com/liferay/liferay-ckeditor/issues/7), [#16](https://github.com/liferay/liferay-ckeditor/issues/16) and [#66](https://github.com/liferay/liferay-ckeditor/issues/66) but in short, the desired attributes are:
 
 -   Make Liferay-specific patches easy to inspect by [aggregating them into a directory](https://github.com/liferay/liferay-ckeditor/tree/master/patches).
 -   Make changes in patches over time obvious (by inspecting [their history](https://github.com/liferay/liferay-ckeditor/commits/master/patches)).
 -   Make changes in build artifacts obvious (again, but inspecting [their history](https://github.com/liferay/liferay-ckeditor/commits/master/ckeditor)).
+-   Make possible to create [custom skins](https://github.com/liferay/liferay-ckeditor/tree/master/skins).
 
 ## How it works
 
@@ -23,7 +25,8 @@ For details on why we settled on this approach, please see issues [#7](https://g
 -   `ck.sh setup` makes sure the submodule is up-to-date, creates a "liferay" branch inside it, and applies patches from the "patches/" directory to that branch.
 -   `ck.sh patch` freshens the contents of the "patches/" directory based on the current contents of the "liferay" branch in the submodule.
 -   `ck.sh update` updates to a requested version of CKEditor and rebases the contents of the "patches/" directory onto the new version.
--   `ch.sh build` produces a build based on the current contents of the submodule, writing the files out to the "ckeditor/" directory.
+-   `ck.sh build` produces a build based on the current contents of the submodule, writing the files out to the "ckeditor/" directory.
+-   `ck.sh createskin` creates a copy of CKEditor's `moono-lisa` base skin on `/skins` folder with the provided name.
 
 ## Common scenarios
 
@@ -34,6 +37,7 @@ With those basic operations in place, the most common workflows are described in
 -   [Testing in liferay-portal](#testing-in-liferay-portal)
 -   [Publishing the liferay-ckeditor package to NPM](#publishing-the-liferay-ckeditor-package-to-npm)
 -   [Updating CKEditor in liferay-portal](#updating-ckeditor-in-liferay-portal)
+-   [Creating and building a custom skin](#creating-and-building-acustom-skin)
 
 ### Creating a new patch to CKEditor
 
@@ -122,6 +126,8 @@ rm -r modules/node_modules/liferay-ckeditor
 cp -R $PATH_TO_LOCAL_LIFERAY_CKEDITOR_REPO modules/node_modules/
 ```
 
+And resetting the changes in the `package.json` and `yarn.lock` files on the `frontend-editor-ckeditor-web` module caused by running `yarn add`.
+
 ### Publishing the liferay-ckeditor package to NPM
 
 After successfully building and testing you can publish to NPM.
@@ -188,3 +194,10 @@ To update CKEditor in liferay-portal:
 3. Re-deploy the module with `gradlew clean deploy`.
 
 An example of this can be seen in [this PR](https://github.com/brianchandotcom/liferay-portal/pull/87677).
+
+### Creating and building a custom skin
+
+1. Create a new skin running `sh ck.sh createskin`.
+2. Edit the skin at `/skins/yourskin` folder.
+3. Build the skin running `sh ck.sh buildskin`.
+4. Commit the result.

@@ -12,6 +12,7 @@ function usage() {
 	echo "  💉 patch: recreate \"patches/\" contents based on current \"liferay\" branch"
 	echo "  🔥 build: build CKEditor, writing output to the \"ckeditor/\" directory"
 	echo "  🌶  update: update the CKEditor base version"
+	echo "  🎭  createskin: create a new custom skin based on moono-lisa"
 	echo
 	echo
 }
@@ -53,12 +54,18 @@ case "$COMMAND" in
 			[Yy]*)
 				cd ckeditor-dev
 
+				# Copy custom skin to ckeditor-dev
+				cp -r ../skins/moono-lexicon skins/moono-lexicon
+
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
 						--leave-css-unminified --leave-js-unminified
 				else
 					dev/builder/build.sh --build-config ../../../support/build-config.js
 				fi
+
+				# Remove custom skin from ckeditor-dev
+				rm -rf skins/moono-lexicon
 
 				# Remove old build files.
 				rm -rf ../ckeditor/*
@@ -83,6 +90,26 @@ case "$COMMAND" in
 				echo
 				exit
 		esac
+		;;
+
+	createskin)
+		read -r -p "What is the name of the new skin? " skinName
+
+		baseSkin="moono-lisa"
+
+		# Create folder for the new skin
+		mkdir skins/"$skinName"
+
+		# Create a copy of the selected skin.
+		cp -r ckeditor-dev/skins/"$baseSkin"/* skins/"$skinName"/
+
+		# Replace name of the base skin with new one
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/skin.js
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dialog.css
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/readme.md
+		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dev/locations.json
+
+		git add skins/$skinName
 		;;
 
 	patch)
