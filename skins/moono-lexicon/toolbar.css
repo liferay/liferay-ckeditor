@@ -67,7 +67,7 @@ Special outer level classes used in this file:
 {
 	border: 0;
 	float: left;
-	margin: 1px 2px 6px 0;
+	margin: 1px 4px 6px 0;
 	/* Helps to set proper position for separators after .cke_button. */
 	padding-right: 3px;
 }
@@ -97,19 +97,16 @@ Special outer level classes used in this file:
 /* A toolbar button . */
 a.cke_button
 {
+	border-radius: 4px;
 	display: inline-block;
-	height: 18px;
-	padding: 4px 6px;
+	height: 16px;
+	padding: 6px;
 	outline: none;
 	cursor: default;
 	float: left;
-	border: 0;
+	border: 2px solid transparent;
 	position: relative;
-}
-
-/* #2483 */
-a.cke_button_expandable {
-	padding: 4px 5px;
+	margin: 0 1px;
 }
 
 .cke_rtl a.cke_button
@@ -136,35 +133,24 @@ a.cke_button_expandable {
    i.e. currently writing in bold or when spell checking is enabled. */
 a.cke_button_on
 {
-	background: #fff;
-	border: 1px #bcbcbc solid;
-	padding: 3px 5px;
+	background-color: rgba(39, 40, 51, 0.06);	/* $dark 0.06 */
 }
-
-/* #2483 */
-a.cke_button_expandable.cke_button_on
-{
-	padding: 3px 4px;
-}
-
 
 /* Button states. */
-a.cke_button_off:hover,
-a.cke_button_off:focus,
-a.cke_button_off:active
+a.cke_button:hover
 {
-	background: #e5e5e5;
-	border: 1px #bcbcbc solid;
-	/* Compensate the border change */
-	padding: 3px 5px;
+	cursor: pointer;
 }
 
-/* Expandable button states (#2483). */
-a.cke_button_expandable.cke_button_off:hover,
-a.cke_button_expandable.cke_button_off:focus,
-a.cke_button_expandable.cke_button_off:active
+a.cke_button:focus
 {
-	padding: 3px 4px;
+	border-color: #80ACFF;		/* $primaryl-l1 */
+}
+
+a.cke_button_off:hover,
+a.cke_button_off:active
+{
+	background-color: rgba(39, 40, 51, 0.04);	/* $dark 0.04 */
 }
 
 .cke_hc a.cke_button_on,
@@ -178,32 +164,13 @@ a.cke_button_expandable.cke_button_off:active
 	padding: 1px 3px;
 }
 
-
-/* Disabled Button states. */
-a.cke_button_disabled:hover,
-a.cke_button_disabled:focus,
-a.cke_button_disabled:active
-{
-	border: 0;
-	padding: 4px 6px;
-	background-color: transparent;
-}
-
-/* Expandable disabled Button states (#2483). */
-a.cke_button_expandable.cke_button_disabled:hover,
-a.cke_button_expandable.cke_button_disabled:active
-{
-	padding: 4px 5px;
+a.cke_button_disabled:hover {
+	cursor: default;
 }
 
 a.cke_button_disabled:focus {
 	border: 1px #bcbcbc solid;
 	padding: 3px 5px;
-}
-
-/* #2483 */
-a.cke_button_expandable.cke_button_disabled:focus {
-	padding: 3px 4px;
 }
 
 .cke_hc a.cke_button_disabled:hover,
@@ -258,12 +225,12 @@ a.cke_button_disabled .cke_button_arrow
 {
 	content: "";
 	position: absolute;
-	height: 18px;
+	height: 24px;
 	width: 0;
-	border-right: 1px solid #bcbcbc;
-	margin-top: 4px;
+	border-right: 1px solid #E7E7ED;	/* $secondary-l3 */
+	margin-top: 2px;
 	top: 0;
-	right: -3px;
+	right: -7px;
 }
 
 .cke_rtl .cke_toolgroup a.cke_button:last-child:after,
@@ -293,15 +260,6 @@ a.cke_button_disabled .cke_button_arrow
 	top: 0;
 	right: auto;
 	left: -7px;
-}
-
-/* Adjust separator position on button hover. */
-.cke_toolgroup a.cke_button:hover:last-child:after,
-.cke_toolgroup a.cke_button:focus:last-child:after,
-.cke_toolgroup a.cke_button.cke_button_on:last-child:after
-{
-	top: -1px;
-	right: -4px;
 }
 
 .cke_rtl .cke_toolgroup a.cke_button:hover:last-child:after,
@@ -344,7 +302,6 @@ a.cke_button_disabled .cke_button_arrow
 {
 	cursor: inherit;
 	background-repeat: no-repeat;
-	margin-top: 1px;
 	width: 16px;
 	height: 16px;
 	float: left;
@@ -424,9 +381,9 @@ a.cke_button_disabled .cke_button_arrow
 .cke_toolbar_separator
 {
 	float: left;
-	background-color: #bcbcbc;
-	margin: 4px 2px 0 2px;
-	height: 18px;
+	background-color: #E7E7ED;	/* $secondary-l3 */
+	margin: 4px 3px 0 3px;
+	height: 24px;
 	width: 1px;
 }
 

@@ -51,7 +51,6 @@ Special outer level classes used in this file:
 {
 	/* This is <span>, so transform it into a block.*/
 	display: block;
-	border: 1px solid #d1d1d1;
 	padding: 0;
 }
 
@@ -95,9 +94,11 @@ Special outer level classes used in this file:
 
 .cke_top
 {
-	border-bottom: 1px solid #d1d1d1;
-	background: #f8f8f8;
-	padding: 6px 8px 2px;
+	background: white;		/* $white */
+	border: 1px solid #E7E7ED;	/* $secondary-l3 */
+	border-radius: 4px 4px 0 0;
+	border-bottom: none;
+	padding: 6px 7px;
 
 	/* Allow breaking toolbars when in a narrow editor. (#9947) */
 	white-space: normal;
@@ -110,12 +111,13 @@ Special outer level classes used in this file:
 
 .cke_bottom
 {
+	background: white;		/* $white */
+	border: 1px solid #E7E7ED;
+	border-radius: 0 0 4px 4px;
+	border-top: none;
+	color: #6B6C7E;		/* $secondary */
 	padding: 6px 8px 2px;
 	position: relative;
-
-	border-top: 1px solid #d1d1d1;
-
-	background: #f8f8f8;
 }
 
 /* On iOS we need to manually enable scrolling in the contents block. (#9945) */
@@ -193,4 +195,33 @@ Special outer level classes used in this file:
 	outline-style: none;
 
 	box-sizing: border-box;
+}
+
+/* Styles for the editable area */
+.cke_editable
+{
+	background-color: #F1F2F5;	/* $light */
+	height: 100%;
+	margin: 0;
+	padding: 12px 16px 8px 16px;
+	position: absolute;
+	width: 100%;
+}
+
+.cke_editable:after {
+	border: 1px solid #E7E7ED;	/* $secondary-l3 */
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.cke_editable:focus {
+	background-color: #F0F5FF;	/* $primary-l3 */
+}
+
+.cke_editable:focus:after {
+	border-color: #80ACFF;	/* $primary-l1 */
 }
