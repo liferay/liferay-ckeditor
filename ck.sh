@@ -52,10 +52,13 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
-				cd ckeditor-dev
-
 				# Copy custom skin to ckeditor-dev
-				cp -r ../skins/moono-lexicon skins/moono-lexicon
+				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
+
+				# Convert svg icons to png
+				node svg-to-png.js
+
+				cd ckeditor-dev
 
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \

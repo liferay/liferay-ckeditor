@@ -20,5 +20,8 @@
 		"postversion": "npx liferay-js-publish",
 		"format": "prettier --write \"skins/**/*.css\" \"support/*.js\" \"*.json\" \"*.md\"",
 		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
+	},
+	"dependencies": {
+		"svg-to-png": "^4.0.0"
 	}
 }
