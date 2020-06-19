@@ -20,7 +20,8 @@ function usage() {
 function downloadPlugin() {
 	local NAME=$1
 	local VERSION=$2
-	local OUTPUT=$(mktemp)
+	local OUTPUT
+	OUTPUT=$(mktemp)
 
 	curl \
 		"https://ckeditor.com/cke4/sites/default/files/${NAME}/releases/${NAME}_${VERSION}.zip" \
@@ -152,7 +153,7 @@ case "$COMMAND" in
 			echo
 			echo "This will reset the \"patches\" directory and replace these patches:"
 			echo
-			ls ../patches/*.patch | cat
+			find ../patches/*.patch | cat
 			echo
 			echo "with patches corresponding to these commits:"
 			echo
