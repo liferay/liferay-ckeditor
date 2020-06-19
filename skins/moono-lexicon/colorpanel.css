@@ -48,60 +48,52 @@ The COLOR PALETTE section instead is a table with a variable number of cells
 */
 
 /* The container of the color palette. */
-.cke_colorblock
-{
+.cke_colorblock {
 	padding: 10px;
 	font-size: 11px;
 	font-family: 'Microsoft Sans Serif', Tahoma, Arial, Verdana, Sans-Serif;
 }
 
 .cke_colorblock,
-.cke_colorblock a
-{
+.cke_colorblock a {
 	text-decoration: none;
 	color: #000;
 }
 
 /* The wrapper of the span.cke_colorbox. It provides an extra border and padding. */
-a.cke_colorbox
-{
+a.cke_colorbox {
 	padding: 2px;
 	float: left;
 	width: 20px;
 	height: 20px;
 }
 
-.cke_rtl a.cke_colorbox
-{
+.cke_rtl a.cke_colorbox {
 	float: right;
 }
 
 /* Different states of the a.cke_colorbox wrapper. */
 a:hover.cke_colorbox,
 a:focus.cke_colorbox,
-a:active.cke_colorbox
-{
+a:active.cke_colorbox {
 	outline: none;
 	padding: 0;
-	border: 2px solid #139FF7;
+	border: 2px solid #139ff7;
 }
 
-a:hover.cke_colorbox
-{
+a:hover.cke_colorbox {
 	border-color: #bcbcbc;
 }
 
 /* The box which is to represent a single color on the color palette.
    It is a small, square-shaped element which can be selected from the palette. */
-span.cke_colorbox
-{
+span.cke_colorbox {
 	width: 20px;
 	height: 20px;
 	float: left;
 }
 
-.cke_rtl span.cke_colorbox
-{
+.cke_rtl span.cke_colorbox {
 	float: right;
 }
 
@@ -110,16 +102,14 @@ span.cke_colorbox
    - cke_colormore (BOTTOM) executes the color dialog.
 */
 a.cke_colorauto,
-a.cke_colormore
-{
+a.cke_colormore {
 	border: #fff 1px solid;
 	padding: 3px;
 	display: block;
 	cursor: pointer;
 }
 
-a.cke_colorauto
-{
+a.cke_colorauto {
 	padding: 0;
 	border: 1px solid transparent;
 	margin-bottom: 6px;
@@ -127,8 +117,7 @@ a.cke_colorauto
 	line-height: 26px;
 }
 
-a.cke_colormore
-{
+a.cke_colormore {
 	margin-top: 10px;
 	height: 20px;
 	line-height: 19px;
@@ -140,21 +129,18 @@ a:hover.cke_colormore,
 a:focus.cke_colorauto,
 a:focus.cke_colormore,
 a:active.cke_colorauto,
-a:active.cke_colormore
-{
+a:active.cke_colormore {
 	outline: none;
-	border: #139FF7 1px solid;
+	border: #139ff7 1px solid;
 	background-color: #f8f8f8;
 }
 
 a:hover.cke_colorauto,
-a:hover.cke_colormore
-{
+a:hover.cke_colormore {
 	border-color: #bcbcbc;
 }
 
-.cke_colorauto span.cke_colorbox
-{
+.cke_colorauto span.cke_colorbox {
 	width: 18px;
 	height: 18px;
 	border: 1px solid #808080;
@@ -162,8 +148,7 @@ a:hover.cke_colormore
 	margin-top: 3px;
 }
 
-.cke_rtl .cke_colorauto span.cke_colorbox
-{
+.cke_rtl .cke_colorauto span.cke_colorbox {
 	margin-left: 0;
 	margin-right: 1px;
 }
@@ -175,8 +160,7 @@ span.cke_colorbox[style="background-color:#FFF"],
 
 /* IE, Edge */
 span.cke_colorbox[style*="rgb(255,255,255)"],
-span.cke_colorbox[style*="rgb(255, 255, 255)"]
-{
+span.cke_colorbox[style*="rgb(255, 255, 255)"] {
 	border: 1px solid #808080;
 	width: 18px;
 	height: 18px;

@@ -45,19 +45,15 @@ Special outer level classes used in this file:
 
 */
 
-
 /* The outer boundary of the interface. */
-.cke_chrome
-{
+.cke_chrome {
 	/* This is <span>, so transform it into a block.*/
 	display: block;
-	border: 1px solid #d1d1d1;
 	padding: 0;
 }
 
 /* The inner boundary of the interface. */
-.cke_inner
-{
+.cke_inner {
 	/* This is <span>, so transform it into a block.*/
 	display: block;
 	background: #fff;
@@ -68,14 +64,12 @@ Special outer level classes used in this file:
 
 /* Added to the outer boundary of the UI when in inline editing,
    when the UI is floating. */
-.cke_float
-{
+.cke_float {
 	/* Make white the space between the outer and the inner borders. */
 	border: none;
 }
 
-.cke_float .cke_inner
-{
+.cke_float .cke_inner {
 	/* As we don't have blocks following top (toolbar) we suppress the padding
 	   as the toolbar defines its own margin. */
 	padding-bottom: 0;
@@ -84,8 +78,7 @@ Special outer level classes used in this file:
 /* Make the main spaces enlarge to hold potentially floated content. */
 .cke_top,
 .cke_contents,
-.cke_bottom
-{
+.cke_bottom {
 	/* These are <span>s, so transform them into blocks.*/
 	display: block;
 
@@ -93,42 +86,40 @@ Special outer level classes used in this file:
 	overflow: hidden;
 }
 
-.cke_top
-{
-	border-bottom: 1px solid #d1d1d1;
-	background: #f8f8f8;
-	padding: 6px 8px 2px;
+.cke_top {
+	background: white; /* $white */
+	border: 1px solid #e7e7ed; /* $secondary-l3 */
+	border-radius: 4px 4px 0 0;
+	border-bottom: none;
+	padding: 6px 7px;
 
 	/* Allow breaking toolbars when in a narrow editor. (#9947) */
 	white-space: normal;
 }
 
-.cke_float .cke_top
-{
+.cke_float .cke_top {
 	border: 1px solid #d1d1d1;
 }
 
-.cke_bottom
-{
+.cke_bottom {
+	background: white; /* $white */
+	border: 1px solid #e7e7ed;
+	border-radius: 0 0 4px 4px;
+	border-top: none;
+	color: #6b6c7e; /* $secondary */
 	padding: 6px 8px 2px;
 	position: relative;
-
-	border-top: 1px solid #d1d1d1;
-
-	background: #f8f8f8;
 }
 
 /* On iOS we need to manually enable scrolling in the contents block. (#9945) */
-.cke_browser_ios .cke_contents
-{
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+.cke_browser_ios .cke_contents {
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 /* The resizer is the small UI element that is rendered at the bottom right
    part of the editor. It makes is possible to resize the editor UI. */
-.cke_resizer
-{
+.cke_resizer {
 	/* To avoid using images for the resizer, we create a small triangle,
 	   using some CSS magic. */
 	width: 0;
@@ -148,16 +139,14 @@ Special outer level classes used in this file:
 	margin-bottom: 2px;
 }
 
-.cke_hc .cke_resizer
-{
+.cke_hc .cke_resizer {
 	font-size: 15px;
 	width: auto;
 	height: auto;
 	border-width: 0;
 }
 
-.cke_resizer_ltr
-{
+.cke_resizer_ltr {
 	cursor: se-resize;
 
 	float: right;
@@ -168,8 +157,7 @@ Special outer level classes used in this file:
    (usually the .cke_rtl class is used), because it may not necessarily be in
    RTL mode if the main UI is RTL. It depends instead on the context where the
    editor is inserted on. */
-.cke_resizer_rtl
-{
+.cke_resizer_rtl {
 	border-width: 10px 0 0 10px;
 	border-color: transparent transparent transparent #bcbcbc;
 	border-style: dashed dashed dashed solid;
@@ -184,8 +172,7 @@ Special outer level classes used in this file:
 /* The editing area (where users type) can be rendered as an editable <div>
    element (e.g. divarea plugin). In that case, this is the class applied to
    that element. */
-.cke_wysiwyg_div
-{
+.cke_wysiwyg_div {
 	display: block;
 	height: 100%;
 	overflow: auto;
@@ -193,4 +180,32 @@ Special outer level classes used in this file:
 	outline-style: none;
 
 	box-sizing: border-box;
+}
+
+/* Styles for the editable area */
+.cke_editable {
+	background-color: #f1f2f5; /* $light */
+	height: 100%;
+	margin: 0;
+	padding: 12px 16px 8px 16px;
+	position: absolute;
+	width: 100%;
+}
+
+.cke_editable:after {
+	border: 1px solid #e7e7ed; /* $secondary-l3 */
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.cke_editable:focus {
+	background-color: #f0f5ff; /* $primary-l3 */
+}
+
+.cke_editable:focus:after {
+	border-color: #80acff; /* $primary-l1 */
 }

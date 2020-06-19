@@ -11,7 +11,7 @@ This file contains styles to used by Internet Explorer 8 only.
 */
 
 /* Base it on dialog_ie.css, overriding it with styles defined in this file. */
-@import url("dialog_ie.css");
+@import url('dialog_ie.css');
 
 /* Without min-height, border-box is not respected and button shrinks when 2px border on :focus is applied. */
 a.cke_dialog_ui_button {
@@ -21,30 +21,25 @@ a.cke_dialog_ui_button {
 input.cke_dialog_ui_input_text,
 input.cke_dialog_ui_input_password,
 input.cke_dialog_ui_input_tel,
-textarea.cke_dialog_ui_input_textarea
-{
+textarea.cke_dialog_ui_input_textarea {
 	min-height: 18px;
 }
 
 input.cke_dialog_ui_input_text:focus,
 input.cke_dialog_ui_input_password:focus,
 input.cke_dialog_ui_input_tel:focus,
-textarea.cke_dialog_ui_input_textarea:focus
-{
+textarea.cke_dialog_ui_input_textarea:focus {
 	padding-top: 4px;
 	padding-bottom: 2px;
 }
 
-select.cke_dialog_ui_input_select
-{
+select.cke_dialog_ui_input_select {
 	width: 100% !important;
 }
 
-select.cke_dialog_ui_input_select:focus
-{
+select.cke_dialog_ui_input_select:focus {
 	margin-left: 1px;
 	width: 100% !important;
 	padding-top: 2px;
 	padding-bottom: 2px;
-
 }

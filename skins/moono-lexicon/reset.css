@@ -24,8 +24,7 @@ https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_reset.html
 */
 
 /* Reset for single elements, not their children. */
-.cke_reset
-{
+.cke_reset {
 	/* Do not include inheritable rules here. */
 	margin: 0;
 	padding: 0;
@@ -41,9 +40,10 @@ https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_reset.html
 }
 
 /* Reset for elements and their children. */
-.cke_reset_all, .cke_reset_all *,
-.cke_reset_all a, .cke_reset_all textarea
-{
+.cke_reset_all,
+.cke_reset_all *,
+.cke_reset_all a,
+.cke_reset_all textarea {
 	/* The following must be identical to .cke_reset. */
 	margin: 0;
 	padding: 0;
@@ -59,7 +59,8 @@ https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_reset.html
 
 	/* These are rule inherited by all children elements. */
 	border-collapse: collapse;
-	font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;
+	font: normal normal normal 12px Arial, Helvetica, Tahoma, Verdana,
+		Sans-Serif;
 	color: #000;
 	text-align: left;
 	white-space: nowrap;
@@ -67,49 +68,41 @@ https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_reset.html
 	float: none;
 }
 
-.cke_reset_all .cke_rtl *
-{
+.cke_reset_all .cke_rtl * {
 	text-align: right;
 }
 
 /* Defaults for some elements. */
 
-.cke_reset_all iframe
-{
-	vertical-align: inherit;	/** For IE */
+.cke_reset_all iframe {
+	vertical-align: inherit; /** For IE */
 }
 
-.cke_reset_all textarea
-{
+.cke_reset_all textarea {
 	white-space: pre-wrap;
 }
 
 .cke_reset_all textarea,
-.cke_reset_all input[type="text"],
-.cke_reset_all input[type="password"]
-{
+.cke_reset_all input[type='text'],
+.cke_reset_all input[type='password'] {
 	cursor: text;
 }
 
 .cke_reset_all textarea[disabled],
-.cke_reset_all input[type="text"][disabled],
-.cke_reset_all input[type="password"][disabled]
-{
+.cke_reset_all input[type='text'][disabled],
+.cke_reset_all input[type='password'][disabled] {
 	cursor: default;
 }
 
-.cke_reset_all fieldset
-{
+.cke_reset_all fieldset {
 	padding: 10px;
-	border: 2px groove #E0DFE3;
+	border: 2px groove #e0dfe3;
 }
 
-.cke_reset_all select
-{
+.cke_reset_all select {
 	box-sizing: border-box;
 }
 
-.cke_reset_all table
-{
+.cke_reset_all table {
 	table-layout: auto;
 }
