@@ -1,32 +1,38 @@
-var path = require( 'path' );
-var svg_to_png = require('svg-to-png');
+const fs = require('fs')
+const path = require( 'path' )
+const sharp = require("sharp")
 
-async function convert() {
-    await svg_to_png.convert(
-        path.resolve('skins/moono-lexicon/icons'),
-        path.resolve('ckeditor-dev/skins/moono-lexicon/icons/hidpi/'),
-        {
-            defaultWidth: '32px',
-            defaultHeight: '32px',
-        }
-    );
+const configFilePath = process.argv[2];
+const outputDir = process.argv[3]
 
-    console.log('HIDPI PNG icons created');
+let rawdata = fs.readFileSync(configFilePath)
+let iconsConfig = JSON.parse(rawdata)
 
-    await svg_to_png.convert(
-        path.resolve('skins/moono-lexicon/icons'),
-        path.resolve('ckeditor-dev/skins/moono-lexicon/icons/'),
-        {
-            defaultWidth: '16px',
-            defaultHeight: '16px',
-        }
-    );
+const sourceIconsPath = path.join(path.dirname(configFilePath), '../', iconsConfig.dir)
 
-    console.log('PNG icons created');
-};
+for (const icon of iconsConfig.icons) {
+    sharp(`${sourceIconsPath}/${icon.source}.svg`)
+        .resize(16)
+		.png()
+		.toFile(path.resolve(`${outputDir}/${icon.output}.png`))
+		.then(() => {
+			console.log(`${icon.source} SVG icon converted to PNG`)
+		})
+		.catch(err => {
+            console.log(`${icon.source} ${err}`)
+            process.exit(1);
+		})
 
-convert()
-    .catch(error => {
-        console.log(error);
-        process.exit(1);
-    });
+    sharp(`${sourceIconsPath}/${icon.source}.svg`)
+        .resize(32)
+        .tint('rgb(39,40,51)')
+		.png()
+		.toFile(path.resolve(`${outputDir}/hidpi/${icon.output}.png`))
+		.then(() => {
+			console.log(`${icon.source} SVG icon converted to HIDPI PNG`)
+		})
+		.catch(err => {
+            console.log(`${icon.source} ${err}`)
+            process.exit(1);
+        })
+}

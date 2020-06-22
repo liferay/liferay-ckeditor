@@ -22,6 +22,7 @@
 		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
 	},
 	"dependencies": {
-		"svg-to-png": "^4.0.0"
+		"@clayui/css": "^3.13.0",
+		"sharp": "^0.25.4"
 	}
 }

@@ -56,10 +56,10 @@ case "$COMMAND" in
 				# Copy custom skin to ckeditor-dev
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
-				# Convert svg icons to png
-				node support/svgToPng.js
-
 				cd ckeditor-dev
+
+				# Convert svg icons to png
+				node ../support/svgToPng.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons
 
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
