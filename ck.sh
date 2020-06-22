@@ -113,7 +113,7 @@ case "$COMMAND" in
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/readme.md
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dev/locations.json
 
-		git add skins/$skinName
+		git add skins/"$skinName"
 		;;
 
 	patch)
@@ -153,7 +153,7 @@ case "$COMMAND" in
 			echo
 			echo "This will reset the \"patches\" directory and replace these patches:"
 			echo
-			find ../patches/*.patch | cat
+			find ../patches -name '*.patch'
 			echo
 			echo "with patches corresponding to these commits:"
 			echo
