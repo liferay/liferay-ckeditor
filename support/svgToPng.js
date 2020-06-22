@@ -25,4 +25,8 @@ async function convert() {
     console.log('PNG icons created');
 };
 
-convert();
+convert()
+    .catch(error => {
+        console.log(error);
+        process.exit(1);
+    });

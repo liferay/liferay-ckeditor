@@ -57,7 +57,7 @@ case "$COMMAND" in
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
 				# Convert svg icons to png
-				node svg-to-png.js
+				node support/svgToPng.js
 
 				cd ckeditor-dev
 
