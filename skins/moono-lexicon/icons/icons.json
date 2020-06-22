@@ -1,141 +1,39 @@
 {
     "dir": "../../../node_modules/@clayui/css/lib/images/icons",
-    "icons": [
-        {
-            "source": "bold",
-            "output": "bold"
-        },
-        {
-            "source": "italic",
-            "output": "italic"
-        },
-        {
-            "source": "underline",
-            "output": "underline"
-        },
-        {
-            "source": "strikethrough",
-            "output": "strike"
-        },
-        {
-            "source": "subscript",
-            "output": "subscript"
-        },
-        {
-            "source": "superscript",
-            "output": "superscript"
-        },
-        {
-            "source": "remove-style",
-            "output": "removeformat"
-        },
-        {
-            "source": "list-ol",
-            "output": "numberedlist"
-        },
-        {
-            "source": "list-ul",
-            "output": "bulletedlist"
-        },
-        {
-            "source": "indent-more",
-            "output": "indent"
-        },
-        {
-            "source": "indent-less",
-            "output": "outdent"
-        },
-        {
-            "source": "quote-right",
-            "output": "blockquote"
-        },
-        {
-            "source": "align-left",
-            "output": "justifyleft"
-        },
-        {
-            "source": "align-center",
-            "output": "justifycenter"
-        },
-        {
-            "source": "align-right",
-            "output": "justifyright"
-        },
-        {
-            "source": "align-justify",
-            "output": "justifyblock"
-        },
-        {
-            "source": "link",
-            "output": "link"
-        },
-        {
-            "source": "chain-broken",
-            "output": "unlink"
-        },
-        {
-            "source": "flag-full",
-            "output": "anchor"
-        },
-        {
-            "source": "picture",
-            "output": "image"
-        },
-        {
-            "source": "table",
-            "output": "table"
-        },
-        {
-            "source": "separator",
-            "output": "horizontalrule"
-        },
-        {
-            "source": "full-size",
-            "output": "maximize"
-        },
-        {
-            "source": "change-list",
-            "output": "replace"
-        },
-        {
-            "source": "search",
-            "output": "find"
-        },
-        {
-            "source": "undo",
-            "output": "undo"
-        },
-        {
-            "source": "redo",
-            "output": "redo"
-        },
-        {
-            "source": "paste",
-            "output": "copy"
-        },
-        {
-            "source": "cut",
-            "output": "cut"
-        },
-        {
-            "source": "code",
-            "output": "source"
-        },
-        {
-            "source": "hidden",
-            "output": "hidden"
-        },
-        {
-            "source": "align-image-center",
-            "output": "align-image-center"
-        },
-        {
-            "source": "align-image-left",
-            "output": "align-image-left"
-        },
-        {
-            "source": "align-image-right",
-            "output": "align-image-right"
-        }
-    ]
+    "icons": {
+        "bold": "bold",
+        "italic": "italic",
+        "underline": "underline",
+        "strikethrough": "strike",
+        "subscript": "subscript",
+        "superscript": "superscript",
+        "remove-style": "removeformat",
+        "list-ol": "numberedlist",
+        "list-ul": "bulletedlist",
+        "indent-more": "indent",
+        "indent-less": "outdent",
+        "quote-right": "blockquote",
+        "align-left": "justifyleft",
+        "align-center": "justifycenter",
+        "align-right": "justifyright",
+        "align-justify": "justifyblock",
+        "link": "link",
+        "chain-broken": "unlink",
+        "flag-full": "anchor",
+        "picture": "image",
+        "table": "table",
+        "separator": "horizontalrule",
+        "full-size": "maximize",
+        "change-list": "replace",
+        "search": "find",
+        "undo": "undo",
+        "redo": "redo",
+        "paste": "copy",
+        "cut": "cut",
+        "code": "source",
+        "hidden": "hidden",
+        "align-image-center": "align-image-center",
+        "align-image-left": "align-image-left",
+        "align-image-right": "align-image-right"
+    }
 }
