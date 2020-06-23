@@ -15,27 +15,33 @@ const sourceIconsPath = path.join(
 );
 
 for (const [source, output] of Object.entries(iconsConfig.icons)) {
-	sharp(`${sourceIconsPath}/${icon.source}.svg`)
+	var svgData = fs.readFileSync(`${sourceIconsPath}/${source}.svg`, 'utf8');
+
+	svgData = svgData.replace(/\<svg/g, '<svg fill="#6B6C7E"');
+
+	const svgBuffer = Buffer.from(svgData, 'utf8');
+
+	sharp(svgBuffer)
 		.resize(16)
 		.png()
-		.toFile(path.resolve(`${outputDir}/${icon.output}.png`))
+		.toFile(path.resolve(`${outputDir}/${output}.png`))
 		.then(() => {
-			console.log(`${icon.source} SVG icon converted to PNG`);
+			console.log(`${source} SVG icon converted to PNG`);
 		})
 		.catch((err) => {
-			console.log(`${icon.source} ${err}`);
+			console.log(`${source} ${err}`);
 			process.exit(1);
 		});
 
-	sharp(`${sourceIconsPath}/${icon.source}.svg`)
+	sharp(svgBuffer)
 		.resize(32)
 		.png()
-		.toFile(path.resolve(`${outputDir}/hidpi/${icon.output}.png`))
+		.toFile(path.resolve(`${outputDir}/hidpi/${output}.png`))
 		.then(() => {
-			console.log(`${icon.source} SVG icon converted to HIDPI PNG`);
+			console.log(`${source} SVG icon converted to HIDPI PNG`);
 		})
 		.catch((err) => {
-			console.log(`${icon.source} ${err}`);
+			console.log(`${source} ${err}`);
 			process.exit(1);
 		});
 }
