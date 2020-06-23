@@ -17,7 +17,9 @@ const sourceIconsPath = path.join(
 for (const [output, source] of Object.entries(iconsConfig.icons)) {
 	var svgData = fs.readFileSync(`${sourceIconsPath}/${source}.svg`, 'utf8');
 
-	svgData = svgData.replace(/\<svg/g, '<svg fill="#6B6C7E"');
+	svgData = svgData
+		.replace(/\s+fill="[^"]+"/, '')
+		.replace(/<svg/, '<svg fill="#6b6c7e"');
 
 	const svgBuffer = Buffer.from(svgData, 'utf8');
 
