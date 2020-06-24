@@ -20,7 +20,8 @@ function usage() {
 function downloadPlugin() {
 	local NAME=$1
 	local VERSION=$2
-	local OUTPUT=$(mktemp)
+	local OUTPUT
+	OUTPUT=$(mktemp)
 
 	curl \
 		"https://ckeditor.com/cke4/sites/default/files/${NAME}/releases/${NAME}_${VERSION}.zip" \
@@ -52,10 +53,13 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
+				# Copy custom skin to ckeditor-dev
+				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
+
 				cd ckeditor-dev
 
-				# Copy custom skin to ckeditor-dev
-				cp -r ../skins/moono-lexicon skins/moono-lexicon
+				# Convert svg icons to png
+				node ../support/svgToPng.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons
 
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
@@ -109,7 +113,7 @@ case "$COMMAND" in
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/readme.md
 		sed -i -e "s/$baseSkin/$skinName/g" skins/"$skinName"/dev/locations.json
 
-		git add skins/$skinName
+		git add skins/"$skinName"
 		;;
 
 	patch)
@@ -149,7 +153,7 @@ case "$COMMAND" in
 			echo
 			echo "This will reset the \"patches\" directory and replace these patches:"
 			echo
-			ls ../patches/*.patch | cat
+			find ../patches -name '*.patch'
 			echo
 			echo "with patches corresponding to these commits:"
 			echo
