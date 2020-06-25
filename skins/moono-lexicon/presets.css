@@ -18,12 +18,17 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 textarea.cke_source {
 	font-family: 'Courier New', Monospace;
 	font-size: small;
-	background-color: #fff;
+	background-color: #f1f2f5; /* $light */
 	white-space: pre-wrap;
-	border: none;
-	padding: 0;
+	border: 1px solid #e7e7ed; /* $secondary-l3 */
+	padding: 5px;
 	margin: 0;
 	display: block;
+	position: relative;
+}
+
+textarea.cke_source:focus {
+	border: 1px solid #80acff; /* $primary-l1 */
 }
 
 .cke_wysiwyg_frame,
