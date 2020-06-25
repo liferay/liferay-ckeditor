@@ -59,7 +59,7 @@ case "$COMMAND" in
 				cd ckeditor-dev
 
 				# Convert svg icons to png
-				node ../support/svgToPng.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons
+				node ../support/iconsClassesGenerator.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons.css
 
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
