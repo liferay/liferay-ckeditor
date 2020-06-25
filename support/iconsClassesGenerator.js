@@ -14,88 +14,61 @@ const sourceIconsPath = path.join(
 	iconsConfig.dir
 );
 
-const symbols = /[\r\n%#()<>?\[\\\]^`{|}]/g;
+const activeColor = '#272833';
+const defaultColor = '#6b6c7e';
+const disableColor = '#a7a9bc';
+const focusColor = '#272833';
+const hoverColor = '#272833';
+
+const encodeSvgData = (svgData, color) => {
+	const symbols = /[\r\n%#()<>?\[\\\]^`{|}]/g;
+
+	return svgData
+		.replace(/\s+fill="[^"]+"/, '')
+		.replace(/<svg/, `<svg fill="${color}"`)
+		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
+		.replace(/>\s{1,}</g, "><")
+		.replace(/\s{2,}/g, " ")
+		.replace(symbols, encodeURIComponent)
+		.replace(/\s+/g, '%20');
+};
 
 let iconsCSSContent = '';
 
 for (const [output, source] of Object.entries(iconsConfig.icons)) {
 	var svgData = fs.readFileSync(`${sourceIconsPath}/${source}.svg`, 'utf8');
-
-	const defaultSvgData = svgData
-		.replace(/\s+fill="[^"]+"/, '')
-		.replace(/<svg/, '<svg fill="#6b6c7e"')
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
-		.replace(symbols, encodeURIComponent)
-		.replace(/\s+/g, '%20');
+	
+	const activeIconCSS = 
+		`.cke_hidpi .cke_button.cke_button_on .cke_button__${output}_icon,
+		.cke_button.cke_button_on .cke_button__${output}_icon {
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, activeColor)}") !important;
+		}`;
 
 	const defaultIconCSS = 
 		`.cke_hidpi .cke_button .cke_button__${output}_icon,
 		.cke_button .cke_button__${output}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${defaultSvgData}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, defaultColor)}") !important;
 		}`;
-
-	const hoverSvgData = svgData
-		.replace(/\s+fill="[^"]+"/, '')
-		.replace(/<svg/, '<svg fill="#272833"')
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
-		.replace(symbols, encodeURIComponent)
-		.replace(/\s+/g, '%20');
-
-	const hoverIconCSS = 
-		`.cke_hidpi .cke_button:hover .cke_button__${output}_icon,
-		.cke_button:hover .cke_button__${output}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${hoverSvgData}") !important;
-		}`;
-
-	const activeSvgData = svgData
-		.replace(/\s+fill="[^"]+"/, '')
-		.replace(/<svg/, '<svg fill="#272833"')
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
-		.replace(symbols, encodeURIComponent)
-		.replace(/\s+/g, '%20');
-
-	const activeIconCSS = 
-		`.cke_hidpi .cke_button.cke_button_on .cke_button__${output}_icon,
-		.cke_button.cke_button_on .cke_button__${output}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${activeSvgData}") !important;
-		}`;
-
-	const disableSvgData = svgData
-		.replace(/\s+fill="[^"]+"/, '')
-		.replace(/<svg/, '<svg fill="#a7a9bc"')
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
-		.replace(symbols, encodeURIComponent)
-		.replace(/\s+/g, '%20');
 
 	const disableIconCSS = 
 		`.cke_hidpi .cke_button.cke_button_disabled .cke_button__${output}_icon,
 		.cke_button.cke_button_disabled .cke_button__${output}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${disableSvgData}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, disableColor)}") !important;
 		}`;
 
-	const focusSvgData = svgData
-		.replace(/\s+fill="[^"]+"/, '')
-		.replace(/<svg/, '<svg fill="#272833"')
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
-		.replace(symbols, encodeURIComponent)
-		.replace(/\s+/g, '%20');
+	const hoverIconCSS = 
+		`.cke_hidpi .cke_button:hover .cke_button__${output}_icon,
+		.cke_button:hover .cke_button__${output}_icon {
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, hoverColor)}") !important;
+		}`;
 
 	const focusIconCSS = 
 		`.cke_hidpi .cke_button:focus .cke_button__${output}_icon,
 		.cke_button:focus .cke_button__${output}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${focusSvgData}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, focusColor)}") !important;
 		}`;
 
-	iconsCSSContent += `${defaultIconCSS} ${hoverIconCSS} ${activeIconCSS} ${disableIconCSS} ${focusIconCSS}`;
+	iconsCSSContent += `${activeIconCSS} ${defaultIconCSS} ${disableIconCSS} ${hoverIconCSS} ${focusIconCSS}`;
 }
+
 fs.writeFileSync(outputFile, iconsCSSContent, { flag: 'a'});
