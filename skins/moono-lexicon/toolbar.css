@@ -270,6 +270,8 @@ a.cke_button_disabled .cke_button_arrow {
 /* Button inner elements. */
 /* The icon which is a visual representation of the button. */
 .cke_button_icon {
+	background-size: 16px !important;
+	background-position: center !important;
 	cursor: inherit;
 	background-repeat: no-repeat;
 	width: 16px;
