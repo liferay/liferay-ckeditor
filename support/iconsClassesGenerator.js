@@ -92,7 +92,6 @@ for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
 		);
 
 		iconsCSSContent += getCSS(svgData, cKEditorIcon);
-		//svgDataList = [fs.readFileSync(`${sourceIconsPath}/${clayIcon}.svg`, 'utf8')];
 	} else {
 		if (clayIcon.ltr) {
 			const svgData = fs.readFileSync(
@@ -111,44 +110,7 @@ for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
 
 			iconsCSSContent += getCSS(svgData, cKEditorIcon, 'rtl');
 		}
-
-		//directionClass = `.cke_${clayIcon.direction}`;
-		//svgData = fs.readFileSync(`${sourceIconsPath}/${clayIcon.icon}.svg`, 'utf8');
 	}
-
-	/*
-	const activeIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
-		${directionClass} .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, activeColor)}") !important;
-		}`;
-
-	const defaultIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button .cke_button__${cKEditorIcon}_icon,
-		${directionClass} .cke_button .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, defaultColor)}") !important;
-		}`;
-
-	const disableIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon,
-		${directionClass} .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, disableColor)}") !important;
-		}`;
-
-	const hoverIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon,
-		${directionClass} .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, hoverColor)}") !important;
-		}`;
-
-	const focusIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon,
-		${directionClass} .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, focusColor)}") !important;
-		}`;
-
-		iconsCSSContent += `${activeIconCSS} ${defaultIconCSS} ${disableIconCSS} ${hoverIconCSS} ${focusIconCSS}`;
-	*/
 }
 
 fs.writeFileSync(outputFile, iconsCSSContent, {flag: 'a'});
