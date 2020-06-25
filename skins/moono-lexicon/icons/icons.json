@@ -4,17 +4,27 @@
         "align-image-center": "align-image-center",
         "align-image-left": "align-image-left",
         "align-image-right": "align-image-right",
-        "anchor": "flag-full",
+        "anchor": {
+            "ltr": "flag-full"
+        },
         "blockquote": "quote-right",
         "bold": "bold",
-        "bulletedlist": "list-ul",
+        "bulletedlist": {
+            "ltr": "list-ul"
+        },
         "copy": "paste",
         "cut": "cut",
-        "find": "search",
+        "find": {
+            "ltr": "search",
+            "rtl": "search"
+        },
         "hidden": "hidden",
         "horizontalrule": "separator",
         "image": "picture",
-        "indent": "indent-more",
+        "indent": {
+            "ltr": "indent-more",
+            "rtl": "indent-less"
+        },
         "italic": "italic",
         "justifyblock": "align-justify",
         "justifycenter": "align-center",
@@ -22,18 +32,31 @@
         "justifyright": "align-right",
         "link": "link",
         "maximize": "full-size",
-        "numberedlist": "list-ol",
-        "outdent": "indent-less",
-        "redo": "redo",
+        "numberedlist": {
+            "ltr": "list-ol"
+        },
+        "outdent": {
+            "ltr": "indent-less",
+            "rtr": "indent-more"
+        },
+        "redo": {
+            "ltr": "redo",
+            "rtl": "undo"
+        },
         "removeformat": "remove-style",
         "replace": "change-list",
-        "source": "code",
+        "source": {
+            "ltr":"code"
+        },
         "strike": "strikethrough",
         "subscript": "subscript",
         "superscript": "superscript",
         "table": "table2",
         "underline": "underline",
-        "undo": "undo",
+        "undo": {
+            "ltr": "undo",
+            "rtl": "redo"
+        },
         "unlink": "chain-broken"
     }
 }
