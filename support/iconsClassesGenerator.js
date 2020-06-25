@@ -26,48 +26,58 @@ const encodeSvgData = (svgData, color) => {
 	return svgData
 		.replace(/\s+fill="[^"]+"/, '')
 		.replace(/<svg/, `<svg fill="${color}"`)
-		.replace(/"/g, '\'') // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, "><")
-		.replace(/\s{2,}/g, " ")
+		.replace(/"/g, "'") // Use single quotes instead of double to avoid encoding.
+		.replace(/>\s{1,}</g, '><')
+		.replace(/\s{2,}/g, ' ')
 		.replace(symbols, encodeURIComponent)
 		.replace(/\s+/g, '%20');
 };
 
 const getCSS = (svgData, cKEditorIcon, direction) => {
 	let directionClass = direction ? `.cke_${direction}` : '';
-	
-	const activeIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
+
+	const activeIconCSS = `${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, activeColor)}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
+				svgData,
+				activeColor
+			)}") !important;
 		}`;
 
-	const defaultIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button .cke_button__${cKEditorIcon}_icon,
+	const defaultIconCSS = `${directionClass}.cke_hidpi .cke_button .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, defaultColor)}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
+				svgData,
+				defaultColor
+			)}") !important;
 		}`;
 
-	const disableIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon,
+	const disableIconCSS = `${directionClass}.cke_hidpi .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, disableColor)}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
+				svgData,
+				disableColor
+			)}") !important;
 		}`;
 
-	const hoverIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon,
+	const hoverIconCSS = `${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, hoverColor)}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
+				svgData,
+				hoverColor
+			)}") !important;
 		}`;
 
-	const focusIconCSS = 
-		`${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon,
+	const focusIconCSS = `${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon {
-			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(svgData, focusColor)}") !important;
+			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
+				svgData,
+				focusColor
+			)}") !important;
 		}`;
 
 	return `${activeIconCSS} ${defaultIconCSS} ${disableIconCSS} ${hoverIconCSS} ${focusIconCSS}`;
-}
+};
 
 let iconsCSSContent = '';
 
@@ -76,29 +86,36 @@ for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
 	let svgDataList = [];
 
 	if (typeof clayIcon === 'string') {
-		const svgData = fs.readFileSync(`${sourceIconsPath}/${clayIcon}.svg`, 'utf8');
+		const svgData = fs.readFileSync(
+			`${sourceIconsPath}/${clayIcon}.svg`,
+			'utf8'
+		);
 
-		iconsCSSContent +=  getCSS(svgData, cKEditorIcon);
+		iconsCSSContent += getCSS(svgData, cKEditorIcon);
 		//svgDataList = [fs.readFileSync(`${sourceIconsPath}/${clayIcon}.svg`, 'utf8')];
-	}
-	else {
-		if (clayIcon.ltr) {
-			const svgData = fs.readFileSync(`${sourceIconsPath}/${clayIcon.ltr}.svg`, 'utf8');
+	} else {
+		if (clayIcon.ltr) {
+			const svgData = fs.readFileSync(
+				`${sourceIconsPath}/${clayIcon.ltr}.svg`,
+				'utf8'
+			);
 
-			iconsCSSContent +=  getCSS(svgData, cKEditorIcon, 'ltr');
+			iconsCSSContent += getCSS(svgData, cKEditorIcon, 'ltr');
 		}
 
-		if (clayIcon.rtl) {
-			const svgData = fs.readFileSync(`${sourceIconsPath}/${clayIcon.rtl}.svg`, 'utf8');
+		if (clayIcon.rtl) {
+			const svgData = fs.readFileSync(
+				`${sourceIconsPath}/${clayIcon.rtl}.svg`,
+				'utf8'
+			);
 
-			iconsCSSContent +=  getCSS(svgData, cKEditorIcon, 'rtl');
+			iconsCSSContent += getCSS(svgData, cKEditorIcon, 'rtl');
 		}
-
 
 		//directionClass = `.cke_${clayIcon.direction}`;
 		//svgData = fs.readFileSync(`${sourceIconsPath}/${clayIcon.icon}.svg`, 'utf8');
 	}
-	
+
 	/*
 	const activeIconCSS = 
 		`${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
@@ -134,4 +151,4 @@ for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
 	*/
 }
 
-fs.writeFileSync(outputFile, iconsCSSContent, { flag: 'a'});
+fs.writeFileSync(outputFile, iconsCSSContent, {flag: 'a'});
