@@ -3,3 +3,5 @@
 /ckeditor-dev
 /ckeditor/samples
 /support
+.github
+.npm
