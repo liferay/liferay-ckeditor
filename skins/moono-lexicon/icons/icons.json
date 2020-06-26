@@ -5,15 +5,23 @@
         "align-image-left": "align-image-left",
         "align-image-right": "align-image-right",
         "anchor": {
-            "ltr": "flag-full"
+            "ltr": "flag-full",
+            "rtl": "flag-full"
         },
         "blockquote": "quote-right",
         "bold": "bold",
         "bulletedlist": {
-            "ltr": "list-ul"
+            "ltr": "list-ul",
+            "rtl": "list-ul"
         },
-        "copy": "paste",
-        "cut": "cut",
+        "copy": {
+            "ltr": "paste",
+            "rtl": "paste"
+        },
+        "cut": {
+            "ltr": "cut",
+            "rtl": "cut"
+        },
         "find": {
             "ltr": "search",
             "rtl": "search"
@@ -33,7 +41,8 @@
         "link": "link",
         "maximize": "full-size",
         "numberedlist": {
-            "ltr": "list-ol"
+            "ltr": "list-ol",
+            "rtl": "list-ol"
         },
         "outdent": {
             "ltr": "indent-less",
@@ -46,7 +55,8 @@
         "removeformat": "remove-style",
         "replace": "change-list",
         "source": {
-            "ltr":"code"
+            "ltr":"code",
+            "rtl":"code"
         },
         "strike": "strikethrough",
         "subscript": "subscript",
