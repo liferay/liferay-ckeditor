@@ -24,7 +24,7 @@ const encodeSvgData = (svgData, color) => {
 	const symbols = /[\r\n%#()<>?\[\\\]^`{|}]/g;
 
 	return svgData
-		.replace(/\s+fill="[^"]+"/, '')
+		.replace(/(<svg[^>]*)( fill="[^"]+")/, '\1')
 		.replace(/<svg/, `<svg fill="${color}"`)
 		.replace(/"/g, "'") // Use single quotes instead of double to avoid encoding.
 		.replace(/>\s{1,}</g, '><')
