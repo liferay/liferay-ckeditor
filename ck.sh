@@ -58,7 +58,7 @@ case "$COMMAND" in
 
 				cd ckeditor-dev
 
-				# Generate svg icons CSS Classes
+				# Generate SVG icons CSS Classes
 				node ../support/iconsClassesGenerator.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons.css
 
 				if [ -n "$DEBUG" ]; then

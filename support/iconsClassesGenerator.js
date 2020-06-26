@@ -27,7 +27,7 @@ const encodeSvgData = (svgData, color) => {
 		.replace(/(<svg[^>]*)( fill="[^"]+")/, '\1')
 		.replace(/<svg/, `<svg fill="${color}"`)
 		.replace(/"/g, "'") // Use single quotes instead of double to avoid encoding.
-		.replace(/>\s{1,}</g, '><')
+		.replace(/>\s+</g, '><')
 		.replace(/\s{2,}/g, ' ')
 		.replace(symbols, encodeURIComponent)
 		.replace(/\s+/g, '%20');
@@ -36,47 +36,63 @@ const encodeSvgData = (svgData, color) => {
 const getCSS = (svgData, cKEditorIcon, direction) => {
 	let directionClass = direction ? `.cke_${direction}` : '';
 
-	const activeIconCSS = `${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
+	const activeIconCSS = `
+		${directionClass}.cke_hidpi .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button.cke_button_on .cke_button__${cKEditorIcon}_icon {
 			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
 				svgData,
 				activeColor
 			)}") !important;
-		}`;
+		}
+	`;
 
-	const defaultIconCSS = `${directionClass}.cke_hidpi .cke_button .cke_button__${cKEditorIcon}_icon,
+	const defaultIconCSS = `
+		${directionClass}.cke_hidpi .cke_button .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button .cke_button__${cKEditorIcon}_icon {
 			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
 				svgData,
 				defaultColor
 			)}") !important;
-		}`;
+		}
+	`;
 
-	const disableIconCSS = `${directionClass}.cke_hidpi .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon,
+	const disableIconCSS = `
+		${directionClass}.cke_hidpi .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button.cke_button_disabled .cke_button__${cKEditorIcon}_icon {
 			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
 				svgData,
 				disableColor
 			)}") !important;
-		}`;
+		}
+	`;
 
-	const hoverIconCSS = `${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon,
+	const hoverIconCSS = `
+		${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button:not(.cke_button_disabled):hover .cke_button__${cKEditorIcon}_icon {
 			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
 				svgData,
 				hoverColor
 			)}") !important;
-		}`;
+		}
+	`;
 
-	const focusIconCSS = `${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon,
+	const focusIconCSS = `
+		${directionClass}.cke_hidpi .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon,
 		${directionClass} .cke_button:not(.cke_button_disabled):focus .cke_button__${cKEditorIcon}_icon {
 			background: url("data:image/svg+xml;charset=utf8,${encodeSvgData(
 				svgData,
 				focusColor
 			)}") !important;
-		}`;
+		}
+	`;
 
-	return `${activeIconCSS} ${defaultIconCSS} ${disableIconCSS} ${hoverIconCSS} ${focusIconCSS}`;
+	return [
+		activeIconCSS,
+		defaultIconCSS,
+		disableIconCSS,
+		hoverIconCSS,
+		focusIconCSS,
+	].join('\n\n');
 };
 
 let iconsCSSContent = '';
