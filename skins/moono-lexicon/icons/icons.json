@@ -29,6 +29,7 @@
         "hidden": "hidden",
         "horizontalrule": "separator",
         "image": "picture",
+        "imageselector": "picture",
         "indent": {
             "ltr": "indent-more",
             "rtl": "indent-less"
