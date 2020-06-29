@@ -149,11 +149,6 @@ a.cke_button_disabled:hover {
 	cursor: default;
 }
 
-a.cke_button_disabled:focus {
-	border: 1px #bcbcbc solid;
-	padding: 3px 5px;
-}
-
 .cke_hc a.cke_button_disabled:hover,
 .cke_hc a.cke_button_disabled:focus,
 .cke_hc a.cke_button_disabled:active {
@@ -178,9 +173,8 @@ a.cke_button_disabled:focus {
 /* This class is applied to the button when the feature associated with the
    button cannot be used (grayed-out), i.e. paste button remains disabled when
    there is nothing in the clipboard to be pasted. */
-a.cke_button_disabled .cke_button_icon,
 a.cke_button_disabled .cke_button_arrow {
-	opacity: 0.3;
+	border-top: 3px solid #a7a9bc;
 }
 
 .cke_hc a.cke_button_disabled {
@@ -270,6 +264,8 @@ a.cke_button_disabled .cke_button_arrow {
 /* Button inner elements. */
 /* The icon which is a visual representation of the button. */
 .cke_button_icon {
+	background-size: 16px !important;
+	background-position: center !important;
 	cursor: inherit;
 	background-repeat: no-repeat;
 	width: 16px;
