@@ -1,3 +1,22 @@
+## [4.13.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.6) (2020-06-29)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.5...4.13.1-liferay.6)
+
+### :new: Features
+
+-   feat: add support for svg icons ([\#74](https://github.com/liferay/liferay-ckeditor/pull/74))
+-   feat: add custom icons to moono-lexicon ([\#70](https://github.com/liferay/liferay-ckeditor/pull/70))
+-   feat: customize moono-lexicon skin ([\#67](https://github.com/liferay/liferay-ckeditor/pull/67))
+-   feat: Add support to create and build skins | Issue #66 ([\#65](https://github.com/liferay/liferay-ckeditor/pull/65))
+
+### :wrench: Bug fixes
+
+-   fix: styles for editable area on source editor mode | #71 ([\#72](https://github.com/liferay/liferay-ckeditor/pull/72))
+
+### :woman_juggling: Refactoring
+
+-   refactor: make build slightly safer ([\#63](https://github.com/liferay/liferay-ckeditor/pull/63))
+
 ## [4.13.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.5) (2020-04-15)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/4.13.1-liferay.4...4.13.1-liferay.5)
