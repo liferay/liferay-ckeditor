@@ -1,3 +1,7 @@
+## [4.13.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.7) (2020-06-29)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.6...4.13.1-liferay.7)
+
 ## [4.13.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.6) (2020-06-29)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.5...4.13.1-liferay.6)
