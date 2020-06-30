@@ -10,7 +10,9 @@
 	"license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
 	"private": false,
 	"devDependencies": {
-		"prettier": "2.0.4"
+		"@clayui/css": "^3.13.0",
+		"prettier": "2.0.4",
+		"sharp": "^0.25.4"
 	},
 	"scripts": {
 		"check:submodule": "node support/checkSubmodule.js",
@@ -20,9 +22,5 @@
 		"postversion": "npx liferay-js-publish",
 		"format": "prettier --write \"skins/**/*.css\" \"support/*.js\" \"*.json\" \"*.md\"",
 		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
-	},
-	"dependencies": {
-		"@clayui/css": "^3.13.0",
-		"sharp": "^0.25.4"
 	}
 }
