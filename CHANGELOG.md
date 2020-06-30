@@ -1,3 +1,19 @@
+## [4.13.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.8) (2020-06-30)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.7...4.13.1-liferay.8)
+
+### :wrench: Bug fixes
+
+-   fix: move dev deps out of "dependencies" ([\#78](https://github.com/liferay/liferay-ckeditor/pull/78))
+
+### :book: Documentation
+
+-   docs: note need to update GitHub releases page ([\#77](https://github.com/liferay/liferay-ckeditor/pull/77))
+
+### :house: Chores
+
+-   chore: update .npmignore ([\#76](https://github.com/liferay/liferay-ckeditor/pull/76))
+
 ## [4.13.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.7) (2020-06-29)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.6...4.13.1-liferay.7)
