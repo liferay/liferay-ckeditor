@@ -143,7 +143,7 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
     git commit -m "chore: build CKEditor"
     ```
 
-    **NOTE:** Check that only files in `ckeditor` folder are being commited.
+    **NOTE:** Check that only files in `ckeditor` folder are being committed.
 
 2.  After successfully building and testing you can publish to NPM.
 
