@@ -130,7 +130,7 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
 
 ### Publishing the liferay-ckeditor package to NPM
 
-1.  After successfully building and testing you can publish to NPM.
+1.  Update, build and commit the result.
 
     ```sh
     # Confirm that worktree is clean and up-to-date.
@@ -138,6 +138,16 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
     git pull upstream master --ff-only
     git status
 
+    # Build and commit.
+    sh ck.sh build
+    git commit -m "chore: build CKEditor"
+    ```
+
+    **NOTE:** Check that only files in `ckeditor` folder are being commited.
+
+2.  After successfully building and testing you can publish to NPM.
+
+    ```sh
     # See all checks pass locally:
     yarn ci
 
@@ -161,9 +171,9 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
     -   A tagged commit is created, including the changes to the CHANGELOG that you staged in a prior step.
     -   The "postversion" script will run, which automatically does `git push` and performs a `yarn publish`, prompting for confirmation along the way.
 
-2.  Paste the relevant section from the CHANGELOG.md to [the corresponding release page](https://github.com/liferay/liferay-ckeditor/releases).
+3.  Paste the relevant section from the CHANGELOG.md to [the corresponding release page](https://github.com/liferay/liferay-ckeditor/releases).
 
-3.  **NOTE:** One effect of using version numbers that include a `-liferay` suffix is that `liferay-js-publish` will interpret them as prerelease versions, in compliance with [how NPM defines prerelease ranges](https://docs.npmjs.com/misc/semver#prerelease-tags) (in agreement with [the SemVer spec](https://semver.org/#spec-item-9)). This means that they will get a `prelease` tag in the NPM registry instead of the default `latest` tag. If you wish to, you can remove this unwanted `prelease` tag and point the `latest` tag at the version you just released with:
+4.  **NOTE:** One effect of using version numbers that include a `-liferay` suffix is that `liferay-js-publish` will interpret them as prerelease versions, in compliance with [how NPM defines prerelease ranges](https://docs.npmjs.com/misc/semver#prerelease-tags) (in agreement with [the SemVer spec](https://semver.org/#spec-item-9)). This means that they will get a `prelease` tag in the NPM registry instead of the default `latest` tag. If you wish to, you can remove this unwanted `prelease` tag and point the `latest` tag at the version you just released with:
 
     ```sh
     npm dist-tag rm liferay-ckeditor prerelease
@@ -172,7 +182,7 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
 
     But in practice, this is optional because we always use an exact version specifier when referencing liferay-ckeditor from [liferay-portal](https://github.com/liferay/liferay-portal) ([example](https://github.com/brianchandotcom/liferay-portal/pull/87677/files)).
 
-4.  After the release, you can confirm that the packages are correctly listed in the NPM registry:
+5.  After the release, you can confirm that the packages are correctly listed in the NPM registry:
 
     -   https://www.npmjs.com/package/liferay-ckeditor
 
