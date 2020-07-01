@@ -25,7 +25,7 @@ For details on why we settled on this approach, please see issues [#7](https://g
 -   `ck.sh setup` makes sure the submodule is up-to-date, creates a "liferay" branch inside it, and applies patches from the "patches/" directory to that branch.
 -   `ck.sh patch` freshens the contents of the "patches/" directory based on the current contents of the "liferay" branch in the submodule.
 -   `ck.sh update` updates to a requested version of CKEditor and rebases the contents of the "patches/" directory onto the new version.
--   `ck.sh build` produces a build based on the current contents of the submodule, writing the files out to the "ckeditor/" directory.
+-   `ck.sh build` produces a build based on the current contents of the submodule, writing the files out to the "ckeditor/" directory and committing the result.
 -   `ck.sh createskin` creates a copy of CKEditor's `moono-lisa` base skin on `/skins` folder with the provided name.
 
 ## Common scenarios
@@ -86,7 +86,7 @@ These are the steps you would follow, for example, to apply a workaround for a b
 
     **WARNING**: You should never publish development builds to the npm registry.
 
--   The updated build artifacts will be staged automatically, ready for committing. This is done using:
+-   For non-development builds, the updated build artifacts will be committed automatically. Be aware that if you ever wish to stage and commit build artifacts by hand, you should do so using:
 
     ```sh
     git add ckeditor
@@ -212,4 +212,3 @@ An example of this can be seen in [this PR](https://github.com/brianchandotcom/l
 1. Create a new skin running `sh ck.sh createskin`.
 2. Edit the skin at `/skins/yourskin` folder.
 3. Build the skin running `sh ck.sh build`.
-4. Commit the result.
