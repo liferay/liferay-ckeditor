@@ -319,7 +319,7 @@ case "$COMMAND" in
 				git clean -fdx
 				git checkout "$tag"
 
-				commitmsg=$(git log -1 --pretty=format:"Update ckeditor-dev to $tag%n%n%h (tag: $tag) %s")
+				commitmsg=$(git log -1 --pretty=format:"chore: update ckeditor-dev to $tag%n%n%h (tag: $tag) %s")
 
 				cd ..
 				git add -f ckeditor-dev
