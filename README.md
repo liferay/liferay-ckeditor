@@ -201,5 +201,5 @@ An example of this can be seen in [this PR](https://github.com/brianchandotcom/l
 
 1. Create a new skin running `sh ck.sh createskin`.
 2. Edit the skin at `/skins/yourskin` folder.
-3. Build the skin running `sh ck.sh buildskin`.
+3. Build the skin running `sh ck.sh build`.
 4. Commit the result.
