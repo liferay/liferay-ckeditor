@@ -140,7 +140,6 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
 
     # Build and commit.
     sh ck.sh build
-    git commit -m "chore: build CKEditor"
     ```
 
     **NOTE:** Check that only files in `ckeditor` folder are being committed.
