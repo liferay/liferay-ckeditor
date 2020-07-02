@@ -56,6 +56,17 @@ case "$COMMAND" in
 				# Copy custom skin to ckeditor-dev
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
+				# Copy skin files for plugins
+				pluginsWithSkins=$(find ckeditor-dev/plugins -maxdepth 2 -mindepth 2 -type d -name skins)
+				for plugin in $pluginsWithSkins; do
+					pluginDir=$(dirname "$plugin")
+					pluginName=$(basename "$pluginDir")
+					pluginSkinPath="skins/moono-lexicon/plugins/$pluginName/skins/moono-lexicon"
+					if [[ -d "$pluginSkinPath" ]]; then
+						cp -r "$pluginSkinPath" "$pluginDir/skins"
+					fi
+				done
+
 				cd ckeditor-dev
 
 				# Generate SVG icons CSS Classes
