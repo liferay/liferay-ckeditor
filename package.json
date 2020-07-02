@@ -11,6 +11,7 @@
 	"private": false,
 	"devDependencies": {
 		"@clayui/css": "^3.13.0",
+		"jquery": "^3.5.1",
 		"prettier": "2.0.4",
 		"sharp": "^0.25.4"
 	},
@@ -22,5 +23,6 @@
 		"postversion": "npx liferay-js-publish",
 		"format": "prettier --write \"skins/**/*.css\" \"support/*.js\" \"*.json\" \"*.md\"",
 		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
-	}
+	},
+	"dependencies": {}
 }

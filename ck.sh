@@ -77,6 +77,10 @@ case "$COMMAND" in
 				# Replace with new build files.
 				cp -r dev/builder/release/ckeditor/* ../ckeditor/
 
+				# Concatenate jQuery with the a11ychecker plugin
+				(cat ../node_modules/jquery/dist/jquery.min.js ../ckeditor/plugins/a11ychecker/plugin.js) > ../ckeditor/plugins/a11ychecker/plugin.jquery.js
+				mv ../ckeditor/plugins/a11ychecker/plugin.jquery.js ../ckeditor/plugins/a11ychecker/plugin.js
+
 				cd ..
 				if [ -n "$DEBUG" ]; then
 					echo
