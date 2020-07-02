@@ -57,7 +57,7 @@ case "$COMMAND" in
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
 				# Copy skin files for plugins
-				pluginsWithSkins=$(find ckeditor-dev/plugins/ -maxdepth 2 -mindepth 2 -type d -name skins)
+				pluginsWithSkins=$(find ckeditor-dev/plugins -maxdepth 2 -mindepth 2 -type d -name skins)
 				for plugin in $pluginsWithSkins; do
 					pluginDir=$(dirname "$plugin")
 					pluginName=$(basename "$pluginDir")
