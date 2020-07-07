@@ -1,0 +1,71 @@
+From 498269a5dd72249555f905022e5a5953410e04a3 Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Tue, 7 Jul 2020 09:47:27 +0200
+Subject: [PATCH 5/5] LPS-112982 Add additional resource URL parameters
+
+---
+ core/ckeditor_base.js | 25 ++++++++++++++++++-------
+ core/config.js        |  9 +++++++++
+ 2 files changed, 27 insertions(+), 7 deletions(-)
+
+diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
+index 3fb18f5f7..a6ce37594 100644
+--- a/core/ckeditor_base.js
++++ b/core/ckeditor_base.js
+@@ -171,15 +171,26 @@ if ( !window.CKEDITOR ) {
+ 			 * @returns {String} The full URL.
+ 			 */
+ 			getUrl: function( resource ) {
+-				// If this is not a full or absolute path.
+-				if ( resource.indexOf( ':/' ) == -1 && resource.indexOf( '/' ) !== 0 )
+-					resource = this.basePath + resource;
++				var resourceUrl = resource.startsWith(this.basePath)
++					? new URL(resource)
++					: new URL(this.basePath + resource);
+ 
+-				// Add the timestamp, except for directories.
+-				if ( this.timestamp && resource.charAt( resource.length - 1 ) != '/' && !( /[&?]t=/ ).test( resource ) )
+-					resource += ( resource.indexOf( '?' ) >= 0 ? '&' : '?' ) + 't=' + this.timestamp;
++				if (!resourceUrl.toString().endsWith('/')) {
++					if (this.timestamp && !resourceUrl.searchParams.has('t')) {
++						resourceUrl.searchParams.set('t', this.timestamp);
++					}
++
++					Object.entries(CKEDITOR.ADDITIONAL_RESOURCE_PARAMS).forEach(function(entries) {
++						var key = entries[0];
++						var value = entries[1];
++
++						if (!resourceUrl.searchParams.has(key)) {
++							resourceUrl.searchParams.set(key, value);
++						}
++					});
++				}
+ 
+-				return resource;
++				return resourceUrl.toString();
+ 			},
+ 
+ 			/**
+diff --git a/core/config.js b/core/config.js
+index 8a1ddb6e4..966d798d3 100644
+--- a/core/config.js
++++ b/core/config.js
+@@ -8,6 +8,15 @@
+  * default configuration settings.
+  */
+ 
++/**
++ * A map of optional additional parameters that will be
++ * added to a resource's URL
++ *
++ * @property {Object}
++ * @member CKEDITOR
++ */
++CKEDITOR.ADDITIONAL_RESOURCE_PARAMS = {};
++
+ /**
+  * Used in conjunction with the {@link CKEDITOR.config#enterMode}
+  * and {@link CKEDITOR.config#shiftEnterMode} configuration
+-- 
+2.27.0
+
