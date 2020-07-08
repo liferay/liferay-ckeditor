@@ -1,3 +1,29 @@
+## [4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/4.14.1-liferay.1) (2020-07-08)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.8...4.14.1-liferay.1)
+
+### :new: Features
+
+-   feat: allow additional resource URL parameters ([\#89](https://github.com/liferay/liferay-ckeditor/pull/89))
+-   feat: autocommit build artifacts after `./ck.sh build` ([\#84](https://github.com/liferay/liferay-ckeditor/pull/84))
+-   feat: streamline CKEditor bundle ([\#73](https://github.com/liferay/liferay-ckeditor/pull/73))
+
+### :wrench: Bug fixes
+
+-   fix: add skin files for plugins that support skinning ([\#85](https://github.com/liferay/liferay-ckeditor/pull/85))
+-   fix: use semantic commit message format for automatic commits ([\#80](https://github.com/liferay/liferay-ckeditor/pull/80))
+
+### :book: Documentation
+
+-   docs: remove instruction to "git commit" after building ([\#87](https://github.com/liferay/liferay-ckeditor/pull/87))
+-   docs: update stale reference to non-existent "buildskin" subcommand ([\#83](https://github.com/liferay/liferay-ckeditor/pull/83))
+-   docs: Add build to publish steps ([\#82](https://github.com/liferay/liferay-ckeditor/pull/82))
+
+### :house: Chores
+
+-   chore: update clay css to v3.14.0 ([\#90](https://github.com/liferay/liferay-ckeditor/pull/90))
+-   chore: update ckeditor-dev to 4.14.1 ([\#81](https://github.com/liferay/liferay-ckeditor/pull/81))
+
 ## [4.13.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.8) (2020-06-30)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.7...4.13.1-liferay.8)
