@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("stylescombo","sr-latn",{label:"Stil",panelTitle:"Stilovi formatiranja",panelTitle1:"Blok stilovi",panelTitle2:"Inline stilovi",panelTitle3:"Stilovi objekta"});
