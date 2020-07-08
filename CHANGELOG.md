@@ -1,6 +1,6 @@
-## [4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/4.14.1-liferay.1) (2020-07-08)
+## [v4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.1) (2020-07-08)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.8...4.14.1-liferay.1)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.8...v4.14.1-liferay.1)
 
 ### :new: Features
 
@@ -24,9 +24,9 @@
 -   chore: update clay css to v3.14.0 ([\#90](https://github.com/liferay/liferay-ckeditor/pull/90))
 -   chore: update ckeditor-dev to 4.14.1 ([\#81](https://github.com/liferay/liferay-ckeditor/pull/81))
 
-## [4.13.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.8) (2020-06-30)
+## [v4.13.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/v4.13.1-liferay.8) (2020-06-30)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.7...4.13.1-liferay.8)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.7...v4.13.1-liferay.8)
 
 ### :wrench: Bug fixes
 
@@ -40,13 +40,13 @@
 
 -   chore: update .npmignore ([\#76](https://github.com/liferay/liferay-ckeditor/pull/76))
 
-## [4.13.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.7) (2020-06-29)
+## [v4.13.1-liferay.7](vhttps://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.7) (2020-06-29)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.6...4.13.1-liferay.7)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.6...v4.13.1-liferay.7)
 
-## [4.13.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.6) (2020-06-29)
+## [v4.13.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/v4.13.1-liferay.6) (2020-06-29)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.5...4.13.1-liferay.6)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.5...v4.13.1-liferay.6)
 
 ### :new: Features
 
@@ -63,9 +63,9 @@
 
 -   refactor: make build slightly safer ([\#63](https://github.com/liferay/liferay-ckeditor/pull/63))
 
-## [4.13.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.5) (2020-04-15)
+## [v4.13.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.13.1-liferay.5) (2020-04-15)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/4.13.1-liferay.4...4.13.1-liferay.5)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/4.13.1-liferay.4...v4.13.1-liferay.5)
 
 ### :new: Features
 
