@@ -10,7 +10,7 @@
 	"license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
 	"private": false,
 	"devDependencies": {
-		"@clayui/css": "^3.13.0",
+		"@clayui/css": "^3.14.0",
 		"prettier": "2.0.4",
 		"sharp": "^0.25.4"
 	},

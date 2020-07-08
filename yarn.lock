@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@clayui/css@^3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@clayui/css/-/css-3.13.0.tgz#02b449fb64fbe2d1bfee144757fed63b4dc32846"
-  integrity sha512-MRBJSI0pv8nk0sBDMj/V3l4ScEg/EZuuY3Sz0ZLnmeNYfPA+iLlbSdjfF/iPFgsNGNXthEOFp7hqMqGw9e/SwA==
+"@clayui/css@^3.14.0":
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/@clayui/css/-/css-3.14.0.tgz#5b9093322b2ca8bfe6c6edea960c8dcc89f5ddc3"
+  integrity sha512-uvtMif/1uifDWXuN0o0+sxSZD57kGp0ZIV4/0QLejAwfaXOp1kcSZiIjPAxNMclLzxCmPRIU+Hy5PU006MglQg==
 
 ansi-regex@^2.0.0:
   version "2.1.1"

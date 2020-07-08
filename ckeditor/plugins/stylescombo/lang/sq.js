@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("stylescombo","sq",{label:"Stilet",panelTitle:"Formatimi i Stileve",panelTitle1:"Stilet e Bllokut",panelTitle2:"Stilet e Brendshme",panelTitle3:"Stilet e Objektit"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("stylescombo","da",{label:"Typografi",panelTitle:"Formatering på stylesheet",panelTitle1:"Blok typografi",panelTitle2:"Inline typografi",panelTitle3:"Objekt typografi"});
