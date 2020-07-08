@@ -6,17 +6,19 @@
         "align-image-right": "align-image-right",
         "anchor": {
             "ltr": "flag-full",
-            "rtl": "flag-full"
+            "rtl": "flag-full-rtl"
         },
+        "audioselector": "audio",
+        "bgcolor": "background-color",
         "blockquote": "quote-right",
         "bold": "bold",
         "bulletedlist": {
             "ltr": "list-ul",
-            "rtl": "list-ul"
+            "rtl": "list-ul-rtl"
         },
         "copy": {
-            "ltr": "paste",
-            "rtl": "paste"
+            "ltr": "copy",
+            "rtl": "copy"
         },
         "cut": {
             "ltr": "cut",
@@ -43,11 +45,19 @@
         "maximize": "full-size",
         "numberedlist": {
             "ltr": "list-ol",
-            "rtl": "list-ol"
+            "rtl": "list-ol-rtl"
         },
         "outdent": {
             "ltr": "indent-less",
             "rtr": "indent-more"
+        },
+        "paste": {
+            "ltr": "paste",
+            "rtl": "paste"
+        },
+        "pastefromword": {
+            "ltr": "paste-word",
+            "rtl": "paste-word"
         },
         "redo": {
             "ltr": "redo",
@@ -55,19 +65,24 @@
         },
         "removeformat": "remove-style",
         "replace": "change-list",
+        "selectall": "select-all",
+        "smiley": "emoji",
         "source": {
             "ltr":"code",
             "rtl":"code"
         },
+        "specialchar": "special-character",
         "strike": "strikethrough",
         "subscript": "subscript",
         "superscript": "superscript",
         "table": "table2",
+        "textcolor": "text-color",
         "underline": "underline",
         "undo": {
             "ltr": "undo",
             "rtl": "redo"
         },
-        "unlink": "chain-broken"
+        "unlink": "chain-broken",
+        "videoselector": "video"
     }
 }
