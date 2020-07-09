@@ -9,6 +9,15 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 	display: inline;
 }
 
+/* Hide button labels on 768px breakpoint */
+@media (max-width: 768px) {
+	.cke_button__label,
+	.cke_button__source_label,
+	.cke_button__sourcedialog_label {
+		display: none;
+	}
+}
+
 /* "Font Size" panel size */
 .cke_combopanel__fontsize {
 	width: 135px;
