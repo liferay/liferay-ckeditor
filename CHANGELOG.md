@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.2) (2020-07-10)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.1...v4.14.1-liferay.2)
+
+### :book: Documentation
+
+-   docs: fix broken links in changelog ([\#91](https://github.com/liferay/liferay-ckeditor/pull/91))
+
 ## [v4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.1) (2020-07-08)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.8...v4.14.1-liferay.1)
