@@ -52,7 +52,7 @@ These are the steps you would follow, for example, to apply a workaround for a b
 -   Set up everything to start working on a patch:
 
     ```sh
-    sh ck.sh setup
+    ./ck.sh setup
     ```
 
 -   Work on your changes:
@@ -67,7 +67,7 @@ These are the steps you would follow, for example, to apply a workaround for a b
 
     ```sh
     cd ..
-    sh ck.sh patch
+    ./ck.sh patch
     ```
 
 -   Create a build of CKEditor containing the patches:
@@ -75,7 +75,7 @@ These are the steps you would follow, for example, to apply a workaround for a b
     From the root of the superproject's directory, run
 
     ```sh
-    sh ck.sh build
+    ./ck.sh build
     ```
 
     If you'd rather like a development build, for example for local debugging, use:
@@ -139,7 +139,7 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
     git status
 
     # Build and commit.
-    sh ck.sh build
+    ./ck.sh build
     ```
 
     **NOTE:** Check that only files in `ckeditor` folder are being committed.
@@ -208,6 +208,6 @@ An example of this can be seen in [this PR](https://github.com/brianchandotcom/l
 
 ### Creating and building a custom skin
 
-1. Create a new skin running `sh ck.sh createskin`.
+1. Create a new skin running `./ck.sh createskin`.
 2. Edit the skin at `/skins/yourskin` folder.
-3. Build the skin running `sh ck.sh build`.
+3. Build the skin running `./ck.sh build`.

@@ -152,7 +152,7 @@ case "$COMMAND" in
 			echo
 			echo "It seems that there's no 'liferay' branch in the 'ckeditor-dev' submodule."
 			echo
-			echo "Please run 'sh ck.sh setup' to set up everything correctly."
+			echo "Please run './ck.sh setup' to set up everything correctly."
 			echo
 			exit 1
 		fi
@@ -216,7 +216,7 @@ case "$COMMAND" in
 		echo
 		echo "Here are the steps to follow:"
 		echo
-		echo "1. Run 'sh ck.sh build' to generate a patched version."
+		echo "1. Run './ck.sh build' to generate a patched version."
 		echo
 		;;
 
@@ -273,7 +273,7 @@ case "$COMMAND" in
 						echo "  git am --abort"
 						echo "  git am ../patches/*"
 						echo
-						echo "Once you are happy with the result, run 'sh ck.sh patch' to update the contents of \"patches/\"."
+						echo "Once you are happy with the result, run './ck.sh patch' to update the contents of \"patches/\"."
 						echo
 						exit 1
 					fi
@@ -292,7 +292,7 @@ case "$COMMAND" in
 				echo "2. Work on your changes"
 				echo "3. Commit your changes"
 				echo "4. Return to the repository root (\`cd ..\`)"
-				echo "5. Run 'sh ck.sh patch' to generate updated patches"
+				echo "5. Run './ck.sh patch' to generate updated patches"
 				echo
 				;;
 			*)
