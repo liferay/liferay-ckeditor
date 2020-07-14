@@ -1,3 +1,15 @@
+## [v4.14.1-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.3) (2020-07-14)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.2...v4.14.1-liferay.3)
+
+### :wrench: Bug fixes
+
+-   fix: remove positioning and size definition of the editable area as is notlonger needed and was interfering with alloy editor styling ([\#95](https://github.com/liferay/liferay-ckeditor/pull/95))
+
+### :house: Chores
+
+-   chore: replace `sh ck.sh` with `./ck.sh` ([\#94](https://github.com/liferay/liferay-ckeditor/pull/94))
+
 ## [v4.14.1-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.2) (2020-07-10)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.1...v4.14.1-liferay.2)
