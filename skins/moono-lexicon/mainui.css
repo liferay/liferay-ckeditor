@@ -48,6 +48,7 @@ Special outer level classes used in this file:
 /* The outer boundary of the interface. */
 .cke_chrome {
 	/* This is <span>, so transform it into a block.*/
+	border: 1px solid transparent;
 	display: block;
 	padding: 0;
 }
