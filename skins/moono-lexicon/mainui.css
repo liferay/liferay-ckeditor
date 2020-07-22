@@ -190,16 +190,6 @@ Special outer level classes used in this file:
 	padding: 12px 16px 8px 16px;
 }
 
-.cke_editable:after {
-	border: 1px solid #e7e7ed; /* $secondary-l3 */
-	bottom: 0;
-	content: '';
-	left: 0;
-	position: fixed;
-	right: 0;
-	top: 0;
-}
-
 .cke_editable:focus {
 	background-color: #f0f5ff; /* $primary-l3 */
 }
