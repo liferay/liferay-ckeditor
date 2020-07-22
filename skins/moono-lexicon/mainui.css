@@ -207,3 +207,10 @@ Special outer level classes used in this file:
 .cke_editable:focus:after {
 	border-color: #80acff; /* $primary-l1 */
 }
+
+/* Page editor inline editor specific style for reseting backgorund color and padding
+*/
+.page-editor__fragment-content .cke_editable {
+	background-color: unset;
+	padding: 0;
+}
