@@ -1,3 +1,12 @@
+## [v4.14.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.5) (2020-07-23)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.3...v4.14.1-liferay.5)
+
+### :wrench: Bug fixes
+
+-   fix: remove overlay that is preventing unrelated UI interactions on the page ([\#98](https://github.com/liferay/liferay-ckeditor/pull/98))
+-   fix: add border property to outer class required for resizing ([\#96](https://github.com/liferay/liferay-ckeditor/pull/96))
+
 ## [v4.14.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.4) (2020-07-16)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.3...v4.14.1-liferay.4)
