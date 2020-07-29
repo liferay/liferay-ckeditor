@@ -230,6 +230,8 @@ case "$COMMAND" in
 		read -r -p "Are you sure you want to continue? [y/n] " yn
 		case $yn in
 			[Yy]*)
+				yarn
+
 				# Make sure submodule is registered and up-to-date.
 				git submodule update --init
 
