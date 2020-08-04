@@ -288,11 +288,11 @@ a.cke_button_disabled .cke_button_arrow {
 	display: none;
 	padding-left: 3px;
 	margin-top: 1px;
-	line-height: 17px;
 	vertical-align: middle;
 	float: left;
 	cursor: default;
-	color: #484848;
+	color: #6b6c7e; /* $secondary */
+	font-weight: 600;
 }
 
 .cke_rtl .cke_button_label {
@@ -305,6 +305,16 @@ a.cke_button_disabled .cke_button_arrow {
 	padding: 0;
 	display: inline-block;
 	font-size: 12px;
+}
+
+a.cke_button_on .cke_button_label,
+a.cke_button:active .cke_button_label,
+a.cke_button:hover .cke_button_label {
+	color: #272833; /* $dark */
+}
+
+a.cke_button_disabled .cke_button_label {
+	color: #a7a9bc; /* $secondary-l1 */
 }
 
 /* The small arrow available on buttons that can be expanded
