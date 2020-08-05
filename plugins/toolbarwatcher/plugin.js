@@ -20,8 +20,6 @@
 	if (!CKEDITOR.plugins.get(PLUGIN_NAME)) {
 		var TOOLBAR_HIDDEN_LABELS_CLASS = 'cke_hide_toolbar_labels';
 
-		var stylesLoaded = false;
-
 		function debounce(fn, delay) {
 			return function debounced() {
 				var args = Array.prototype.slice.call(arguments);
@@ -55,15 +53,6 @@
 					});
 
 				return width;
-			},
-
-			init(editor) {
-				if (!stylesLoaded) {
-					CKEDITOR.document.appendStyleSheet(
-						this.path + 'skins/default.css'
-					);
-					stylesLoaded = true;
-				}
 			},
 
 			isToolbarOverflowing() {
@@ -119,6 +108,15 @@
 							}
 						}
 					}, 100)
+				);
+			},
+
+			onLoad() {
+				CKEDITOR.addCss(
+					'.cke_hide_toolbar_labels .cke_button__label,' +
+						'.cke_hide_toolbar_labels .cke_button__source_label,' +
+						'.cke_hide_toolbar_labels .cke_button__sourcedialog_label {' +
+						'display: none; }'
 				);
 			},
 		});
