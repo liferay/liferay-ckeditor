@@ -71,17 +71,17 @@
 					'.cke_top'
 				);
 
-				var toolbarsContainerWidth = Infinity;
-
 				if (toolbarsContainer) {
-					toolbarsContainerWidth =
+					var toolbarsContainerWidth =
 						parseInt(
 							getComputedStyle(toolbarsContainer).width,
 							10
 						) || 0;
+
+					return this.labeledToolbarsWidth >= toolbarsContainerWidth;
 				}
 
-				return this.labeledToolbarsWidth >= toolbarsContainerWidth;
+				return false;
 			},
 
 			labeledToolbarsWidth: 0,
