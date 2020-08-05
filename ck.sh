@@ -56,11 +56,7 @@ case "$COMMAND" in
 				# Copy custom skin to ckeditor-dev
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
-				# Copy plugins
-				plugins=$(find plugins -maxdepth 1 -mindepth 1 -type d)
-				for plugin in $plugins; do
-					cp -r "$plugin" "ckeditor-dev/plugins"
-				done
+				cp -r plugins ckeditor-dev
 
 				cd ckeditor-dev
 
