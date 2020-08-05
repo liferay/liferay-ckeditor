@@ -198,6 +198,7 @@ a.cke_button_disabled .cke_button_arrow {
 	margin-top: 2px;
 	top: 0;
 	right: -7px;
+	pointer-events: none;
 }
 
 .cke_rtl .cke_toolgroup a.cke_button:last-child:after,
