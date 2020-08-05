@@ -60,7 +60,7 @@
 			init(editor) {
 				if (!stylesLoaded) {
 					CKEDITOR.document.appendStyleSheet(
-						this.path + 'styles/' + PLUGIN_NAME + '.css'
+						this.path + 'skins/default.css'
 					);
 					stylesLoaded = true;
 				}
