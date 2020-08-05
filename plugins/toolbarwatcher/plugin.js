@@ -25,15 +25,11 @@
 		function debounce(fn, delay) {
 			return function debounced() {
 				var args = Array.prototype.slice.call(arguments);
-				cancelDebounced(debounced);
+				clearTimeout(debounced.id);
 				debounced.id = setTimeout(function () {
 					fn.apply(null, args);
 				}, delay);
 			};
-		}
-
-		function cancelDebounced(debounced) {
-			clearTimeout(debounced.id);
 		}
 
 		CKEDITOR.plugins.add(PLUGIN_NAME, {
