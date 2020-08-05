@@ -46,13 +46,15 @@
 			getToolbarsWidth() {
 				var containerElement = this.editor.container.$;
 
-				var toolbars = Array.from(
-					containerElement.querySelectorAll('.cke_toolbar')
-				);
+				var width = 0;
 
-				return toolbars.reduce(function (acc, toolbar) {
-					return acc + toolbar.offsetWidth;
-				}, 0);
+				containerElement
+					.querySelectorAll('.cke_toolbar')
+					.forEach(function (element) {
+						width += element.offsetWidth;
+					});
+
+				return width;
 			},
 
 			init(editor) {
