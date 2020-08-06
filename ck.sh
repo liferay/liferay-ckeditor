@@ -207,7 +207,7 @@ case "$COMMAND" in
 		echo "Generating patches."
 		echo
 
-		git format-patch "$sha1" -o ../patches
+		git format-patch --diff-algorithm=histogram --no-numbered --no-signature "$sha1" -o ../patches
 
 		echo
 		echo "✅ DONE"
