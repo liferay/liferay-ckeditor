@@ -159,7 +159,8 @@ is its visual representation:
 
 /* Redefine focus outline so it is the same for all browsers. */
 .cke_panel_listItem a:focus {
-	outline: 1px dotted #000;
+	box-shadow: inset 0 0 0 0.125rem #80acff, inset 0 0 0 0.25rem #fff;
+	outline: 0;
 }
 
 .cke_hc .cke_panel_listItem a:hover,
