@@ -1,7 +1,7 @@
-From 498269a5dd72249555f905022e5a5953410e04a3 Mon Sep 17 00:00:00 2001
+From 11801b3f4995cd1799ec00ecef35252898c54757 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 7 Jul 2020 09:47:27 +0200
-Subject: [PATCH 5/5] LPS-112982 Add additional resource URL parameters
+Subject: [PATCH 5/6] LPS-112982 Add additional resource URL parameters
 
 ---
  core/ckeditor_base.js | 25 ++++++++++++++++++-------
@@ -67,5 +67,5 @@ index 8a1ddb6e4..966d798d3 100644
   * Used in conjunction with the {@link CKEDITOR.config#enterMode}
   * and {@link CKEDITOR.config#shiftEnterMode} configuration
 -- 
-2.27.0
+2.23.0
 

@@ -1,7 +1,7 @@
-From 73347eea4d99e153bec3d26eb1f980011d90afbb Mon Sep 17 00:00:00 2001
+From f22231335a80630b23d7af98508585cd2650d2c3 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Wed, 25 Mar 2020 12:58:15 +0100
-Subject: [PATCH 3/5] LPS-85326 Remove check for Webkit browsers
+Subject: [PATCH 3/6] LPS-85326 Remove check for Webkit browsers
 
 As described in this issue:
 
@@ -31,5 +31,5 @@ index 0c0cb261c..dd7f4701e 100644
  						// move the selection by itself (https://dev.ckeditor.com/ticket/1272).
  						var fillingChar = createFillingCharSequenceNode( this.root );
 -- 
-2.27.0
+2.23.0
 
