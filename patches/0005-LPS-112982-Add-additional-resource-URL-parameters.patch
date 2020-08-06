@@ -1,7 +1,7 @@
 From 11801b3f4995cd1799ec00ecef35252898c54757 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 7 Jul 2020 09:47:27 +0200
-Subject: [PATCH 5/6] LPS-112982 Add additional resource URL parameters
+Subject: [PATCH] LPS-112982 Add additional resource URL parameters
 
 ---
  core/ckeditor_base.js | 25 ++++++++++++++++++-------
@@ -30,7 +30,8 @@ index 3fb18f5f7..a6ce37594 100644
 +					if (this.timestamp && !resourceUrl.searchParams.has('t')) {
 +						resourceUrl.searchParams.set('t', this.timestamp);
 +					}
-+
+ 
+-				return resource;
 +					Object.entries(CKEDITOR.ADDITIONAL_RESOURCE_PARAMS).forEach(function(entries) {
 +						var key = entries[0];
 +						var value = entries[1];
@@ -40,8 +41,7 @@ index 3fb18f5f7..a6ce37594 100644
 +						}
 +					});
 +				}
- 
--				return resource;
++
 +				return resourceUrl.toString();
  			},
  
@@ -66,6 +66,3 @@ index 8a1ddb6e4..966d798d3 100644
  /**
   * Used in conjunction with the {@link CKEDITOR.config#enterMode}
   * and {@link CKEDITOR.config#shiftEnterMode} configuration
--- 
-2.23.0
-
