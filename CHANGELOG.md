@@ -1,3 +1,26 @@
+## [v4.14.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.6) (2020-08-06)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.5...v4.14.1-liferay.6)
+
+### :new: Features
+
+-   feat: reduce noise created by patch updates ([\#109](https://github.com/liferay/liferay-ckeditor/pull/109))
+
+### :wrench: Bug fixes
+
+-   fix: Don't pass languageId to css files requests ([\#108](https://github.com/liferay/liferay-ckeditor/pull/108))
+-   fix: fix combo dropdown styles ([\#107](https://github.com/liferay/liferay-ckeditor/pull/107))
+-   fix: Review moono-lexicon styles ([\#106](https://github.com/liferay/liferay-ckeditor/pull/106))
+-   fix: remove comments from svg icons ([\#101](https://github.com/liferay/liferay-ckeditor/pull/101))
+
+### :house: Chores
+
+-   chore: add yarn install to setup task ([\#97](https://github.com/liferay/liferay-ckeditor/pull/97))
+
+### :woman_juggling: Refactoring
+
+-   refactor: regen patches ([\#110](https://github.com/liferay/liferay-ckeditor/pull/110))
+
 ## [v4.14.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.5) (2020-07-23)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.3...v4.14.1-liferay.5)
