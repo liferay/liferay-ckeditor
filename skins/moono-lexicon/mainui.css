@@ -48,7 +48,8 @@ Special outer level classes used in this file:
 /* The outer boundary of the interface. */
 .cke_chrome {
 	/* This is <span>, so transform it into a block.*/
-	border: 1px solid transparent;
+	border: 1px solid #e7e7ed; /* $secondary-l3 */
+	border-radius: 4px;
 	display: block;
 	padding: 0;
 }
@@ -58,6 +59,7 @@ Special outer level classes used in this file:
 	/* This is <span>, so transform it into a block.*/
 	display: block;
 	background: #fff;
+	border-radius: 4px;
 	padding: 0;
 
 	-webkit-touch-callout: none; /* Safari only */
@@ -89,7 +91,6 @@ Special outer level classes used in this file:
 
 .cke_top {
 	background: white; /* $white */
-	border: 1px solid #e7e7ed; /* $secondary-l3 */
 	border-radius: 4px 4px 0 0;
 	border-bottom: none;
 	padding: 6px 7px;
@@ -102,9 +103,17 @@ Special outer level classes used in this file:
 	border: 1px solid #d1d1d1;
 }
 
+.cke_contents {
+	border: 1px solid #e7e7e7; /* $secondary-l3 */
+	margin: 0 -1px;
+}
+
+.cke_focus .cke_contents {
+	border-color: #80acff; /* $primary-l1 */
+}
+
 .cke_bottom {
 	background: white; /* $white */
-	border: 1px solid #e7e7ed;
 	border-radius: 0 0 4px 4px;
 	border-top: none;
 	color: #6b6c7e; /* $secondary */
@@ -126,7 +135,7 @@ Special outer level classes used in this file:
 	width: 0;
 	height: 0;
 	overflow: hidden;
-	border-width: 10px 10px 0 0;
+	border-width: 8px 8px 0 0;
 	border-color: transparent #bcbcbc transparent transparent;
 	border-style: dashed solid dashed dashed;
 
@@ -192,8 +201,4 @@ Special outer level classes used in this file:
 
 .cke_editable:focus {
 	background-color: #f0f5ff; /* $primary-l3 */
-}
-
-.cke_editable:focus:after {
-	border-color: #80acff; /* $primary-l1 */
 }
