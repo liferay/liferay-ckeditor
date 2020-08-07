@@ -17,6 +17,8 @@
 
 	var PLUGIN_NAME = 'toolbarwatcher';
 
+	var stylesLoaded = false;
+
 	if (!CKEDITOR.plugins.get(PLUGIN_NAME)) {
 		var TOOLBAR_HIDDEN_LABELS_CLASS = 'cke_hide_toolbar_labels';
 
@@ -55,6 +57,15 @@
 				return width;
 			},
 
+			init: function(editor) {
+				if (!stylesLoaded) {
+					CKEDITOR.document.appendStyleSheet(
+						this.path + 'skins/default.css'
+					);
+					stylesLoaded = true;
+				}
+			},
+
 			isToolbarOverflowing: function () {
 				var toolbarsContainer = this.editor.container.$.querySelector(
 					'.cke_top'
@@ -83,6 +94,8 @@
 				event.editor.window.on(
 					'resize',
 					debounce(function () {
+						instance.labeledToolbarsWidth = instance.getToolbarsWidth();
+
 						var containerElement = instance.editor.container.$;
 						var isToolbarOverflowing = instance.isToolbarOverflowing();
 
@@ -107,18 +120,10 @@
 								);
 							}
 						}
-					}, 100)
-				);
-			},
-
-			onLoad: function () {
-				CKEDITOR.addCss(
-					'.cke_hide_toolbar_labels .cke_button__label,' +
-						'.cke_hide_toolbar_labels .cke_button__source_label,' +
-						'.cke_hide_toolbar_labels .cke_button__sourcedialog_label {' +
-						'display: none; }'
+					}, 50)
 				);
 			}
+
 		});
 	}
 })();
