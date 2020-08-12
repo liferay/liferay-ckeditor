@@ -33,6 +33,33 @@
 		}
 
 		CKEDITOR.plugins.add(PLUGIN_NAME, {
+			_onResize: function() {
+				var containerElement = this.editor.container.$;
+				var isToolbarOverflowing = this.isToolbarOverflowing();
+
+				if (isToolbarOverflowing) {
+					if (
+						!containerElement.classList.contains(
+							TOOLBAR_HIDDEN_LABELS_CLASS
+						)
+					) {
+						containerElement.classList.add(
+							TOOLBAR_HIDDEN_LABELS_CLASS
+						);
+					}
+				} else {
+					if (
+						containerElement.classList.contains(
+							TOOLBAR_HIDDEN_LABELS_CLASS
+						)
+					) {
+						containerElement.classList.remove(
+							TOOLBAR_HIDDEN_LABELS_CLASS
+						);
+					}
+				}
+			},
+
 			afterInit: function (editor) {
 				this.editor = editor;
 				this.editor.on(
@@ -41,23 +68,36 @@
 				);
 			},
 
-			editor: null,
-
 			getToolbarsWidth: function () {
 				var containerElement = this.editor.container.$;
 
 				var width = 0;
 
 				containerElement
-					.querySelectorAll('.cke_toolbar')
+					.querySelectorAll('.cke_toolbar, .cke_toolbar_break')
 					.forEach(function (element) {
 						width += element.offsetWidth;
+						if (element.className.indexOf('cke_toolbar_break') !== -1) {
+							width = 0;
+						}
 					});
 
 				return width;
 			},
 
-			init: function(editor) {
+			getToolbarsContainerWidth: function() {
+				var toolbarsContainer = this.editor.container.$.querySelector(
+					'.cke_top'
+				);
+				if (toolbarsContainer) {
+					return parseInt(getComputedStyle(toolbarsContainer).width, 10) || 0;
+				}
+				else {
+					return 0;
+				}
+			},
+
+			init: function() {
 				if (!stylesLoaded) {
 					CKEDITOR.document.appendStyleSheet(
 						this.path + 'skins/default.css'
@@ -67,63 +107,26 @@
 			},
 
 			isToolbarOverflowing: function () {
-				var toolbarsContainer = this.editor.container.$.querySelector(
-					'.cke_top'
-				);
+				var toolbarsContainerWidth = this.getToolbarsContainerWidth();
+				var toolbarsWidth = this.getToolbarsWidth();
 
-				if (toolbarsContainer) {
-					var toolbarsContainerWidth =
-						parseInt(
-							getComputedStyle(toolbarsContainer).width,
-							10
-						) || 0;
-
-					return this.labeledToolbarsWidth >= toolbarsContainerWidth;
-				}
-
-				return false;
+				return toolbarsWidth >= toolbarsContainerWidth;
 			},
 
-			labeledToolbarsWidth: 0,
+			onDestroy: function() {
+				if (this.editor.window && this.editor.window.hasListeners('resize')) {
+					this.editor.window.removeListener('resize', this.debouncedResizeListener);
+				}
+			},
 
 			onInstanceReady: function (event) {
-				var instance = this;
+				this.debouncedResizeListener = debounce(this._onResize.bind(this), 200);
 
-				this.labeledToolbarsWidth = this.getToolbarsWidth();
+				event.editor.on('destroy', this.onDestroy.bind(this));
+				event.editor.window.on('resize', this.debouncedResizeListener);
 
-				event.editor.window.on(
-					'resize',
-					debounce(function () {
-						instance.labeledToolbarsWidth = instance.getToolbarsWidth();
-
-						var containerElement = instance.editor.container.$;
-						var isToolbarOverflowing = instance.isToolbarOverflowing();
-
-						if (isToolbarOverflowing) {
-							if (
-								!containerElement.classList.contains(
-									TOOLBAR_HIDDEN_LABELS_CLASS
-								)
-							) {
-								containerElement.classList.add(
-									TOOLBAR_HIDDEN_LABELS_CLASS
-								);
-							}
-						} else {
-							if (
-								containerElement.classList.contains(
-									TOOLBAR_HIDDEN_LABELS_CLASS
-								)
-							) {
-								containerElement.classList.remove(
-									TOOLBAR_HIDDEN_LABELS_CLASS
-								);
-							}
-						}
-					}, 50)
-				);
+				this.debouncedResizeListener();
 			}
-
 		});
 	}
 })();
