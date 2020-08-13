@@ -1,0 +1,88 @@
+From 8e342f43622a2519a89304f19a44f2a399c8a8d5 Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Thu, 13 Aug 2020 12:34:29 +0200
+Subject: [PATCH] LPS-115747 Add the ability to center images
+
+---
+ plugins/image/dialogs/image.js | 35 +++++++++++++++++++++++++++-------
+ 1 file changed, 28 insertions(+), 7 deletions(-)
+
+diff --git a/plugins/image/dialogs/image.js b/plugins/image/dialogs/image.js
+index acd7b66db..a9447b90e 100644
+--- a/plugins/image/dialogs/image.js
++++ b/plugins/image/dialogs/image.js
+@@ -911,7 +911,7 @@
+ 								},
+ 								{
+ 									id: 'cmbAlign',
+-									requiredContent: 'img{float}',
++									requiredContent: 'img{display,float,margin}',
+ 									type: 'select',
+ 									widths: [ '35%', '65%' ],
+ 									style: 'width:90px',
+@@ -920,6 +920,7 @@
+ 									items: [
+ 										[ editor.lang.common.notSet, '' ],
+ 										[ editor.lang.common.left, 'left' ],
++										[ editor.lang.common.center, 'center' ],
+ 										[ editor.lang.common.right, 'right' ]
+ 										// Backward compatible with v2 on setup when specified as attribute value,
+ 										// while these values are no more available as select options.
+@@ -937,12 +938,21 @@
+ 									},
+ 									setup: function( type, element ) {
+ 										if ( type == IMAGE ) {
+-											var value = element.getStyle( 'float' );
+-											switch ( value ) {
++											var displayValue = element.getStyle( 'display' );
++											var floatValue = element.getStyle( 'float' );
++											var marginValue = element.getStyle( 'margin' );
++
++											switch ( floatValue ) {
+ 												// Ignore those unrelated values.
+ 												case 'inherit':
+ 												case 'none':
+-													value = '';
++													floatValue = '';
++											}
++
++											var value = floatValue;
++
++											if (displayValue === 'block' && marginValue === '0px auto') {
++												value = 'center';
+ 											}
+ 
+ 											!value && ( value = ( element.getAttribute( 'align' ) || '' ).toLowerCase() );
+@@ -952,10 +962,19 @@
+ 									commit: function( type, element ) {
+ 										var value = this.getValue();
+ 										if ( type == IMAGE || type == PREVIEW ) {
+-											if ( value )
+-												element.setStyle( 'float', value );
+-											else
++											if ( value ) {
++												if ( value === 'left' || value === 'right' ) {
++													element.setStyle( 'float', value );
++												}
++												else if (value === 'center') {
++													element.setStyle('display', 'block');
++													element.setStyle('margin', '0px auto');
++												}
++											} else {
+ 												element.removeStyle( 'float' );
++												element.removeStyle( 'margin' );
++												element.removeStyle( 'display' );
++											}
+ 
+ 											if ( type == IMAGE ) {
+ 												value = ( element.getAttribute( 'align' ) || '' ).toLowerCase();
+@@ -968,7 +987,9 @@
+ 												}
+ 											}
+ 										} else if ( type == CLEANUP ) {
++											element.removeStyle( 'display' );
+ 											element.removeStyle( 'float' );
++											element.removeStyle( 'margin' );
+ 										}
+ 									}
+ 								} ]
