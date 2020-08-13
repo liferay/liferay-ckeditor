@@ -202,3 +202,7 @@ Special outer level classes used in this file:
 .cke_editable:focus {
 	background-color: #f0f5ff; /* $primary-l3 */
 }
+
+.cke_editable img {
+	margin: 24px;
+}
