@@ -1,3 +1,15 @@
+## [v4.14.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.7) (2020-08-17)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.6...v4.14.1-liferay.7)
+
+### :new: Features
+
+-   feat: run build in ci ([\#115](https://github.com/liferay/liferay-ckeditor/pull/115))
+
+### :woman_juggling: Refactoring
+
+-   refactor: enable the `image2` plugin ([\#119](https://github.com/liferay/liferay-ckeditor/pull/119))
+
 ## [v4.14.1-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.6) (2020-08-06)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.5...v4.14.1-liferay.6)
