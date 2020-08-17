@@ -43,7 +43,7 @@ var CKBUILDER_CONFIG = {
 		font: 1,
 		format: 1,
 		horizontalrule: 1,
-		image: 1,
+		image2: 1,
 		indentlist: 1,
 		indentblock: 1,
 		justify: 1,
