@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.8) (2020-08-20)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.7...v4.14.1-liferay.8)
+
+### :new: Features
+
+-   feat: add styles for dialogs in moono-lexicon ([\#118](https://github.com/liferay/liferay-ckeditor/pull/118))
+
 ## [v4.14.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.7) (2020-08-17)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.6...v4.14.1-liferay.7)
