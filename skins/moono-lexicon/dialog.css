@@ -39,6 +39,11 @@ as follows:
 Comments in this file will give more details about each of the above blocks.
 */
 
+.cke_dialog_background_cover {
+	background-color: #393A4A !important;
+	opacity: 0.8 !important;
+}
+
 /* The outer container of the dialog. */
 .cke_dialog {
 	/* Mandatory: Because the dialog.css file is loaded on demand, we avoid
@@ -48,8 +53,9 @@ Comments in this file will give more details about each of the above blocks.
 
 /* The inner boundary container. */
 .cke_dialog_body {
-	z-index: 1;
 	background: #fff;
+	border-radius: 4px;
+	z-index: 1;
 }
 
 /* Due to our reset we have to recover the styles of some elements. */
@@ -60,17 +66,14 @@ Comments in this file will give more details about each of the above blocks.
 /* The dialog title. */
 .cke_dialog_title {
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 20px;
 	cursor: move;
 	position: relative;
 
 	color: #484848;
 
-	border-bottom: 1px solid #d1d1d1;
-	padding: 12px 19px 12px 12px;
-
-	background: #f8f8f8;
-	letter-spacing: 0.3px;
+	border-bottom: 1px solid #e7e7ed; /* $secondary-l3 */
+	padding: 17px 24px;
 }
 
 .cke_dialog_spinner {
@@ -125,16 +128,12 @@ Comments in this file will give more details about each of the above blocks.
 .cke_dialog_contents {
 	background-color: #fff;
 	overflow: auto;
-	padding: 15px 10px 5px 10px;
-	margin-top: 43px;
-	border-top: 1px solid #d1d1d1;
 }
 
 /* The contents body part, which will hold all elements available in the dialog. */
 .cke_dialog_contents_body {
 	overflow: auto;
-	padding: 9px 10px 5px 10px;
-	margin-top: 22px;
+	padding: 17px 24px;
 }
 
 /* The dialog footer, which usually contains the "Ok" and "Cancel" buttons as
@@ -142,8 +141,7 @@ Comments in this file will give more details about each of the above blocks.
 .cke_dialog_footer {
 	text-align: right;
 	position: relative;
-	border-top: 1px solid #d1d1d1;
-	background: #f8f8f8;
+	border-top: 1px solid #e7e7ed; /* $secondary-l3 */
 }
 
 .cke_rtl .cke_dialog_footer {
@@ -156,6 +154,7 @@ Comments in this file will give more details about each of the above blocks.
 }
 
 .cke_dialog .cke_resizer {
+	display: none;
 	margin-top: 22px;
 }
 
@@ -190,12 +189,8 @@ The .cke_dialog_tab_selected class is appended to the active tab.
 
 /* The main tabs container. */
 .cke_dialog_tabs {
-	height: 33px;
-	display: inline-block;
-	margin: 9px 0 0;
-	position: absolute;
+	padding: 8px 24px;
 	z-index: 2;
-	left: 11px;
 }
 
 .cke_rtl .cke_dialog_tabs {
@@ -205,44 +200,46 @@ The .cke_dialog_tab_selected class is appended to the active tab.
 
 /* A single tab (an <a> element). */
 a.cke_dialog_tab {
-	height: 25px;
-	padding: 4px 8px;
-	display: inline-block;
+	border-radius: 1px;
+	color: #6b6c7e;
 	cursor: pointer;
-	line-height: 26px;
-	outline: none;
-	color: #484848;
-	border: 1px solid #d1d1d1;
+	display: inline-block;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 1;
+	padding: .625rem 1rem;
+	position: relative;
+	transition: box-shadow .15s ease-in-out;
+}
 
-	border-radius: 3px 3px 0 0;
-
-	background: #f8f8f8;
-	min-width: 90px;
-	text-align: center;
-
-	margin-left: -1px; /* Use negative margin to create 1px border between tabs. */
-	letter-spacing: 0.3px;
+a.cke_dialog_tab:after {
+	bottom: 0;
+	display: block;
+	left: 0;
+	position: absolute;
+	right: 0;
+	width: auto;
 }
 
 /* A hover state of a regular inactive tab. */
 a.cke_dialog_tab:hover {
-	background-color: #fff;
+	color: #6b6c7e;
+	text-decoration: none;
 }
 
 a.cke_dialog_tab:focus {
-	border: 2px solid #139ff7;
-	border-bottom-color: #d1d1d1;
-	padding: 3px 7px;
-	position: relative; /* Puts hovered tabs on top so both left and right borders are visible.*/
-	z-index: 1;
+	box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #80acff;
 }
 
 /* Single selected tab. */
 a.cke_dialog_tab_selected {
-	background: #fff;
-	border-bottom-color: #fff;
-	cursor: default;
-	filter: none;
+	color: #272833; /* $dark */
+}
+
+a.cke_dialog_tab_selected:after {
+	background-color: #80acff;
+	content: "";
+    height: .125rem;
 }
 
 /* A hover state for selected tab. */
@@ -277,19 +274,18 @@ a.cke_dialog_tab_disabled {
 
 /* The close button at the top of the dialog. */
 a.cke_dialog_close_button {
-	background-image: url(images/close.png);
-	background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml;charset=utf8,%0A%3Csvg%20fill='%236b6c7e'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'%3E%3Cpath%20class='lexicon-icon-outline'%20d='M301.1,256.1l137.2-137.2c30.1-30.1-16.8-73.6-45.2-45.2L255.9,210.8L118.6,73.7C88.6,43.6,45,90.5,73.4,118.9l137.2,137.2L73.3,393.3c-28.9,28.9,15.8,74.6,45.2,45.2l137.3-137.2l137.3,137.2c28.9,28.9,74.2-16.3,45.2-45.2L301.1,256.1z'/%3E%3C/svg%3E%0A") !important;
 	background-position: 50%;
-	position: absolute;
+	background-repeat: no-repeat;
+	background-size: 16px;
 	cursor: pointer;
 	text-align: center;
 	height: 16px;
 	width: 16px;
-	top: 11px;
+	padding: 8px;
+	position: absolute;
+	top: 13px;
 	z-index: 5;
-
-	opacity: 0.7;
-	filter: alpha(opacity = 70);
 }
 
 .cke_rtl .cke_dialog_close_button {
@@ -304,14 +300,8 @@ a.cke_dialog_close_button {
 	background-image: none;
 }
 
-.cke_hidpi a.cke_dialog_close_button {
-	background-image: url(images/hidpi/close.png);
-	background-size: 16px;
-}
-
 a.cke_dialog_close_button:hover {
-	opacity: 1;
-	filter: alpha(opacity = 100);
+	background-image: url("data:image/svg+xml;charset=utf8,%0A%3Csvg%20fill='%23272833'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'%3E%3Cpath%20class='lexicon-icon-outline'%20d='M301.1,256.1l137.2-137.2c30.1-30.1-16.8-73.6-45.2-45.2L255.9,210.8L118.6,73.7C88.6,43.6,45,90.5,73.4,118.9l137.2,137.2L73.3,393.3c-28.9,28.9,15.8,74.6,45.2,45.2l137.3-137.2l137.3,137.2c28.9,28.9,74.2-16.3,45.2-45.2L301.1,256.1z'/%3E%3C/svg%3E%0A") !important;
 }
 
 a.cke_dialog_close_button span {
@@ -370,7 +360,7 @@ It is possible to have nested V/H-Boxes.
 }
 
 .cke_dialog_ui_vbox_child {
-	padding: 5px 0px;
+	padding: 10px 0px !important;
 }
 
 .cke_dialog_ui_hbox {
@@ -396,7 +386,7 @@ It is possible to have nested V/H-Boxes.
 
 .cke_ltr .cke_dialog_footer_buttons .cke_dialog_ui_hbox_first,
 .cke_ltr .cke_dialog_footer_buttons .cke_dialog_ui_hbox_child {
-	padding-right: 5px;
+	padding-right: 16px;
 }
 
 .cke_rtl .cke_dialog_footer_buttons .cke_dialog_ui_hbox_first,
@@ -455,6 +445,10 @@ The textarea field to input larger text.
 +-----------------------------------------------------+
 */
 
+.cke_dialog_ui_input_text {
+	width: 100% !important;
+}
+
 textarea.cke_dialog_ui_input_textarea {
 	overflow: auto;
 	resize: none;
@@ -464,26 +458,22 @@ input.cke_dialog_ui_input_text,
 input.cke_dialog_ui_input_password,
 input.cke_dialog_ui_input_tel,
 textarea.cke_dialog_ui_input_textarea {
-	background-color: #fff;
-	border: 1px solid #bcbcbc;
-	padding: 4px 6px;
+	background-color: #f1f2f5; /* $light */
+	border: 1px solid #e7e7ed; /* $secondary-l3 */
+	color: #272833; /* $dark */
+	padding: 10px 16px;
 	outline: none;
 	width: 100%;
 	*width: 95%;
 
 	box-sizing: border-box;
 
-	border-radius: 2px;
+	border-radius: 4px;
 
 	min-height: 28px;
-	margin-left: 1px;
-}
 
-input.cke_dialog_ui_input_text:hover,
-input.cke_dialog_ui_input_password:hover,
-input.cke_dialog_ui_input_tel:hover,
-textarea.cke_dialog_ui_input_textarea:hover {
-	border: 1px solid #aeb3b9;
+	font-size: 1rem;
+	height: 2.5rem
 }
 
 input.cke_dialog_ui_input_text:focus,
@@ -491,21 +481,14 @@ input.cke_dialog_ui_input_password:focus,
 input.cke_dialog_ui_input_tel:focus,
 textarea.cke_dialog_ui_input_textarea:focus,
 select.cke_dialog_ui_input_select:focus {
-	outline: none;
-	border: 2px solid #139ff7;
-}
-
-input.cke_dialog_ui_input_text:focus {
-	padding-left: 5px;
+	background-color: #f0f5ff;
+	border-color: #80acff;
+	box-shadow: 0 0 transparent, 0 0 0 0.125rem #fff, 0 0 0 0.25rem #80acff;
+	outline: 0;
 }
 
 textarea.cke_dialog_ui_input_textarea:focus {
 	padding: 3px 5px;
-}
-
-select.cke_dialog_ui_input_select:focus {
-	margin: 0;
-	width: 100% !important;
 }
 
 input.cke_dialog_ui_checkbox_input,
@@ -541,21 +524,23 @@ a.cke_dialog_ui_button {
 	*display: inline;
 	*zoom: 1;
 
-	padding: 4px 1px;
+	padding: 7px 15px;
 	margin: 0;
 
 	text-align: center;
-	color: #484848;
+	color: #6B6C7E; /* $secondary */
 	vertical-align: middle;
 	cursor: pointer;
 
 	border: 1px solid #bcbcbc;
-	border-radius: 2px;
+	border-radius: 4px;
 
-	background: #f8f8f8;
+	background: #ffffff; /* $white */
 	letter-spacing: 0.3px;
 	line-height: 18px;
 	box-sizing: border-box;
+
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .cke_hc a.cke_dialog_ui_button {
@@ -563,20 +548,21 @@ a.cke_dialog_ui_button {
 }
 
 span.cke_dialog_ui_button {
-	padding: 0 10px;
 	cursor: pointer;
 }
 
 a.cke_dialog_ui_button:hover {
-	background: #fff;
+	background-color: #f7f8f9;
+	border-color: #cdced9;
+	color: #272833; /* $dark */
 }
 
 /* 	:focus/:active styles for dialog buttons: regular and footer. */
 a.cke_dialog_ui_button:focus,
 a.cke_dialog_ui_button:active {
-	border: 2px solid #139ff7;
-	outline: none;
-	padding: 3px 0;
+	border-color: #80acff;
+	box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #80acff;
+	outline: 0;
 }
 
 .cke_hc a.cke_dialog_ui_button:hover,
@@ -588,16 +574,15 @@ a.cke_dialog_ui_button:active {
 /* The inner part of the button (both in dialog tabs and dialog footer). */
 .cke_dialog_footer_buttons a.cke_dialog_ui_button span {
 	color: inherit;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 0 12px;
+	font-size: 1rem;
+	font-weight: 600;
 }
 
 /* Special class appended to the Ok button. */
 a.cke_dialog_ui_button_ok {
 	color: #fff;
-	background: #09863e;
-	border: 1px solid #09863e;
+	background: #0b5fff; /* $primary */
+	border: 1px solid #0b5fff; /* $primary */
 }
 
 .cke_hc a.cke_dialog_ui_button {
@@ -605,23 +590,9 @@ a.cke_dialog_ui_button_ok {
 }
 
 a.cke_dialog_ui_button_ok:hover {
-	background: #53aa78;
-	border-color: #53aa78;
-}
-
-a.cke_dialog_ui_button_ok:focus {
-	box-shadow: inset 0 0 0 2px #fff;
-}
-
-a.cke_dialog_ui_button_ok:focus,
-a.cke_dialog_ui_button_ok:active {
-	border-color: #139ff7;
-}
-
-.cke_hc a.cke_dialog_ui_button_ok:hover,
-.cke_hc a.cke_dialog_ui_button_ok:focus,
-.cke_hc a.cke_dialog_ui_button_ok:active {
-	border-color: #484848;
+	background: #0053f0;
+	border-color: transparent;
+	color: #fff;
 }
 
 a.cke_dialog_ui_button_ok.cke_disabled {
@@ -637,7 +608,7 @@ a.cke_dialog_ui_button_ok.cke_disabled span {
 /* A special container that holds the footer buttons. */
 .cke_dialog_footer_buttons {
 	display: inline-table;
-	margin: 5px;
+	margin: 16px 24px;
 	width: auto;
 	position: relative;
 	vertical-align: middle;
@@ -649,17 +620,17 @@ div.cke_dialog_ui_input_select {
 }
 
 select.cke_dialog_ui_input_select {
-	height: 28px;
-	line-height: 28px;
-
-	background-color: #fff;
-	border: 1px solid #bcbcbc;
-	padding: 3px 3px 3px 6px;
-	outline: none;
-	border-radius: 2px;
-	margin: 0 1px;
-	box-sizing: border-box;
-	width: calc(100% - 2px) !important;
+	cursor: pointer;
+	color: #272833; /* $dark */
+	background-color: #f1f2f5;
+	border: .0625rem solid #e7e7ed;
+	border-radius: 4px;
+	display: block;
+	font-size: 1rem;
+	font-weight: 400;
+	height: 2.5rem;
+	padding: 7px 16px;
+	width: 100% !important;
 }
 
 .cke_dialog_ui_input_file {
@@ -671,10 +642,6 @@ select.cke_dialog_ui_input_select {
 .cke_hc .cke_dialog_ui_labeled_content select:focus,
 .cke_hc .cke_dialog_ui_labeled_content textarea:focus {
 	outline: 1px dotted;
-}
-
-.cke_dialog_ui_labeled_label {
-	margin-left: 1px;
 }
 
 /*
@@ -804,6 +771,9 @@ select.cke_dialog_ui_input_select {
 	.cke_dialog_ui_checkbox
 	.cke_dialog_ui_checkbox_input
 	+ label {
+	font-weight: normal;
+	margin-bottom: 0;
+	margin-top: 0;
 	vertical-align: middle;
 }
 
@@ -880,13 +850,12 @@ tendency that these will be moved to the plugins code in the future.
 }
 
 .cke_dialog_body label {
-	display: inline;
+	color: #272833;
 	cursor: default;
+	font-size: 14px;
+	font-weight: 600;
 	letter-spacing: 0.3px;
-}
-
-.cke_dialog_body label + .cke_dialog_ui_labeled_content {
-	margin-top: 2px;
+	margin-bottom: 6px;
 }
 
 .cke_dialog_contents_body .cke_dialog_ui_text,
@@ -894,6 +863,11 @@ tendency that these will be moved to the plugins code in the future.
 /* Find Dialog */
 .cke_dialog_contents_body .cke_dialog_ui_hbox_last > a.cke_dialog_ui_button {
 	margin-top: 4px;
+	width: 100% !important;
+}
+
+.cke_dialog_page_contents {
+	min-width: 500px;
 }
 
 a.cke_smile {
