@@ -62,6 +62,7 @@ var CKBUILDER_CONFIG = {
 		table: 1,
 		tabletools: 1,
 		toolbar: 1,
+		toolbarwatcher: 1,
 		undo: 1,
 		wysiwygarea: 1,
 	},
