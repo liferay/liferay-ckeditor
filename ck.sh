@@ -61,6 +61,9 @@ case "$COMMAND" in
 				# Copy custom skin to ckeditor-dev
 				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
 
+				# Copy custom plugins to ckeditor-dev
+				cp -r plugins ckeditor-dev
+
 				# Copy skin files for plugins
 				pluginsWithSkins=$(find ckeditor-dev/plugins -maxdepth 2 -mindepth 2 -type d -name skins)
 				for plugin in $pluginsWithSkins; do
@@ -73,6 +76,14 @@ case "$COMMAND" in
 				done
 
 				cd ckeditor-dev
+
+				# Run every plugin build script
+				pluginsWithDeps=$(find plugins -maxdepth 2 -mindepth 2 -type f -name deps.json)
+				for pluginDepsFile in $pluginsWithDeps ; do
+					pluginDir=$(dirname "$pluginDepsFile")
+
+					node ../support/copyPluginDependencies.js $pluginDir
+				done	
 
 				# Generate SVG icons CSS Classes
 				node ../support/iconsClassesGenerator.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons.css
