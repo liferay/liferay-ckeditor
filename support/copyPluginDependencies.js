@@ -5,27 +5,27 @@ const pluginDir = process.argv[2];
 
 const configFilePath = path.join(pluginDir, 'deps.json');
 
-const depsDir = path.join(pluginDir, 'deps');
+const vendorsDir = path.join(pluginDir, 'vendors');
 
 const rawData = fs.readFileSync(configFilePath);
 const depsConfig = JSON.parse(rawData);
 
-if (!fs.existsSync(depsDir)) {
-	fs.mkdirSync(depsDir);
+if (!fs.existsSync(vendorsDir)) {
+	fs.mkdirSync(vendorsDir);
 }
 
-for (const [dep, files] of Object.entries(depsConfig)) {
-	const outputDir = path.join(depsDir, dep);
+for (const [depType, deps] of Object.entries(depsConfig)) {
+	const outputFile = path.join(vendorsDir, `vendors.${depType}`);
 
-	if (!fs.existsSync(outputDir)) {
-		fs.mkdirSync(outputDir);
+	let fileContent = '';
+
+	for (const [dep, files] of Object.entries(deps)) {
+		files.forEach((file) => {
+			const filePath = path.join('../node_modules', dep, file);
+
+			fileContent += fs.readFileSync(filePath);
+		});
 	}
 
-	files.forEach((file) => {
-		const filePath = path.join('../node_modules', dep, file);
-
-		const fileOutput = path.join(outputDir, path.basename(file));
-
-		fs.copyFileSync(filePath, fileOutput);
-	});
+	fs.writeFileSync(outputFile, fileContent);
 }

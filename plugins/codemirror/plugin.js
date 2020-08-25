@@ -69,24 +69,14 @@
 
 			if (!stylesLoaded) {
 				CKEDITOR.document.appendStyleSheet(
-					this.path + 'deps/codemirror/codemirror.css'
+					this.path + 'vendors/vendors.css'
 				);
 				stylesLoaded = true;
 			}
 
-			var instance = this;
-
-			CKEDITOR.scriptLoader.load([
-					instance.path + 'deps/codemirror/codemirror.js',
-					instance.path + 'deps/js-beautify/beautify-html.js'
-				],
+			CKEDITOR.scriptLoader.load(this.path + 'vendors/vendors.js',
 				function() {
-					CKEDITOR.scriptLoader.load(
-						instance.path + 'deps/codemirror/xml.js',
-						function() {
-							instance._createCodeMirrorEditor(editor);
-						}
-					);
+					instance._createCodeMirrorEditor(editor);
 				}
 			);
 
