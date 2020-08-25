@@ -40,7 +40,7 @@ Comments in this file will give more details about each of the above blocks.
 */
 
 .cke_dialog_background_cover {
-	background-color: #393A4A !important;
+	background-color: #393a4a !important;
 	opacity: 0.8 !important;
 }
 
@@ -207,9 +207,9 @@ a.cke_dialog_tab {
 	font-weight: 600;
 	font-size: 14px;
 	line-height: 1;
-	padding: .625rem 1rem;
+	padding: 0.625rem 1rem;
 	position: relative;
-	transition: box-shadow .15s ease-in-out;
+	transition: box-shadow 0.15s ease-in-out;
 }
 
 a.cke_dialog_tab:after {
@@ -238,8 +238,8 @@ a.cke_dialog_tab_selected {
 
 a.cke_dialog_tab_selected:after {
 	background-color: #80acff;
-	content: "";
-    height: .125rem;
+	content: '';
+	height: 0.125rem;
 }
 
 /* A hover state for selected tab. */
@@ -473,7 +473,7 @@ textarea.cke_dialog_ui_input_textarea {
 	min-height: 28px;
 
 	font-size: 1rem;
-	height: 2.5rem
+	height: 2.5rem;
 }
 
 input.cke_dialog_ui_input_text:focus,
@@ -528,7 +528,7 @@ a.cke_dialog_ui_button {
 	margin: 0;
 
 	text-align: center;
-	color: #6B6C7E; /* $secondary */
+	color: #6b6c7e; /* $secondary */
 	vertical-align: middle;
 	cursor: pointer;
 
@@ -540,7 +540,8 @@ a.cke_dialog_ui_button {
 	line-height: 18px;
 	box-sizing: border-box;
 
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .cke_hc a.cke_dialog_ui_button {
@@ -623,7 +624,7 @@ select.cke_dialog_ui_input_select {
 	cursor: pointer;
 	color: #272833; /* $dark */
 	background-color: #f1f2f5;
-	border: .0625rem solid #e7e7ed;
+	border: 0.0625rem solid #e7e7ed;
 	border-radius: 4px;
 	display: block;
 	font-size: 1rem;
