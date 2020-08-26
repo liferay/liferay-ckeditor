@@ -3,12 +3,9 @@
 
 	var stylesLoaded = false;
 
-
 	CKEDITOR.plugins.add('codemirror', {
 		_createCodeMirrorEditor: function(editor) {
 			var instance = this;
-
-			var codemirror = CKEDITOR.plugins.codemirror;
 
 			editor.addMode('source', function(callback) {
 				var contentsSpace = editor.ui.space('contents');
@@ -36,8 +33,6 @@
 
 				callback();
 			});
-
-			editor.addCommand('codemirror', codemirror.commands.source);
 		},
 
 		_handleCodeMirrorChange: function(editor, oldData) {
@@ -69,6 +64,10 @@
 
 			if (!stylesLoaded) {
 				CKEDITOR.document.appendStyleSheet(
+					this.path + 'skins/default.css'
+				);
+
+				CKEDITOR.document.appendStyleSheet(
 					this.path + 'vendors/vendors.css'
 				);
 				stylesLoaded = true;
@@ -80,11 +79,38 @@
 				}
 			);
 
+			editor.addCommand('codemirror', CKEDITOR.plugins.codemirror.commands.source);
+
+			editor.addCommand(
+				'codemirrordialog',
+				CKEDITOR.tools.extend(
+					new CKEDITOR.dialogCommand('codemirrordialog'),
+					{
+						modes: {
+							source: 1,
+							wysiwyg: 0,
+						},
+						state: CKEDITOR.TRISTATE_OFF
+					}
+				)
+			);
+
+			CKEDITOR.dialog.add(
+				'codemirrordialog',
+				this.path + 'dialogs/codemirrordialog.js'
+			);
+
 			if (editor.ui.addButton) {
 				editor.ui.addButton('Source', {
 					label: editor.lang.codemirror.source,
 					command: 'codemirror',
 					toolbar: 'mode,10'
+				});
+
+				editor.ui.addButton('Expand', {
+					label: editor.lang.common.preview,
+					command: 'codemirrordialog',
+					toolbar: 'mode,11'
 				});
 			}
 
