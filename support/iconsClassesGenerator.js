@@ -102,30 +102,53 @@ for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
 	let directionClass = '';
 	let svgDataList = [];
 
-	if (typeof clayIcon === 'string') {
-		const svgData = fs.readFileSync(
-			`${sourceIconsPath}/${clayIcon}.svg`,
-			'utf8'
-		);
+	let svgData;
 
-		iconsCSSContent += getCSS(svgData, cKEditorIcon);
-	} else {
-		if (clayIcon.ltr) {
-			const svgData = fs.readFileSync(
-				`${sourceIconsPath}/${clayIcon.ltr}.svg`,
+	if (typeof clayIcon === 'string') {
+		try {
+			svgData = fs.readFileSync(
+				`${sourceIconsPath}/${clayIcon}.svg`,
 				'utf8'
 			);
 
-			iconsCSSContent += getCSS(svgData, cKEditorIcon, 'ltr');
+			iconsCSSContent += getCSS(svgData, cKEditorIcon);
+		} catch (err) {
+			console.warn(
+				'Could not read:',
+				`${sourceIconsPath}/${clayIcon}.svg`
+			);
+		}
+	} else {
+		if (clayIcon.ltr) {
+			try {
+				svgData = fs.readFileSync(
+					`${sourceIconsPath}/${clayIcon.ltr}.svg`,
+					'utf8'
+				);
+
+				iconsCSSContent += getCSS(svgData, cKEditorIcon, 'ltr');
+			} catch (err) {
+				console.warn(
+					'Could not read:',
+					`${sourceIconsPath}/${clayIcon.ltr}.svg`
+				);
+			}
 		}
 
 		if (clayIcon.rtl) {
-			const svgData = fs.readFileSync(
-				`${sourceIconsPath}/${clayIcon.rtl}.svg`,
-				'utf8'
-			);
+			try {
+				svgData = fs.readFileSync(
+					`${sourceIconsPath}/${clayIcon.rtl}.svg`,
+					'utf8'
+				);
 
-			iconsCSSContent += getCSS(svgData, cKEditorIcon, 'rtl');
+				iconsCSSContent += getCSS(svgData, cKEditorIcon, 'rtl');
+			} catch (err) {
+				console.warn(
+					'Could not read:',
+					`${sourceIconsPath}/${clayIcon.rtl}.svg`
+				);
+			}
 		}
 	}
 }
