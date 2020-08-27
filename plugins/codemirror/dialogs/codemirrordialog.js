@@ -40,8 +40,12 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			);
 
 			var preview = dialog.getContentElement('main', 'preview').getElement();
-			preview.setHtml(codeMirrorEditor.getValue());
 			preview.setSize('width', defaultWidth);
+
+			var iframe = this._createContentIframe(preview);
+			var iframeBody = iframe.$.contentDocument.body;
+
+			iframeBody.innerHTML = codeMirrorEditor.getValue();
 
 			codeMirrorEditor.on(
 				'change',
@@ -49,11 +53,89 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			);
 		},
 
+		_createContentIframe: function(parentElement) {
+			var dialog = this.dialog;
+			var editor = dialog.getParentEditor();
+
+			var mainElement = dialog.getContentElement('main').getElement();
+
+			var tabPanel = mainElement.getAscendant(function(el) {
+				return el.getName() === 'div' && el.getAttribute('role') === 'tabpanel';
+			});
+
+			var tabPanelParent = tabPanel.getParent();
+
+			var padding = {
+				bottom: parseInt(tabPanelParent.getComputedStyle('padding-bottom'), 10) || 0,
+				top: parseInt(tabPanelParent.getComputedStyle('padding-top'), 10) || 0
+			};
+
+			var height = tabPanel.getSize('height') - (padding.bottom + padding.top);
+
+			var iframe = new CKEDITOR.dom.element('iframe');
+			parentElement.append(iframe);
+
+			iframe.setAttributes({
+				'class': 'cke_wysiwyg_frame cke_reset',
+				'frameborder': 0,
+			});
+
+			iframe.setStyles({
+				'height': height + 'px',
+				'width': '99%'
+			});
+
+			var iframeDocument = iframe.$.contentDocument;
+			var iframeHead = iframeDocument.head;
+
+			var contentsCss = editor.config.contentsCss;
+
+			if (Array.isArray(contentsCss)) {
+				contentsCss.forEach(function(url) {
+					var link = iframeDocument.createElement('link');
+					link.setAttribute('href', url);
+					link.setAttribute('rel', 'stylesheet');
+
+					iframeHead.appendChild(link);
+				});
+			}
+			else {
+				var link = iframeDocument.createElement('link');
+				link.setAttribute('href', contentsCss);
+				link.setAttribute('rel', 'stylesheet');
+
+				iframeHead.appendChild(link);
+			}
+
+			var direction = editor.config.contentsLangDirection;
+
+			var iframeHtml = iframeDocument.documentElement;
+			iframeHtml.setAttribute('dir', direction);
+			iframeHtml.setAttribute('lang', editor.config.defaultLanguage);
+
+			var iframeBody = iframeDocument.body;
+			iframeBody.classList.add('cke_editable');
+			iframeBody.classList.add('cke_editable_themed');
+			iframeBody.classList.add('cke_contents_' + direction);
+
+			iframeBody.setAttribute('contenteditable', false);
+			iframeBody.setAttribute('spellcheck', false);
+
+			iframeBody.style.background = '#fff';
+
+			return iframe;
+		},
+
 		_handleCodeMirrorChange: function() {
 			var newData = this.codeMirrorEditor.getValue();
 			var preview = this.dialog.getContentElement('main', 'preview').getElement();
 
-			preview.setHtml(newData);
+			var iframe = preview.findOne('iframe');
+			if (iframe && iframe.$) {
+				var iframeDocument = iframe.$.contentDocument;
+				var iframeBody = iframeDocument.body;
+				iframeBody.innerHTML = newData;
+			}
 		},
 
 		contents: [{
