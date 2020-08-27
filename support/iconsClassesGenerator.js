@@ -99,9 +99,6 @@ const getCSS = (svgData, cKEditorIcon, direction) => {
 let iconsCSSContent = '';
 
 for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
-	let directionClass = '';
-	let svgDataList = [];
-
 	let svgData;
 
 	if (typeof clayIcon === 'string') {
