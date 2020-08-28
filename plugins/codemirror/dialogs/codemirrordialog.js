@@ -1,4 +1,4 @@
-CKEDITOR.dialog.add('codemirrordialog', function(editor) {
+CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 	var editorWindow = CKEDITOR.document.getWindow();
 	var size = editorWindow.getViewPaneSize();
 	var scalex = 0.9;
@@ -11,35 +11,35 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 	}
 
 	return {
-		_createCodeMirrorEditor: function() {
+		_createCodeMirrorEditor: function () {
 			var dialog = this.dialog;
 
 			var size = dialog.getSize();
 
-			var textarea = dialog.getContentElement('main', 'data')
+			var textarea = dialog
+				.getContentElement('main', 'data')
 				.getInputElement().$;
 
-			var codeMirrorEditor = this.codeMirrorEditor =
-				CodeMirror.fromTextArea(
-					textarea,
-					{
-						lineNumbers: true,
-						lineWrapping: true,
-						mode: 'text/html'
-					}
-				);
+			var codeMirrorEditor = (this.codeMirrorEditor = CodeMirror.fromTextArea(
+				textarea,
+				{
+					lineNumbers: true,
+					lineWrapping: true,
+					mode: 'text/html',
+				}
+			));
 
-			var defaultWidth = (size.width * 0.5) - 10;
+			var defaultWidth = size.width * 0.5 - 10;
 
 			codeMirrorEditor.setSize(defaultWidth, null);
 
 			var editor = dialog.getParentEditor();
 
-			codeMirrorEditor.setValue(
-				html_beautify(editor.getData(true))
-			);
+			codeMirrorEditor.setValue(html_beautify(editor.getData(true)));
 
-			var preview = dialog.getContentElement('main', 'preview').getElement();
+			var preview = dialog
+				.getContentElement('main', 'preview')
+				.getElement();
 			preview.setSize('width', defaultWidth);
 
 			var iframe = this._createContentIframe(preview);
@@ -53,36 +53,48 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			);
 		},
 
-		_createContentIframe: function(parentElement) {
+		_createContentIframe: function (parentElement) {
 			var dialog = this.dialog;
 			var editor = dialog.getParentEditor();
 
 			var mainElement = dialog.getContentElement('main').getElement();
 
-			var tabPanel = mainElement.getAscendant(function(el) {
-				return el.getName() === 'div' && el.getAttribute('role') === 'tabpanel';
+			var tabPanel = mainElement.getAscendant(function (el) {
+				return (
+					el.getName() === 'div' &&
+					el.getAttribute('role') === 'tabpanel'
+				);
 			});
 
 			var tabPanelParent = tabPanel.getParent();
 
 			var padding = {
-				bottom: parseInt(tabPanelParent.getComputedStyle('padding-bottom'), 10) || 0,
-				top: parseInt(tabPanelParent.getComputedStyle('padding-top'), 10) || 0
+				bottom:
+					parseInt(
+						tabPanelParent.getComputedStyle('padding-bottom'),
+						10
+					) || 0,
+				top:
+					parseInt(
+						tabPanelParent.getComputedStyle('padding-top'),
+						10
+					) || 0,
 			};
 
-			var height = tabPanel.getSize('height') - (padding.bottom + padding.top);
+			var height =
+				tabPanel.getSize('height') - (padding.bottom + padding.top);
 
 			var iframe = new CKEDITOR.dom.element('iframe');
 			parentElement.append(iframe);
 
 			iframe.setAttributes({
-				'class': 'cke_wysiwyg_frame cke_reset',
-				'frameborder': 0,
+				class: 'cke_wysiwyg_frame cke_reset',
+				frameborder: 0,
 			});
 
 			iframe.setStyles({
-				'height': height + 'px',
-				'width': '99%'
+				height: height + 'px',
+				width: '99%',
 			});
 
 			var iframeDocument = iframe.$.contentDocument;
@@ -91,15 +103,14 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			var contentsCss = editor.config.contentsCss;
 
 			if (Array.isArray(contentsCss)) {
-				contentsCss.forEach(function(url) {
+				contentsCss.forEach(function (url) {
 					var link = iframeDocument.createElement('link');
 					link.setAttribute('href', url);
 					link.setAttribute('rel', 'stylesheet');
 
 					iframeHead.appendChild(link);
 				});
-			}
-			else {
+			} else {
 				var link = iframeDocument.createElement('link');
 				link.setAttribute('href', contentsCss);
 				link.setAttribute('rel', 'stylesheet');
@@ -126,9 +137,11 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			return iframe;
 		},
 
-		_handleCodeMirrorChange: function() {
+		_handleCodeMirrorChange: function () {
 			var newData = this.codeMirrorEditor.getValue();
-			var preview = this.dialog.getContentElement('main', 'preview').getElement();
+			var preview = this.dialog
+				.getContentElement('main', 'preview')
+				.getElement();
 
 			var iframe = preview.findOne('iframe');
 			if (iframe && iframe.$) {
@@ -138,34 +151,38 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			}
 		},
 
-		contents: [{
-			id: 'main',
-			elements: [{
-				align: 'top',
-				children: [
+		contents: [
+			{
+				id: 'main',
+				elements: [
 					{
-						id: 'data',
-						type: 'textarea'
+						align: 'top',
+						children: [
+							{
+								id: 'data',
+								type: 'textarea',
+							},
+							{
+								html: '<div class="code_preview">&nbsp;</div>',
+								id: 'preview',
+								type: 'html',
+							},
+						],
+						type: 'hbox',
 					},
-					{
-						html: '<div class="code_preview">&nbsp;</div>',
-						id: 'preview',
-						type: 'html'
-					}
 				],
-				type: 'hbox'
-			}]
-		}],
+			},
+		],
 
 		height: height,
 		title: editor.lang.codemirror.source,
 		width: width,
 
-		onLoad: function() {
+		onLoad: function () {
 			this.definition._createCodeMirrorEditor();
 		},
 
-		onOk: function() {
+		onOk: function () {
 			var definition = this.definition;
 			var editor = this.getParentEditor();
 			var newData = definition.codeMirrorEditor.getValue();
@@ -177,7 +194,7 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			}
 		},
 
-		onShow: function() {
+		onShow: function () {
 			var codeMirrorEditor = this.definition.codeMirrorEditor;
 			var editor = this.getParentEditor();
 			var data = editor.getData();
@@ -185,6 +202,6 @@ CKEDITOR.dialog.add('codemirrordialog', function(editor) {
 			if (codeMirrorEditor && codeMirrorEditor.getValue() !== data) {
 				codeMirrorEditor.setValue(html_beautify(data));
 			}
-		}
+		},
 	};
 });
