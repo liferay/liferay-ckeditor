@@ -1,3 +1,12 @@
+## [v4.14.1-liferay.9](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.9) (2020-08-28)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.8...v4.14.1-liferay.9)
+
+### :new: Features
+
+-   feat: add codemirror dialog ([\#122](https://github.com/liferay/liferay-ckeditor/pull/122))
+-   feat: create and use codemirror plugin ([\#121](https://github.com/liferay/liferay-ckeditor/pull/121))
+
 ## [v4.14.1-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.8) (2020-08-20)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.7...v4.14.1-liferay.8)
