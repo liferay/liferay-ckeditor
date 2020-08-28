@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("sourcearea","sr-latn",{toolbar:"Izvorni kod"});
