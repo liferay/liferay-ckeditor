@@ -90,9 +90,10 @@ case "$COMMAND" in
 
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
-						--leave-css-unminified --leave-js-unminified
+						--leave-css-unminified --leave-js-unminified --no-ie-checks
 				else
-					dev/builder/build.sh --build-config ../../../support/build-config.js
+					dev/builder/build.sh --build-config ../../../support/build-config.js \
+						--no-ie-checks 
 				fi
 
 				# Remove custom skin from ckeditor-dev

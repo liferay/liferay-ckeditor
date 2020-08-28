@@ -22,7 +22,7 @@
 		"preversion": "yarn ci",
 		"version": "node support/version.js",
 		"postversion": "npx liferay-js-publish",
-		"format": "prettier --write \"skins/**/*.css\" \"support/*.js\" \"*.json\" \"*.md\"",
-		"format:check": "prettier --list-different \"support/*.js\" \"*.json\" \"*.md\""
+		"format": "prettier --write \"(plugins|skins)/**/*.css\" \"(plugins|support)/**/*.js\" \"*.json\" \"*.md\"",
+		"format:check": "prettier --list-different \"(plugins|skins)/**/*.css\" \"(plugins|support)/**/*.js\" \"*.json\" \"*.md\""
 	}
 }
