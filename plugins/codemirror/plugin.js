@@ -1,23 +1,25 @@
-(function() {
+(function () {
 	'use strict';
 
 	var stylesLoaded = false;
 
 	CKEDITOR.plugins.add('codemirror', {
-		_createCodeMirrorEditor: function(editor) {
+		_createCodeMirrorEditor: function (editor) {
 			var instance = this;
 
-			editor.addMode('source', function(callback) {
+			editor.addMode('source', function (callback) {
 				var contentsSpace = editor.ui.space('contents');
 
-				var textarea = contentsSpace.getDocument().createElement('textarea');
+				var textarea = contentsSpace
+					.getDocument()
+					.createElement('textarea');
 				contentsSpace.append(textarea);
 
 				instance.codeMirrorEditor = CodeMirror.fromTextArea(
 					textarea.$,
 					{
 						lineNumbers: true,
-						mode: 'text/html'
+						mode: 'text/html',
 					}
 				);
 
@@ -25,9 +27,19 @@
 
 				instance.codeMirrorEditor.setValue(html_beautify(oldData));
 
-				instance.codeMirrorEditor.on('change', instance._handleCodeMirrorChange.bind(instance, editor, oldData));
+				instance.codeMirrorEditor.on(
+					'change',
+					instance._handleCodeMirrorChange.bind(
+						instance,
+						editor,
+						oldData
+					)
+				);
 
-				editor.on('resize', instance._handleEditorResize.bind(instance));
+				editor.on(
+					'resize',
+					instance._handleEditorResize.bind(instance)
+				);
 
 				editor.fire('ariaWidget', this);
 
@@ -35,7 +47,7 @@
 			});
 		},
 
-		_handleCodeMirrorChange: function(editor, oldData) {
+		_handleCodeMirrorChange: function (editor, oldData) {
 			var newData = this.codeMirrorEditor.getValue();
 
 			if (newData !== oldData) {
@@ -43,7 +55,7 @@
 			}
 		},
 
-		_handleEditorResize: function(event) {
+		_handleEditorResize: function (event) {
 			this.codeMirrorEditor.setSize(null, event.data.outerHeight);
 		},
 
@@ -51,7 +63,7 @@
 
 		icons: 'source,source-rtl',
 
-		init: function(editor) {
+		init: function (editor) {
 			var instance = this;
 
 			if (editor.plugins.detectConflict('codemirror', ['sourcearea'])) {
@@ -73,13 +85,17 @@
 				stylesLoaded = true;
 			}
 
-			CKEDITOR.scriptLoader.load(this.path + 'vendors/vendors.js',
-				function() {
+			CKEDITOR.scriptLoader.load(
+				this.path + 'vendors/vendors.js',
+				function () {
 					instance._createCodeMirrorEditor(editor);
 				}
 			);
 
-			editor.addCommand('codemirror', CKEDITOR.plugins.codemirror.commands.source);
+			editor.addCommand(
+				'codemirror',
+				CKEDITOR.plugins.codemirror.commands.source
+			);
 
 			editor.addCommand(
 				'codemirrordialog',
@@ -90,7 +106,7 @@
 							source: 1,
 							wysiwyg: 0,
 						},
-						state: CKEDITOR.TRISTATE_OFF
+						state: CKEDITOR.TRISTATE_OFF,
 					}
 				)
 			);
@@ -104,24 +120,26 @@
 				editor.ui.addButton('Source', {
 					label: editor.lang.codemirror.source,
 					command: 'codemirror',
-					toolbar: 'mode,10'
+					toolbar: 'mode,10',
 				});
 
 				editor.ui.addButton('Expand', {
 					label: editor.lang.common.preview,
 					command: 'codemirrordialog',
-					toolbar: 'mode,11'
+					toolbar: 'mode,11',
 				});
 			}
 
-			editor.on('mode', function() {
-				editor.getCommand('codemirror').setState(
-					editor.mode === 'source'
-					? CKEDITOR.TRISTATE_ON
-					: CKEDITOR.TRISTATE_OFF
-				);
+			editor.on('mode', function () {
+				editor
+					.getCommand('codemirror')
+					.setState(
+						editor.mode === 'source'
+							? CKEDITOR.TRISTATE_ON
+							: CKEDITOR.TRISTATE_OFF
+					);
 			});
-		}
+		},
 	});
 })();
 
@@ -130,17 +148,19 @@ CKEDITOR.plugins.codemirror = {
 		source: {
 			modes: {
 				source: 1,
-				wysiwyg: 1
+				wysiwyg: 1,
 			},
 			editorFocus: true,
-			exec: function(editor) {
+			exec: function (editor) {
 				if (editor.mode === 'wysiwyg') {
 					editor.fire('saveSnapshot');
 				}
-				editor.getCommand('codemirror').setState(CKEDITOR.TRISTATE_DISABLED);
+				editor
+					.getCommand('codemirror')
+					.setState(CKEDITOR.TRISTATE_DISABLED);
 				editor.setMode(editor.mode === 'source' ? 'wysiwyg' : 'source');
 			},
-			canUndo: false
-		}
-	}
+			canUndo: false,
+		},
+	},
 };
