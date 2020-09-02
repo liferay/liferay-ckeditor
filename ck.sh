@@ -78,6 +78,9 @@ case "$COMMAND" in
 					node ../support/copyPluginDependencies.js $pluginDir
 				done
 
+				# Copy lang files from image plugin to imagespacingbox
+				cp -r plugins/image/lang plugins/imagespacingbox
+
 				# Generate SVG icons CSS Classes in custom skins
 				skinsWithIcons=$(find skins -maxdepth 2 -mindepth 2 -type f -name icons.json)
 				for iconsFile in $skinsWithIcons ; do
@@ -92,7 +95,7 @@ case "$COMMAND" in
 						--leave-css-unminified --leave-js-unminified --no-ie-checks
 				else
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
-						--no-ie-checks 
+						--no-ie-checks
 				fi
 
 				# Remove old build files.
