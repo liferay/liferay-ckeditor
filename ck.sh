@@ -58,7 +58,7 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
-				# Clean and make a temporal copy of ckeditor-dev to work with
+				# Clean and make a temporary copy of ckeditor-dev to work with
 				rm -rf temp
 				cp -r ckeditor-dev temp
 
@@ -103,7 +103,7 @@ case "$COMMAND" in
 
 				cd ..
 
-				# Remove temporal directory
+				# Remove temporary directory
 				rm -rf temp
 
 				if [ -n "$DEBUG" ]; then
