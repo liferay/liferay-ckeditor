@@ -58,36 +58,35 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
-				# Copy custom skin to ckeditor-dev
-				cp -r skins/moono-lexicon ckeditor-dev/skins/moono-lexicon
+				# Clean and make a temporal copy of ckeditor-dev to work with
+				rm -rf temp
+				cp -r ckeditor-dev temp
 
-				# Copy custom plugins to ckeditor-dev
-				cp -r plugins ckeditor-dev
+				# Copy custom skins
+				cp -r skins temp
 
-				# Copy skin files for plugins
-				pluginsWithSkins=$(find ckeditor-dev/plugins -maxdepth 2 -mindepth 2 -type d -name skins)
-				for plugin in $pluginsWithSkins; do
-					pluginDir=$(dirname "$plugin")
-					pluginName=$(basename "$pluginDir")
-					pluginSkinPath="skins/moono-lexicon/plugins/$pluginName/skins/moono-lexicon"
-					if [[ -d "$pluginSkinPath" ]]; then
-						cp -r "$pluginSkinPath" "$pluginDir/skins"
-					fi
-				done
+				# Copy custom plugins
+				cp -r plugins temp
 
-				cd ckeditor-dev
+				cd temp
 
-				# Run every plugin build script
+				# Copy plugin dependencies
 				pluginsWithDeps=$(find plugins -maxdepth 2 -mindepth 2 -type f -name deps.json)
 				for pluginDepsFile in $pluginsWithDeps ; do
 					pluginDir=$(dirname "$pluginDepsFile")
 
 					node ../support/copyPluginDependencies.js $pluginDir
-				done	
+				done
 
-				# Generate SVG icons CSS Classes
-				node ../support/iconsClassesGenerator.js skins/moono-lexicon/icons/icons.json skins/moono-lexicon/icons.css
+				# Generate SVG icons CSS Classes in custom skins
+				skinsWithIcons=$(find skins -maxdepth 2 -mindepth 2 -type f -name icons.json)
+				for iconsFile in $skinsWithIcons ; do
+					skinDir=$(dirname "$iconsFile")
 
+					node ../support/iconsClassesGenerator.js $iconsFile $skinDir/icons.css
+				done
+
+				# Build ckeditor
 				if [ -n "$DEBUG" ]; then
 					dev/builder/build.sh --build-config ../../../support/build-config.js \
 						--leave-css-unminified --leave-js-unminified --no-ie-checks
@@ -96,9 +95,6 @@ case "$COMMAND" in
 						--no-ie-checks 
 				fi
 
-				# Remove custom skin from ckeditor-dev
-				rm -rf skins/moono-lexicon
-
 				# Remove old build files.
 				rm -rf ../ckeditor/*
 
@@ -106,6 +102,10 @@ case "$COMMAND" in
 				cp -r dev/builder/release/ckeditor/* ../ckeditor/
 
 				cd ..
+
+				# Remove temporal directory
+				rm -rf temp
+
 				if [ -n "$DEBUG" ]; then
 					echo
 					echo "✅ DONE"

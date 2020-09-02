@@ -1,5 +1,5 @@
 {
-    "dir": "../../../node_modules/@clayui/css/lib/images/icons",
+    "dir": "../../node_modules/@clayui/css/lib/images/icons",
     "icons": {
         "align-image-center": "align-image-center",
         "align-image-left": "align-image-left",
