@@ -45,6 +45,7 @@ var CKBUILDER_CONFIG = {
 		format: 1,
 		horizontalrule: 1,
 		image2: 1,
+		imagespacingbox: 1,
 		indentlist: 1,
 		indentblock: 1,
 		justify: 1,
