@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const sharp = require('sharp');
 
 const configFilePath = process.argv[2];
 const outputFile = process.argv[3];
@@ -99,9 +98,6 @@ const getCSS = (svgData, cKEditorIcon, direction) => {
 let iconsCSSContent = '';
 
 for (const [cKEditorIcon, clayIcon] of Object.entries(iconsConfig.icons)) {
-	let directionClass = '';
-	let svgDataList = [];
-
 	if (typeof clayIcon === 'string') {
 		const svgData = fs.readFileSync(
 			`${sourceIconsPath}/${clayIcon}.svg`,
