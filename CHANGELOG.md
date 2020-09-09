@@ -1,3 +1,20 @@
+## [v4.14.1-liferay.10](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.10) (2020-09-09)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.9...v4.14.1-liferay.10)
+
+### :new: Features
+
+-   feat: add imagespacingbox plugin ([\#126](https://github.com/liferay/liferay-ckeditor/pull/126))
+
+### :house: Chores
+
+-   chore: remove unused deps and files ([\#130](https://github.com/liferay/liferay-ckeditor/pull/130))
+-   chore: add plugins files to format script ([\#127](https://github.com/liferay/liferay-ckeditor/pull/127))
+
+### :woman_juggling: Refactoring
+
+-   refactor: move plugins skins to plugins folder ([\#128](https://github.com/liferay/liferay-ckeditor/pull/128))
+
 ## [v4.14.1-liferay.9](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.9) (2020-08-28)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.8...v4.14.1-liferay.9)
