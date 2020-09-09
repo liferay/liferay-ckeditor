@@ -1,0 +1,88 @@
+{
+    "dir": "../../node_modules/@clayui/css/lib/images/icons",
+    "icons": {
+        "align-image-center": "align-image-center",
+        "align-image-left": "align-image-left",
+        "align-image-right": "align-image-right",
+        "anchor": {
+            "ltr": "flag-full",
+            "rtl": "flag-full-rtl"
+        },
+        "audioselector": "audio",
+        "bgcolor": "background-color",
+        "blockquote": "quote-right",
+        "bold": "bold",
+        "bulletedlist": {
+            "ltr": "list-ul",
+            "rtl": "list-ul-rtl"
+        },
+        "copy": {
+            "ltr": "copy",
+            "rtl": "copy"
+        },
+        "cut": {
+            "ltr": "cut",
+            "rtl": "cut"
+        },
+        "find": {
+            "ltr": "search",
+            "rtl": "search"
+        },
+        "hidden": "hidden",
+        "horizontalrule": "separator",
+        "image": "picture",
+        "imageselector": "picture",
+        "indent": {
+            "ltr": "indent-more",
+            "rtl": "indent-less"
+        },
+        "italic": "italic",
+        "justifyblock": "align-justify",
+        "justifycenter": "align-center",
+        "justifyleft": "align-left",
+        "justifyright": "align-right",
+        "link": "link",
+        "maximize": "full-size",
+        "numberedlist": {
+            "ltr": "list-ol",
+            "rtl": "list-ol-rtl"
+        },
+        "outdent": {
+            "ltr": "indent-less",
+            "rtr": "indent-more"
+        },
+        "paste": {
+            "ltr": "paste",
+            "rtl": "paste"
+        },
+        "pastefromword": {
+            "ltr": "paste-word",
+            "rtl": "paste-word"
+        },
+        "redo": {
+            "ltr": "redo",
+            "rtl": "undo"
+        },
+        "removeformat": "remove-style",
+        "replace": "change-list",
+        "selectall": "select-all",
+        "smiley": "emoji",
+        "source": {
+            "ltr":"code",
+            "rtl":"code"
+        },
+        "specialchar": "special-character",
+        "strike": "strikethrough",
+        "subscript": "subscript",
+        "superscript": "superscript",
+        "table": "table2",
+        "textcolor": "text-color",
+        "underline": "underline",
+        "undo": {
+            "ltr": "undo",
+            "rtl": "redo"
+        },
+        "unlink": "chain-broken",
+        "videoselector": "video"
+    }
+}
