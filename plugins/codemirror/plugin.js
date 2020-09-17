@@ -19,6 +19,7 @@
 					textarea.$,
 					{
 						lineNumbers: true,
+						lineWrapping: true,
 						mode: 'text/html',
 					}
 				);
