@@ -29,7 +29,9 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 				}
 			));
 
-			var defaultWidth = size.width * 0.5 - 10;
+			var padding = 40;
+
+			var defaultWidth = size.width / 2 - padding;
 
 			codeMirrorEditor.setSize(defaultWidth, null);
 
