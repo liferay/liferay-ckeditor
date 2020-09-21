@@ -1,3 +1,13 @@
+## [v4.14.1-liferay.11](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.11) (2020-09-21)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.10...v4.14.1-liferay.11)
+
+### :wrench: Bug fixes
+
+-   fix: enable line wrapping in codemirror plugin ([\#132](https://github.com/liferay/liferay-ckeditor/pull/132))
+-   fix: display formatted text in Firefox Preview Source dialog ([\#131](https://github.com/liferay/liferay-ckeditor/pull/131))
+-   fix: modify calculation for dialog defaultWidth which caused visual bug ([\#133](https://github.com/liferay/liferay-ckeditor/pull/133))
+
 ## [v4.14.1-liferay.10](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.10) (2020-09-09)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.9...v4.14.1-liferay.10)
