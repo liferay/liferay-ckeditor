@@ -11,6 +11,10 @@ a.cke_button__source.cke_button_off + a.cke_button__expand.cke_button_disabled {
 	font-size: 13px;
 }
 
+.cke_reset_all .CodeMirror-scroll * {
+	white-space: pre-wrap;
+}
+
 .cke_dialog .code_preview {
 	border-left: 1px solid #bcbcbc;
 	overflow-x: auto;
