@@ -88,10 +88,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 			parentElement.append(iframe);
 
-			iframe.setAttributes({
-				class: 'cke_wysiwyg_frame cke_reset',
-				frameborder: 0,
-			});
+			iframe.setAttribute('frameborder', 0);
 
 			iframe.setStyles({
 				height: height + 'px',
@@ -119,6 +116,9 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			var data = this.codeMirrorEditor.getValue();
 
 			var iframe = event.sender;
+
+			iframe.addClass('cke_wysiwyg_frame');
+			iframe.addClass('cke_reset');
 
 			var iframeBody = iframe.$.contentDocument.body;
 
