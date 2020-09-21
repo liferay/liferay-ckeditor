@@ -44,10 +44,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 				.getElement();
 			preview.setSize('width', defaultWidth);
 
-			var iframe = this._createContentIframe(preview);
-			var iframeBody = iframe.$.contentDocument.body;
-
-			iframeBody.innerHTML = codeMirrorEditor.getValue();
+			this._createContentIframe(preview);
 
 			codeMirrorEditor.on(
 				'change',
@@ -87,19 +84,48 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 				tabPanel.getSize('height') - (padding.bottom + padding.top);
 
 			var iframe = new CKEDITOR.dom.element('iframe');
+			iframe.on('load', this._handleIframeLoaded.bind(this));
+
 			parentElement.append(iframe);
 
-			iframe.setAttributes({
-				class: 'cke_wysiwyg_frame cke_reset',
-				frameborder: 0,
-			});
+			iframe.setAttribute('frameborder', 0);
 
 			iframe.setStyles({
 				height: height + 'px',
 				width: '99%',
 			});
 
+			return iframe;
+		},
+
+		_handleCodeMirrorChange: function () {
+			var newData = this.codeMirrorEditor.getValue();
+			var preview = this.dialog
+				.getContentElement('main', 'preview')
+				.getElement();
+
+			var iframe = preview.findOne('iframe');
+			if (iframe && iframe.$) {
+				var iframeDocument = iframe.$.contentDocument;
+				var iframeBody = iframeDocument.body;
+				iframeBody.innerHTML = newData;
+			}
+		},
+
+		_handleIframeLoaded: function (event) {
+			var data = this.codeMirrorEditor.getValue();
+
+			var iframe = event.sender;
+
+			iframe.addClass('cke_wysiwyg_frame');
+			iframe.addClass('cke_reset');
+
+			var iframeBody = iframe.$.contentDocument.body;
+
+			iframeBody.innerHTML = data;
+
 			var iframeDocument = iframe.$.contentDocument;
+
 			var iframeHead = iframeDocument.head;
 
 			var contentsCss = editor.config.contentsCss;
@@ -135,22 +161,6 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			iframeBody.setAttribute('spellcheck', false);
 
 			iframeBody.style.background = '#fff';
-
-			return iframe;
-		},
-
-		_handleCodeMirrorChange: function () {
-			var newData = this.codeMirrorEditor.getValue();
-			var preview = this.dialog
-				.getContentElement('main', 'preview')
-				.getElement();
-
-			var iframe = preview.findOne('iframe');
-			if (iframe && iframe.$) {
-				var iframeDocument = iframe.$.contentDocument;
-				var iframeBody = iframeDocument.body;
-				iframeBody.innerHTML = newData;
-			}
 		},
 
 		contents: [
