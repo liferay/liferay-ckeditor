@@ -33,7 +33,14 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 			var defaultWidth = size.width / 2 - padding;
 
-			codeMirrorEditor.setSize(defaultWidth, null);
+			var tabPanel = this._getTabPanel();
+			var tabPanelPadding = this._getTabPanelPadding();
+
+			var defaultHeight =
+				tabPanel.getSize('height') -
+				(tabPanelPadding.bottom + tabPanelPadding.top);
+
+			codeMirrorEditor.setSize(defaultWidth, defaultHeight);
 
 			var editor = dialog.getParentEditor();
 
@@ -56,32 +63,12 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			var dialog = this.dialog;
 			var editor = dialog.getParentEditor();
 
-			var mainElement = dialog.getContentElement('main').getElement();
-
-			var tabPanel = mainElement.getAscendant(function (el) {
-				return (
-					el.getName() === 'div' &&
-					el.getAttribute('role') === 'tabpanel'
-				);
-			});
-
-			var tabPanelParent = tabPanel.getParent();
-
-			var padding = {
-				bottom:
-					parseInt(
-						tabPanelParent.getComputedStyle('padding-bottom'),
-						10
-					) || 0,
-				top:
-					parseInt(
-						tabPanelParent.getComputedStyle('padding-top'),
-						10
-					) || 0,
-			};
+			var tabPanel = this._getTabPanel();
+			var tabPanelPadding = this._getTabPanelPadding();
 
 			var height =
-				tabPanel.getSize('height') - (padding.bottom + padding.top);
+				tabPanel.getSize('height') -
+				(tabPanelPadding.bottom + tabPanelPadding.top);
 
 			var iframe = new CKEDITOR.dom.element('iframe');
 			iframe.on('load', this._handleIframeLoaded.bind(this));
@@ -161,6 +148,53 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			iframeBody.setAttribute('spellcheck', false);
 
 			iframeBody.style.background = '#fff';
+
+			return iframe;
+		},
+
+		_getTabPanel: function () {
+			var mainElement = this.dialog
+				.getContentElement('main')
+				.getElement();
+
+			return mainElement.getAscendant(function (el) {
+				return (
+					el.getName() === 'div' &&
+					el.getAttribute('role') === 'tabpanel'
+				);
+			});
+		},
+
+		_getTabPanelPadding: function () {
+			var tabPanel = this._getTabPanel();
+			var tabPanelParent = tabPanel.getParent();
+
+			return {
+				bottom:
+					parseInt(
+						tabPanelParent.getComputedStyle('padding-bottom'),
+						10
+					) || 0,
+				top:
+					parseInt(
+						tabPanelParent.getComputedStyle('padding-top'),
+						10
+					) || 0,
+			};
+		},
+
+		_handleCodeMirrorChange: function () {
+			var newData = this.codeMirrorEditor.getValue();
+			var preview = this.dialog
+				.getContentElement('main', 'preview')
+				.getElement();
+
+			var iframe = preview.findOne('iframe');
+			if (iframe && iframe.$) {
+				var iframeDocument = iframe.$.contentDocument;
+				var iframeBody = iframeDocument.body;
+				iframeBody.innerHTML = newData;
+			}
 		},
 
 		contents: [
