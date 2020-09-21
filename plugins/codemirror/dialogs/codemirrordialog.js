@@ -84,56 +84,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 				tabPanel.getSize('height') - (padding.bottom + padding.top);
 
 			var iframe = new CKEDITOR.dom.element('iframe');
-
-			function handleStyles() {
-				var iframeDocument = iframe.$.contentDocument;
-
-				var iframeHead = iframeDocument.head;
-
-				var contentsCss = editor.config.contentsCss;
-
-				if (Array.isArray(contentsCss)) {
-					contentsCss.forEach(function (url) {
-						var link = iframeDocument.createElement('link');
-						link.setAttribute('href', url);
-						link.setAttribute('rel', 'stylesheet');
-
-						iframeHead.appendChild(link);
-					});
-				} else {
-					var link = iframeDocument.createElement('link');
-					link.setAttribute('href', contentsCss);
-					link.setAttribute('rel', 'stylesheet');
-
-					iframeHead.appendChild(link);
-				}
-
-				var direction = editor.config.contentsLangDirection;
-
-				var iframeHtml = iframeDocument.documentElement;
-				iframeHtml.setAttribute('dir', direction);
-				iframeHtml.setAttribute('lang', editor.config.defaultLanguage);
-
-				var iframeBody = iframeDocument.body;
-				iframeBody.classList.add('cke_editable');
-				iframeBody.classList.add('cke_editable_themed');
-				iframeBody.classList.add('cke_contents_' + direction);
-
-				iframeBody.setAttribute('contenteditable', false);
-				iframeBody.setAttribute('spellcheck', false);
-
-				iframeBody.style.background = '#fff';
-			}
-
-			var data = this.codeMirrorEditor.getValue();
-
-			iframe.on('load', function () {
-				var iframeBody = iframe.$.contentDocument.body;
-
-				iframeBody.innerHTML = data;
-
-				handleStyles();
-			});
+			iframe.on('load', this._handleIframeLoaded.bind(this));
 
 			parentElement.append(iframe);
 
@@ -162,6 +113,54 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 				var iframeBody = iframeDocument.body;
 				iframeBody.innerHTML = newData;
 			}
+		},
+
+		_handleIframeLoaded: function (event) {
+			var data = this.codeMirrorEditor.getValue();
+
+			var iframe = event.sender;
+
+			var iframeBody = iframe.$.contentDocument.body;
+
+			iframeBody.innerHTML = data;
+
+			var iframeDocument = iframe.$.contentDocument;
+
+			var iframeHead = iframeDocument.head;
+
+			var contentsCss = editor.config.contentsCss;
+
+			if (Array.isArray(contentsCss)) {
+				contentsCss.forEach(function (url) {
+					var link = iframeDocument.createElement('link');
+					link.setAttribute('href', url);
+					link.setAttribute('rel', 'stylesheet');
+
+					iframeHead.appendChild(link);
+				});
+			} else {
+				var link = iframeDocument.createElement('link');
+				link.setAttribute('href', contentsCss);
+				link.setAttribute('rel', 'stylesheet');
+
+				iframeHead.appendChild(link);
+			}
+
+			var direction = editor.config.contentsLangDirection;
+
+			var iframeHtml = iframeDocument.documentElement;
+			iframeHtml.setAttribute('dir', direction);
+			iframeHtml.setAttribute('lang', editor.config.defaultLanguage);
+
+			var iframeBody = iframeDocument.body;
+			iframeBody.classList.add('cke_editable');
+			iframeBody.classList.add('cke_editable_themed');
+			iframeBody.classList.add('cke_contents_' + direction);
+
+			iframeBody.setAttribute('contenteditable', false);
+			iframeBody.setAttribute('spellcheck', false);
+
+			iframeBody.style.background = '#fff';
 		},
 
 		contents: [
