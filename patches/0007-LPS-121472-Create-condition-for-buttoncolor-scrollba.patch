@@ -1,0 +1,24 @@
+From 986463b492d4549ba860aa7e832f41a7789b528e Mon Sep 17 00:00:00 2001
+From: Fortunato Maldonado <fortunato.maldonado@liferay.com>
+Date: Tue, 29 Sep 2020 08:21:24 -0700
+Subject: [PATCH] LPS-121472 Create condition for buttoncolor scrollbar
+
+---
+ plugins/colorbutton/plugin.js | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/plugins/colorbutton/plugin.js b/plugins/colorbutton/plugin.js
+index fa0a582c2..a57089fa6 100644
+--- a/plugins/colorbutton/plugin.js
++++ b/plugins/colorbutton/plugin.js
+@@ -187,7 +187,9 @@ CKEDITOR.plugins.add( 'colorbutton', {
+ 						commandName: commandName
+ 					} ) );
+ 					// The block should not have scrollbars (https://dev.ckeditor.com/ticket/5933, https://dev.ckeditor.com/ticket/6056)
+-					block.element.getDocument().getBody().setStyle( 'overflow', 'hidden' );
++					if (block.element.getDocument().getBody().hasClass('cke_ltr')) {
++						block.element.getDocument().getBody().setStyle('overflow', 'hidden');
++					}
+ 
+ 					CKEDITOR.ui.fire( 'ready', this );
+ 
