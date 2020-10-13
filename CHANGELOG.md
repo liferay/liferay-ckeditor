@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.12](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.12) (2020-10-13)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.11...v4.14.1-liferay.12)
+
+### :wrench: Bug fixes
+
+-   fix: make text wrap in codemirror plugin ([\#136](https://github.com/liferay/liferay-ckeditor/pull/136))
+
 ## [v4.14.1-liferay.11](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.11) (2020-09-21)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.10...v4.14.1-liferay.11)
