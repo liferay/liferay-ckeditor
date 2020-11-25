@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+const parser = require('@babel/parser');
+const traverse = require('@babel/traverse').default;
+const generate = require('@babel/generator').default;
+
 const pluginDir = process.argv[2];
 
 const configFilePath = path.join(pluginDir, 'deps.json');
@@ -23,7 +27,25 @@ for (const [depType, deps] of Object.entries(depsConfig)) {
 		files.forEach((file) => {
 			const filePath = path.join('../node_modules', dep, file);
 
-			fileContent += fs.readFileSync(filePath);
+			if (depType === 'js') {
+				const code = fs.readFileSync(filePath);
+
+				const ast = parser.parse(code.toString());
+
+				traverse(ast, {
+					enter(path) {
+						if (path.node.name === 'define') {
+							path.node.name = '__define_disabled__';
+						}
+					},
+				});
+
+				const output = generate(ast, code);
+
+				fileContent += output.code;
+			} else {
+				fileContent += fs.readFileSync(filePath);
+			}
 		});
 	}
 
