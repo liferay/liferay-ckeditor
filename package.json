@@ -10,6 +10,9 @@
 	"license": "(GPL-2.0-or-later OR LGPL-2.1 OR MPL-1.1)",
 	"private": false,
 	"devDependencies": {
+		"@babel/generator": "^7.12.5",
+		"@babel/parser": "^7.12.7",
+		"@babel/traverse": "^7.12.9",
 		"@clayui/css": "^3.14.0",
 		"codemirror": "^5.57.0",
 		"js-beautify": "^1.13.0",
@@ -23,10 +26,5 @@
 		"postversion": "npx liferay-js-publish",
 		"format": "prettier --write \"(plugins|skins)/**/*.css\" \"(plugins|support)/**/*.js\" \"*.json\" \"*.md\"",
 		"format:check": "prettier --list-different \"(plugins|skins)/**/*.css\" \"(plugins|support)/**/*.js\" \"*.json\" \"*.md\""
-	},
-	"dependencies": {
-		"@babel/generator": "^7.12.5",
-		"@babel/parser": "^7.12.7",
-		"@babel/traverse": "^7.12.9"
 	}
 }
