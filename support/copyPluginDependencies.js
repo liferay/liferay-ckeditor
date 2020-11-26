@@ -40,7 +40,7 @@ for (const [depType, deps] of Object.entries(depsConfig)) {
 							path.node.argument.type === 'Identifier' &&
 							path.node.argument.name === 'define'
 						) {
-							path.replaceWithSourceString('__define_disabled__');
+							path.node.argument.name = '__define_disabled__';
 						}
 					},
 				});
