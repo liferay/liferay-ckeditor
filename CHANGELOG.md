@@ -1,3 +1,12 @@
+## [v4.14.1-liferay.13](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.13) (2020-11-26)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.12...v4.14.1-liferay.13)
+
+### :wrench: Bug fixes
+
+-   fix: babel deps are devdeps ([\#142](https://github.com/liferay/liferay-ckeditor/pull/142))
+-   fix: rename define in plugin dependencies ([\#141](https://github.com/liferay/liferay-ckeditor/pull/141))
+
 ## [v4.14.1-liferay.12](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.12) (2020-10-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.11...v4.14.1-liferay.12)
