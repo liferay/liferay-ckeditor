@@ -34,8 +34,13 @@ for (const [depType, deps] of Object.entries(depsConfig)) {
 
 				traverse(ast, {
 					enter(path) {
-						if (path.node.name === 'define') {
-							path.node.name = '__define_disabled__';
+						if (
+							path.node.type === 'UnaryExpression' &&
+							path.node.operator === 'typeof' &&
+							path.node.argument.type === 'Identifier' &&
+							path.node.argument.name === 'define'
+						) {
+							path.replaceWithSourceString('__define_disabled__');
 						}
 					},
 				});
