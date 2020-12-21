@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.14](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.14) (2020-12-21)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.13...v4.14.1-liferay.14)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-124728 Avoid using unsupported APIs in IE11 ([\#146](https://github.com/liferay/liferay-ckeditor/pull/146))
+
 ## [v4.14.1-liferay.13](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.13) (2020-11-26)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.12...v4.14.1-liferay.13)
