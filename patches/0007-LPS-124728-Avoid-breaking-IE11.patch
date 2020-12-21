@@ -1,0 +1,61 @@
+From d0bf70988e63c2c84076d7418eb6cfe0edc438de Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Mon, 21 Dec 2020 09:12:53 +0100
+Subject: [PATCH] LPS-124728 Avoid breaking IE11
+
+IE11 Doesn't support URL, URLSearchParams and Object.entries
+In theory though we have a pollyfill for these but it seems that
+they aren't loaded when getUrl is executed.
+---
+ core/ckeditor_base.js | 30 ++++++++++++++++++------------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+
+diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
+index 6d9fcbc03..59b3e4a0b 100644
+--- a/core/ckeditor_base.js
++++ b/core/ckeditor_base.js
+@@ -171,26 +171,32 @@ if ( !window.CKEDITOR ) {
+ 			 * @returns {String} The full URL.
+ 			 */
+ 			getUrl: function( resource ) {
+-				var resourceUrl = resource.startsWith(this.basePath)
+-					? new URL(resource)
+-					: new URL(this.basePath + resource);
++				function set(key, value) {
++					if (!resource.match(new RegExp('[&?]' + key + '\\b'))) {
++						resource += (resource.indexOf('?') >= 0 ? '&' : '?') + key + '=' + value;
++					}
++				}
+ 
+-				if (!resourceUrl.toString().endsWith('/')) {
+-					if (this.timestamp && !resourceUrl.searchParams.has('t')) {
+-						resourceUrl.searchParams.set('t', this.timestamp);
++				// If this is not a full or absolute path.
++				if (resource.indexOf(':/') === -1 && resource.indexOf('/') !== 0) {
++					resource = this.basePath + resource;
++				}
++
++				if (resource.charAt(resource.length - 1) !== '/') {
++					if (this.timestamp) {
++						set('t', this.timestamp);
+ 					}
+ 
+-					Object.entries(CKEDITOR.ADDITIONAL_RESOURCE_PARAMS).forEach(function(entries) {
+-						var key = entries[0];
+-						var value = entries[1];
++					Object.keys(CKEDITOR.ADDITIONAL_RESOURCE_PARAMS).forEach(function(key) {
++						var value = CKEDITOR.ADDITIONAL_RESOURCE_PARAMS[key];
+ 
+-						if (!resourceUrl.searchParams.has(key) && !(resourceUrl.toString().includes('.css') && key === 'languageId')) {
+-							resourceUrl.searchParams.set(key, value);
++						if (!/\.css$/.test(resource) || key !== 'languageId') {
++							set(key, value);
+ 						}
+ 					});
+ 				}
+ 
+-				return resourceUrl.toString();
++				return resource;
+ 			},
+ 
+ 			/**
