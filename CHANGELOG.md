@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.15](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.15) (2021-01-08)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.14...v4.14.1-liferay.15)
+
+### :wrench: Bug fixes
+
+-   fix: Make table properties visible ([\#150](https://github.com/liferay/liferay-ckeditor/pull/150))
+
 ## [v4.14.1-liferay.14](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.14) (2020-12-21)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.13...v4.14.1-liferay.14)
