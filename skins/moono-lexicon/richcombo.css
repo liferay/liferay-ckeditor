@@ -196,8 +196,8 @@ a.cke_combo_button {
 .cke_toolbar_break + .cke_toolbar > .cke_toolbar_start + .cke_combo_off a.cke_combo_button:focus,
 .cke_toolbar_break + .cke_toolbar > .cke_toolbar_start + .cke_combo_off a.cke_combo_button:active {
 	/* If first combo in a row do not use negative margin so it is aligned with other rows on hover. */
-	padding: 0;
-	margin: 0;
+	padding: 6px 18px;
+	margin: 0 4px 0 0;
 }
 
 .cke_hc
