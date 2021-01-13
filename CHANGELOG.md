@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.16](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.16) (2021-01-13)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.15...v4.14.1-liferay.16)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-125441 CKEditor font size selector flickers on mouse over ([\#148](https://github.com/liferay/liferay-ckeditor/pull/148))
+
 ## [v4.14.1-liferay.15](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.15) (2021-01-08)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.14...v4.14.1-liferay.15)
