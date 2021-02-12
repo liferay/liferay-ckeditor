@@ -26,7 +26,7 @@
 
 				var oldData = editor.getData(1);
 
-				instance.codeMirrorEditor.setValue(html_beautify(oldData));
+				instance.codeMirrorEditor.setValue(oldData);
 
 				instance.codeMirrorEditor.on(
 					'change',
