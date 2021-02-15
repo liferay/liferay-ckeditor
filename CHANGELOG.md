@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.17](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.17) (2021-02-15)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.16...v4.14.1-liferay.17)
+
+### :wrench: Bug fixes
+
+-   fix: Restore htmlwriter to have beautification in our source view ([\#152](https://github.com/liferay/liferay-ckeditor/pull/152))
+
 ## [v4.14.1-liferay.16](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.16) (2021-01-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.15...v4.14.1-liferay.16)
