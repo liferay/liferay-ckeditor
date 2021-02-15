@@ -44,7 +44,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 			var editor = dialog.getParentEditor();
 
-			codeMirrorEditor.setValue(html_beautify(editor.getData(true)));
+			codeMirrorEditor.setValue(editor.getData(true));
 
 			var preview = dialog
 				.getContentElement('main', 'preview')
@@ -246,7 +246,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			var data = editor.getData();
 
 			if (codeMirrorEditor && codeMirrorEditor.getValue() !== data) {
-				codeMirrorEditor.setValue(html_beautify(data));
+				codeMirrorEditor.setValue(data);
 			}
 		},
 	};

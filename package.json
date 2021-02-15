@@ -15,7 +15,6 @@
 		"@babel/traverse": "^7.12.9",
 		"@clayui/css": "^3.14.0",
 		"codemirror": "^5.57.0",
-		"js-beautify": "^1.13.0",
 		"prettier": "2.0.4"
 	},
 	"scripts": {

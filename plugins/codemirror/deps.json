@@ -8,9 +8,6 @@
         "codemirror": [
             "lib/codemirror.js",
             "mode/xml/xml.js"
-        ],
-        "js-beautify": [
-            "js/lib/beautify-html.js"
         ]
     }
 }
