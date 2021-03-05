@@ -13,7 +13,10 @@
 				var textarea = contentsSpace
 					.getDocument()
 					.createElement('textarea');
+
 				contentsSpace.append(textarea);
+
+				editor.editable(new codeMirrorEditable(editor, textarea));
 
 				instance.codeMirrorEditor = CodeMirror.fromTextArea(
 					textarea.$,
@@ -140,6 +143,41 @@
 							: CKEDITOR.TRISTATE_OFF
 					);
 			});
+		},
+	});
+
+	var codeMirrorEditable = CKEDITOR.tools.createClass({
+		base: CKEDITOR.editable,
+
+		proto: {
+			setData: function (data) {
+				this.setValue(data);
+				this.value = 'ready';
+				this.editor.fire('dataReady');
+			},
+
+			getData: function () {
+				return this.getValue();
+			},
+
+			// Insertions are not supported in source editable.
+			insertHtml: function () {},
+			insertElement: function () {},
+			insertText: function () {},
+
+			// Read-only support for textarea.
+			setReadOnly: function (isReadOnly) {
+				this[(isReadOnly ? 'set' : 'remove') + 'Attribute'](
+					'readOnly',
+					'readonly'
+				);
+			},
+
+			detach: function () {
+				codeMirrorEditable.baseProto.detach.call(this);
+				this.clearCustomData();
+				this.remove();
+			},
 		},
 	});
 })();
