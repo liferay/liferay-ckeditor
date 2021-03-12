@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.19](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.19) (2021-03-12)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.18...v4.14.1-liferay.19)
+
+### :wrench: Bug fixes
+
+-   fix: remove css classes as well when changing style ([\#156](https://github.com/liferay/liferay-ckeditor/pull/156))
+
 ## [v4.14.1-liferay.18](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.18) (2021-03-05)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.17...v4.14.1-liferay.18)
