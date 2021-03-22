@@ -44,7 +44,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 			var editor = dialog.getParentEditor();
 
-			codeMirrorEditor.setValue(editor.getData(true));
+			codeMirrorEditor.setValue(editor.getData());
 
 			var preview = dialog
 				.getContentElement('main', 'preview')
