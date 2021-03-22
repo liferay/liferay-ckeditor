@@ -1,3 +1,15 @@
+## [v4.14.1-liferay.20](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.20) (2021-03-22)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.19...v4.14.1-liferay.20)
+
+### :wrench: Bug fixes
+
+-   fix: sync content between editor and dialogs ([\#159](https://github.com/liferay/liferay-ckeditor/pull/159))
+
+### :house: Chores
+
+-   chore: revert "fix: remove css classes as well when changing style" ([\#158](https://github.com/liferay/liferay-ckeditor/pull/158))
+
 ## [v4.14.1-liferay.19](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.19) (2021-03-12)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.18...v4.14.1-liferay.19)
