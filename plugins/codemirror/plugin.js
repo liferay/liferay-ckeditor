@@ -156,7 +156,7 @@
 		proto: {
 			setData: function (data) {
 				this.setValue(data);
-				this.value = 'ready';
+				this.status = 'ready';
 				this.editor.fire('dataReady');
 			},
 
