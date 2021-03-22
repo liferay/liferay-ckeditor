@@ -16,8 +16,6 @@
 
 				contentsSpace.append(textarea);
 
-				editor.editable(new codeMirrorEditable(editor, textarea));
-
 				instance.codeMirrorEditor = CodeMirror.fromTextArea(
 					textarea.$,
 					{
@@ -28,6 +26,12 @@
 				);
 
 				var oldData = editor.getData(1);
+
+				var editable = editor.editable(
+					new codeMirrorEditable(editor, textarea)
+				);
+
+				editable.setData(oldData);
 
 				instance.codeMirrorEditor.setValue(oldData);
 
