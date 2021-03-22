@@ -236,8 +236,9 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 			if (newData !== oldData) {
 				editor.setData(newData);
-				editor.setMode('wysiwyg');
 			}
+
+			editor.setMode('wysiwyg');
 		},
 
 		onShow: function () {
