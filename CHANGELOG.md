@@ -1,3 +1,11 @@
+## [v4.14.1-liferay.21](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.21) (2021-04-09)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.20...v4.14.1-liferay.21)
+
+### :wrench: Bug fixes
+
+-   fix: initialize codemirror with the editor data and update it on data ready ([\#161](https://github.com/liferay/liferay-ckeditor/pull/161))
+
 ## [v4.14.1-liferay.20](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.20) (2021-03-22)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.19...v4.14.1-liferay.20)
