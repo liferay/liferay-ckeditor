@@ -49,6 +49,16 @@
 					instance._handleEditorResize.bind(instance)
 				);
 
+				editor.on('dataReady', function (event) {
+					var newData = event.data;
+
+					var oldData = instance.codeMirrorEditor.getValue();
+
+					if (newData && newData !== oldData) {
+						instance.codeMirrorEditor.setValue(newData);
+					}
+				});
+
 				editor.fire('ariaWidget', this);
 
 				callback();
@@ -157,7 +167,7 @@
 			setData: function (data) {
 				this.setValue(data);
 				this.status = 'ready';
-				this.editor.fire('dataReady');
+				this.editor.fire('dataReady', data);
 			},
 
 			getData: function () {
