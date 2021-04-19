@@ -3,6 +3,26 @@ Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 
+.cke_balloon.cke_balloontoolbar {
+	background: white;
+	border-color: #e7e7ed;
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cke_balloon.cke_balloontoolbar
+	.cke_balloon_triangle_outer.cke_balloon_triangle_bottom,
+.cke_balloon.cke_balloontoolbar
+	.cke_balloon_triangle_outer.cke_balloon_triangle_top {
+	border-color: #e7e7ed transparent;
+}
+
+.cke_balloon.cke_balloontoolbar
+	.cke_balloon_triangle_inner.cke_balloon_triangle_bottom,
+.cke_balloon.cke_balloontoolbar
+	.cke_balloon_triangle_inner.cke_balloon_triangle_top {
+	border-color: white transparent;
+}
+
 .cke_balloon.cke_balloontoolbar span:last-child a:last-child::after,
 .cke_balloon.cke_balloontoolbar span:last-child a:last-child:hover::after,
 .cke_balloon.cke_balloontoolbar span:last-child::after {
