@@ -35,6 +35,15 @@
 
 				instance.codeMirrorEditor.setValue(oldData);
 
+				var editableParent = editable.getParent();
+				var contentsSize = editableParent.getClientSize();
+				if (contentsSize.height) {
+					instance.codeMirrorEditor.setSize(
+						null,
+						contentsSize.height
+					);
+				}
+
 				instance.codeMirrorEditor.on(
 					'change',
 					instance._handleCodeMirrorChange.bind(
@@ -74,7 +83,7 @@
 		},
 
 		_handleEditorResize: function (event) {
-			this.codeMirrorEditor.setSize(null, event.data.outerHeight);
+			this.codeMirrorEditor.setSize(null, event.data.contentsHeight);
 		},
 
 		hidpi: true,
