@@ -1,3 +1,12 @@
+## [v4.14.1-liferay.22](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.22) (2021-04-26)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.21...v4.14.1-liferay.22)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-130834 CKEditor is not displaying the full source code text on 7.0.x ([\#165](https://github.com/liferay/liferay-ckeditor/pull/165))
+-   fix: LPS-127014 Add balloontoolbar missing style ([\#162](https://github.com/liferay/liferay-ckeditor/pull/162))
+
 ## [v4.14.1-liferay.21](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.21) (2021-04-09)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.20...v4.14.1-liferay.21)
