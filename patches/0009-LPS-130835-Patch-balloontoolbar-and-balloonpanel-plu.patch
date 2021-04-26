@@ -1,0 +1,407 @@
+From ea7d69b2df1f2500d7cf332162d994005abfb950 Mon Sep 17 00:00:00 2001
+From: Julien Castelain <julien.castelain@liferay.com>
+Date: Mon, 26 Apr 2021 09:44:44 +0200
+Subject: [PATCH] LPS-130835 Patch balloontoolbar and balloonpanel plugins
+
+This patch aims to improve the `balloontoolbar` and `balloonpanel` plugins
+behavior: with these changes the balloon toolbar will be placed on the
+current selection instead of being centered on top of it.
+---
+ plugins/balloonpanel/plugin.js   | 285 ++++++++-----------------------
+ plugins/balloontoolbar/plugin.js |  39 ++++-
+ 2 files changed, 109 insertions(+), 215 deletions(-)
+
+diff --git a/plugins/balloonpanel/plugin.js b/plugins/balloonpanel/plugin.js
+index 736e38295..540314bd6 100644
+--- a/plugins/balloonpanel/plugin.js
++++ b/plugins/balloonpanel/plugin.js
+@@ -11,6 +11,9 @@
+ ( function() {
+ 	'use strict';
+ 
++	CKEDITOR.SELECTION_TOP_TO_BOTTOM = 0;
++	CKEDITOR.SELECTION_BOTTOM_TO_TOP = 1;
++
+ 	// This flag prevents appending stylesheet more than once.
+ 	var stylesLoaded = false;
+ 
+@@ -49,6 +52,12 @@
+ 		this.editor = editor;
+ 
+ 		CKEDITOR.tools.extend( this, {
++
++			/**
++			 * The default padding for the balloonpanel.
++			 */
++			padding: 14,
++
+ 			/**
+ 			 * The default width of the balloon panel.
+ 			 */
+@@ -158,6 +167,30 @@
+ 	};
+ 
+ 	CKEDITOR.ui.balloonPanel.prototype = {
++		_getSelectionDirection: function() {
++			var direction = CKEDITOR.SELECTION_TOP_TO_BOTTOM;
++			var editor = this.editor;
++			var selection = editor.getSelection();
++			var nativeSelection = selection.getNative();
++
++			if (!nativeSelection) {
++				return CKEDITOR.SELECTION_TOP_TO_BOTTOM;
++			}
++
++			var anchorNode;
++
++			if ((anchorNode = nativeSelection.anchorNode) && anchorNode.compareDocumentPosition) {
++				var position = anchorNode.compareDocumentPosition(nativeSelection.focusNode);
++				if (
++					(!position &&
++						nativeSelection.anchorOffset > nativeSelection.focusOffset) ||
++					position === Node.DOCUMENT_POSITION_PRECEDING) {
++					direction = CKEDITOR.SELECTION_BOTTOM_TO_TOP;
++				}
++			}
++			return direction;
++		},
++
+ 		/**
+ 		 * @property templateDefinitions Balloon panel templates. Automatically converted into a {@link CKEDITOR.template} in the panel constructor.
+ 		 * @property {String} templateDefinitions.panel The template for the panel outermost container.
+@@ -331,240 +364,64 @@
+ 		 * @param {Boolean} [options.show=true] Defines if the balloon panel should be shown after being attached.
+ 		 */
+ 		attach: ( function() {
+-			var winGlobal, frame, editable, isInline;
+-
+-			function rectIntersectArea( rect1, rect2 ) {
+-				var hOverlap = Math.max( 0, Math.min( rect1.right, rect2.right ) - Math.max( rect1.left, rect2.left ) ),
+-					vOverlap = Math.max( 0, Math.min( rect1.bottom, rect2.bottom ) - Math.max( rect1.top, rect2.top ) );
+-
+-				return hOverlap * vOverlap;
+-			}
+-
+-			function newPanelRect( top, left, panelWidth, panelHeight ) {
+-				var newRect = {
+-					top: top,
+-					left: left
+-				};
+-
+-				newRect.right = newRect.left + panelWidth;
+-				newRect.bottom = newRect.top + panelHeight;
+-
+-				return newRect;
+-			}
+-
+-			function createLineRect( first, last ) {
+-				var newRect = first;
+-				newRect.right = last.right;
+-				newRect.width = newRect.right - newRect.left;
+-
+-				if ( last.y ) {
+-					newRect.y = last.y;
++			return function(elementOrSelection, options) {
++				if (options instanceof CKEDITOR.dom.element || !options) {
++					options = {focusElement: options};
+ 				}
+ 
+-				return newRect;
+-			}
+-
+-			function getTopAndBottomRects( rectList ) {
+-				var topAlignedRects = getAlignedRects( rectList, true ),
+-					bottomAlignedRects = getAlignedRects( rectList ),
+-					first = createLineRect( topAlignedRects[ 0 ], topAlignedRects.pop() ),
+-					last = createLineRect( bottomAlignedRects[ 0 ], bottomAlignedRects.pop() );
+-
+-				// Make height of both rects equal to height of whole selection, so panel won't cover selection unless it needs to.
+-				first.bottom = last.bottom;
+-				first.height = first.bottom - first.top;
+-				if ( last.y ) {
+-					first.y = last.y;
+-				}
+-
+-				last.top = first.top;
+-				last.height = first.height;
+-
+-				return [ first, last ];
+-			}
+-
+-			function getAlignedRects( rectList, top ) {
+-				var edgeRect = top ? rectList [ 0 ] : rectList[ rectList.length - 1 ],
+-					alignment = top ? 'top' : 'bottom';
+-
+-				return CKEDITOR.tools.array.filter( rectList, function( item ) {
+-					if ( item[ alignment ] === edgeRect[ alignment ] ) {
+-						return item;
+-					}
+-				} );
+-			}
+-
+-			var triangleRelativePosition = {
+-				right: 'left',
+-				top: 'bottom',
+-				topLeft: 'bottomLeft',
+-				topRight: 'bottomRight',
+-				bottom: 'top',
+-				bottomLeft: 'topLeft',
+-				bottomRight: 'topRight',
+-				left: 'right'
+-			};
+-
+-			return function( elementOrSelection, options ) {
+-				if ( elementOrSelection instanceof CKEDITOR.dom.selection ) {
+-					var ranges = elementOrSelection.getRanges(),
+-						rectList;
+-
+-					// Handle fake selection within table.
+-					if ( elementOrSelection.isFake && elementOrSelection.isInTable() ) {
+-						rectList = CKEDITOR.tools.array.map( ranges, function( item ) {
+-							// With table selection the first rect represents `td` element rect. Lets use it in that case.
+-							return item.getClientRects( true )[ 0 ];
+-						} );
+-					} else {
+-						rectList = ranges[ ranges.length - 1 ].getClientRects( true );
+-					}
+-
+-					// We need two rects, one representing the first selected line, and other representing the last selected line.
+-					var first = rectList[ 0 ],
+-						last = rectList[ rectList.length - 1 ],
+-						selectionRects;
+-
+-					if ( first === last ) {
+-						selectionRects = [ first ];
+-					} else if ( first.top === last.top ) {
+-						selectionRects = [ createLineRect( first, last ) ];
+-					} else {
+-						selectionRects = getTopAndBottomRects( rectList );
+-					}
+-				}
+-
+-				if ( options instanceof CKEDITOR.dom.element || !options ) {
+-					options = { focusElement: options };
+-				}
+-
+-				options = CKEDITOR.tools.extend( options, {
++				options = CKEDITOR.tools.extend(options, {
+ 					show: true
+-				} );
++				});
+ 
+-				if ( options.show === true ) {
++				if (options.show === true) {
+ 					this.show();
+ 				}
+ 
+-				this.fire( 'attach' );
++				this.fire('attach');
+ 
+-				winGlobal = CKEDITOR.document.getWindow();
+-				frame = this.editor.window.getFrame();
+-				editable = this.editor.editable();
+-				isInline = editable.isInline();
++				var direction = this._getSelectionDirection();
+ 
+-				if ( !isInline && CKEDITOR.env.safari ) {
+-					// Overwrite frame with editor iframe closest parent, because iframe has wrong rect values in mobile Safari (#1076).
+-					frame = frame.getParent();
++				var editable = this.editor.editable();
++				var editableClientRect = editable.getClientRect(true);
++
++				var panelClientRect = this.parts.panel.getClientRect(true);
++
++				var ranges = elementOrSelection.getRanges();
++				var range = ranges[0];
++				var rangeClientRects = range.getClientRects(true);
++				var firstClientRect = rangeClientRects[0];
++				var lastClientRect = rangeClientRects[rangeClientRects.length - 1];
++
++				if (firstClientRect === lastClientRect) {
++					direction = CKEDITOR.SELECTION_BOTTOM_TO_TOP;
+ 				}
+ 
+-				var panelWidth = this.getWidth(),
+-					panelHeight = this.getHeight(),
++				var rangeHeight = lastClientRect.bottom - firstClientRect.top;
+ 
+-					// The area of the panel.
+-					panelArea = panelWidth * panelHeight,
+-					alignments, minDifferenceAlignment, alignmentRect, areaDifference,
++				var clientRects = CKEDITOR.tools.array.map(ranges, function(range) {
++					return range.getClientRects(true)[0];
++				});
++				var clientRect = clientRects[0];
+ 
+-					elementRect = elementOrSelection.getClientRect && elementOrSelection.getClientRect( true ),
+-					editorRect = isInline ? editable.getClientRect( true ) : frame.getClientRect( true ),
++				var x = clientRect.x  + (clientRect.width / 2) - (panelClientRect.width / 2);
++				var y = clientRect.y - panelClientRect.height - this.padding;
+ 
+-					viewPaneSize = winGlobal.getViewPaneSize(),
+-					winGlobalScroll = winGlobal.getScrollPosition(),
+-
+-				// allowedRect is the rect into which the panel should fit to remain
+-				// both within the visible area of the editor and the viewport, i.e.
+-				// the rect area covered by "#":
+-				//
+-				// 	[Viewport]
+-				// 	+-------------------------------------+
+-				// 	|                        [Editor]     |
+-				// 	|                        +--------------------+
+-				// 	|                        |############|       |
+-				// 	|                        |############|       |
+-				// 	|                        |############|       |
+-				// 	|                        +--------------------+
+-				// 	|                                     |
+-				// 	+-------------------------------------+
+-					allowedRect = {
+-						top: Math.max( editorRect.top, winGlobalScroll.y ),
+-						left: Math.max( editorRect.left, winGlobalScroll.x ),
+-						right: Math.min( editorRect.right, viewPaneSize.width + winGlobalScroll.x ),
+-						bottom: Math.min( editorRect.bottom, viewPaneSize.height + winGlobalScroll.y )
+-					},
+-					alignmentKeys;
+-
+-				// Position balloon on entire view port only when it's real inline mode (#1048).
+-				if ( isInline && this.editor.elementMode === CKEDITOR.ELEMENT_MODE_INLINE ) {
+-					// In inline we want to limit position within the window.
+-					allowedRect = this._getViewPaneRect( winGlobal );
+-
+-					// We need also consider triangle.
+-					allowedRect.right += this.triangleWidth;
+-					allowedRect.bottom += this.triangleHeight;
++				if (direction === CKEDITOR.SELECTION_TOP_TO_BOTTOM) {
++					y = clientRect.y + rangeHeight + (this.padding);
+ 				}
+ 
+-				// This method will modify elementRect if the element is outside of allowedRect / editorRect.
+-				// If it's outside then in
+-				if ( selectionRects ) {
+-					CKEDITOR.tools.array.forEach( selectionRects, function( item ) {
+-						this._adjustElementRect( item, isInline ? allowedRect : editorRect );
+-					}, this );
+-
+-					alignments = this._getAlignments( selectionRects[ 0 ], panelWidth, panelHeight );
+-
+-					if ( selectionRects.length > 1 ) {
+-						alignments[ 'bottom hcenter' ] = this._getAlignments( selectionRects[ 1 ], panelWidth, panelHeight )[ 'bottom hcenter' ];
+-					}
+-
+-					alignmentKeys = {
+-						'top hcenter': true,
+-						'bottom hcenter': true
+-					};
+-				} else {
+-					this._adjustElementRect( elementRect, isInline ? allowedRect : editorRect );
+-					alignments = this._getAlignments( elementRect, panelWidth, panelHeight );
++				if (x < editableClientRect.x) {
++					x = editableClientRect.x * 2;
++				}
++				if (x + panelClientRect.width > editableClientRect.width) {
++					x  -= (x + panelClientRect.width) - editableClientRect.width;
+ 				}
+ 
+-				// Iterate over all possible alignments to find the optimal one.
+-				for ( var a in alignmentKeys || alignments ) {
+-					// Create a rect which would represent the panel in such alignment.
+-					alignmentRect = newPanelRect( alignments[ a ].top, alignments[ a ].left, panelWidth, panelHeight );
+-
+-					// Calculate the difference between the area of the panel and intersection of allowed rect and alignment rect.
+-					// It is the area of the panel, which would be OUT of allowed rect if such alignment was used. Less is better.
+-					areaDifference = alignments[ a ].areaDifference = panelArea - rectIntersectArea( alignmentRect, allowedRect );
+-
+-					// If the difference is 0, it means that the panel is fully within allowed rect. That's great!
+-					if ( areaDifference === 0 ) {
+-						minDifferenceAlignment = a;
+-						break;
+-					}
+-
+-					// If there's no alignment of a minimal area difference, use the first available.
+-					if ( !minDifferenceAlignment ) {
+-						minDifferenceAlignment = a;
+-					}
+-
+-					// Determine the alignment of a minimal area difference. It will be used as a fallback
+-					// if no alignment provides a perfect fit into allowed rect.
+-					if ( areaDifference < alignments[ minDifferenceAlignment ].areaDifference ) {
+-						minDifferenceAlignment = a;
+-					}
++				if (y < editableClientRect.y) {
++					y = clientRect.bottom + this.padding;
+ 				}
+ 
+-				// For non-static parent elements we need to remove its margin offset from balloon panel (#1048).
+-				var parent = this.parts.panel.getAscendant( function( el ) {
+-						return el instanceof CKEDITOR.dom.document ? false : el.getComputedStyle( 'position' ) !== 'static';
+-					} ),
+-					parentMargin = {
+-						left: parent ? parseInt( parent.getComputedStyle( 'margin-left' ), 10 ) : 0,
+-						top: parent ? parseInt( parent.getComputedStyle( 'margin-top' ), 10 ) : 0
+-					};
+-
+-				this.move( alignments[ minDifferenceAlignment ].top - parentMargin.top , alignments[ minDifferenceAlignment ].left - parentMargin.left );
+-
+-				minDifferenceAlignment = minDifferenceAlignment.split( ' ' );
+-				this.setTriangle( triangleRelativePosition[ minDifferenceAlignment[ 0 ] ], minDifferenceAlignment[ 1 ] );
++				this.move(y , x);
+ 
+ 				// Set focus to proper element.
+ 				if ( options.focusElement !== false ) {
+diff --git a/plugins/balloontoolbar/plugin.js b/plugins/balloontoolbar/plugin.js
+index 318fabe95..834b09f5a 100644
+--- a/plugins/balloontoolbar/plugin.js
++++ b/plugins/balloontoolbar/plugin.js
+@@ -527,7 +527,19 @@
+ 			this.hide();
+ 
+ 			if ( contextMatched ) {
+-				contextMatched.show( highlightElement );
++				CKEDITOR.tools.array.forEach(
++					selection.getRanges(),
++					function(range) {
++						range.shrink(CKEDITOR.SHRINK_ELEMENT, true);
++					}
++				);
++
++
++				if (!selection.getSelectedElement() && !selection.getSelectedText()) {
++					return
++				}
++
++				contextMatched.show(selection);
+ 			}
+ 		},
+ 
+@@ -655,6 +667,31 @@
+ 				return;
+ 			}
+ 			pluginInit = true;
++
++			var _editorDocumentListeners = [];
++
++			editor.on('contentDom', function(event) {
++				var document = editor.document;
++
++				_editorDocumentListeners.push(
++					document.on('keyup', function() {
++						editor.forceNextSelectionCheck();
++					})
++				);
++
++				_editorDocumentListeners.push(
++					document.on('mouseup', function() {
++						editor.forceNextSelectionCheck();
++					})
++				);
++			});
++
++			editor.on('destroy', function() {
++				CKEDITOR.tools.array.forEach(_editorDocumentListeners, function(listener) {
++					listener.removeListener();
++				});
++			});
++
+ 			CKEDITOR.ui.balloonToolbarView.prototype = CKEDITOR.tools.extend( {}, CKEDITOR.ui.balloonPanel.prototype );
+ 
+ 			/**
