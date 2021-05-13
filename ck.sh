@@ -20,16 +20,18 @@ function usage() {
 function downloadPlugin() {
 	local NAME=$1
 	local VERSION=$2
+	local DESTINATION=$3
 	local OUTPUT
-	OUTPUT=$(mktemp)
+	OUTPUT=$(mktemp -d)
+	local ZIPPED_PLUGIN
+	ZIPPED_PLUGIN="${NAME}_${VERSION}.zip"
 
 	curl \
 		"https://ckeditor.com/cke4/sites/default/files/${NAME}/releases/${NAME}_${VERSION}.zip" \
-		-o "$OUTPUT"
+		-o "${OUTPUT}/${ZIPPED_PLUGIN}"
 
-	rm -rf "plugins/$NAME"
-
-	unzip "$OUTPUT" -d plugins
+	unzip "${OUTPUT}/${ZIPPED_PLUGIN}" -d "${OUTPUT}/${NAME}"
+	cp -r "${OUTPUT}/${NAME}/${NAME}/"* "${DESTINATION}"
 }
 
 # Check arguments
@@ -58,6 +60,11 @@ case "$COMMAND" in
 
 		case $yn in
 			[Yy]*)
+				# Store the CKEDITOR version to download the corresponding extra plugins
+				cd ckeditor-dev
+				VERSION=$(git describe --tags --abbrev=0)
+				cd ..
+
 				# Clean and make a temporary copy of ckeditor-dev to work with
 				rm -rf temp
 				cp -r ckeditor-dev temp
@@ -77,6 +84,14 @@ case "$COMMAND" in
 
 					node ../support/copyPluginDependencies.js $pluginDir
 				done
+
+				# Download extra plugins for current version
+				echo
+				echo "Downloading plugins for v$VERSION"
+				echo
+
+				downloadPlugin scayt "$VERSION" plugins/scayt
+				downloadPlugin wsc "$VERSION"   plugins/wsc
 
 				# Copy lang files from image plugin to imagespacingbox
 				cp -r plugins/image/lang plugins/imagespacingbox
@@ -273,13 +288,6 @@ case "$COMMAND" in
 				VERSION=$(git describe --tags --abbrev=0)
 
 				echo
-				echo "Downloading plugins for v$VERSION"
-				echo
-
-				downloadPlugin scayt "$VERSION"
-				downloadPlugin wsc "$VERSION"
-
-				echo
 				echo "Checking for existing patches"
 				echo
 
@@ -375,13 +383,6 @@ case "$COMMAND" in
 				cd ..
 				git add -f ckeditor-dev
 				git commit -m "$commitmsg"
-
-				echo
-				echo "Downloading plugins for v$tag"
-				echo
-
-				downloadPlugin scayt "$tag"
-				downloadPlugin wsc "$tag"
 
 				echo "Do you want to rebase the updated ckeditor submodule with the liferay branch?"
 				echo
