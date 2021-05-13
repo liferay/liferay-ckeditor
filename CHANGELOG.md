@@ -1,3 +1,16 @@
+## [v4.16.0-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.16.0-liferay.1) (2021-05-13)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.22...v4.16.0-liferay.1)
+
+### :wrench: Bug fixes
+
+-   fix: only download extra plugins during the build ([\#173](https://github.com/liferay/liferay-ckeditor/pull/173))
+
+### :house: Chores
+
+-   chore(deps-dev): bump codemirror from 5.57.0 to 5.58.2 ([\#170](https://github.com/liferay/liferay-ckeditor/pull/170))
+-   chore(deps): bump lodash from 4.17.20 to 4.17.21 ([\#169](https://github.com/liferay/liferay-ckeditor/pull/169))
+
 ## [v4.14.1-liferay.22](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.22) (2021-04-26)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.21...v4.14.1-liferay.22)
