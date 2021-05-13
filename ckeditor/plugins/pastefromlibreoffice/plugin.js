@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 (function(){CKEDITOR.plugins.add("pastefromlibreoffice",{requires:"pastetools",isSupportedEnvironment:function(){var b=CKEDITOR.env.ie&&11>=CKEDITOR.env.version;return!(CKEDITOR.env.webkit&&!CKEDITOR.env.chrome)&&!b},init:function(b){if(this.isSupportedEnvironment()){var d=CKEDITOR.plugins.getPath("pastetools"),f=this.path;b.pasteTools.register({priority:100,filters:[CKEDITOR.getUrl(d+"filter/common.js"),CKEDITOR.getUrl(d+"filter/image.js"),CKEDITOR.getUrl(f+"filter/default.js")],canHandle:function(a){a=
