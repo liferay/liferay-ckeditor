@@ -1,4 +1,4 @@
-From 44b0f11cf66dc9380f9f165e671894185f5f1654 Mon Sep 17 00:00:00 2001
+From a72b2910faf30e1e9bfd57a0a3ef5088fc3f0398 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Mon, 21 Dec 2020 09:12:53 +0100
 Subject: [PATCH] LPS-124728 Avoid breaking IE11
@@ -11,10 +11,10 @@ they aren't loaded when getUrl is executed.
  1 file changed, 18 insertions(+), 12 deletions(-)
 
 diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
-index 6d9fcbc03..59b3e4a0b 100644
+index ea4d38f8f..fd94a9416 100644
 --- a/core/ckeditor_base.js
 +++ b/core/ckeditor_base.js
-@@ -171,26 +171,32 @@ if ( !window.CKEDITOR ) {
+@@ -170,26 +170,32 @@ if ( !window.CKEDITOR ) {
  			 * @returns {String} The full URL.
  			 */
  			getUrl: function( resource ) {
