@@ -1,3 +1,13 @@
+## [v4.16.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.16.0-liferay.2) (2021-05-24)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.0-liferay.1...v4.16.0-liferay.2)
+
+### :wrench: Bug fixes
+
+-   fix: remove unneeded styles ([\#176](https://github.com/liferay/liferay-ckeditor/pull/176))
+-   fix: update @clayui/css to latest and add more icons ([\#175](https://github.com/liferay/liferay-ckeditor/pull/175))
+-   fix: add null check ([\#168](https://github.com/liferay/liferay-ckeditor/pull/168))
+
 ## [v4.16.0-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.16.0-liferay.1) (2021-05-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.22...v4.16.0-liferay.1)
