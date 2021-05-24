@@ -1,6 +1,9 @@
 {
     "dir": "../../node_modules/@clayui/css/lib/images/icons",
     "icons": {
+        "add-cell": "add-cell",
+        "add-column": "add-column",
+        "add-row": "add-row",
         "align-image-center": "align-image-center",
         "align-image-left": "align-image-left",
         "align-image-right": "align-image-right",
@@ -16,6 +19,8 @@
             "ltr": "list-ul",
             "rtl": "list-ul-rtl"
         },
+        "check": "check",
+        "color-picker": "color-picker",
         "copy": {
             "ltr": "copy",
             "rtl": "copy"
@@ -28,8 +33,10 @@
             "ltr": "search",
             "rtl": "search"
         },
+        "folder": "folder",
         "hidden": "hidden",
         "horizontalrule": "separator",
+        "hr": "hr",
         "image": "picture",
         "imageselector": "picture",
         "indent": {
@@ -42,6 +49,7 @@
         "justifyleft": "align-left",
         "justifyright": "align-right",
         "link": "link",
+        "low-vision": "low-vision",
         "maximize": "full-size",
         "numberedlist": {
             "ltr": "list-ol",
@@ -77,6 +85,8 @@
         "superscript": "superscript",
         "table": "table2",
         "textcolor": "text-color",
+        "trash": "trash",
+        "twitter": "social-twitter",
         "underline": "underline",
         "undo": {
             "ltr": "undo",
