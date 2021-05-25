@@ -144,7 +144,7 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
 
     **NOTE:** Check that only files in `ckeditor` folder are being committed.
 
-2.  After successfully building and testing you can publish to NPM.
+2.  After successfully building and testing, you can publish to NPM, and update Git.
 
     ```sh
     # See all checks pass locally:
@@ -159,6 +159,11 @@ And resetting the changes in the `package.json` and `yarn.lock` files on the `fr
     # Inspect and add changes:
     git add -p CHANGELOG.md
 
+    # Confirm you are logged in on Github and NPM
+    ssh -T git@github.com
+    yarn login
+
+    # Publish
     yarn version --new-version $VERSION
     ```
 
