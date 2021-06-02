@@ -1,3 +1,15 @@
+## [v4.16.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.1) (2021-06-02)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.0-liferay.2...v4.16.1-liferay.1)
+
+### :book: Documentation
+
+-   docs: add login confirmation step ([\#178](https://github.com/liferay/liferay-ckeditor/pull/178))
+
+### :house: Chores
+
+-   chore: update ckeditor-dev to 4.16.1 ([\#179](https://github.com/liferay/liferay-ckeditor/pull/179))
+
 ## [v4.16.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.16.0-liferay.2) (2021-05-24)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.0-liferay.1...v4.16.0-liferay.2)
