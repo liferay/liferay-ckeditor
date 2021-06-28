@@ -19,6 +19,36 @@
 							{
 								children: [
 									{
+										onShow: function () {
+											var parentEditor = this.getDialog().getParentEditor();
+											var widget =
+												parentEditor.widgets.focused;
+
+											if (widget) {
+												var imageElement =
+													widget.parts.image.$;
+												var style = imageElement.style;
+
+												var hspace = '';
+
+												if (style) {
+													hspace =
+														parseInt(
+															style.marginLeft,
+															10
+														) ||
+														parseInt(
+															style.marginRight,
+															10
+														);
+												}
+
+												widget.setData(
+													'hspace',
+													hspace
+												);
+											}
+										},
 										commit: function (widget) {
 											widget.setData(
 												'hspace',
@@ -57,6 +87,36 @@
 							{
 								children: [
 									{
+										onShow: function () {
+											var parentEditor = this.getDialog().getParentEditor();
+											var widget =
+												parentEditor.widgets.focused;
+
+											if (widget) {
+												var imageElement =
+													widget.parts.image.$;
+												var style = imageElement.style;
+
+												var vspace = '';
+
+												if (style) {
+													vspace =
+														parseInt(
+															style.marginTop,
+															10
+														) ||
+														parseInt(
+															style.marginBottom,
+															10
+														);
+												}
+
+												widget.setData(
+													'vspace',
+													vspace
+												);
+											}
+										},
 										commit: function (widget) {
 											widget.setData(
 												'vspace',
