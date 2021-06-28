@@ -55,12 +55,14 @@
 												this.getValue()
 											);
 
-											var hspace = widget.data.hspace;
+											var hspace = widget.data.hspace
+												? widget.data.hspace
+												: 0;
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement && hspace) {
+											if (imageElement) {
 												imageElement.setStyles({
 													'margin-left':
 														hspace + 'px',
@@ -123,12 +125,14 @@
 												this.getValue()
 											);
 
-											var vspace = widget.data.vspace;
+											var vspace = widget.data.vspace
+												? widget.data.vspace
+												: 0;
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement && vspace) {
+											if (imageElement) {
 												imageElement.setStyles({
 													'margin-bottom':
 														vspace + 'px',
