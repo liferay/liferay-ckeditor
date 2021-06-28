@@ -35,6 +35,9 @@
 
 				instance.codeMirrorEditor.setValue(oldData);
 
+				var codeMirrorElement = instance.codeMirrorEditor.getWrapperElement();
+				codeMirrorElement.classList.add('cke_enable_context_menu');
+
 				var editableParent = editable.getParent();
 				var contentsSize = editableParent.getClientSize();
 				if (contentsSize.height) {
