@@ -19,18 +19,50 @@
 							{
 								children: [
 									{
+										onShow: function () {
+											var parentEditor = this.getDialog().getParentEditor();
+											var widget =
+												parentEditor.widgets.focused;
+
+											if (widget) {
+												var imageElement =
+													widget.parts.image.$;
+												var style = imageElement.style;
+
+												var hspace = '';
+
+												if (style) {
+													hspace =
+														parseInt(
+															style.marginLeft,
+															10
+														) ||
+														parseInt(
+															style.marginRight,
+															10
+														);
+												}
+
+												widget.setData(
+													'hspace',
+													hspace
+												);
+											}
+										},
 										commit: function (widget) {
 											widget.setData(
 												'hspace',
 												this.getValue()
 											);
 
-											var hspace = widget.data.hspace;
+											var hspace = widget.data.hspace
+												? widget.data.hspace
+												: 0;
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement && hspace) {
+											if (imageElement) {
 												imageElement.setStyles({
 													'margin-left':
 														hspace + 'px',
@@ -57,18 +89,50 @@
 							{
 								children: [
 									{
+										onShow: function () {
+											var parentEditor = this.getDialog().getParentEditor();
+											var widget =
+												parentEditor.widgets.focused;
+
+											if (widget) {
+												var imageElement =
+													widget.parts.image.$;
+												var style = imageElement.style;
+
+												var vspace = '';
+
+												if (style) {
+													vspace =
+														parseInt(
+															style.marginTop,
+															10
+														) ||
+														parseInt(
+															style.marginBottom,
+															10
+														);
+												}
+
+												widget.setData(
+													'vspace',
+													vspace
+												);
+											}
+										},
 										commit: function (widget) {
 											widget.setData(
 												'vspace',
 												this.getValue()
 											);
 
-											var vspace = widget.data.vspace;
+											var vspace = widget.data.vspace
+												? widget.data.vspace
+												: 0;
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement && vspace) {
+											if (imageElement) {
 												imageElement.setStyles({
 													'margin-bottom':
 														vspace + 'px',
