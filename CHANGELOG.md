@@ -1,3 +1,12 @@
+## [v4.16.1-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.2) (2021-07-05)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.1...v4.16.1-liferay.2)
+
+### :wrench: Bug fixes
+
+-   fix: retrieve hspace and vspace values from style ([\#183](https://github.com/liferay/liferay-ckeditor/pull/183))
+-   fix: enable browser native menu in codemirror plugin ([\#181](https://github.com/liferay/liferay-ckeditor/pull/181))
+
 ## [v4.16.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.1) (2021-06-02)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.0-liferay.2...v4.16.1-liferay.1)
@@ -208,12 +217,11 @@
 
 ## [v4.14.1-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.5) (2020-07-23)
 
-[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.3...v4.14.1-liferay.5)
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.14.1-liferay.4...v4.14.1-liferay.5)
 
 ### :wrench: Bug fixes
 
 -   fix: remove overlay that is preventing unrelated UI interactions on the page ([\#98](https://github.com/liferay/liferay-ckeditor/pull/98))
--   fix: add border property to outer class required for resizing ([\#96](https://github.com/liferay/liferay-ckeditor/pull/96))
 
 ## [v4.14.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.4) (2020-07-16)
 
@@ -243,7 +251,7 @@
 
 -   docs: fix broken links in changelog ([\#91](https://github.com/liferay/liferay-ckeditor/pull/91))
 
-## [v4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.1) (2020-07-08)
+## [v4.14.1-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.14.1-liferay.1) (2020-07-07)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.8...v4.14.1-liferay.1)
 
@@ -285,7 +293,7 @@
 
 -   chore: update .npmignore ([\#76](https://github.com/liferay/liferay-ckeditor/pull/76))
 
-## [v4.13.1-liferay.7](vhttps://github.com/liferay/liferay-ckeditor/tree/4.13.1-liferay.7) (2020-06-29)
+## [v4.13.1-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/v4.13.1-liferay.7) (2020-06-29)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.13.1-liferay.6...v4.13.1-liferay.7)
 
