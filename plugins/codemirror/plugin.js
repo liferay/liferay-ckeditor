@@ -8,6 +8,8 @@
 			var instance = this;
 
 			editor.addMode('source', function (callback) {
+				var codeMirrorInstance = this;
+
 				var contentsSpace = editor.ui.space('contents');
 
 				var textarea = contentsSpace
@@ -16,7 +18,7 @@
 
 				contentsSpace.append(textarea);
 
-				instance.codeMirrorEditor = CodeMirror.fromTextArea(
+				codeMirrorInstance.codeMirrorEditor = CodeMirror.fromTextArea(
 					textarea.$,
 					{
 						lineNumbers: true,
@@ -33,24 +35,24 @@
 
 				editable.setData(oldData);
 
-				instance.codeMirrorEditor.setValue(oldData);
+				codeMirrorInstance.codeMirrorEditor.setValue(oldData);
 
-				var codeMirrorElement = instance.codeMirrorEditor.getWrapperElement();
+				var codeMirrorElement = codeMirrorInstance.codeMirrorEditor.getWrapperElement();
 				codeMirrorElement.classList.add('cke_enable_context_menu');
 
 				var editableParent = editable.getParent();
 				var contentsSize = editableParent.getClientSize();
 				if (contentsSize.height) {
-					instance.codeMirrorEditor.setSize(
+					codeMirrorInstance.codeMirrorEditor.setSize(
 						null,
 						contentsSize.height
 					);
 				}
 
-				instance.codeMirrorEditor.on(
+				codeMirrorInstance.codeMirrorEditor.on(
 					'change',
 					instance._handleCodeMirrorChange.bind(
-						instance,
+						codeMirrorInstance,
 						editor,
 						oldData
 					)
@@ -58,16 +60,16 @@
 
 				editor.on(
 					'resize',
-					instance._handleEditorResize.bind(instance)
+					instance._handleEditorResize.bind(codeMirrorInstance)
 				);
 
 				editor.on('dataReady', function (event) {
 					var newData = event.data;
 
-					var oldData = instance.codeMirrorEditor.getValue();
+					var oldData = codeMirrorInstance.codeMirrorEditor.getValue();
 
 					if (newData && newData !== oldData) {
-						instance.codeMirrorEditor.setValue(newData);
+						codeMirrorInstance.codeMirrorEditor.setValue(newData);
 					}
 				});
 
