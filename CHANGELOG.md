@@ -1,3 +1,11 @@
+## [v4.16.1-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.3) (2021-07-29)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.2...v4.16.1-liferay.3)
+
+### :wrench: Bug fixes
+
+-   fix: CodeMirror plugin cannot handle multiple instances ([\#185](https://github.com/liferay/liferay-ckeditor/pull/185))
+
 ## [v4.16.1-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.2) (2021-07-05)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.1...v4.16.1-liferay.2)
