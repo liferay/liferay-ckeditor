@@ -1,4 +1,4 @@
-From 5c4857e1f72976575bbb8515ebf423ba27fdd7a7 Mon Sep 17 00:00:00 2001
+From a723ceb26452de4341377d6a0420ed1fdc48dbdf Mon Sep 17 00:00:00 2001
 From: IstvanD <istvan.dezsi@liferay.com>
 Date: Wed, 19 May 2021 17:43:17 +0200
 Subject: [PATCH] LPS-131699 Add null check
@@ -8,7 +8,7 @@ Subject: [PATCH] LPS-131699 Add null check
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/core/event.js b/core/event.js
-index 049090253..3ff2cde4b 100644
+index 0490902530..3ff2cde4b6 100644
 --- a/core/event.js
 +++ b/core/event.js
 @@ -172,7 +172,9 @@
