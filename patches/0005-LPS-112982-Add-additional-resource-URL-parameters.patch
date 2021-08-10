@@ -1,4 +1,4 @@
-From cf5f37d25b11ff698864e3f279dee60c60df09db Mon Sep 17 00:00:00 2001
+From d5c843a3651cfb17b8cf64802d69828046ab1597 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 7 Jul 2020 09:47:27 +0200
 Subject: [PATCH] LPS-112982 Add additional resource URL parameters
@@ -9,7 +9,7 @@ Subject: [PATCH] LPS-112982 Add additional resource URL parameters
  2 files changed, 27 insertions(+), 7 deletions(-)
 
 diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
-index dcd1b6bfa..8285e83c6 100644
+index dcd1b6bfa3..8285e83c64 100644
 --- a/core/ckeditor_base.js
 +++ b/core/ckeditor_base.js
 @@ -170,15 +170,26 @@ if ( !window.CKEDITOR ) {
@@ -47,7 +47,7 @@ index dcd1b6bfa..8285e83c6 100644
  
  			/**
 diff --git a/core/config.js b/core/config.js
-index 1ebc05355..4d7013209 100644
+index 1ebc053555..4d7013209a 100644
 --- a/core/config.js
 +++ b/core/config.js
 @@ -8,6 +8,15 @@
