@@ -1,3 +1,11 @@
+## [v4.16.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.4) (2021-08-10)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.3...v4.16.1-liferay.4)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-136119 We can't open panel elements when the table toolbar is re-rendered ([\#188](https://github.com/liferay/liferay-ckeditor/pull/188))
+
 ## [v4.16.1-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.3) (2021-07-29)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.2...v4.16.1-liferay.3)
