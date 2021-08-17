@@ -1,0 +1,33 @@
+From 5f16c174de2f4f4f79735314f15e39177a9d0c2d Mon Sep 17 00:00:00 2001
+From: Norbert Nemeth <norbert.nemeth@liferay.com>
+Date: Tue, 17 Aug 2021 11:20:58 +0200
+Subject: [PATCH] LPS-136998 Avoid breaking the UI in firefox
+
+---
+ plugins/maximize/plugin.js | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/plugins/maximize/plugin.js b/plugins/maximize/plugin.js
+index 2bb511945..7223c436e 100644
+--- a/plugins/maximize/plugin.js
++++ b/plugins/maximize/plugin.js
+@@ -72,19 +72,6 @@
+ 		if ( editor.editable().isInline() )
+ 			return;
+ 
+-		// Refresh all editor instances on the page (https://dev.ckeditor.com/ticket/5724).
+-		var all = CKEDITOR.instances;
+-		for ( var i in all ) {
+-			var one = all[ i ];
+-			if ( one.mode == 'wysiwyg' && !one.readOnly ) {
+-				var body = one.document.getBody();
+-				// Refresh 'contentEditable' otherwise
+-				// DOM lifting breaks design mode. (https://dev.ckeditor.com/ticket/5560)
+-				body.setAttribute( 'contentEditable', false );
+-				body.setAttribute( 'contentEditable', true );
+-			}
+-		}
+-
+ 		if ( editor.editable().hasFocus ) {
+ 			editor.toolbox.focus();
+ 			editor.focus();
