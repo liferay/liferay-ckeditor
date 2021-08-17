@@ -1,4 +1,4 @@
-From 1425a04aa2d10a87530fef6326e8f2c6f0eaf81f Mon Sep 17 00:00:00 2001
+From ac5b4d7d2e0978df1b37755c6f65b4da46f348b6 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
 Date: Mon, 9 Aug 2021 18:04:44 +0200
 Subject: [PATCH] LPS-136119 Set `id` on first render, instead of changing it
@@ -9,7 +9,7 @@ Subject: [PATCH] LPS-136119 Set `id` on first render, instead of changing it
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/plugins/button/plugin.js b/plugins/button/plugin.js
-index 9cc058416..e0c996e9e 100644
+index 9cc0584169..e0c996e9e4 100644
 --- a/plugins/button/plugin.js
 +++ b/plugins/button/plugin.js
 @@ -143,7 +143,6 @@
