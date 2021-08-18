@@ -1,3 +1,12 @@
+## [v4.16.2-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.1) (2021-08-18)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.4...v4.16.2-liferay.1)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-137425 Focusing on balloon editor toolbar may open an additional text toolbar ([\#189](https://github.com/liferay/liferay-ckeditor/pull/189))
+-   fix: Maximize plugin breaks the UI in Firefox ([\#187](https://github.com/liferay/liferay-ckeditor/pull/187))
+
 ## [v4.16.1-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.16.1-liferay.4) (2021-08-10)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.1-liferay.3...v4.16.1-liferay.4)
