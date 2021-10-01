@@ -1,0 +1,52 @@
+From 3edd637a32117992665065e07abbad4d556ca742 Mon Sep 17 00:00:00 2001
+From: Minhchau <minhchau.dang@liferay.com>
+Date: Tue, 28 Sep 2021 11:18:40 -0700
+Subject: [PATCH] LPS-139565 When upgrading from 6.2 to 7.1, image width/height
+ in web content is lost
+
+If inline styles for height/width are set on the image, prefer those over the natural height/width
+---
+ plugins/image2/plugin.js | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
+index e85d58c2b..f40171644 100644
+--- a/plugins/image2/plugin.js
++++ b/plugins/image2/plugin.js
+@@ -375,8 +375,8 @@
+ 						hasCaption: !!this.parts.caption,
+ 						src: image.getAttribute( 'src' ),
+ 						alt: image.getAttribute( 'alt' ) || '',
+-						width: image.getAttribute( 'width' ) || '',
+-						height: image.getAttribute( 'height' ) || '',
++						width: image.$.style.width && parseInt( image.$.style.width ) || image.getAttribute( 'width' ) || '',
++						height: image.$.style.height && parseInt( image.$.style.height ) || image.getAttribute( 'height' ) || '',
+ 
+ 						// Lock ratio is on by default (https://dev.ckeditor.com/ticket/10833).
+ 						lock: this.ready ? helpers.checkHasNaturalRatio( image ) : true
+@@ -1117,6 +1117,8 @@
+ 				image.setAttribute( d, dimensions[ d ] );
+ 			else
+ 				image.removeAttribute( d );
++
++			image.$.style.removeProperty( d );
+ 		}
+ 	}
+ 
+@@ -1190,6 +1192,16 @@
+ 				nativeEvt, newWidth, newHeight, updateData,
+ 				moveDiffX, moveDiffY, moveRatio;
+ 
++			if (image.$.style.height) {
++				image.setAttribute( 'height', parseInt( image.$.style.height ) );
++				image.$.style.removeProperty( 'height' );
++			}
++
++			if (image.$.style.width) {
++				image.setAttribute( 'width', parseInt( image.$.style.width ) );
++				image.$.style.removeProperty( 'width' );
++			}
++
+ 			// Save the undo snapshot first: before resizing.
+ 			editor.fire( 'saveSnapshot' );
+ 
