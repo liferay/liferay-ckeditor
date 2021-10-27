@@ -1,4 +1,4 @@
-From f6b41cc0ecd06edaab0bf1cfd248872c8606f8e0 Mon Sep 17 00:00:00 2001
+From be6d62539e74d9af7c61bb5d920f724dbe466697 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 21 May 2019 09:38:15 +0200
 Subject: [PATCH] LPS-95472 Tabs in popups not appears correctly in maximized

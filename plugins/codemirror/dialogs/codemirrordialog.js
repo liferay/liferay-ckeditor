@@ -249,6 +249,10 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			if (codeMirrorEditor && codeMirrorEditor.getValue() !== data) {
 				codeMirrorEditor.setValue(data);
 			}
+
+			if (editor.balloonToolbars) {
+				editor.balloonToolbars.hide();
+			}
 		},
 	};
 });
