@@ -1,27 +1,41 @@
-From 2d4410b5fb1d5422c9875e6ac772d4e027f23666 Mon Sep 17 00:00:00 2001
+From 72c8c96f44517054aa8edc9b4705d160e444d168 Mon Sep 17 00:00:00 2001
 From: Diego Nascimento <diego.nascimento@liferay.com>
 Date: Mon, 18 Oct 2021 17:45:43 -0300
 Subject: [PATCH] LPS-137763 If contentsElement is defined, use it as a
- fallback for editor.ui.space('contents') (themedui)
+ fallback for editor.ui.space('contents')
 
 ---
- core/creators/themedui.js | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ core/creators/themedui.js     | 6 ++++--
+ plugins/wysiwygarea/plugin.js | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/core/creators/themedui.js b/core/creators/themedui.js
-index 94f64f1b55..73019a3e44 100644
+index 94f64f1b55..c63560a5b3 100644
 --- a/core/creators/themedui.js
 +++ b/core/creators/themedui.js
-@@ -214,7 +214,11 @@ CKEDITOR.replaceClass = 'ckeditor';
+@@ -213,8 +213,10 @@ CKEDITOR.replaceClass = 'ckeditor';
+ 				unlockSnapshot = 1;
  			}
  
- 			// Clear up the mode space.
+-			// Clear up the mode space.
 -			editor.ui.space( 'contents' ).setHtml( '' );
-+			if (editor.ui.contentsElement) {
-+				editor.ui.contentsElement.setHtml('');
-+			} else {
-+				editor.ui.space( 'contents' ).setHtml( '' );
-+			}
++			var contentsElement = editor.ui.space( 'contents' ) || editor.ui.contentsElement;
++
++			// Clear up the mode space.			
++			contentsElement.setHtml('');
  
  			editor.mode = '';
  		} else {
+diff --git a/plugins/wysiwygarea/plugin.js b/plugins/wysiwygarea/plugin.js
+index 6c0a89d405..772839586c 100644
+--- a/plugins/wysiwygarea/plugin.js
++++ b/plugins/wysiwygarea/plugin.js
+@@ -42,7 +42,7 @@
+ 				iframe.setStyles( { width: '100%', height: '100%' } );
+ 				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
+ 
+-				var contentSpace = editor.ui.space( 'contents' );
++				var contentSpace = editor.ui.space( 'contents' ) || editor.ui.contentsElement;
+ 				contentSpace.append( iframe );
+ 
+ 				// Asynchronous iframe loading is only required in IE>8 and Gecko (other reasons probably).
