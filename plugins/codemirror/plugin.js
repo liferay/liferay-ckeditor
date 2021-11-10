@@ -10,7 +10,8 @@
 			editor.addMode('source', function (callback) {
 				var codeMirrorInstance = this;
 
-				var contentsSpace = editor.ui.space('contents');
+				var contentsSpace =
+					editor.ui.space('contents') || editor.ui.contentsElement;
 
 				var textarea = contentsSpace
 					.getDocument()
@@ -102,10 +103,6 @@
 				return;
 			}
 
-			if (editor.elementMode === CKEDITOR.ELEMENT_MODE_INLINE) {
-				return;
-			}
-
 			if (!stylesLoaded) {
 				CKEDITOR.document.appendStyleSheet(
 					this.path + 'skins/default.css'
@@ -129,17 +126,22 @@
 				CKEDITOR.plugins.codemirror.commands.source
 			);
 
+			var codeMirrorDialogConfigs = {
+				state: CKEDITOR.TRISTATE_OFF,
+			};
+
+			if (!editor.balloonToolbars) {
+				codeMirrorDialogConfigs.modes = {
+					source: 1,
+					wysiwyg: 0,
+				};
+			}
+
 			editor.addCommand(
 				'codemirrordialog',
 				CKEDITOR.tools.extend(
 					new CKEDITOR.dialogCommand('codemirrordialog'),
-					{
-						modes: {
-							source: 1,
-							wysiwyg: 0,
-						},
-						state: CKEDITOR.TRISTATE_OFF,
-					}
+					codeMirrorDialogConfigs
 				)
 			);
 
