@@ -1,3 +1,11 @@
+## [v4.16.2-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.3) (2021-11-10)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.2...v4.16.2-liferay.3)
+
+### :wrench: Bug fixes
+
+-   fix: makes codemirror and codemirrordialog plugin and dialog work with BalloonEditor ([\#192](https://github.com/liferay/liferay-ckeditor/pull/192))
+
 ## [v4.16.2-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.2) (2021-10-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.1...v4.16.2-liferay.2)
