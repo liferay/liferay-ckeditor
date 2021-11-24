@@ -1,3 +1,7 @@
+## [v4.16.2-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.4) (2021-11-24)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.3...v4.16.2-liferay.4)
+
 ## [v4.16.2-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.3) (2021-11-10)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.2...v4.16.2-liferay.3)
