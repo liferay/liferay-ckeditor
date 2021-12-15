@@ -71,7 +71,7 @@ a.cke_combo_button {
 	cursor: default;
 	display: inline-block;
 	float: left;
-	margin: 0 4px 0 0;
+	margin: 0 4px 0 4px;
 	padding: 6px 18px;
 	height: 16px;
 	border-radius: 4px;
@@ -103,9 +103,7 @@ a.cke_combo_button {
 .cke_rtl .cke_combo_off a.cke_combo_button:focus,
 .cke_rtl .cke_combo_off a.cke_combo_button:active {
 	/* Move combo so borders cover separators. Adjust padding to borders. */
-	padding: 0 1px 0 0;
-	margin-left: 0;
-	margin-right: -1px;
+	margin: 0 4px 0 4px;
 }
 
 .cke_hc .cke_combo_on a.cke_combo_button,
