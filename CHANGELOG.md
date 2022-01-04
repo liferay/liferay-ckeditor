@@ -1,3 +1,11 @@
+## [v4.16.2-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.5) (2022-01-04)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.4...v4.16.2-liferay.5)
+
+### :wrench: Bug fixes
+
+-   fix: adjusts richcombo styles when rendering rtl languages ([\#193](https://github.com/liferay/liferay-ckeditor/pull/193))
+
 ## [v4.16.2-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.16.2-liferay.4) (2021-11-24)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.16.2-liferay.3...v4.16.2-liferay.4)
