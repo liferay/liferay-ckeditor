@@ -1,4 +1,4 @@
-From 11dc8885e95855c048c922c7470a165a4be3ade9 Mon Sep 17 00:00:00 2001
+From 7d7e8338013d47f6c42887e9b662c1c1b7fa9cfb Mon Sep 17 00:00:00 2001
 From: IstvanD <istvan.dezsi@liferay.com>
 Date: Wed, 19 May 2021 17:43:17 +0200
 Subject: [PATCH] LPS-131699 Add null check

@@ -1,4 +1,4 @@
-From 6c84d34bb174b7d95333441683fdb167fe3bbf05 Mon Sep 17 00:00:00 2001
+From dfb713af557ac09b83adc5f570887db8eda627d4 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Wed, 25 Mar 2020 12:58:15 +0100
 Subject: [PATCH] LPS-85326 Remove check for Webkit browsers
@@ -18,10 +18,10 @@ https://github.com/liferay/liferay-ckeditor/commit/328017c65063ac18119e244fec92d
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/core/selection.js b/core/selection.js
-index 72a02ef9f0..4da7aff707 100644
+index 60b03354fc..39c92fac42 100644
 --- a/core/selection.js
 +++ b/core/selection.js
-@@ -2278,7 +2278,7 @@
+@@ -2279,7 +2279,7 @@
  
  					var nativeRange = this.document.$.createRange();
  
