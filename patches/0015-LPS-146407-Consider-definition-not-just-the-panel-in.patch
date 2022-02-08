@@ -1,0 +1,24 @@
+From 6a954dbf186cc0a5c093acc7a520b56daac9a2d4 Mon Sep 17 00:00:00 2001
+From: Diego Nascimento <diego.nascimento@liferay.com>
+Date: Tue, 8 Feb 2022 17:07:58 -0300
+Subject: [PATCH] LPS-146407 Consider definition not just the panel information
+ for creating a panel
+
+It solves a case where we don't have `definition.panel` defined but we have the same information of `definition.panel` in `definition` and We are not able to configure it
+---
+ plugins/panelbutton/plugin.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/panelbutton/plugin.js b/plugins/panelbutton/plugin.js
+index 42822eddf0..5e7bd00579 100644
+--- a/plugins/panelbutton/plugin.js
++++ b/plugins/panelbutton/plugin.js
+@@ -37,7 +37,7 @@ CKEDITOR.plugins.add( 'panelbutton', {
+ 			 */
+ 			$: function( definition ) {
+ 				// We don't want the panel definition in this object.
+-				var panelDefinition = definition.panel || {};
++				var panelDefinition = definition.panel || definition || {};
+ 
+ 				delete definition.panel;
+ 
