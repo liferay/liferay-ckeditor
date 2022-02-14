@@ -293,7 +293,6 @@ a.cke_combo_button {
 	float: left;
 	cursor: default;
 	color: #6b6c7e; /* $secondary */
-	width: 60px;
 	margin-top: 2px;
 	font-weight: 600;
 }
