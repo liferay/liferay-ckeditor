@@ -91,7 +91,6 @@ case "$COMMAND" in
 				echo
 
 				downloadPlugin scayt "$VERSION" plugins/scayt
-				downloadPlugin wsc "$VERSION"   plugins/wsc
 
 				# Copy lang files from image plugin to imagespacingbox
 				cp -r plugins/image/lang plugins/imagespacingbox
