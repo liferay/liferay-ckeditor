@@ -1,4 +1,4 @@
-From 8bf5bc1230737c47a688f1e9423f4079324871f4 Mon Sep 17 00:00:00 2001
+From 6c0dd7fa53a2fe934b723cc80ceea811c7fdf5c8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
 Date: Mon, 16 Aug 2021 18:36:20 +0200
 Subject: [PATCH] LPS-137425 Don't check selection on focus
@@ -8,7 +8,7 @@ Subject: [PATCH] LPS-137425 Don't check selection on focus
  1 file changed, 9 deletions(-)
 
 diff --git a/core/selection.js b/core/selection.js
-index 4da7aff707..e96202fb3c 100644
+index 62e1566d0d..d3f5538a74 100644
 --- a/core/selection.js
 +++ b/core/selection.js
 @@ -976,15 +976,6 @@
