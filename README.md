@@ -106,6 +106,16 @@ A prompt will appear asking you which version you'd like to select. This will up
 
 **NOTE:** In order to prevent unintended commits to the submodule, using `ck.sh update` is the only supported way to change the commit the submodule is referencing. Git is configured to ignore changes to the submodule, so you will only see them in the output of commands like `git status`, `git show`, `git log -p` (etc) if you pass the `--ignore-submodules=none` switch.
 
+#### Resolving problems while updating CKEditor's base version
+
+> `./ck.sh update` should only be used to check that everything is in order before applying changes, and we cannot expect it to be used to resolve conflicts.
+
+You may encounter some issues throughout the upgrade process. You can take the following actions to properly resolve these conflicts:
+
+1. Navigate to the `ckeditor-dev/` subdirectory and manually resolve conflicts by rebasing with the proper tag/version you want to upgrade. `git pull —rebase 4.18.0`, for example, can be used to rebase with 4.18.0.
+2. Go to `liferay-ckeditor/` and run `./ck.sh update` after the submodule has been successfully updated. Choose the correct version of ckeditor you're trying to update, then check to see if everything under `ckeditor-dev` is fine and without conflicts.
+3. If everything looks good and there are no conflicts, run `./ck.sh patch` to update the `patches/` folder, and don't forget to leave a good commit message. `chore: update patches for upgrading to CKEditor 4.18.0` is an example of a decent commit message for this type of change.
+
 ### Testing in [liferay-portal](https://github.com/liferay/liferay-portal)
 
 To test your local CKEditor build in liferay-portal:

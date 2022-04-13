@@ -1,18 +1,18 @@
-From 3abfc87bf93ee2e6f4421f2d7fc1ec9e832217f6 Mon Sep 17 00:00:00 2001
+From 8b4da009a9cf77a7fdaa16e7e09b67f5640a52c3 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 7 Jul 2020 09:47:27 +0200
 Subject: [PATCH] LPS-112982 Add additional resource URL parameters
 
 ---
- core/ckeditor_base.js | 25 ++++++++++++++++++-------
+ core/ckeditor_base.js | 23 ++++++++++++++++++-----
  core/config.js        |  9 +++++++++
- 2 files changed, 27 insertions(+), 7 deletions(-)
+ 2 files changed, 27 insertions(+), 5 deletions(-)
 
 diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
-index dcd1b6bfa3..8285e83c64 100644
+index dbec536bd0..68c2371c7f 100644
 --- a/core/ckeditor_base.js
 +++ b/core/ckeditor_base.js
-@@ -170,15 +170,26 @@ if ( !window.CKEDITOR ) {
+@@ -175,13 +175,26 @@ if ( !window.CKEDITOR ) {
  			 * @returns {String} The full URL.
  			 */
  			getUrl: function( resource ) {
@@ -23,9 +23,7 @@ index dcd1b6bfa3..8285e83c64 100644
 +					? new URL(resource)
 +					: new URL(this.basePath + resource);
  
--				// Add the timestamp, except for directories.
--				if ( this.timestamp && resource.charAt( resource.length - 1 ) != '/' && !( /[&?]t=/ ).test( resource ) )
--					resource += ( resource.indexOf( '?' ) >= 0 ? '&' : '?' ) + 't=' + this.timestamp;
+-				resource = this.appendTimestamp( resource );
 +				if (!resourceUrl.toString().endsWith('/')) {
 +					if (this.timestamp && !resourceUrl.searchParams.has('t')) {
 +						resourceUrl.searchParams.set('t', this.timestamp);
@@ -47,7 +45,7 @@ index dcd1b6bfa3..8285e83c64 100644
  
  			/**
 diff --git a/core/config.js b/core/config.js
-index 1ebc053555..4d7013209a 100644
+index 15f1b7c0de..2c4f2f74bc 100644
 --- a/core/config.js
 +++ b/core/config.js
 @@ -8,6 +8,15 @@
