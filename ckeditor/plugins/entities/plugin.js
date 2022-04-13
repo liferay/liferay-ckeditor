@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 (function(){function k(a,f){var g={},c=[],e={nbsp:" ",shy:"­",gt:"\x3e",lt:"\x3c",amp:"\x26",apos:"'",quot:'"'};a=a.replace(/\b(nbsp|shy|gt|lt|amp|apos|quot)(?:,|$)/g,function(a,b){var d=f?"\x26"+b+";":e[b];g[d]=f?e[b]:"\x26"+b+";";c.push(d);return""});a=a.replace(/,$/,"");if(!f&&a){a=a.split(",");var b=document.createElement("div"),d;b.innerHTML="\x26"+a.join(";\x26")+";";d=b.innerHTML;b=null;for(b=0;b<d.length;b++){var h=d.charAt(b);g[h]="\x26"+a[b]+";";c.push(h)}}g.regex=c.join(f?"|":"");return g}
