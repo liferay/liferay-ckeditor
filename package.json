@@ -1,6 +1,6 @@
 {
 	"name": "liferay-ckeditor",
-	"version": "4.17.1-liferay.1",
+	"version": "4.18.0-liferay.1",
 	"description": "Liferay's fork of CKEditor",
 	"files": [
 		"ckeditor/**/*"
