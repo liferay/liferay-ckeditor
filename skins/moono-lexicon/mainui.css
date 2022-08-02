@@ -174,7 +174,11 @@ Special outer level classes used in this file:
 
 	cursor: sw-resize;
 
-	float: left;
+	/* `liferay-r2` takes care of processing external/internal CSS resources
+	on DXP and already deals with converting float directions.
+	So, we will be forcing those styles to be right because `liferay-r2`
+	will take care of converting this direction to left */
+	float: right;
 	margin-left: -4px;
 	right: auto;
 }
