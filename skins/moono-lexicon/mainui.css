@@ -147,6 +147,9 @@ Special outer level classes used in this file:
 	/* 	A margin in case of no other element in the same container
 		to keep a distance to the bottom edge. */
 	margin-bottom: 2px;
+
+	float: right;
+	margin-right: -4px;
 }
 
 .cke_hc .cke_resizer {
@@ -158,9 +161,6 @@ Special outer level classes used in this file:
 
 .cke_resizer_ltr {
 	cursor: se-resize;
-
-	float: right;
-	margin-right: -4px;
 }
 
 /* This class is added in RTL mode. This is a special case for the resizer
@@ -168,19 +168,7 @@ Special outer level classes used in this file:
    RTL mode if the main UI is RTL. It depends instead on the context where the
    editor is inserted on. */
 .cke_resizer_rtl {
-	border-width: 10px 0 0 10px;
-	border-color: transparent transparent transparent #bcbcbc;
-	border-style: dashed dashed dashed solid;
-
 	cursor: sw-resize;
-
-	/* `liferay-r2` takes care of processing external/internal CSS resources
-	on DXP and already deals with converting float directions.
-	So, we will be forcing those styles to be right because `liferay-r2`
-	will take care of converting this direction to left */
-	float: right;
-	margin-left: -4px;
-	right: auto;
 }
 
 /* The editing area (where users type) can be rendered as an editable <div>
