@@ -1,3 +1,11 @@
+## [v4.18.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.2) (2022-08-04)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.1...v4.18.0-liferay.2)
+
+### :wrench: Bug fixes
+
+-   fix: reduce RTL resizer styles, leaving them to be modified by DXP ([\#197](https://github.com/liferay/liferay-ckeditor/pull/197))
+
 ## [v4.18.0-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.1) (2022-04-13)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.17.1-liferay.1...v4.18.0-liferay.1)
