@@ -1,3 +1,11 @@
+## [v4.18.0-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.3) (2022-10-11)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.2...v4.18.0-liferay.3)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-163662 CKEditor element flickering ([\#198](https://github.com/liferay/liferay-ckeditor/pull/198))
+
 ## [v4.18.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.2) (2022-08-04)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.1...v4.18.0-liferay.2)
