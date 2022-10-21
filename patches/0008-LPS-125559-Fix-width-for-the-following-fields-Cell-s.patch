@@ -1,4 +1,4 @@
-From c71372d2ca8ca43beead269e4fb082d2cf8c27c5 Mon Sep 17 00:00:00 2001
+From 72bdfe676b276127aa8346973b9b8b7641ff32e7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Fri, 8 Jan 2021 10:58:23 +0100
 Subject: [PATCH] LPS-125559 Fix width for the following fields Cell spacing,
