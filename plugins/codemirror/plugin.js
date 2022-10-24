@@ -22,6 +22,11 @@
 				codeMirrorInstance.codeMirrorEditor = CodeMirror.fromTextArea(
 					textarea.$,
 					{
+						extraKeys: {
+							Esc: function(cm) {
+								cm.display.input.blur();
+							}
+						},
 						lineNumbers: true,
 						lineWrapping: true,
 						mode: 'text/html',
