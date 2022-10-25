@@ -4,6 +4,47 @@
 	var stylesLoaded = false;
 
 	CKEDITOR.plugins.add('codemirror', {
+		_addTabKeyMessage: function (cm, editor, tabsKeyIsEnabled) {
+			var div = document.createElement('div');
+
+			var message = tabsKeyIsEnabled
+				? editor.lang.codemirror.disableTabKeyUsing
+				: editor.lang.codemirror.enableTabKeyUsing;
+
+			var html =
+				'<div class="keyboard-message popover px-2 py-1" style="left:auto; right: 4px; top:4px">';
+
+			html += '<span class="c-kbd-sm">';
+
+			html += message;
+
+			html += '</span>';
+
+			html += '<kbd class="c-kbd c-kbd-light c-kbd-sm">';
+
+			html += '<kbd class="c-kbd">Ctrl</kbd>';
+
+			html += '<span class="c-kbd-separator">+</span>';
+
+			html += '<kbd class="c-kbd">M</kbd>';
+
+			html += '</kbd>';
+
+			html += '</div>';
+
+			div.innerHTML = html;
+
+			cm.getWrapperElement().appendChild(div);
+		},
+
+		_removeTabKeyMessage: function (cm) {
+			var div = cm.getWrapperElement().querySelector('.keyboard-message');
+
+			if (div) {
+				div.parentElement.removeChild(div);
+			}
+		},
+
 		_createCodeMirrorEditor: function (editor) {
 			var instance = this;
 
@@ -25,6 +66,32 @@
 						lineNumbers: true,
 						lineWrapping: true,
 						mode: 'text/html',
+						extraKeys: {
+							'Ctrl-M': function (cm) {
+								var tabKeyIsEnabled = cm.state.keyMaps.every(
+									function (key) {
+										return key.name !== 'tabKey';
+									}
+								);
+
+								instance._removeTabKeyMessage(cm);
+								instance._addTabKeyMessage(
+									cm,
+									editor,
+									!tabKeyIsEnabled
+								);
+
+								if (tabKeyIsEnabled) {
+									cm.addKeyMap({
+										'Shift-Tab': false,
+										Tab: false,
+										name: 'tabKey',
+									});
+								} else {
+									cm.removeKeyMap('tabKey');
+								}
+							},
+						},
 					}
 				);
 
@@ -75,6 +142,30 @@
 				});
 
 				editor.fire('ariaWidget', this);
+
+				codeMirrorInstance.codeMirrorEditor.on('focus', function (cm) {
+					var tabKeyIsEnabled = cm.state.keyMaps.every(function (
+						key
+					) {
+						return key.name !== 'tabKey';
+					});
+
+					if (tabKeyIsEnabled) {
+						cm.addKeyMap({
+							'Shift-Tab': false,
+							Tab: false,
+							name: 'tabKey',
+						});
+					}
+
+					instance._addTabKeyMessage(cm, editor, false);
+				});
+
+				codeMirrorInstance.codeMirrorEditor.on('blur', function () {
+					instance._removeTabKeyMessage(
+						codeMirrorInstance.codeMirrorEditor
+					);
+				});
 
 				callback();
 			});
