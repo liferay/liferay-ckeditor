@@ -1,3 +1,13 @@
+## [v4.18.0-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.4) (2022-10-26)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.3...v4.18.0-liferay.4)
+
+### :wrench: Bug fixes
+
+-   fix: LPS-165655 Disable tab key by default to avoid the focus to be trapped in the editor ([\#202](https://github.com/liferay/liferay-ckeditor/pull/202))
+
+-   fix: LPS-166086 Make dialog close button accessible with keyboard ([\#200](https://github.com/liferay/liferay-ckeditor/pull/200))
+
 ## [v4.18.0-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.3) (2022-10-11)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.2...v4.18.0-liferay.3)
