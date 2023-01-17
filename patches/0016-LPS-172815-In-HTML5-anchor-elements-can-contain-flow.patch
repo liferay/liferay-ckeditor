@@ -1,0 +1,23 @@
+From a2e79246f3c478938ecedbedfcc2b646fc1d5c3f Mon Sep 17 00:00:00 2001
+From: Minhchau Dang <minhchau.dang@liferay.com>
+Date: Tue, 17 Jan 2023 13:39:12 +0900
+Subject: [PATCH] LPS-172815 In HTML5, anchor elements can contain flow-only
+ elements, see https://w3c.github.io/html-reference/a.html#a-changes
+
+---
+ core/dtd.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/dtd.js b/core/dtd.js
+index 058d5276ef..a73f6f309a 100644
+--- a/core/dtd.js
++++ b/core/dtd.js
+@@ -122,7 +122,7 @@ CKEDITOR.dtd = ( function() {
+ 	X( F, FO, P, DFO );
+ 
+ 	var dtd = {
+-		a: Y( P, { a: 1, button: 1 } ), // Treat as normal inline element (not a transparent one).
++		a: Y( F, { a: 1, button: 1 } ), // Treat as a transparent element.
+ 		abbr: P,
+ 		address: F,
+ 		area: E,
