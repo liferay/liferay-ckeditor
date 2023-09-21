@@ -1,4 +1,4 @@
-From ea1d4e9c8daefb635c256e45d9747897a5c38b75 Mon Sep 17 00:00:00 2001
+From d7a2cf65337479f2888235add5ffa1817bb60b47 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
 Date: Fri, 21 Oct 2022 15:28:58 +0200
 Subject: [PATCH] LPS-166086 Make dialog close button accessible with keyboard
@@ -8,7 +8,7 @@ Subject: [PATCH] LPS-166086 Make dialog close button accessible with keyboard
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/plugins/dialog/plugin.js b/plugins/dialog/plugin.js
-index a1fdc81ff1..5d328a1675 100644
+index 5101c888ff..6a38bef707 100644
 --- a/plugins/dialog/plugin.js
 +++ b/plugins/dialog/plugin.js
 @@ -160,7 +160,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;

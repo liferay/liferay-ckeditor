@@ -1,4 +1,4 @@
-From 30f3d7da194b34352b450b303e8639a4ba1ba5ed Mon Sep 17 00:00:00 2001
+From 10216fb46ecdaed9c941a278fbea3ab080741684 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
 Date: Mon, 9 Aug 2021 18:04:44 +0200
 Subject: [PATCH] LPS-136119 Set `id` on first render, instead of changing it
@@ -9,10 +9,10 @@ Subject: [PATCH] LPS-136119 Set `id` on first render, instead of changing it
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/plugins/button/plugin.js b/plugins/button/plugin.js
-index 766ee18a0b..c6dc7963a7 100644
+index 19ece8424b..002302def8 100644
 --- a/plugins/button/plugin.js
 +++ b/plugins/button/plugin.js
-@@ -143,7 +143,6 @@
+@@ -146,7 +146,6 @@
  			}
  
  			var env = CKEDITOR.env,
@@ -20,7 +20,7 @@ index 766ee18a0b..c6dc7963a7 100644
  				stateName = '',
  				command = this.command,
  				// Get the command name.
-@@ -151,6 +150,14 @@
+@@ -154,6 +153,14 @@
  				keystroke,
  				shortcut;
  
