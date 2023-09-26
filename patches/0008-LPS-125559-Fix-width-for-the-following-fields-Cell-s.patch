@@ -1,4 +1,4 @@
-From 72bdfe676b276127aa8346973b9b8b7641ff32e7 Mon Sep 17 00:00:00 2001
+From 07e1d151f387e0eb33b277b8d5db1731d932be24 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Fri, 8 Jan 2021 10:58:23 +0100
 Subject: [PATCH] LPS-125559 Fix width for the following fields Cell spacing,
@@ -9,10 +9,10 @@ Subject: [PATCH] LPS-125559 Fix width for the following fields Cell spacing,
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
-index 983b1706d6..0238f25d45 100755
+index 64101f74f2..ae4a204123 100755
 --- a/plugins/table/dialogs/table.js
 +++ b/plugins/table/dialogs/table.js
-@@ -342,7 +342,7 @@
+@@ -357,7 +357,7 @@
  							// Avoid setting border which will then disappear.
  							'default': editor.filter.check( 'table[border]' ) ? 1 : 0,
  							label: editor.lang.table.border,
@@ -21,7 +21,7 @@ index 983b1706d6..0238f25d45 100755
  							validate: CKEDITOR.dialog.validate.number( editor.lang.table.invalidBorder ),
  							setup: function( selectedTable ) {
  								this.setValue( selectedTable.getAttribute( 'border' ) || '' );
-@@ -438,7 +438,7 @@
+@@ -453,7 +453,7 @@
  							type: 'text',
  							id: 'txtCellSpace',
  							requiredContent: 'table[cellspacing]',
@@ -30,7 +30,7 @@ index 983b1706d6..0238f25d45 100755
  							label: editor.lang.table.cellSpace,
  							'default': editor.filter.check( 'table[cellspacing]' ) ? 1 : 0,
  							validate: CKEDITOR.dialog.validate.number( editor.lang.table.invalidCellSpacing ),
-@@ -456,7 +456,7 @@
+@@ -471,7 +471,7 @@
  							type: 'text',
  							id: 'txtCellPad',
  							requiredContent: 'table[cellpadding]',
