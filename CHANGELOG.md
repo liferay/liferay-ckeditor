@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.1) (2023-09-26)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.4...v4.21.0-liferay.1)
+
+### :package: Miscellaneous
+
+-   Update to v4.21.0 ([\#206](https://github.com/liferay/liferay-ckeditor/pull/206))
+
 ## [v4.18.0-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.18.0-liferay.4) (2022-10-26)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.3...v4.18.0-liferay.4)
