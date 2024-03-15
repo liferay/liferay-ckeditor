@@ -1,4 +1,4 @@
-From d7a2cf65337479f2888235add5ffa1817bb60b47 Mon Sep 17 00:00:00 2001
+From bc9a890fcb94a4edc0a9aa0f53bcf4ded63f14cb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
 Date: Fri, 21 Oct 2022 15:28:58 +0200
 Subject: [PATCH] LPS-166086 Make dialog close button accessible with keyboard
