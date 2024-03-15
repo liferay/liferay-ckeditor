@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.2) (2024-03-15)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.1...v4.21.0-liferay.2)
+
+### :package: Miscellaneous
+
+-   LPD-19992 Validate id and name fields according to spec ([\#208](https://github.com/liferay/liferay-ckeditor/pull/208))
+
 ## [v4.21.0-liferay.1](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.1) (2023-09-26)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.18.0-liferay.4...v4.21.0-liferay.1)
