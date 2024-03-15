@@ -1,0 +1,57 @@
+From 99941c63a380b2de53182e73a0adb615fcf9618c Mon Sep 17 00:00:00 2001
+From: Antonio Ortega <60252917@liferay.com>
+Date: Fri, 15 Mar 2024 16:01:20 +0100
+Subject: [PATCH] LPD-19992 Validate id and name fields according to spec
+
+---
+ plugins/link/dialogs/link.js | 30 +++++++++++++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
+
+diff --git a/plugins/link/dialogs/link.js b/plugins/link/dialogs/link.js
+index 46e452e741..39932fd2d9 100755
+--- a/plugins/link/dialogs/link.js
++++ b/plugins/link/dialogs/link.js
+@@ -1010,7 +1010,18 @@
+ 
+ 				this.setupContent( data );
+ 			},
+-			onOk: function() {
++			onOk: function(event) {
++				var idValue = this.getValueOf('advanced', 'advId');
++				var nameValue = this.getValueOf('advanced', 'advName');
++
++				if (
++					!validateField('id', idValue) ||
++					!validateField('name', nameValue)
++				) {
++					event.data.hide = false;
++					return;
++				}
++
+ 				var data = {};
+ 
+ 				// Collect data from fields.
+@@ -1046,6 +1057,23 @@
+ 		};
+ 	} );
+ 
++	function validateField(fieldName, fieldValue) {
++		var regEx = /^[A-Za-z]+[\w\-:.]*$/;
++
++		if (fieldValue && !regEx.test(fieldValue)) {
++			alert(
++				Liferay.Util.sub(
++					Liferay.Language.get('there-was-an-error-when-loading-the-x-field'),
++					fieldName
++				)
++			);
++
++			return false;
++		}
++
++		return true;
++	}
++
+ 	function validateTelNumber() {
+ 		var dialog = this.getDialog(),
+ 			editor = dialog._.editor,

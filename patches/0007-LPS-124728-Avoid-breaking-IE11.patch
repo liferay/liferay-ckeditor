@@ -1,4 +1,4 @@
-From 28d5de7bb90438c8825dac721d93a25730511a98 Mon Sep 17 00:00:00 2001
+From 84d3daa5c9b00fa59ec15978a2c888d93f1a6cda Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Mon, 21 Dec 2020 09:12:53 +0100
 Subject: [PATCH] LPS-124728 Avoid breaking IE11
