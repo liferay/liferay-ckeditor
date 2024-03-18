@@ -1,4 +1,4 @@
-From 99941c63a380b2de53182e73a0adb615fcf9618c Mon Sep 17 00:00:00 2001
+From b426b4b037b6bc20d94efeecdb9e0fa669a790c8 Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Fri, 15 Mar 2024 16:01:20 +0100
 Subject: [PATCH] LPD-19992 Validate id and name fields according to spec

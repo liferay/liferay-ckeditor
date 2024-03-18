@@ -1,0 +1,21 @@
+From 75d4a9af69bb250569c57ad5e49398d13f6e645e Mon Sep 17 00:00:00 2001
+From: Antonio Ortega <60252917@liferay.com>
+Date: Mon, 18 Mar 2024 15:20:47 +0100
+Subject: [PATCH] LPD-20726 Always set some width to img container
+
+---
+ plugins/image2/plugin.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
+index bcf986bad4..c41fdad41c 100644
+--- a/plugins/image2/plugin.js
++++ b/plugins/image2/plugin.js
+@@ -31,6 +31,7 @@
+ 				// wrapper is displayed property.
+ 				'line-height:0' +
+ 			'}' +
++			'.cke_widget_wrapper.cke_widget_image {width: 100%;}' +
+ 			'.cke_editable.cke_image_sw, .cke_editable.cke_image_sw *{cursor:sw-resize !important}' +
+ 			'.cke_editable.cke_image_se, .cke_editable.cke_image_se *{cursor:se-resize !important}' +
+ 			'.cke_image_resizer{' +
