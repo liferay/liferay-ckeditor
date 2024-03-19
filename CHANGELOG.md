@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.3) (2024-03-19)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.2...v4.21.0-liferay.3)
+
+### :package: Miscellaneous
+
+-   LPD-20726 Always set a width to images ([\#209](https://github.com/liferay/liferay-ckeditor/pull/209))
+
 ## [v4.21.0-liferay.2](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.2) (2024-03-15)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.1...v4.21.0-liferay.2)
