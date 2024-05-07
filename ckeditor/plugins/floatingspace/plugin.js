@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function k(a){var l=a.config,p=a.fire("uiSpace",{space:"top",html:""}).html,t=function(){function f(a,c,e){b.setStyle(c,w(e));b.setStyle("position",a)}function e(a){var b=k.getDocumentPosition();switch(a){case "top":f("absolute","top",b.y-q-r);break;case "pin":f("fixed","top",x);break;case "bottom":f("absolute","top",b.y+(c.height||c.bottom-c.top)+r)}m=a}var m,k,n,c,h,q,v,p=l.floatSpaceDockedOffsetX||0,r=l.floatSpaceDockedOffsetY||0,u=l.floatSpacePinnedOffsetX||0,x=l.floatSpacePinnedOffsetY||
 0;return function(d){if(k=a.editable()){var f=d&&"focus"==d.name;f&&b.show();a.fire("floatingSpaceLayout",{show:f});b.removeStyle("left");b.removeStyle("right");n=b.getClientRect();c=k.getClientRect();h=g.getViewPaneSize();q=n.height;v="pageXOffset"in g.$?g.$.pageXOffset:CKEDITOR.document.$.documentElement.scrollLeft;m?(q+r<=c.top?e("top"):q+r>h.height-c.bottom?e("pin"):e("bottom"),d=h.width/2,d=l.floatSpacePreferRight?"right":0<c.left&&c.right<h.width&&c.width>n.width?"rtl"==l.contentsLangDirection?

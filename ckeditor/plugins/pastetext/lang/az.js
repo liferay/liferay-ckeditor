@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","az",{button:"Yalnız mətni saxla",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Paste as Plain Text"});

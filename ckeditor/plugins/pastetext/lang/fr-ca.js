@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","fr-ca",{button:"Coller comme texte",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Coller comme texte"});

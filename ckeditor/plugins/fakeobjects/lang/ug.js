@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ug",{anchor:"لەڭگەرلىك نۇقتا",hiddenfield:"يوشۇرۇن دائىرە",iframe:"IFrame",unknown:"يوچۇن نەڭ"});

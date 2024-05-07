@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("horizontalrule","sq",{toolbar:"Shto Vijë Horizontale"});

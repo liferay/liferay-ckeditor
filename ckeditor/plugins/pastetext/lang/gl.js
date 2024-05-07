@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","gl",{button:"Pegar como texto simple",pasteNotification:"Prema %1 para pegar. O seu navegador non admite pegar co botón da barra de ferramentas ou coa opción do menú contextual.",title:"Pegar como texto simple"});

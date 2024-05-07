@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","lv",{bulletedlist:"Ievietot/noņemt sarakstu ar aizzīmēm",numberedlist:"Ievietot/noņemt numurētu sarakstu"});

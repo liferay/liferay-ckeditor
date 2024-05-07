@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function e(a,b,c){this.editor=a;this.notification=null;this._message=new CKEDITOR.template(b);this._singularMessage=c?new CKEDITOR.template(c):null;this._tasks=[];this._doneTasks=this._doneWeights=this._totalWeights=0}function d(a){this._weight=a||1;this._doneWeight=0;this._isCanceled=!1}CKEDITOR.plugins.add("notificationaggregator",{requires:"notification"});e.prototype={createTask:function(a){a=a||{};var b=!this.notification,c;b&&(this.notification=this._createNotification());c=this._addTask(a);
 c.on("updated",this._onTaskUpdate,this);c.on("done",this._onTaskDone,this);c.on("canceled",function(){this._removeTask(c)},this);this.update();b&&this.notification.show();return c},update:function(){this._updateNotification();this.isFinished()&&this.fire("finished")},getPercentage:function(){return 0===this.getTaskCount()?1:this._doneWeights/this._totalWeights},isFinished:function(){return this.getDoneTaskCount()===this.getTaskCount()},getTaskCount:function(){return this._tasks.length},getDoneTaskCount:function(){return this._doneTasks},

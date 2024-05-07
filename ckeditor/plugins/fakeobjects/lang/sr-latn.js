@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","sr-latn",{anchor:"Sidro",hiddenfield:"Skriveno polje",iframe:"IFrame",unknown:"Nepoznat objekat"});

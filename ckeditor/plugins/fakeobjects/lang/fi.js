@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","fi",{anchor:"Ankkuri",hiddenfield:"Piilokenttä",iframe:"IFrame-kehys",unknown:"Tuntematon objekti"});

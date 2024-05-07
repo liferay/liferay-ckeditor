@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","tr",{anchor:"Bağlantı",hiddenfield:"Gizli Alan",iframe:"IFrame",unknown:"Bilinmeyen Nesne"});

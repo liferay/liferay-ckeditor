@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function l(a){9>=a&&(a="0"+a);return String(a)}function n(a){var b=new Date,b=[b.getFullYear(),b.getMonth()+1,b.getDate(),b.getHours(),b.getMinutes(),b.getSeconds()];d+=1;return"image-"+CKEDITOR.tools.array.map(b,l).join("")+"-"+d+"."+a}var d=0;CKEDITOR.plugins.add("uploadimage",{requires:"uploadwidget",onLoad:function(){CKEDITOR.addCss(".cke_upload_uploading img{opacity: 0.3}")},isSupportedEnvironment:function(){return CKEDITOR.plugins.clipboard.isFileApiSupported},init:function(a){if(this.isSupportedEnvironment()){var b=
 CKEDITOR.fileTools,d=b.getUploadUrl(a.config,"image");d&&(a.config.clipboard_handleImages&&(a.config.clipboard_handleImages=!1,CKEDITOR.warn("clipboard-image-handling-disabled",{editor:a.name,plugin:"uploadimage"})),b.addUploadWidget(a,"uploadimage",{supportedTypes:a.config.uploadImage_supportedTypes,uploadUrl:d,fileToElement:function(){var a=new CKEDITOR.dom.element("img");a.setAttribute("src","data:image/gif;base64,R0lGODlhDgAOAIAAAAAAAP///yH5BAAAAAAALAAAAAAOAA4AAAIMhI+py+0Po5y02qsKADs\x3d");return a},

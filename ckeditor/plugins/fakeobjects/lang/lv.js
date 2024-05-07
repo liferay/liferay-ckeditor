@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","lv",{anchor:"Iezīme",hiddenfield:"Slēpts lauks",iframe:"Iframe",unknown:"Nezināms objekts"});

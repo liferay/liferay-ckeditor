@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","de",{button:"Als Klartext einfügen",pasteNotification:"Drücken Sie %1 zum Einfügen. Ihr Browser unterstützt nicht das Einfügen über den Knopf in der Toolbar oder dem Kontextmenü.",title:"Als Klartext einfügen"});

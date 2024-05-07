@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","hr",{button:"Zalijepi kao čisti tekst",pasteNotification:"Vaš preglednik Vam ne dozvoljava lijepljenje običnog teksta na ovaj način. Za lijepljenje, pritisnite %1.",title:"Zalijepi kao čisti tekst"});

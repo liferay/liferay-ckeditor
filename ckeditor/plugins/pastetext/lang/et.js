@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","et",{button:"Asetamine tavalise tekstina",pasteNotification:"Asetamiseks vajuta %1. Sinu brauser ei toeta asetamist tööriistariba nupu või kontekstimenüü valikuga.",title:"Asetamine tavalise tekstina"});

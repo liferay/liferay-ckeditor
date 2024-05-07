@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","bg",{redo:"Пренаправи",undo:"Отмени"});

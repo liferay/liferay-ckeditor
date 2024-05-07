@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","eo",{anchor:"Ankro",hiddenfield:"Kaŝita kampo",iframe:"Enlinia Kadro (IFrame)",unknown:"Nekonata objekto"});

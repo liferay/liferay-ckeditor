@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("notification","sq",{closed:"Njoftimi është mbyllur."});

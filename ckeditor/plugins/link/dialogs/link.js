@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function u(c,q){var n=/^[A-Za-z]+[\w\-:.]*$/;return q&&!n.test(q)?(alert(Liferay.Util.sub(Liferay.Language.get("there-was-an-error-when-loading-the-x-field"),c)),!1):!0}function w(){var c=this.getDialog(),q=c._.editor,n=q.config.linkPhoneRegExp,r=q.config.linkPhoneMsg,q=CKEDITOR.dialog.validate.notEmpty(q.lang.link.noTel).apply(this);if(!c.getContentElement("info","linkType")||"tel"!=c.getValueOf("info","linkType"))return!0;if(!0!==q)return q;if(n)return CKEDITOR.dialog.validate.regex(n,
 r).call(this)}CKEDITOR.dialog.add("link",function(c){function q(a,b){var c=a.createRange();c.setStartBefore(b);c.setEndAfter(b);return c}var n=CKEDITOR.plugins.link,r,v=function(){var a=this.getDialog(),b=a.getContentElement("target","popupFeatures"),a=a.getContentElement("target","linkTargetName"),t=this.getValue();if(b&&a)switch(b=b.getElement(),b.hide(),a.setValue(""),t){case "frame":a.setLabel(c.lang.link.targetFrameName);a.getElement().show();break;case "popup":b.show();a.setLabel(c.lang.link.targetPopupName);

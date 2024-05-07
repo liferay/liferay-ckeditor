@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ka",{anchor:"ღუზა",hiddenfield:"მალული ველი",iframe:"IFrame",unknown:"უცნობი ობიექტი"});

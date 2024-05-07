@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","bs",{button:"Zalijepi kao obièan tekst",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Zalijepi kao obièan tekst"});

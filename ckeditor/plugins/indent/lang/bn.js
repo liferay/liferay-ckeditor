@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("indent","bn",{indent:"ইনডেন্ট বাড়াই",outdent:"ইনডেন্ট কমাও"});

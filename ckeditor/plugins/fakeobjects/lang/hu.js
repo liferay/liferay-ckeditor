@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","hu",{anchor:"Horgony",hiddenfield:"Rejtett mezõ",iframe:"IFrame",unknown:"Ismeretlen objektum"});

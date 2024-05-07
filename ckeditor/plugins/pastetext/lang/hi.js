@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","hi",{button:"पेस्ट (सादा टॅक्स्ट)",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"पेस्ट (सादा टॅक्स्ट)"});

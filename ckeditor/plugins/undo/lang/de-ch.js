@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","de-ch",{redo:"Wiederherstellen",undo:"Rückgängig"});

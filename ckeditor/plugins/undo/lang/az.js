@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","az",{redo:"Təkrar et",undo:"İmtina et"});

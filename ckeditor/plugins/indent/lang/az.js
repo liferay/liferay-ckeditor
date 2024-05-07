@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("indent","az",{indent:"Sol boşluqu artır",outdent:"Sol boşluqu azalt"});

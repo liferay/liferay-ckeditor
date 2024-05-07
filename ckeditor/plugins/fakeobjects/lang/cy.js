@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","cy",{anchor:"Angor",hiddenfield:"Maes Cudd",iframe:"IFrame",unknown:"Gwrthrych Anhysbys"});

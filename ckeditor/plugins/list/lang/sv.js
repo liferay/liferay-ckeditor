@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","sv",{bulletedlist:"Infoga/ta bort punktlista",numberedlist:"Infoga/ta bort numrerad lista"});

@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function k(a){this.editor=a;this.loaders=[]}function l(a,c,b){var d=a.config.fileTools_defaultFileName;this.editor=a;this.lang=a.lang;"string"===typeof c?(this.data=c,this.file=n(this.data),this.loaded=this.total=this.file.size):(this.data=null,this.file=c,this.total=this.file.size,this.loaded=0);b?this.fileName=b:this.file.name?this.fileName=this.file.name:(a=this.file.type.split("/"),d&&(a[0]=d),this.fileName=a.join("."));this.uploaded=0;this.responseData=this.uploadTotal=null;this.status=
 "created";this.abort=function(){this.changeStatus("abort")}}function n(a){var c=a.match(m)[1];a=a.replace(m,"");a=atob(a);var b=[],d,f,g,e;for(d=0;d<a.length;d+=512){f=a.slice(d,d+512);g=Array(f.length);for(e=0;e<f.length;e++)g[e]=f.charCodeAt(e);f=new Uint8Array(g);b.push(f)}return new Blob(b,{type:c})}CKEDITOR.plugins.add("filetools",{lang:"az,bg,ca,cs,da,de,de-ch,el,en,en-au,eo,es,es-mx,et,eu,fa,fr,gl,hr,hu,id,it,ja,km,ko,ku,lv,nb,nl,no,oc,pl,pt,pt-br,ro,ru,sk,sq,sr,sr-latn,sv,tr,ug,uk,vi,zh,zh-cn",

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("indent","eu",{indent:"Handitu koska",outdent:"Txikitu koska"});

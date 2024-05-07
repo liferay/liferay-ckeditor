@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","pl",{anchor:"Kotwica",hiddenfield:"Pole ukryte",iframe:"IFrame",unknown:"Nieznany obiekt"});

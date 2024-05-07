@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","fo",{button:"Innrita som reinan tekst",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Innrita som reinan tekst"});

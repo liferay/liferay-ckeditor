@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("notification","hu",{closed:"Értesítés bezárva."});

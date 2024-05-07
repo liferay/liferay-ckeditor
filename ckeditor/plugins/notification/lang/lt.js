@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("notification","lt",{closed:"Pranešimas uždarytas."});

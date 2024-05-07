@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","ko",{button:"텍스트로 붙여넣기",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"텍스트로 붙여넣기"});

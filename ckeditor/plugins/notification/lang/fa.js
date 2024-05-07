@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("notification","fa",{closed:"آگاه‌سازی بسته شد"});

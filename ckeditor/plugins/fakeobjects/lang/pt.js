@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","pt",{anchor:" Inserir/Editar âncora",hiddenfield:"Campo oculto",iframe:"IFrame",unknown:"Objeto desconhecido"});

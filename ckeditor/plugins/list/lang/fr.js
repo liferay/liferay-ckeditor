@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","fr",{bulletedlist:"Insérer/Supprimer une liste à puces",numberedlist:"Insérer/Supprimer une liste numérotée"});

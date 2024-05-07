@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","lt",{button:"Įdėti kaip gryną tekstą",pasteNotification:"Spauskite %1 kad įklijuotumėte. Jūsų naršyklė nepalaiko įklijavimo mygtuko arba kontekstinio meniu šiam veiksmui.",title:"Įdėti kaip gryną tekstą"});

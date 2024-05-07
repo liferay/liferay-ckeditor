@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("indent","fr",{indent:"Augmenter le retrait",outdent:"Diminuer le retrait"});

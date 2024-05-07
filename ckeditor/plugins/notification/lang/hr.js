@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("notification","hr",{closed:"Obavijest zatvorena."});

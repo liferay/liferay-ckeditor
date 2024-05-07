@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","bn",{redo:"পুনরায়  করি",undo:"আনডু"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","de-ch",{bulletedlist:"Liste",numberedlist:"Nummerierte Liste einfügen/entfernen"});

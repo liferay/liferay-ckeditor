@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","es-mx",{bold:"Negrita",italic:"Cursiva",strike:"Tachado",subscript:"subíndice",superscript:"Sobrescrito",underline:"Subrayada"});

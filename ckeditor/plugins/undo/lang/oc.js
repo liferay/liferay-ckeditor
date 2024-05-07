@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","oc",{redo:"Refar",undo:"Restablir"});

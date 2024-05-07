@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","bn",{bulletedlist:"বুলেটেড তালিকা প্রবেশ/অপসারন করি",numberedlist:"সাংখ্যিক লিস্টের লেবেল"});

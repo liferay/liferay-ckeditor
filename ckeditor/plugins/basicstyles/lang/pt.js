@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","pt",{bold:"Negrito",italic:"Itálico",strike:"Rasurado",subscript:"Superior à linha",superscript:"Superior à linha",underline:"Sublinhado"});

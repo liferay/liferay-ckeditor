@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","el",{anchor:"Άγκυρα",hiddenfield:"Κρυφό Πεδίο",iframe:"IFrame",unknown:"Άγνωστο Αντικείμενο"});

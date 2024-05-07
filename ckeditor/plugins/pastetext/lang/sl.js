@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","sl",{button:"Prilepi kot golo besedilo",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Prilepi kot golo besedilo"});

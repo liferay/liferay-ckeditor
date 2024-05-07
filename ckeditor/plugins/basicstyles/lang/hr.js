@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","hr",{bold:"Podebljano",italic:"Ukošeno",strike:"Precrtano",subscript:"Subscript",superscript:"Superscript",underline:"Potcrtano"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("toolbar","sv",{toolbarCollapse:"Dölj verktygsfält",toolbarExpand:"Visa verktygsfält",toolbarGroups:{document:"Dokument",clipboard:"Urklipp/ångra",editing:"Redigering",forms:"Formulär",basicstyles:"Basstilar",paragraph:"Paragraf",links:"Länkar",insert:"Infoga",styles:"Stilar",colors:"Färger",tools:"Verktyg"},toolbars:"Editorns verktygsfält"});

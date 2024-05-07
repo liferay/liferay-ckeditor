@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ca",{anchor:"Àncora",hiddenfield:"Camp ocult",iframe:"IFrame",unknown:"Objecte desconegut"});

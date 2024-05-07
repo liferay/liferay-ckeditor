@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","th",{anchor:"แทรก/แก้ไข Anchor",hiddenfield:"ฮิดเดนฟิลด์",iframe:"IFrame",unknown:"วัตถุไม่ทราบชนิด"});

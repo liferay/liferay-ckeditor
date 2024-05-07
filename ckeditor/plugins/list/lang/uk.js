@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","uk",{bulletedlist:"Вставити/видалити маркований список",numberedlist:"Вставити/видалити нумерований список"});

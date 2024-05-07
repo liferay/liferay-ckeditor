@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){CKEDITOR.plugins.add("uploadwidget",{lang:"az,bg,ca,cs,da,de,de-ch,el,en,en-au,eo,es,es-mx,et,eu,fa,fr,gl,hr,hu,id,it,ja,km,ko,ku,lv,nb,nl,no,oc,pl,pt,pt-br,ro,ru,sk,sq,sr,sr-latn,sv,tr,ug,uk,zh,zh-cn",requires:"widget,clipboard,filetools,notificationaggregator",init:function(a){a.filter.allow("*[!data-widget,!data-cke-upload-id]")},isSupportedEnvironment:function(){return CKEDITOR.plugins.clipboard.isFileApiSupported}});CKEDITOR.fileTools||(CKEDITOR.fileTools={});CKEDITOR.tools.extend(CKEDITOR.fileTools,
 {addUploadWidget:function(a,c,e){var g=CKEDITOR.fileTools,b=a.uploadRepository,m=e.supportedTypes?10:20;CKEDITOR.plugins.clipboard.addFileMatcher(a,function(a){return e.supportedTypes?g.isTypeSupported(a,e.supportedTypes):!0});if(e.fileToElement)a.on("paste",function(d){d=d.data;var l=a.widgets.registered[c],k=d.dataTransfer,e=k.getFilesCount(),h=l.loadMethod||"loadAndUpload",f,n;if(!d.dataValue&&e)for(n=0;n<e;n++)if(f=k.getFile(n),!l.supportedTypes||g.isTypeSupported(f,l.supportedTypes)){var m=l.fileToElement(f);

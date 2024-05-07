@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","bg",{bulletedlist:"Вмъкване/премахване на точков списък",numberedlist:"Вмъкване/премахване на номериран списък"});

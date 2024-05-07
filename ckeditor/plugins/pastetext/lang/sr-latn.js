@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","sr-latn",{button:"Zalepi kao neformiran tekst",pasteNotification:"Pritisnite taster % 1 da bi ste nalepili. Pretraživač ne podržava lepljenje pomoću tastera na traci sa alatkama ili iz menija.",title:"Zalepi kao neformiran tekst"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","sr-latn",{bulletedlist:"Nаbrajanje",numberedlist:"Numerisanje"});

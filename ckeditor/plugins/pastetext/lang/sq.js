@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","sq",{button:"Hidhe si tekst të thjeshtë",pasteNotification:"Shtyp %1 për të hedhur tekstin. Shfletuesi juaj nuk mbështetë hedhjen me pullë shiriti ose alternativën e menysë kontekstuale.",title:"Hidhe si Tekst të Thjeshtë"});

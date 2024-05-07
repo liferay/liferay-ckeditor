@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","lv",{bold:"Treknraksts",italic:"Slīpraksts",strike:"Pārsvītrojums",subscript:"Apakšraksts",superscript:"Augšraksts",underline:"Pasvītrojums"});

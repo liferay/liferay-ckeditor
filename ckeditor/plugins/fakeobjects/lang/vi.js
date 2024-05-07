@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","vi",{anchor:"Điểm neo",hiddenfield:"Trường ẩn",iframe:"IFrame",unknown:"Đối tượng không rõ ràng"});

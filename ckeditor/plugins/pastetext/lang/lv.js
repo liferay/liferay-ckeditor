@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","lv",{button:"Ievietot kā vienkāršu tekstu",pasteNotification:"Nospied %1 lai ielīmētu. Tavs pārlūks neatbalsta ielīmēšanu ar rīkjoslas pogām vai uznirstošās izvēlnes opciju.",title:"Ievietot kā vienkāršu tekstu"});

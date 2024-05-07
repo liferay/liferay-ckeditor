@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","si",{bold:"තද අකුරින් ලියනලද",italic:"බැධීඅකුරින් ලියන ලද",strike:"Strikethrough",subscript:"Subscript",superscript:"Superscript",underline:"යටින් ඉරි අදින ලද"});

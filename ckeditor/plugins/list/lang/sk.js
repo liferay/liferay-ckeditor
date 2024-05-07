@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","sk",{bulletedlist:"Vložiť/odstrániť zoznam s odrážkami",numberedlist:"Vložiť/odstrániť číslovaný zoznam"});

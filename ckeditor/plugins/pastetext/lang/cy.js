@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","cy",{button:"Gludo fel testun plaen",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Gludo fel Testun Plaen"});

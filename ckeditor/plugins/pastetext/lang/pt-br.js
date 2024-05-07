@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","pt-br",{button:"Colar como Texto sem Formatação",pasteNotification:"Pressione %1 para colar. Seu navegador não suporta colar a partir do botão da barra de ferramentas ou do menu de contexto.",title:"Colar como Texto sem Formatação"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","et",{anchor:"Ankur",hiddenfield:"Varjatud väli",iframe:"IFrame",unknown:"Tundmatu objekt"});

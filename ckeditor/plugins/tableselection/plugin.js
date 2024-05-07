@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function D(a){return CKEDITOR.plugins.widget&&CKEDITOR.plugins.widget.isDomWidget(a)}function z(a,b){var c=a.getAscendant("table"),d=b.getAscendant("table"),e=CKEDITOR.tools.buildTableMap(c),g=r(a),k=r(b),h=[],f={},l,p;c.contains(d)&&(b=b.getAscendant({td:1,th:1}),k=r(b));g>k&&(c=g,g=k,k=c,c=a,a=b,b=c);for(c=0;c<e[g].length;c++)if(a.$===e[g][c]){l=c;break}for(c=0;c<e[k].length;c++)if(b.$===e[k][c]){p=c;break}l>p&&(c=l,l=p,p=c);for(c=g;c<=k;c++)for(g=l;g<=p;g++)d=new CKEDITOR.dom.element(e[c][g]),
 d.$&&!d.getCustomData("selected_cell")&&(h.push(d),CKEDITOR.dom.element.setMarker(f,d,"selected_cell",!0));CKEDITOR.dom.element.clearAllMarkers(f);return h}function J(a){return(a=a.editable().findOne(".cke_table-faked-selection"))&&a.getAscendant("table")}function A(a,b){var c=a.editable().find(".cke_table-faked-selection"),d=a.editable().findOne("[data-cke-table-faked-selection-table]"),e;a.fire("lockSnapshot");a.editable().removeClass("cke_table-faked-selection-editor");for(e=0;e<c.count();e++)c.getItem(e).removeClass("cke_table-faked-selection");

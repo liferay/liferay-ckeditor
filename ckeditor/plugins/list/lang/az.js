@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("list","az",{bulletedlist:"Markerlənmiş siyahını başlat/sil",numberedlist:"Nömrələnmiş siyahını başlat/sil"});

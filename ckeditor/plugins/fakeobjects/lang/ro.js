@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ro",{anchor:"Inserează/Editează ancoră",hiddenfield:"Câmp ascuns (HiddenField)",iframe:"Fereastră în fereastră (iframe)",unknown:"Necunoscut"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("contextmenu","az",{options:"Əlavə əməliyyatlar"});

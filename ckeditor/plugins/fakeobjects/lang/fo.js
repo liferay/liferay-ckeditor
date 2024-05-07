@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","fo",{anchor:"Anchor",hiddenfield:"Fjaldur teigur",iframe:"IFrame",unknown:"Ókent Object"});

@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","eo",{button:"Interglui kiel platan tekston",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Interglui kiel platan tekston"});

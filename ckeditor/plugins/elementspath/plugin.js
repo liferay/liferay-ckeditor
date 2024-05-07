@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function q(a,c){function k(b){b=h.list[b];var e;b.equals(a.editable())||"true"==b.getAttribute("contenteditable")?(e=a.createRange(),e.selectNodeContents(b),e=e.select()):(e=a.getSelection(),e.selectElement(b));CKEDITOR.env.ie&&a.fire("selectionChange",{selection:e,path:new CKEDITOR.dom.elementPath(b)});a.focus()}function l(){m&&m.setHtml('\x3cspan class\x3d"cke_path_empty"\x3e\x26nbsp;\x3c/span\x3e');delete h.list}var n=a.ui.spaceId("path"),m,h=a._.elementsPath,q=h.idBase;c.html+='\x3cspan id\x3d"'+
 n+'_label" class\x3d"cke_voice_label"\x3e'+a.lang.elementspath.eleLabel+'\x3c/span\x3e\x3cspan id\x3d"'+n+'" class\x3d"cke_path" role\x3d"group" aria-labelledby\x3d"'+n+'_label"\x3e\x3cspan class\x3d"cke_path_empty"\x3e\x26nbsp;\x3c/span\x3e\x3c/span\x3e';a.on("uiReady",function(){var b=a.ui.space("path");b&&a.focusManager.add(b,1)});h.onClick=k;var v=CKEDITOR.tools.addFunction(k),w=CKEDITOR.tools.addFunction(function(b,e){var g=h.idBase,d;e=new CKEDITOR.dom.event(e);d="rtl"==a.lang.dir;switch(e.getKeystroke()){case d?

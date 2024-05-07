@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","sk",{button:"Vložiť ako čistý text",pasteNotification:"Stlačte %1 na vloženie. Váš prehliadač nepodporuje vloženie prostredníctvom tlačidla v nástrojovej lište alebo voľby v kontextovom menu.",title:"Vložiť ako čistý text"});

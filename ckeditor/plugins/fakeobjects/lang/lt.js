@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","lt",{anchor:"Žymė",hiddenfield:"Paslėptas laukas",iframe:"IFrame",unknown:"Nežinomas objektas"});

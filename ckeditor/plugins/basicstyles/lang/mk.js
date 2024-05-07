@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","mk",{bold:"Здебелено",italic:"Накривено",strike:"Прецртано",subscript:"Долен индекс",superscript:"Горен индекс",underline:"Подвлечено"});

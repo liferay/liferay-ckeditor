@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","nb",{button:"Lim inn som ren tekst",pasteNotification:"Trykk %1 for å lime inn. Nettleseren din støtter ikke å lime inn med knappen i verktøylinjen eller høyreklikkmenyen.",title:"Lim inn som ren tekst"});

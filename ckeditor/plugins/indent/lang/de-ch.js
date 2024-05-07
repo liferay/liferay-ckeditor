@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("indent","de-ch",{indent:"Einzug vergrössern",outdent:"Einzug verkleinern"});

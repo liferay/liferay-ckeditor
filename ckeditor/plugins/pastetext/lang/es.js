@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("pastetext","es",{button:"Pegar como Texto Plano",pasteNotification:"Press %1 to paste. Your browser doesn‘t support pasting with the toolbar button or context menu option.",title:"Pegar como Texto Plano"});

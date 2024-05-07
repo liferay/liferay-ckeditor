@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ru",{anchor:"Якорь",hiddenfield:"Скрытое поле",iframe:"iFrame",unknown:"Неизвестный объект"});

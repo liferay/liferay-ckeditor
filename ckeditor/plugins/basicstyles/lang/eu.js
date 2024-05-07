@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("basicstyles","eu",{bold:"Lodia",italic:"Etzana",strike:"Marratua",subscript:"Azpi-indizea",superscript:"Goi-indizea",underline:"Azpimarratu"});

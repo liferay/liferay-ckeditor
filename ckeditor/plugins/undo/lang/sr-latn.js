@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("undo","sr-latn",{redo:"Ponovi ",undo:"Vrati"});

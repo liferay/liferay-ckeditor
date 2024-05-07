@@ -1,0 +1,1 @@
+﻿CKEDITOR.plugins.setLang("fakeobjects","ja",{anchor:"アンカー",hiddenfield:"不可視フィールド",iframe:"IFrame",unknown:"Unknown Object"});

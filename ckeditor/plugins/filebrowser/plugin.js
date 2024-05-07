@@ -1,6 +1,6 @@
 ﻿/*
  Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
 (function(){function g(a,b){var d=[];if(b)for(var c in b)d.push(c+"\x3d"+encodeURIComponent(b[c]));else return a;return a+(-1!=a.indexOf("?")?"\x26":"?")+d.join("\x26")}function p(a){return!a.match(/command=QuickUpload/)||a.match(/(\?|&)responseType=json/)?a:g(a,{responseType:"json"})}function k(a){a+="";return a.charAt(0).toUpperCase()+a.substr(1)}function q(){var a=this.getDialog(),b=a.getParentEditor();b._.filebrowserSe=this;var d=b.config["filebrowser"+k(a.getName())+"WindowWidth"]||b.config.filebrowserWindowWidth||
 "80%",a=b.config["filebrowser"+k(a.getName())+"WindowHeight"]||b.config.filebrowserWindowHeight||"70%",c=this.filebrowser.params||{};c.CKEditor=b.name;c.CKEditorFuncNum=b._.filebrowserFn;c.langCode||(c.langCode=b.langCode);c=g(this.filebrowser.url,c);b.popup(c,d,a,b.config.filebrowserWindowFeatures||b.config.fileBrowserWindowFeatures)}function r(a){var b=new CKEDITOR.dom.element(a.$.form);b&&((a=b.$.elements.ckCsrfToken)?a=new CKEDITOR.dom.element(a):(a=new CKEDITOR.dom.element("input"),a.setAttributes({name:"ckCsrfToken",
