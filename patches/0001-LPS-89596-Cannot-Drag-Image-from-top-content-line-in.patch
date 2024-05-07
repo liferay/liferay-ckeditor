@@ -1,4 +1,4 @@
-From fc4aab05fb04539c2c288ae930a5a39b33eff5a2 Mon Sep 17 00:00:00 2001
+From 6cb5b433b216e01c5a84f3514563ca52717ffe32 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 14 May 2019 10:47:25 +0200
 Subject: [PATCH] LPS-89596 Cannot Drag Image from top content line in IE11
@@ -10,7 +10,7 @@ Changed position of drag icon for IE.
  1 file changed, 4 insertions(+)
 
 diff --git a/plugins/widget/plugin.js b/plugins/widget/plugin.js
-index 54770a7dac..d462cfcdb0 100644
+index e6f3c20a41..db30d17f1d 100644
 --- a/plugins/widget/plugin.js
 +++ b/plugins/widget/plugin.js
 @@ -1607,6 +1607,10 @@

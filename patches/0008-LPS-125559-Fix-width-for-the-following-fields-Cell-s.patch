@@ -1,4 +1,4 @@
-From bebcb56bd2fa6c6f0c8f3476205b537732373ac2 Mon Sep 17 00:00:00 2001
+From f6c8b1299b0de7514210f9dbd9b8a2b1ebca1874 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Fri, 8 Jan 2021 10:58:23 +0100
 Subject: [PATCH] LPS-125559 Fix width for the following fields Cell spacing,
@@ -9,7 +9,7 @@ Subject: [PATCH] LPS-125559 Fix width for the following fields Cell spacing,
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
-index 64101f74f2..ae4a204123 100755
+index f5f46c952c..7e396b0cd2 100755
 --- a/plugins/table/dialogs/table.js
 +++ b/plugins/table/dialogs/table.js
 @@ -357,7 +357,7 @@

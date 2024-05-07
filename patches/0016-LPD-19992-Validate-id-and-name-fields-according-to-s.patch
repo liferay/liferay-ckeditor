@@ -1,4 +1,4 @@
-From b426b4b037b6bc20d94efeecdb9e0fa669a790c8 Mon Sep 17 00:00:00 2001
+From f636560db2c4bc5d712d9b0f7c70c7a70df7589c Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Fri, 15 Mar 2024 16:01:20 +0100
 Subject: [PATCH] LPD-19992 Validate id and name fields according to spec
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-19992 Validate id and name fields according to spec
  1 file changed, 29 insertions(+), 1 deletion(-)
 
 diff --git a/plugins/link/dialogs/link.js b/plugins/link/dialogs/link.js
-index 46e452e741..39932fd2d9 100755
+index 8ed45057ef..00e7228eab 100755
 --- a/plugins/link/dialogs/link.js
 +++ b/plugins/link/dialogs/link.js
 @@ -1010,7 +1010,18 @@

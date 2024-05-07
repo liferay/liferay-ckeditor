@@ -1,4 +1,4 @@
-From 67d247ecc4e95b27d19565ded80a76c8f65c7642 Mon Sep 17 00:00:00 2001
+From 3fd855e5d8caf5d8d8bdbcd2211a5b978269ed39 Mon Sep 17 00:00:00 2001
 From: Diego Nascimento <diego.nascimento@liferay.com>
 Date: Mon, 18 Oct 2021 17:45:43 -0300
 Subject: [PATCH] LPS-137763 If contentsElement is defined, use it as a
@@ -10,7 +10,7 @@ Subject: [PATCH] LPS-137763 If contentsElement is defined, use it as a
  2 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/core/creators/themedui.js b/core/creators/themedui.js
-index 7f8d56b30d..0c583a550b 100644
+index d5acd17793..e27252b918 100644
 --- a/core/creators/themedui.js
 +++ b/core/creators/themedui.js
 @@ -267,8 +267,10 @@ CKEDITOR.replaceClass = 'ckeditor';
@@ -27,7 +27,7 @@ index 7f8d56b30d..0c583a550b 100644
  			editor.mode = '';
  		} else {
 diff --git a/plugins/wysiwygarea/plugin.js b/plugins/wysiwygarea/plugin.js
-index 4466b281d5..bdfe2ff6fe 100644
+index 8dcb82ac3f..451c765ecf 100644
 --- a/plugins/wysiwygarea/plugin.js
 +++ b/plugins/wysiwygarea/plugin.js
 @@ -42,7 +42,7 @@

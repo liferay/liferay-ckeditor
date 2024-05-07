@@ -1,4 +1,4 @@
-From 75d4a9af69bb250569c57ad5e49398d13f6e645e Mon Sep 17 00:00:00 2001
+From c717114c454a929840a3ee9738ea62aed819588f Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Mon, 18 Mar 2024 15:20:47 +0100
 Subject: [PATCH] LPD-20726 Always set some width to img container
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-20726 Always set some width to img container
  1 file changed, 1 insertion(+)
 
 diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
-index bcf986bad4..c41fdad41c 100644
+index 4460ebfd83..ec0d1e543c 100644
 --- a/plugins/image2/plugin.js
 +++ b/plugins/image2/plugin.js
 @@ -31,6 +31,7 @@
