@@ -1,0 +1,30 @@
+From a2a9be1ae0a0070e9c1ae71c56d8f6e057dac9c1 Mon Sep 17 00:00:00 2001
+From: Fortunato <fortunato.maldonado@liferay.com>
+Date: Thu, 22 Aug 2024 11:20:50 -0600
+Subject: [PATCH] LPD-33712 Add css to combopanel when maximized
+
+---
+ plugins/stylescombo/plugin.js | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/plugins/stylescombo/plugin.js b/plugins/stylescombo/plugin.js
+index 8b2b24d681..21840d5d60 100644
+--- a/plugins/stylescombo/plugin.js
++++ b/plugins/stylescombo/plugin.js
+@@ -184,6 +184,16 @@
+ 
+ 					if ( !counter[ CKEDITOR.STYLE_OBJECT ] )
+ 						this.hideGroup( lang[ 'panelTitle' + String( CKEDITOR.STYLE_OBJECT ) ] );
++
++					var combopanel = document.querySelector('.cke_panel.cke_combopanel');
++
++					var maximizedEditor = document.querySelector('.cke_inner.cke_maximized');
++
++					if (combopanel && maximizedEditor) {
++						combopanel.classList.add('lfr-maximized');
++					} else {
++						combopanel.classList.remove('lfr-maximized');
++					}
+ 				},
+ 
+ 				refresh: function() {
