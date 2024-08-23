@@ -1,4 +1,4 @@
-From 0d96f16b21036609efbc134ce2c63fbed82e1a8c Mon Sep 17 00:00:00 2001
+From 44b9d9c981eca1f1a4c0fdc6cf1a734d61dfec74 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 14 Apr 2020 10:15:56 +0200
 Subject: [PATCH] LPP-36989 Remove obsolete summary field from table elements
