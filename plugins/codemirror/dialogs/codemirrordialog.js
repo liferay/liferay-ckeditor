@@ -5,6 +5,13 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 	var scaley = 0.7;
 	var height = size.height * scaley;
 	var width = size.width * scalex;
+	var ALERT_REGEX = /alert\((.*?)\)/;
+	var INNER_HTML_REGEX = /innerHTML\s*=\s*.*?/;
+	var PHP_CODE_REGEX = /<\?[\s\S]*?\?>/g;
+	var ASP_CODE_REGEX = /<%[\s\S]*?%>/g;
+	var ASP_NET_CODE_REGEX = /(<asp:[^]+>[\s|\S]*?<\/asp:[^]+>)|(<asp:[^]+\/>)/gi;
+	var HTML_TAG_WITH_ON_ATTRIBUTE_REGEX = /<[^>]+?(\s+\bon\w+=(?:'[^']*'|"[^"]*"|[^'"\s>]+))*\s*\/?>/gi;
+	var ON_ATTRIBUTE_REGEX = /(\s+\bon\w+=(?:'[^']*'|"[^"]*"|[^'"\s>]+))/gi;
 
 	if (!editor.window) {
 		editor.window = editorWindow;
@@ -87,6 +94,9 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 
 		_handleCodeMirrorChange: function () {
 			var newData = this.codeMirrorEditor.getValue();
+
+			var sanitizedData = this._sanitizeHTML(newData);
+
 			var preview = this.dialog
 				.getContentElement('main', 'preview')
 				.getElement();
@@ -95,7 +105,7 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			if (iframe && iframe.$) {
 				var iframeDocument = iframe.$.contentDocument;
 				var iframeBody = iframeDocument.body;
-				iframeBody.innerHTML = newData;
+				iframeBody.innerHTML = sanitizedData;
 			}
 		},
 
@@ -183,18 +193,18 @@ CKEDITOR.dialog.add('codemirrordialog', function (editor) {
 			};
 		},
 
-		_handleCodeMirrorChange: function () {
-			var newData = this.codeMirrorEditor.getValue();
-			var preview = this.dialog
-				.getContentElement('main', 'preview')
-				.getElement();
+		_sanitizeHTML: function (html) {
+			var sanitizedHtml = html
+				.replace(HTML_TAG_WITH_ON_ATTRIBUTE_REGEX, function (match) {
+					return match.replace(ON_ATTRIBUTE_REGEX, '');
+				})
+				.replace(ALERT_REGEX, '')
+				.replace(INNER_HTML_REGEX, '')
+				.replace(PHP_CODE_REGEX, '')
+				.replace(ASP_CODE_REGEX, '')
+				.replace(ASP_NET_CODE_REGEX, '');
 
-			var iframe = preview.findOne('iframe');
-			if (iframe && iframe.$) {
-				var iframeDocument = iframe.$.contentDocument;
-				var iframeBody = iframeDocument.body;
-				iframeBody.innerHTML = newData;
-			}
+			return sanitizedHtml;
 		},
 
 		contents: [
