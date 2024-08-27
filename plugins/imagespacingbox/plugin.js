@@ -57,18 +57,26 @@
 
 											var hspace = widget.data.hspace
 												? widget.data.hspace
-												: 0;
+												: '';
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement) {
+											if (imageElement && hspace !== '') {
 												imageElement.setStyles({
 													'margin-left':
 														hspace + 'px',
 													'margin-right':
 														hspace + 'px',
 												});
+											} else {
+												imageElement.removeStyle(
+													'margin-left'
+												);
+
+												imageElement.removeStyle(
+													'margin-right'
+												);
 											}
 										},
 										id: 'hspace',
@@ -127,17 +135,25 @@
 
 											var vspace = widget.data.vspace
 												? widget.data.vspace
-												: 0;
+												: '';
 
 											var imageElement =
 												widget.parts.image;
 
-											if (imageElement) {
+											if (imageElement && vspace !== '') {
 												imageElement.setStyles({
 													'margin-bottom':
 														vspace + 'px',
 													'margin-top': vspace + 'px',
 												});
+											} else {
+												imageElement.removeStyle(
+													'margin-bottom'
+												);
+
+												imageElement.removeStyle(
+													'margin-top'
+												);
 											}
 										},
 										id: 'vspace',
