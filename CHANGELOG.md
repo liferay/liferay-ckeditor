@@ -1,3 +1,13 @@
+## [v4.21.0-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.4) (2024-08-30)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.3...v4.21.0-liferay.4)
+
+### :package: Miscellaneous
+
+-   LPD-33910 Add sanitization for codeMirror editor ([\#212](https://github.com/liferay/liferay-ckeditor/pull/212))
+-   LPD-34946 Check if values are empty and delete styles when not used ([\#213](https://github.com/liferay/liferay-ckeditor/pull/213))
+-   LPD-33712 Add css to combopanel when maximized ([\#211](https://github.com/liferay/liferay-ckeditor/pull/211))
+
 ## [v4.21.0-liferay.3](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.3) (2024-03-19)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.2...v4.21.0-liferay.3)
