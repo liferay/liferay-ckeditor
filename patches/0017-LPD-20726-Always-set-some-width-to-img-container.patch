@@ -1,4 +1,4 @@
-From 7a013b45c52958522de2e10c3f45b79a7173eb4a Mon Sep 17 00:00:00 2001
+From 5dbbdebec608f49fee3871bf6069147e717b47b9 Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Mon, 18 Mar 2024 15:20:47 +0100
 Subject: [PATCH] LPD-20726 Always set some width to img container
