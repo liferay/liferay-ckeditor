@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.5) (2024-09-12)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.4...v4.21.0-liferay.5)
+
+### :package: Miscellaneous
+
+-   LPD-35604 Add title to iframe ([\#214](https://github.com/liferay/liferay-ckeditor/pull/214))
+
 ## [v4.21.0-liferay.4](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.4) (2024-08-30)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.3...v4.21.0-liferay.4)
