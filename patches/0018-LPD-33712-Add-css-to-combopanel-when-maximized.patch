@@ -1,4 +1,4 @@
-From bb808d5d87e16dab13587be6385b499114f54760 Mon Sep 17 00:00:00 2001
+From 437893b2c0b26558e06037dd91053dcab52cb803 Mon Sep 17 00:00:00 2001
 From: Fortunato <fortunato.maldonado@liferay.com>
 Date: Thu, 22 Aug 2024 11:20:50 -0600
 Subject: [PATCH] LPD-33712 Add css to combopanel when maximized

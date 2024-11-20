@@ -1,4 +1,4 @@
-From 0ad8b9c72fe58b0dff8f9c577360ef370434ec3c Mon Sep 17 00:00:00 2001
+From 90eb3eb89ace6852849757f62598b71069aa092b Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 14 May 2019 10:47:25 +0200
 Subject: [PATCH] LPS-89596 Cannot Drag Image from top content line in IE11
