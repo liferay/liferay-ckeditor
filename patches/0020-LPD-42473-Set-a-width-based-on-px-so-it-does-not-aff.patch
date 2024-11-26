@@ -1,0 +1,33 @@
+From ad6fc1ee4d79e88a8edab5211a5f955a39d6dc45 Mon Sep 17 00:00:00 2001
+From: Antonio Ortega <60252917@liferay.com>
+Date: Wed, 20 Nov 2024 13:35:16 +0100
+Subject: [PATCH] LPD-42473 Set a width based on px so it does not affect image
+ alignment
+
+---
+ plugins/image2/plugin.js | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
+index c41fdad41c..da58812eff 100644
+--- a/plugins/image2/plugin.js
++++ b/plugins/image2/plugin.js
+@@ -31,7 +31,6 @@
+ 				// wrapper is displayed property.
+ 				'line-height:0' +
+ 			'}' +
+-			'.cke_widget_wrapper.cke_widget_image {width: 100%;}' +
+ 			'.cke_editable.cke_image_sw, .cke_editable.cke_image_sw *{cursor:sw-resize !important}' +
+ 			'.cke_editable.cke_image_se, .cke_editable.cke_image_se *{cursor:se-resize !important}' +
+ 			'.cke_image_resizer{' +
+@@ -377,8 +376,8 @@
+ 						hasCaption: !!this.parts.caption,
+ 						src: image.getAttribute( 'src' ),
+ 						alt: image.getAttribute( 'alt' ) || '',
+-						width: image.$.style.width && parseInt( image.$.style.width ) || image.getAttribute( 'width' ) || '',
+-						height: image.$.style.height && parseInt( image.$.style.height ) || image.getAttribute( 'height' ) || '',
++						width: image.$.style.width && parseInt( image.$.style.width ) || image.getAttribute( 'width' ) || '150px',
++						height: image.$.style.height && parseInt( image.$.style.height ) || image.getAttribute( 'height' ) || 'auto',
+ 
+ 						// Lock ratio should respect the value of the config.image2_defaultLockRatio.
+ 						// If the variable is not set, then it fallback to the legacy one

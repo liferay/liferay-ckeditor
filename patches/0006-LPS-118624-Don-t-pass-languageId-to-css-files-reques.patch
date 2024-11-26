@@ -1,4 +1,4 @@
-From c66b28f63166b86acb3b51eac44f071c5583a34d Mon Sep 17 00:00:00 2001
+From 5b6cb3bed40ee4441a5158f9097f3eaf89755851 Mon Sep 17 00:00:00 2001
 From: Carlos Lancha <carlos.lancha@liferay.com>
 Date: Thu, 6 Aug 2020 14:42:21 +0200
 Subject: [PATCH] LPS-118624 Don't pass languageId to css files requests
