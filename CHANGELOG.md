@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.6) (2024-11-26)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.5...v4.21.0-liferay.6)
+
+### :package: Miscellaneous
+
+-   LPD-42437 Sets a default width in px rather than % for images with no width ([\#215](https://github.com/liferay/liferay-ckeditor/pull/215))
+
 ## [v4.21.0-liferay.5](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.5) (2024-09-12)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.4...v4.21.0-liferay.5)
