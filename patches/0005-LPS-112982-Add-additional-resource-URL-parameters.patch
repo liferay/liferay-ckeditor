@@ -1,4 +1,4 @@
-From a185e634d66409c1ada93e162d70ed4f8f16c21e Mon Sep 17 00:00:00 2001
+From bc583a7b1c1ffee71a4f4392d2260692c676a61e Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Tue, 7 Jul 2020 09:47:27 +0200
 Subject: [PATCH] LPS-112982 Add additional resource URL parameters

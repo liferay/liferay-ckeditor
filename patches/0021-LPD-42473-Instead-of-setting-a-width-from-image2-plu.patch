@@ -1,0 +1,25 @@
+From f49502373d3f8115adfe6184a921ca9a4b26ebe7 Mon Sep 17 00:00:00 2001
+From: Antonio Ortega <60252917@liferay.com>
+Date: Wed, 4 Dec 2024 14:09:03 +0100
+Subject: [PATCH] LPD-42473 Instead of setting a width from image2 plugin,
+ we'll do it directly inside portal when rendering the image
+
+---
+ plugins/image2/plugin.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
+index da58812eff..bcf986bad4 100644
+--- a/plugins/image2/plugin.js
++++ b/plugins/image2/plugin.js
+@@ -376,8 +376,8 @@
+ 						hasCaption: !!this.parts.caption,
+ 						src: image.getAttribute( 'src' ),
+ 						alt: image.getAttribute( 'alt' ) || '',
+-						width: image.$.style.width && parseInt( image.$.style.width ) || image.getAttribute( 'width' ) || '150px',
+-						height: image.$.style.height && parseInt( image.$.style.height ) || image.getAttribute( 'height' ) || 'auto',
++						width: image.$.style.width && parseInt( image.$.style.width ) || image.getAttribute( 'width' ) || '',
++						height: image.$.style.height && parseInt( image.$.style.height ) || image.getAttribute( 'height' ) || '',
+ 
+ 						// Lock ratio should respect the value of the config.image2_defaultLockRatio.
+ 						// If the variable is not set, then it fallback to the legacy one
