@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.7](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.7) (2024-12-05)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.6...v4.21.0-liferay.7)
+
+### :package: Miscellaneous
+
+-   LPD-42473 Instead of setting a width from image2 plugin, we'll do it in portal ([\#216](https://github.com/liferay/liferay-ckeditor/pull/216))
+
 ## [v4.21.0-liferay.6](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.6) (2024-11-26)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.5...v4.21.0-liferay.6)
