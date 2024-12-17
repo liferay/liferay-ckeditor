@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.9](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.9) (2024-12-17)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.8...v4.21.0-liferay.9)
+
+### :package: Miscellaneous
+
+-   LPD-42473 There was an issue with build in previous version so we need to release it again. No changes. ([\#217](https://github.com/liferay/liferay-ckeditor/pull/217))
+
 ## [v4.21.0-liferay.8](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.8) (2024-12-09)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.7...v4.21.0-liferay.8)
