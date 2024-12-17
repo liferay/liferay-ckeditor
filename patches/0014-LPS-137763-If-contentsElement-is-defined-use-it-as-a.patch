@@ -1,4 +1,4 @@
-From a7180dde47d98ab2706e0583639f25aa1dfdb6fa Mon Sep 17 00:00:00 2001
+From 285d98de85262c97990861c7fa2912c79d629dab Mon Sep 17 00:00:00 2001
 From: Diego Nascimento <diego.nascimento@liferay.com>
 Date: Mon, 18 Oct 2021 17:45:43 -0300
 Subject: [PATCH] LPS-137763 If contentsElement is defined, use it as a

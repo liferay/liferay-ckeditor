@@ -1,4 +1,4 @@
-From c19d0eefaa6529bb10f3ed55040d388507028363 Mon Sep 17 00:00:00 2001
+From 676e9353d1cba12dfc2603efe446bdf7015bb5d4 Mon Sep 17 00:00:00 2001
 From: Fortunato Maldonado <fortunato.maldonado@liferay.com>
 Date: Thu, 5 Sep 2024 11:28:29 -0600
 Subject: [PATCH] LPD-35604 Add title to iframe
