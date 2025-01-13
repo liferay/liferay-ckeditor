@@ -1,4 +1,4 @@
-From 40f5305991a7a81252996c2780cc336ce1b3182e Mon Sep 17 00:00:00 2001
+From 1999ff9ccb18d2b5c5a811478778900043078e59 Mon Sep 17 00:00:00 2001
 From: Norbert Nemeth <norbert.nemeth@liferay.com>
 Date: Tue, 17 Aug 2021 11:20:58 +0200
 Subject: [PATCH] LPS-136998 Avoid breaking the UI in firefox
