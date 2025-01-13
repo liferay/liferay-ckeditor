@@ -29,6 +29,7 @@ var CKBUILDER_CONFIG = {
 		'node_modules',
 		'package.json',
 		'README.md',
+		'samples',
 		'tests',
 	],
 	plugins: {
