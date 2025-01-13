@@ -78,6 +78,8 @@ These are the steps you would follow, for example, to apply a workaround for a b
     ./ck.sh build
     ```
 
+    Make sure your Java version is 15 or lower. Builder will crash if the version is higher.
+
     If you'd rather like a development build, for example for local debugging, use:
 
     ```sh
