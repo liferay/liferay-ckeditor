@@ -1,4 +1,4 @@
-From 50230f55c71bd8dfb86ab4d502c4441fbb35e527 Mon Sep 17 00:00:00 2001
+From 1f982c9eaef3d6d3ccad786d7a6389f00fab5989 Mon Sep 17 00:00:00 2001
 From: Julien Castelain <julien.castelain@liferay.com>
 Date: Wed, 25 Mar 2020 12:58:15 +0100
 Subject: [PATCH] LPS-85326 Remove check for Webkit browsers

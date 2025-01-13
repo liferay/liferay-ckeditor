@@ -1,4 +1,4 @@
-From ca67ee4ef6a39cde607ba1f8ee0bae10f02c62fc Mon Sep 17 00:00:00 2001
+From 52cdbe87dc2c830050995782029c00d98476f0e8 Mon Sep 17 00:00:00 2001
 From: Minhchau <minhchau.dang@liferay.com>
 Date: Tue, 28 Sep 2021 11:18:40 -0700
 Subject: [PATCH] LPS-139565 When upgrading from 6.2 to 7.1, image width/height

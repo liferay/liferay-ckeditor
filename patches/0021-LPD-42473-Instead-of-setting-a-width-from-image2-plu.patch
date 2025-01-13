@@ -1,4 +1,4 @@
-From 05cff8c9f345d667c8082c58bb41af2966ece34d Mon Sep 17 00:00:00 2001
+From a22487af646380ae9fb6a1a87db8afd967e4e792 Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Wed, 4 Dec 2024 14:09:03 +0100
 Subject: [PATCH] LPD-42473 Instead of setting a width from image2 plugin,
