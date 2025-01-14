@@ -1,3 +1,12 @@
+## [v4.21.0-liferay.10](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.10) (2025-01-14)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.9...v4.21.0-liferay.10)
+
+### :package: Miscellaneous
+
+-   LPD-45919 Remove CKEditor 4 samples from production build ([\#220](https://github.com/liferay/liferay-ckeditor/pull/220))
+-   LPD-45795 Check element exists ([\#219](https://github.com/liferay/liferay-ckeditor/pull/219))
+
 ## [v4.21.0-liferay.9](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.9) (2024-12-17)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.8...v4.21.0-liferay.9)
