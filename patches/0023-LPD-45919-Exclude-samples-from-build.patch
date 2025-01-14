@@ -1,0 +1,21 @@
+From 4fd3f7d68944c2c59a14d9bd1c9e23c3971d5dcf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marko=20=C4=8Ciko=C5=A1?= <marko.cikos@liferay.com>
+Date: Mon, 13 Jan 2025 17:19:15 +0100
+Subject: [PATCH] LPD-45919 Exclude samples from build
+
+---
+ dev/builder/build-config.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/dev/builder/build-config.js b/dev/builder/build-config.js
+index edf0f865c2..10193cdcec 100644
+--- a/dev/builder/build-config.js
++++ b/dev/builder/build-config.js
+@@ -32,6 +32,7 @@ var CKBUILDER_CONFIG = {
+ 		'node_modules',
+ 		'package.json',
+ 		'README.md',
++		'samples',
+ 		'tests'
+ 	],
+ 	plugins: {
