@@ -1,4 +1,4 @@
-From fa1bd29cd5780b0726675cdf8c3f7736ed64e6ac Mon Sep 17 00:00:00 2001
+From f98b5d18770da4fba4f8a18714a82dd91511c191 Mon Sep 17 00:00:00 2001
 From: Fortunato Maldonado <fortunato.maldonado@liferay.com>
 Date: Thu, 5 Sep 2024 11:28:29 -0600
 Subject: [PATCH] LPD-35604 Add title to iframe
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-35604 Add title to iframe
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/plugins/wysiwygarea/plugin.js b/plugins/wysiwygarea/plugin.js
-index bdfe2ff6fe..97c849a80c 100644
+index bdfe2ff..97c849a 100644
 --- a/plugins/wysiwygarea/plugin.js
 +++ b/plugins/wysiwygarea/plugin.js
 @@ -38,7 +38,7 @@

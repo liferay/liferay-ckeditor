@@ -1,4 +1,4 @@
-From 2d63d0d2ca9146f2b7e0a7413a605f12063ba5d9 Mon Sep 17 00:00:00 2001
+From 273305dfec8cf11768e093b91862c05320f0c99e Mon Sep 17 00:00:00 2001
 From: fortunato <fortunato.maldonado@liferay.com>
 Date: Fri, 10 Jan 2025 12:22:30 -0700
 Subject: [PATCH] LPD-45795 Check element exists
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-45795 Check element exists
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/plugins/widget/plugin.js b/plugins/widget/plugin.js
-index d462cfcdb0..16b71500dc 100644
+index d462cfc..16b7150 100644
 --- a/plugins/widget/plugin.js
 +++ b/plugins/widget/plugin.js
 @@ -522,7 +522,7 @@

@@ -1,4 +1,4 @@
-From bb39f862ac062264ea232b69262d32ad6e6b6da8 Mon Sep 17 00:00:00 2001
+From 16ee5f71cb33c93f4b21fe9aad8cb9a0b1185dbe Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 14 Apr 2020 10:15:56 +0200
 Subject: [PATCH] LPP-36989 Remove obsolete summary field from table elements
@@ -15,7 +15,7 @@ Subject: [PATCH] LPP-36989 Remove obsolete summary field from table elements
  8 files changed, 38 insertions(+), 56 deletions(-)
 
 diff --git a/plugins/table/dialogs/table.js b/plugins/table/dialogs/table.js
-index acc0210f6d..64101f74f2 100755
+index acc0210..64101f7 100755
 --- a/plugins/table/dialogs/table.js
 +++ b/plugins/table/dialogs/table.js
 @@ -538,22 +538,6 @@
@@ -42,7 +42,7 @@ index acc0210f6d..64101f74f2 100755
  				} ]
  			},
 diff --git a/plugins/table/plugin.js b/plugins/table/plugin.js
-index 69efd521a1..9d1c144648 100755
+index 69efd52..9d1c144 100755
 --- a/plugins/table/plugin.js
 +++ b/plugins/table/plugin.js
 @@ -18,7 +18,7 @@ CKEDITOR.plugins.add( 'table', {
@@ -55,7 +55,7 @@ index 69efd521a1..9d1c144648 100755
  				'th td tr[scope];' +
  				'td{border*,background-color,vertical-align,width,height}[colspan,rowspan];' +
 diff --git a/tests/plugins/table/table.html b/tests/plugins/table/table.html
-index e6766708df..6b97e0c699 100644
+index e676670..6b97e0c 100644
 --- a/tests/plugins/table/table.html
 +++ b/tests/plugins/table/table.html
 @@ -37,7 +37,7 @@
@@ -68,7 +68,7 @@ index e6766708df..6b97e0c699 100644
  	<thead>
  	<tr>
 diff --git a/tests/plugins/table/table.js b/tests/plugins/table/table.js
-index 6e1cc30614..104de739c2 100644
+index 6e1cc30..104de73 100644
 --- a/tests/plugins/table/table.js
 +++ b/tests/plugins/table/table.js
 @@ -80,16 +80,14 @@
@@ -91,7 +91,7 @@ index 6e1cc30614..104de739c2 100644
  					dialog.fire( 'ok' );
  					dialog.hide();
 diff --git a/tests/plugins/tableselection/integrations/tabletools/tabletools.html b/tests/plugins/tableselection/integrations/tabletools/tabletools.html
-index a9df442abb..eccbbafa70 100644
+index a9df442..eccbbaf 100644
 --- a/tests/plugins/tableselection/integrations/tabletools/tabletools.html
 +++ b/tests/plugins/tableselection/integrations/tabletools/tabletools.html
 @@ -1,5 +1,5 @@
@@ -237,7 +237,7 @@ index a9df442abb..eccbbafa70 100644
  	<tr>
  		<td>cell1</td>
 diff --git a/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html b/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
-index da23513f94..7abd4bcdfb 100644
+index da23513..7abd4bc 100644
 --- a/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
 +++ b/tests/plugins/tableselection/manual/integrations/tabletools/columndeletionerror.html
 @@ -1,5 +1,5 @@
@@ -248,7 +248,7 @@ index da23513f94..7abd4bcdfb 100644
  		<tr>
  			<th colspan="1" scope="row" style="width:167px">&nbsp;</th>
 diff --git a/tests/plugins/tabletools/manual/columndeletionerror.html b/tests/plugins/tabletools/manual/columndeletionerror.html
-index b3cc3d03b5..f84850c69a 100644
+index b3cc3d0..f84850c 100644
 --- a/tests/plugins/tabletools/manual/columndeletionerror.html
 +++ b/tests/plugins/tabletools/manual/columndeletionerror.html
 @@ -1,5 +1,5 @@
@@ -259,7 +259,7 @@ index b3cc3d03b5..f84850c69a 100644
  		<tr>
  			<th colspan="1" scope="row" style="width:167px">&nbsp;</th>
 diff --git a/tests/plugins/tabletools/tabletools.html b/tests/plugins/tabletools/tabletools.html
-index e9f45e5921..70d2f07980 100644
+index e9f45e5..70d2f07 100644
 --- a/tests/plugins/tabletools/tabletools.html
 +++ b/tests/plugins/tabletools/tabletools.html
 @@ -1,5 +1,5 @@

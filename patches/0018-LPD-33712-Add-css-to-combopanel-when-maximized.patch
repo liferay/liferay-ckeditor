@@ -1,4 +1,4 @@
-From 3ef52bb155d4da309382c64954822bd2f1556343 Mon Sep 17 00:00:00 2001
+From b9d0aeb86818149946df3b6b28a4ccc7a204f220 Mon Sep 17 00:00:00 2001
 From: Fortunato <fortunato.maldonado@liferay.com>
 Date: Thu, 22 Aug 2024 11:20:50 -0600
 Subject: [PATCH] LPD-33712 Add css to combopanel when maximized
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-33712 Add css to combopanel when maximized
  1 file changed, 10 insertions(+)
 
 diff --git a/plugins/stylescombo/plugin.js b/plugins/stylescombo/plugin.js
-index 8b2b24d681..21840d5d60 100644
+index 8b2b24d..21840d5 100644
 --- a/plugins/stylescombo/plugin.js
 +++ b/plugins/stylescombo/plugin.js
 @@ -184,6 +184,16 @@

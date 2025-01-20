@@ -1,4 +1,4 @@
-From 3cfc9159b51480898e872e9c8b6aa00236d2a948 Mon Sep 17 00:00:00 2001
+From b73dba770806c950eb49010e976726c4f801890c Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Wed, 20 Nov 2024 13:35:16 +0100
 Subject: [PATCH] LPD-42473 Set a width based on px so it does not affect image
@@ -9,7 +9,7 @@ Subject: [PATCH] LPD-42473 Set a width based on px so it does not affect image
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
-index c41fdad41c..da58812eff 100644
+index c41fdad..da58812 100644
 --- a/plugins/image2/plugin.js
 +++ b/plugins/image2/plugin.js
 @@ -31,7 +31,6 @@

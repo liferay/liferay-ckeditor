@@ -1,4 +1,4 @@
-From 026f6a8977a90302beed86d7a36a6b0c31084009 Mon Sep 17 00:00:00 2001
+From fde8dc4b284f7dfdb155c6a08b55ad170c44b414 Mon Sep 17 00:00:00 2001
 From: Antonio Ortega <60252917@liferay.com>
 Date: Wed, 4 Dec 2024 14:09:03 +0100
 Subject: [PATCH] LPD-42473 Instead of setting a width from image2 plugin,
@@ -9,7 +9,7 @@ Subject: [PATCH] LPD-42473 Instead of setting a width from image2 plugin,
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
-index da58812eff..bcf986bad4 100644
+index da58812..bcf986b 100644
 --- a/plugins/image2/plugin.js
 +++ b/plugins/image2/plugin.js
 @@ -376,8 +376,8 @@
