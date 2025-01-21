@@ -69,6 +69,9 @@ case "$COMMAND" in
 				rm -rf temp
 				cp -r ckeditor-dev temp
 
+				# Remove codesnippetgeshi plugin
+				rm -rf temp/plugins/codesnippetgeshi
+
 				# Copy custom skins
 				cp -r skins temp
 
