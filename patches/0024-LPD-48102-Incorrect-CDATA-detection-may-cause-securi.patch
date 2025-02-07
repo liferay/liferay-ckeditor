@@ -1,0 +1,80 @@
+From 643bae1016f36458d5b1b9ecdf7a3f2ec61c02a5 Mon Sep 17 00:00:00 2001
+From: antonio-ortega <antonio.ortega@liferay.com>
+Date: Fri, 7 Feb 2025 15:06:31 +0100
+Subject: [PATCH] LPD-48102 Incorrect CDATA detection may cause security issue
+
+---
+ core/htmlparser.js | 32 +++++++++++++++++---------------
+ 1 file changed, 17 insertions(+), 15 deletions(-)
+
+diff --git a/core/htmlparser.js b/core/htmlparser.js
+index a7465bc..41fb71c 100644
+--- a/core/htmlparser.js
++++ b/core/htmlparser.js
+@@ -121,10 +121,7 @@ CKEDITOR.htmlParser = function() {
+ 				if ( tagIndex > nextIndex ) {
+ 					var text = html.substring( nextIndex, tagIndex );
+ 
+-					if ( cdata )
+-						cdata.push( text );
+-					else
+-						this.onText( text );
++					this.onText( text );
+ 				}
+ 
+ 				nextIndex = this._.htmlPartsRegex.lastIndex;
+@@ -142,7 +139,7 @@ CKEDITOR.htmlParser = function() {
+ 
+ 					if ( cdata && CKEDITOR.dtd.$cdata[ tagName ] ) {
+ 						// Send the CDATA data.
+-						this.onCDATA( cdata.join( '' ) );
++						this.onCDATA( cdata );
+ 						cdata = null;
+ 					}
+ 
+@@ -152,20 +149,15 @@ CKEDITOR.htmlParser = function() {
+ 					}
+ 				}
+ 
+-				// If CDATA is enabled, just save the raw match.
+-				if ( cdata ) {
+-					cdata.push( parts[ 0 ] );
+-					continue;
+-				}
+-
+ 				// Opening tag
+ 				if ( ( tagName = parts[ 3 ] ) ) {
+ 					tagName = tagName.toLowerCase();
+ 
+ 					// There are some tag names that can break things, so let's
+ 					// simply ignore them when parsing. (https://dev.ckeditor.com/ticket/5224)
+-					if ( /="/.test( tagName ) )
++					if ( /="/.test( tagName ) ) {
+ 						continue;
++					}
+ 
+ 					var attribs = {},
+ 						attribMatch,
+@@ -186,9 +178,19 @@ CKEDITOR.htmlParser = function() {
+ 
+ 					this.onTagOpen( tagName, attribs, selfClosing );
+ 
+-					// Open CDATA mode when finding the appropriate tags.
+-					if ( !cdata && CKEDITOR.dtd.$cdata[ tagName ] )
+-						cdata = [];
++					// CDATA
++					if ( CKEDITOR.dtd.$cdata[ tagName ] ) {
++						var closingTagRegex = new RegExp( '<\/' + tagName + '>', 'i' ),
++							htmlPart = html.substring( nextIndex ),
++							closingTagIndex = htmlPart.search( closingTagRegex );
++						// If closing tag was not found, treat all remaining text as CDATA.
++						if ( closingTagIndex === -1 ) {
++							closingTagIndex = htmlPart.length;
++						}
++						cdata = htmlPart.substring( 0, closingTagIndex );
++						this._.htmlPartsRegex.lastIndex = nextIndex + cdata.length;
++						nextIndex = this._.htmlPartsRegex.lastIndex;
++					}
+ 
+ 					continue;
+ 				}

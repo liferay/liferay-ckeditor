@@ -1,4 +1,4 @@
-From 5fc8727de4fdc59385ddf17b2c35d7a138a13fa4 Mon Sep 17 00:00:00 2001
+From 0f343bf1b312b987c6c510b49db82827ffa8473c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Roland=20P=C3=A1kai?= <roland.pakai@liferay.com>
 Date: Tue, 21 May 2019 09:38:15 +0200
 Subject: [PATCH] LPS-95472 Tabs in popups not appears correctly in maximized
@@ -11,7 +11,7 @@ plugin.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/plugins/dialog/plugin.js b/plugins/dialog/plugin.js
-index b6a5077918..5101c888ff 100644
+index b6a5077..5101c88 100644
 --- a/plugins/dialog/plugin.js
 +++ b/plugins/dialog/plugin.js
 @@ -1188,7 +1188,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
