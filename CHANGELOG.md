@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.11](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.11) (2025-02-10)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.10...v4.21.0-liferay.11)
+
+### :package: Miscellaneous
+
+-   LPD-48102 Incorrect CDATA detection may cause security issue ([\#223](https://github.com/liferay/liferay-ckeditor/pull/223))
+
 ## [v4.21.0-liferay.10](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.10) (2025-01-14)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.9...v4.21.0-liferay.10)
