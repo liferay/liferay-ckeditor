@@ -1,4 +1,4 @@
-From 050406f72df9c0e09927b84fe1a10881d70119d5 Mon Sep 17 00:00:00 2001
+From 2f1555069cfcc200ef3ec1eb4f86580d83df0c76 Mon Sep 17 00:00:00 2001
 From: Carlos Lancha <carlos.lancha@liferay.com>
 Date: Thu, 6 Aug 2020 14:42:21 +0200
 Subject: [PATCH] LPS-118624 Don't pass languageId to css files requests
@@ -8,7 +8,7 @@ Subject: [PATCH] LPS-118624 Don't pass languageId to css files requests
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/core/ckeditor_base.js b/core/ckeditor_base.js
-index b68e88d5c2..de87cd6d52 100644
+index b68e88d..de87cd6 100644
 --- a/core/ckeditor_base.js
 +++ b/core/ckeditor_base.js
 @@ -188,7 +188,7 @@ if ( !window.CKEDITOR ) {

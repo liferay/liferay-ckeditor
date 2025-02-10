@@ -1,4 +1,4 @@
-From f9776b6c55295fbc680aa13b320c160b09b6d06e Mon Sep 17 00:00:00 2001
+From 9cb20860d02d4a243be5eccbbfebf48dbd867ff3 Mon Sep 17 00:00:00 2001
 From: Norbert Nemeth <norbert.nemeth@liferay.com>
 Date: Tue, 17 Aug 2021 11:20:58 +0200
 Subject: [PATCH] LPS-136998 Avoid breaking the UI in firefox
@@ -8,7 +8,7 @@ Subject: [PATCH] LPS-136998 Avoid breaking the UI in firefox
  1 file changed, 13 deletions(-)
 
 diff --git a/plugins/maximize/plugin.js b/plugins/maximize/plugin.js
-index a3625a1b31..85bc421f18 100644
+index a3625a1..85bc421 100644
 --- a/plugins/maximize/plugin.js
 +++ b/plugins/maximize/plugin.js
 @@ -72,19 +72,6 @@
