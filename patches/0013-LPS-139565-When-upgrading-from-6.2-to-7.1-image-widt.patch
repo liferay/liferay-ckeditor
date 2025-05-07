@@ -1,4 +1,4 @@
-From 8c597f0db6fb7cff2a500a474eeeed85a4216bd8 Mon Sep 17 00:00:00 2001
+From 81f832fa84874fa013d85796d782ecbd24728bf7 Mon Sep 17 00:00:00 2001
 From: Minhchau <minhchau.dang@liferay.com>
 Date: Tue, 28 Sep 2021 11:18:40 -0700
 Subject: [PATCH] LPS-139565 When upgrading from 6.2 to 7.1, image width/height
@@ -10,7 +10,7 @@ If inline styles for height/width are set on the image, prefer those over the na
  1 file changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/plugins/image2/plugin.js b/plugins/image2/plugin.js
-index 63de633..bcf986b 100644
+index 63de6333e5..bcf986bad4 100644
 --- a/plugins/image2/plugin.js
 +++ b/plugins/image2/plugin.js
 @@ -376,8 +376,8 @@
