@@ -1,0 +1,22 @@
+From 09b5265050976693cee1ee067dee549d327d6a5c Mon Sep 17 00:00:00 2001
+From: fortunato <fortunato.maldonado@liferay.com>
+Date: Wed, 7 May 2025 09:03:46 -0600
+Subject: [PATCH] LPD-54093 Do not apply focus fix to webkit
+
+---
+ plugins/wysiwygarea/plugin.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/wysiwygarea/plugin.js b/plugins/wysiwygarea/plugin.js
+index 97c849a80c..de728db164 100644
+--- a/plugins/wysiwygarea/plugin.js
++++ b/plugins/wysiwygarea/plugin.js
+@@ -270,7 +270,7 @@
+ 
+ 		// Fix problem with cursor not appearing in Webkit and IE11+ when clicking below the body (https://dev.ckeditor.com/ticket/10945, https://dev.ckeditor.com/ticket/10906).
+ 		// Fix for older IEs (8-10 and QM) is placed inside selection.js.
+-		if ( CKEDITOR.env.webkit || ( CKEDITOR.env.ie && CKEDITOR.env.version > 10 ) ) {
++		if ( CKEDITOR.env.ie && CKEDITOR.env.version > 10 ) {
+ 			doc.getDocumentElement().on( 'mousedown', function( evt ) {
+ 				if ( evt.data.getTarget().is( 'html' ) ) {
+ 					// IE needs this timeout. Webkit does not, but it does not cause problems too.

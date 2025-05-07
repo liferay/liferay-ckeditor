@@ -1,4 +1,4 @@
-From 643bae1016f36458d5b1b9ecdf7a3f2ec61c02a5 Mon Sep 17 00:00:00 2001
+From a620bd48d59abbcc6c408748769315e990236ec2 Mon Sep 17 00:00:00 2001
 From: antonio-ortega <antonio.ortega@liferay.com>
 Date: Fri, 7 Feb 2025 15:06:31 +0100
 Subject: [PATCH] LPD-48102 Incorrect CDATA detection may cause security issue
@@ -8,7 +8,7 @@ Subject: [PATCH] LPD-48102 Incorrect CDATA detection may cause security issue
  1 file changed, 17 insertions(+), 15 deletions(-)
 
 diff --git a/core/htmlparser.js b/core/htmlparser.js
-index a7465bc..41fb71c 100644
+index a7465bc130..41fb71c326 100644
 --- a/core/htmlparser.js
 +++ b/core/htmlparser.js
 @@ -121,10 +121,7 @@ CKEDITOR.htmlParser = function() {
