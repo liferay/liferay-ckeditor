@@ -1,3 +1,11 @@
+## [v4.21.0-liferay.13](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.13) (2025-09-16)
+
+[Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.12...v4.21.0-liferay.13)
+
+### :package: Miscellaneous
+
+-   LPD-63066 Improve shortcut hint ([\#226](https://github.com/liferay/liferay-ckeditor/pull/226))
+
 ## [v4.21.0-liferay.12](https://github.com/liferay/liferay-ckeditor/tree/v4.21.0-liferay.12) (2025-05-08)
 
 [Full changelog](https://github.com/liferay/liferay-ckeditor/compare/v4.21.0-liferay.11...v4.21.0-liferay.12)
