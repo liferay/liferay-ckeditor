@@ -35,6 +35,13 @@
 			div.innerHTML = html;
 
 			cm.getWrapperElement().appendChild(div);
+
+			setTimeout(function () {
+				var popover = div.querySelector('.popover');
+				if (popover) {
+					popover.classList.add('d-reduce');
+				}
+			}, 4000);
 		},
 
 		_removeTabKeyMessage: function (cm) {
