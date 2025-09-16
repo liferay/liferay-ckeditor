@@ -26,6 +26,26 @@ a.cke_button__source.cke_button_off + a.cke_button__expand.cke_button_disabled {
 	padding: 0 10px;
 }
 
+.cke_enable_context_menu .keyboard-message.popover {
+	left: inherit;
+	padding: 0.25rem 0.5rem;
+	right: 4px;
+	top: 4px;
+	transition: padding ease-out 200ms;
+
+	&:not(:hover).d-reduce {
+		padding: 0;
+
+		.c-kbd-sm:not(.c-kbd) {
+			display: none;
+		}
+
+		.c-kbd-light {
+			font-size: 65%;
+		}
+	}
+}
+
 .cke_hidpi .cke_button.cke_button_on .cke_button__expand_icon,
 .cke_button.cke_button_on .cke_button__expand_icon {
 	background: url("data:image/svg+xml;charset=utf8,%0A%3Csvg%20fill='%23272833'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'%3E%3Cpath%20class='lexicon-icon-outline'%20d='M64,128v-25.4l88,88c25.5,25.5,64.5-12.8,38.6-38.6l-88-88H128c42.6,0,42.6-64,0-64H32C16.4,0,0,14.4,0,32v96C0,170.7,64,170.6,64,128z%20M448,128v-25.4l-88,88c-25.5,25.5-64.5-12.8-38.6-38.6l88-88H384c-42.6,0-42.6-64,0-64h96c15.6,0,32,14.4,32,32v96C512,170.7,448,170.6,448,128z%20M64,384v25.4l88-88c25.5-25.5,64.5,12.8,38.6,38.6l-88,88H128c42.6,0,42.6,64,0,64H32c-15.6,0-32-14.4-32-32v-96C0,341.3,64,341.4,64,384z%20M448,384v25.4l-88-88c-25.5-25.5-64.5,12.8-38.6,38.6l88,88H384c-42.6,0-42.6,64,0,64h96c15.6,0,32-14.4,32-32v-96C512,341.3,448,341.4,448,384z'/%3E%3C/svg%3E%0A") !important;
