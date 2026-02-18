@@ -178,12 +178,10 @@
 			});
 		},
 
-		_handleCodeMirrorChange: function (editor, oldData) {
+		_handleCodeMirrorChange: function (editor) {
 			var newData = this.codeMirrorEditor.getValue();
 
-			if (newData !== oldData) {
-				editor.setData(newData);
-			}
+			editor.setData(newData);
 		},
 
 		_handleEditorResize: function (event) {
